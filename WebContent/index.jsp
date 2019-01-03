@@ -1,11 +1,12 @@
 java1
-<<<<<<< HEAD
+
+
+aranrhee
+
+hello nanna0
+
+tssu106
 
 tssu106@gmail.com
 
-=======
-aranrhee
->>>>>>> branch 'master' of https://github.com/mingu-seo/java1.git
-
-
-aranaran
+dddddddd
