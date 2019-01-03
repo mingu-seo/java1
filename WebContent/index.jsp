@@ -1,8 +1,4 @@
 java1
-<<<<<<< HEAD
 
-tssu106@gmail.com
+tssu106
 
-=======
-aranrhee
->>>>>>> branch 'master' of https://github.com/mingu-seo/java1.git
