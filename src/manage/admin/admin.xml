@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="admin">
+    
+    <typeAlias alias="vo" type="manage.admin.AdminVO"/>
+    <typeAlias alias="param" type="manage.admin.AdminVO"/>
+    
+    <!-- 공통조건 -->
+	<sql id="searchSql">		
+		<!-- WHERE 절 검색 -->
+		<dynamic prepend="where">
+		    no > 1
+			<isNotEqual property="sval" compareValue="" prepend="and">
+				<isEqual property="stype" compareValue="all" prepend="and">
+					( (name like '%$sval$%' ) or (id like '%$sval$%' ) or (memo like '%$sval$%') ) 					
+				</isEqual>
+				<isNotEqual property="stype" compareValue="all" prepend="and">
+					($stype$ like '%$sval$%' )
+				</isNotEqual>
+			</isNotEqual>
+		</dynamic>
+	</sql>
+	
+	<select id="count" parameterClass="param" resultClass="Integer">
+        select count(*) from admin
+        <include refid="searchSql" />	
+    </select>
+	
+    <select id="list" parameterClass="param" resultClass="vo">
+        select no, id, password, email,
+        name, memo, registdate from admin
+        <include refid="searchSql" />
+		ORDER BY no DESC LIMIT $startPageNo$, $pageRows$	
+    </select>
+    
+    <insert id="insert" parameterClass="vo" >
+        insert into admin
+        	(id, password, email, name, memo, registdate)
+        values
+        	(#id#, password(#password#), #email#, #name#, #memo#, now())
+        <selectKey keyProperty="no" resultClass="Integer">
+			SELECT  LAST_INSERT_ID()
+		</selectKey>
+    </insert>
+    
+    <update id="update" parameterClass="vo">
+        update admin set
+        	<isNotEqual property="password" compareValue="">
+        	    password = password(#password#),
+        	</isNotEqual>
+        	email=#email#, name=#name#, memo=#memo#
+        where no=#no#
+    </update>
+    
+    <delete id="delete" parameterClass="Integer">
+        delete from admin where no=#no#
+    </delete>
+    
+    <select id="read" parameterClass="Integer" resultClass="vo">
+    	<![CDATA[
+        select no, id, password, email,
+        	name, memo, registdate,
+        	ifnull((select max(no) from admin where no>1 and no<#no#), 0) as prev_no,
+        	ifnull((select min(no) from admin where no>1 and no>#no#), 0) as next_no
+         from admin where no>1 and no=#no#
+         ]]>
+    </select>
+    
+    <select id="idcheck" parameterClass="param" resultClass="Integer">
+        select count(*) as cnt from admin where id=#id#
+    </select>
+    
+    <select id="loginCheck" parameterClass="param" resultClass="Integer">
+        select count(*) as cnt from admin where id=#id# and password=password(#password#)
+    </select>
+    
+    <select id="loginSessionInfo" parameterClass="param" resultClass="vo">
+        select * from admin where id=#id# and password=password(#password#)
+    </select>
+    
+    <!-- 관리자 로그인 접속 기록 -->
+    <sql id="historySearchSql">
+		<!-- WHERE 절 검색 -->
+		<dynamic prepend="where">
+		    id != 'vizensoft'
+			<isNotEqual property="sval" compareValue="">
+				<isEqual property="stype" compareValue="all">
+					and ( (name like '%$sval$%' ) or (id like '%$sval$%' )) 					
+				</isEqual>
+				<isNotEqual property="stype" compareValue="all">
+					and ($stype$ like '%$sval$%' )
+				</isNotEqual>
+			</isNotEqual>
+		</dynamic>
+	</sql>
+	
+    <select id="countLoginHistory" parameterClass="param" resultClass="Integer">
+        select count(*) from admin_loginhistory
+        <include refid="historySearchSql"/>	
+    </select>
+    
+    <select id="listLoginHistory" parameterClass="param" resultClass="vo">
+        select * from admin_loginhistory
+        <include refid="historySearchSql"/>
+		ORDER BY no DESC LIMIT $startPageNo$, $pageRows$	
+    </select>
+    
+    <insert id="insertLoginHistory" parameterClass="vo" >
+        insert into admin_loginhistory
+        	(id, name, logindate, ip)
+        values
+        	(#id#, #name#, now(), #ip#)
+    </insert>
+    
+</sqlMap>

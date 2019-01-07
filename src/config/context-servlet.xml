@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+				http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<context:component-scan base-package="test" />
+	<context:component-scan base-package="manage" />
+	<context:component-scan base-package="board" />
+	
+	<mvc:annotation-driven/>
+<!-- 
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/*Employee.do" />
+			<mvc:mapping path="/employeeList.do" />
+			<bean class="com.easycompany.cmm.interceptor.AuthenticInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<mvc:view-controller path="/login.do"/>
+	<mvc:view-controller path="/validator.do"/>
+ -->
+ 
+ 	<mvc:default-servlet-handler/>
+ 	
+ 	<mvc:view-resolvers>
+ 	    <mvc:jsp prefix="/WEB-INF/view/"/>
+ 	</mvc:view-resolvers>
+
+ 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="utf-8"/>
+		<property name="maxUploadSize" value="10000000"/>	
+	</bean>
+	
+</beans>
