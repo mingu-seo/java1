@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="member">
+    
+    <typeAlias alias="member_vo" type="member.MemberVO"/>
+    <typeAlias alias="member_param" type="member.MemberVO"/>
+    
+    <!-- 공통조건 -->
+	<sql id="searchSql">		
+		<!-- WHERE 절 검색 -->
+		<dynamic prepend="where">
+		    no > 0
+			<isNotEqual property="sval" compareValue="" prepend="and">
+				<isEqual property="stype" compareValue="all" prepend="and">
+					( (name like '%$sval$%' ) or (email like '%$sval$%' ) ) 					
+				</isEqual>
+				<isNotEqual property="stype" compareValue="all" prepend="and">
+					($stype$ like '%$sval$%' )
+				</isNotEqual>
+			</isNotEqual>
+		</dynamic>
+	</sql>
+	
+	<select id="count" parameterClass="member_param" resultClass="Integer">
+        select count(*) from member
+        <include refid="searchSql" />	
+    </select>
+	
+    <select id="list" parameterClass="member_param" resultClass="member_vo">
+        select * from member
+        <include refid="searchSql" />
+		ORDER BY no DESC LIMIT $startPageNo$, $pageRows$	
+    </select>
+     
+    <insert id="insert" parameterClass="member_vo" >
+        insert into member
+        	(name, email, pw, credate, moddate)
+        values
+        	(#name#, #email#, #pw#, now(), now())
+        <selectKey keyProperty="no" resultClass="Integer">
+			SELECT  LAST_INSERT_ID()
+		</selectKey>
+    </insert>
+    
+    <update id="update" parameterClass="member_vo">
+        update member set
+        	<isNotEqual property="pw" compareValue="">
+        	    pw = #pw#,
+        	</isNotEqual>
+        	email=#email#, name=#name#, mod_date=now()
+        where no=#no#
+    </update>
+   
+    <delete id="delete" parameterClass="Integer">
+        delete from member where no=#no#
+    </delete>
+    
+    <select id="read" parameterClass="Integer" resultClass="member_vo">
+        select no, name, email, credate, moddate
+         from member where no=#no#
+    </select>
+     
+      
+    <select id="emailcheck" parameterClass="member_param" resultClass="Integer">
+        select count(*) as cnt from member where email=#email#
+    </select>
+    <!--
+    <select id="loginCheck" parameterClass="member_param" resultClass="Integer">
+        select count(*) as cnt from admin where id=#id# and password=password(#password#)
+    </select>
+    
+    <select id="loginSessionInfo" parameterClass="member_param" resultClass="member_vo">
+        select * from admin where id=#id# and password=password(#password#)
+    </select>
+    -->
+    <!-- 관리자 로그인 접속 기록
+    <sql id="historySearchSql">
+     -->
+		<!-- WHERE 절 검색 
+		<dynamic prepend="where">
+		    id != 'vizensoft'
+			<isNotEqual property="sval" compareValue="">
+				<isEqual property="stype" compareValue="all">
+					and ( (name like '%$sval$%' ) or (id like '%$sval$%' )) 					
+				</isEqual>
+				<isNotEqual property="stype" compareValue="all">
+					and ($stype$ like '%$sval$%' )
+				</isNotEqual>
+			</isNotEqual>
+		</dynamic>
+	</sql>
+	
+    <select id="countLoginHistory" parameterClass="param" resultClass="Integer">
+        select count(*) from admin_loginhistory
+        <include refid="historySearchSql"/>	
+    </select>
+    
+    <select id="listLoginHistory" parameterClass="param" resultClass="vo">
+        select * from admin_loginhistory
+        <include refid="historySearchSql"/>
+		ORDER BY no DESC LIMIT $startPageNo$, $pageRows$	
+    </select>
+    
+    <insert id="insertLoginHistory" parameterClass="vo" >
+        insert into admin_loginhistory
+        	(id, name, logindate, ip)
+        values
+        	(#id#, #name#, now(), #ip#)
+    </insert>
+    -->
+</sqlMap>
