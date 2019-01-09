@@ -35,7 +35,7 @@ public class MemberDAO extends SqlMapClientDAOSupport {
 	public int insert(MemberVO vo) throws SQLException {
 		return (Integer) getSqlMapClient().insert("member.insert", vo);
 	}
-
+	
 	/**
 	 * 관리자 수정
 	 * @param vo

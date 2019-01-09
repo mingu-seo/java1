@@ -14,7 +14,7 @@ MemberVO data = (MemberVO)request.getAttribute("data");
 
 function goSave() {
 	// 비밀번호 유효성체크
-	if(!validPassword($("#pwd"))) return false;
+	if(!validPassword($("#pw"))) return false;
 	
 	$("#frm").submit();
 }
@@ -50,24 +50,47 @@ function goSave() {
 									<col width="35%" />
 									<col width="15%" />
 									<col width="35%" />
+									<col width="35%" />
+									<col width="35%" />
 								</colgroup>
 								<tbody>
 									<tr>
 										<th scope="row"><label for="">*이름</label></th>
 										<td>
-											<input type="text" id="mname" name="mname" value="<%=data.getMname()%>" title="회원 이름을 입력해주세요." />
+											<input type="text" id="name" name="name" value="<%=data.getName()%>" title="회원 이름을 입력해주세요." />
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">이메일</label></th>
+										<th scope="row"><label for="">*성별</label></th>
 										<td>
-											<input type="text" id="email" name="email" value="<%=Function.checkNull(data.getEmail())%>" title="회원 이메일을 입력해주세요." />
+											<select id="gender" name="gender" title="성별을 선택해주세요.">
+												<option value="1" <%if(data.getGender()==1){out.print("selected");}%>>남성</option>
+												<option value="2" <%if(data.getGender()==2){out.print("selected");}%>>여성</option>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><label for="">*이메일</label></th>
+										<td>
+											<input type="text" id="email" name="email" value="<%=Function.checkNull(data.getEmail())%>" title="변경할 이메일을 입력해주세요." />
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">*비밀번호</label></th>
 										<td>
-											<input type="password" id="pwd" name="pwd" value="<%=data.getPwd() %>" title="회원 비밀번호를 입력해주세요." />
+											<input type="password" id="pw" name="pw" value="<%=data.getPw()%>" title="회원 비밀번호를 입력해주세요." />
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><label for="">*휴대폰번호</label></th>
+										<td>
+											<input type="text" id="hp" name="hp" value="<%=data.getHp()%>" title="변경할 휴대폰 번호를 입력해주세요." />
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><label for="">*포인트</label></th>
+										<td>
+											<input type="text" id="point" name="point" value="<%=data.getPoint()%>" title="포인트를 입력해주세요." />
 										</td>
 									</tr>
 								</tbody>
@@ -75,7 +98,7 @@ function goSave() {
 							<input type="hidden" name="cmd" value="edit">
 							<input type="hidden" name="stype" id="stype" value="<%=param.getStype()%>"/>
 							<input type="hidden" name="sval" id="sval" value="<%=param.getSval()%>"/>
-							<input type="hidden" name="mno" id="mno" value="<%=param.getMno()%>"/>
+							<input type="hidden" name="no" id="no" value="<%=param.getNo()%>"/>
 							</form>
 							<div class="btn">
 								<div class="btnLeft">

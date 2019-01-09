@@ -10,7 +10,6 @@ MemberVO param = (MemberVO)request.getAttribute("vo");
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/manage/include/headHtml.jsp" %>
 <script>
-
 function goSave() {
 	if ($("#name").val() == "") {
 		alert("이름을 입력해주세요.");
@@ -60,49 +59,24 @@ function goSave() {
 	if ($("#emailcheck").val() == "0") {
 		return false;
 	}
-	/*
-	$.post("/manage/admin/idcheck",$("[name=frm]").serialize(), function (data, status) {
-		var val = data.trim();
-		if (val == "0") {
-			$("#idcheck").val("1");
-			r = true;
-		} else {
-			alert("존재하는 아이디입니다.");
-			r = false;
-		}
-		$("#idcheck").val(data.trim());
-	}).fail(function() {   
-		alert('아이디체크실패');
-		r = false;
-	});
-	*/
-
 }
-
-
 </script>
+<title>회원가입</title>
 </head>
-<body> 
-<%@ include file="/WEB-INF/view/manage/include/common.jsp" %>
-<div id="wrap">
-	<!-- canvas -->
-	<div id="canvas">
-		<!-- S T A R T :: headerArea-->
-		<%@ include file="/WEB-INF/view/manage/include/top.jsp" %>
-		<!-- E N D :: headerArea--> 
-		
-		<!-- S T A R T :: containerArea-->
-		<div id="container">
+<body>
+<h1>회원가입하고 갈래?</h1>
+
+<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>회원관리 - [등록]</h2>
+					
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="bread">
-							<h3>회원 기본 정보</h3>
+							
 							<form name="frm" id="frm" action="process.do" method="post">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 								<colgroup>
@@ -162,30 +136,10 @@ function goSave() {
 							<input type="hidden" name="idcheck" id="idcheck" value="0"/>
 							</form>
 							<div class="btn">
-								<div class="btnLeft">
-									<a class="btns" href="<%=param.getTargetURLParam("index", param, 0)%>"><strong>목록</strong></a>
-								</div>
 								<div class="btnRight">
 									<a class="btns" href="#" onclick="goSave();"><strong>등록</strong></a>
 								</div>
 							</div>
-							<!--//btn-->
-						</div>
-						<!-- //bread -->
-					</div>
-					<!-- //bbs --> 
-					<!-- 내용 : e -->
-				</div>
-				<!--//con -->
-			</div>
-			<!--//content -->
-		</div>
-		<!--//container --> 
-		<!-- E N D :: containerArea-->
-	</div>
-	<!--//canvas -->
-</div>
-<!--//wrap -->
 
 </body>
 </html>
