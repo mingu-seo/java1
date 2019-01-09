@@ -13,7 +13,7 @@ public class TestController {
 	@Autowired
 	private TestService testService;
 
-	@RequestMapping("/test")
+	@RequestMapping("/test.do")
 	public String test(Model model) throws Exception {
 		model.addAttribute("test", "테스트");
 		

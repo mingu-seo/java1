@@ -30,10 +30,14 @@
  	<mvc:view-resolvers>
  	    <mvc:jsp prefix="/WEB-INF/view/"/>
  	</mvc:view-resolvers>
+ 	
 
  	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="defaultEncoding" value="utf-8"/>
 		<property name="maxUploadSize" value="10000000"/>	
 	</bean>
+	
+	<!-- 사용자 정적페이지 -->
+	<mvc:view-controller path="/index.do"/>
 	
 </beans>
