@@ -34,7 +34,7 @@ public class MemberService {
 		int no = memberDao.insert(vo);
 		return no;
 	}
-
+	
 	public int update(MemberVO vo) throws SQLException {
 		int cnt = memberDao.update(vo);
 		return cnt;
@@ -88,7 +88,7 @@ public class MemberService {
 	}
 
 	public int groupDelete(HttpServletRequest request) throws SQLException {
-		String[] no = request.getParameterValues("mno");
+		String[] no = request.getParameterValues("no");
 		int r = 0;
 		for (int i=0; i<no.length; i++) {
 			int nos = Integer.parseInt(no[i]);

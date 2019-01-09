@@ -34,9 +34,9 @@
      
     <insert id="insert" parameterClass="member_vo" >
         insert into member
-        	(name, email, pw, credate, moddate)
+        	(name, birth, email, pw, gender, hp, credate, moddate)
         values
-        	(#name#, #email#, #pw#, now(), now())
+        	(#name#, #birth#, #email#, #pw#, #gender#, #hp#, now(), now())
         <selectKey keyProperty="no" resultClass="Integer">
 			SELECT  LAST_INSERT_ID()
 		</selectKey>
@@ -47,7 +47,7 @@
         	<isNotEqual property="pw" compareValue="">
         	    pw = #pw#,
         	</isNotEqual>
-        	email=#email#, name=#name#, mod_date=now()
+        	name = #name#, email=#email#, hp=#hp#, point=#point#, moddate=now()
         where no=#no#
     </update>
    
@@ -56,7 +56,7 @@
     </delete>
     
     <select id="read" parameterClass="Integer" resultClass="member_vo">
-        select no, name, email, credate, moddate
+        select *
          from member where no=#no#
     </select>
      
@@ -64,6 +64,7 @@
     <select id="emailcheck" parameterClass="member_param" resultClass="Integer">
         select count(*) as cnt from member where email=#email#
     </select>
+    
     <!--
     <select id="loginCheck" parameterClass="member_param" resultClass="Integer">
         select count(*) as cnt from admin where id=#id# and password=password(#password#)

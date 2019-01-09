@@ -55,7 +55,7 @@ public class MemberVO extends Parameter {
 			strList.append("&sval="+param.getSval());
 			strList.append("&reqPageNo="+param.getReqPageNo());
 			if (index > 0) {
-				strList.append("&mno="+index);
+				strList.append("&no="+index);
 			}
 		}
 		return strList.toString();

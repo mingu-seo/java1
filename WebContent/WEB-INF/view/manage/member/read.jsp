@@ -13,7 +13,7 @@ MemberVO data = (MemberVO)request.getAttribute("data");
 	function goDelete() {
 		var del = confirm ('삭제하시겠습니까?');
 		if (del){
-			document.location.href = "process?mno=<%=data.getMno()%>&cmd=delete";
+			document.location.href = "process?no=<%=data.getNo()%>&cmd=delete";
 		} else {
 			return false;
 		}
@@ -43,27 +43,55 @@ MemberVO data = (MemberVO)request.getAttribute("data");
 							<h3>기본 정보</h3>
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 								<colgroup>
+									<col width="5%" />
 									<col width="15%" />
-									<col width="35%" />
-									<col width="15%" />
-									<col width="35%" />
+									<col width="5%" />
+									<col width="20%" />
+									<col width="25%" />
+									<col width="10%" />
+									<col width="10%" />
+									<col width="10%" />
 								</colgroup>
 								<tbody>
 									<tr>
 										<th scope="row"><label for="">이름</label></th>
-										<td><%=data.getMname()%></td>
+										<td><%=data.getName()%></td>
+									</tr>
+									<tr>
+										<th scope="row"><label for="">생년월일</label></th>
+										<td><%=data.getBirth()%></td>
+									</tr>
+									<tr>
+										<th scope="row"><label for="">성별</label></th>
+										<td>
+										<%
+										if(data.getGender()==1){
+											out.print("남성");
+										}else if(data.getGender()==2){
+											out.print("여성");
+										}
+										%>
+										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">이메일</label></th>
 										<td><%=data.getEmail()%></td>
 									</tr>
 									<tr>
+										<th scope="row"><label for="">휴대폰 번호</label></th>
+										<td><%=data.getHp()%></td>
+									</tr>
+									<tr>
+										<th scope="row"><label for="">포인트</label></th>
+										<td><%=data.getPoint()%></td>
+									</tr>
+									<tr>
 										<th scope="row"><label for="">가입일</label></th>
-										<td><%=data.getCre_date()%></td>
+										<td><%=data.getCredate()%></td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">암호변경일</label></th>
-										<td><%=data.getMod_date()%></td>
+										<td><%=data.getModdate()%></td>
 									</tr>
 								</tbody>
 							</table>
@@ -72,7 +100,7 @@ MemberVO data = (MemberVO)request.getAttribute("data");
 									<a class="btns" href="<%=param.getTargetURLParam("index", param, 0)%>"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
-									<a class="btns" href="<%=param.getTargetURLParam("edit", param, data.getMno())%>"><strong>수정</strong></a>
+									<a class="btns" href="<%=param.getTargetURLParam("edit", param, data.getNo())%>"><strong>수정</strong></a>
 									<a class="btns" href="#" onClick="goDelete();"><strong>삭제</strong></a>
 								</div>
 							</div>

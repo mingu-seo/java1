@@ -56,8 +56,15 @@ public class MemberController {
 		return "manage/member/write";
 	}
 	
+	@RequestMapping("/member/join")
+	public String join(Model model, MemberVO param) throws Exception {
+		model.addAttribute("vo", param);
+		
+		return "member/join";
+	}
+	
 	/**
-	 * 관리자 아이디 중복체크
+	 * 회원 아이디 중복체크
 	 * 사용자에서 저장시 ajax로 체크
 	 * @param model
 	 * @param param
@@ -74,6 +81,7 @@ public class MemberController {
 		return "include/return";
 	}
 	
+	
 	/**
 	 * 등록, 수정, 삭제 cmd값으로 구분해서 처리
 	 * @param model
@@ -82,7 +90,7 @@ public class MemberController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("/manage/member/process")
+	@RequestMapping(value= {"/manage/member/process", "/member/process"})
 	public String process(Model model, MemberVO param, HttpServletRequest request) throws Exception {
 		model.addAttribute("vo", param);
 		

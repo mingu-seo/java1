@@ -54,8 +54,8 @@ function groupDelete() {
 									<col class="w5" />
 									<col class="w5" />
 									<col class="w7" />
-									<col class="" />
 									<col class="w3" />
+									<col class="" />
 									<col class="" />
 									<col class="w7" />
 									<col class="" />
@@ -67,18 +67,18 @@ function groupDelete() {
 										<th scope="col">회원번호</th>
 										<th scope="col">이름</th>
 										<th scope="col">생년월일</th>
-										<th scope="col">이메일</th>
 										<th scope="col">성별</th>
+										<th scope="col">이메일</th>
 										<th scope="col">휴대폰 번호</th>
 										<th scope="col">포인트</th>
 										<th scope="col">가입일</th>
-										<th scope="col">회원정보 변경일</th>
+										<th scope="col">회원정보 수정일</th>
 									</tr>
 								</thead>
 								<tbody>
 								<% if (list.size() == 0) { %>
 									<tr>
-										<td class="first" colspan="8">등록된 회원이 없습니다.</td>
+										<td class="first" colspan="10">등록된 회원이 없습니다.</td>
 									</tr>
 								<%
 									 } else {
@@ -92,10 +92,10 @@ function groupDelete() {
 										<td <%=targetUrl%>><%=data.getNo()%></td>
 										<td <%=targetUrl%>><%=data.getName()%></td>
 										<td <%=targetUrl%>><%=data.getBirth()%></td>
-										<td <%=targetUrl%>><%=data.getEmail()%></td>
 										<td <%=targetUrl%>><%if(data.getGender()==1){out.print("남");}
 															else if(data.getGender()==2){out.print("여");}%>
 										</td>
+										<td <%=targetUrl%>><%=data.getEmail()%></td>
 										<td <%=targetUrl%>><%=data.getHp()%></td>
 										<td <%=targetUrl%>><%=data.getPoint()%></td>
 										<td <%=targetUrl%>><%=data.getCredate()%></td>
