@@ -10,15 +10,15 @@ $(function() {
 	$(".depth1 > li").mouseleave(function(){
 		$(this).find(".depth2").stop().slideUp(300);
 	});
-	
+
 	$("#login_click").click(function() {
 		$(".login_info").toggle();
 	});
-	
+
 	$(".login_info > .top_area > img").click(function() {
 		$(".login_info").hide();
 	});
-	
+
 	var swiper = new Swiper('.swiper-container', {
 		loop: true,
 		autoplay: {

@@ -112,8 +112,6 @@ public class MemberController {
 	}
 	
 	
-	
-	
 	/**
 	 * 회원 아이디 중복체크
 	 * 사용자에서 저장시 ajax로 체크
