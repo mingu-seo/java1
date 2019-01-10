@@ -41,7 +41,7 @@ function goSave() {
 	
 	$.ajax ({
 		type:'POST',
-		url:"/manage/member/emailcheck",
+		url:"/manage/member/emailcheck.do",
 		data:$("#email").serialize(),
 		async:false,
 		success:function(data) {

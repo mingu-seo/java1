@@ -35,7 +35,7 @@ $(function() {
                 <h1 class="logo"><a href="/"><img src="/img/logo.png"/></a></h1>
                 <div class="util clear">
                     <a href="">로그인</a>
-                    <a href="">회원가입</a>
+                    <a href="member/join.do">회원가입</a>
                     <!-- 
                     <a href="">로그인</a>
                     <a href="">예매내역</a>
