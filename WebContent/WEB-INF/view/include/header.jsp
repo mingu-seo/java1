@@ -93,7 +93,7 @@ function CookieVal(cookieName) {
                 <div class="util clear">
                 <%if(memberInfo==null){ %>
                     <a href="#;" id="login_click">로그인</a>
-                    <a href="member/join.do">회원가입</a>
+                    <a href="/member/join.do">회원가입</a>
                 <%}else{%>
                 	<a href="/logout.do">로그아웃</a>
                     <a href="">마이페이지</a>
