@@ -13,18 +13,15 @@
 	<context:component-scan base-package="member" />
 	<context:component-scan base-package="movie" />
 	<mvc:annotation-driven/>
-<!-- 
+
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/*Employee.do" />
-			<mvc:mapping path="/employeeList.do" />
-			<bean class="com.easycompany.cmm.interceptor.AuthenticInterceptor" />
+			<mvc:mapping path="/manage/**" />
+			<mvc:exclude-mapping path="/manage/index.do" />
+			<mvc:exclude-mapping path="/manage/login.do" />
+			<bean class="interceptor.AdminLoginInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
-
-	<mvc:view-controller path="/login.do"/>
-	<mvc:view-controller path="/validator.do"/>
- -->
  
  	<mvc:default-servlet-handler/>
  	
@@ -39,6 +36,9 @@
 	</bean>
 	
 	<!-- 사용자 정적페이지 -->
-	<mvc:view-controller path="/index.do"/> <!-- 지금ㄷ은 컨트롤러가 없지만 임시로 뷰페이지를 보여줌. 동적인 페이지에서만 사용 가능함 -->
+	<mvc:view-controller path="/index.do"/>
+	<mvc:view-controller path="/member/login.do"/>
+	<mvc:view-controller path="/board/notice/index.do"/>
+	<mvc:view-controller path="/board/notice/view.do"/>
 	
 </beans>

@@ -85,7 +85,7 @@ function groupDelete() {
 										String targetUrl = "";
 										for (int i=0; i<list.size(); i++) {
 											MemberVO data = list.get(i);
-											targetUrl = "style='cursor:pointer;' onclick=\"location.href='"+param.getTargetURLParam("read", param, data.getNo())+"'\"";
+											targetUrl = "style='cursor:pointer;' onclick=\"location.href='"+param.getTargetURLParam("read.do", param, data.getNo())+"'\"";
 								%>
 									<tr>
 										<td class="first"><input type="checkbox" name="no" id="no" value="<%=data.getNo()%>"/></td>
@@ -107,7 +107,7 @@ function groupDelete() {
 								%>
 								</tbody>
 							</table>
-							<input type="hidden" name="cmd" id="cmd" value="groupDelete"/>
+							<input type="hidden" name="cmd" id="cmd" value="groupDelete.do"/>
 							<input type="hidden" name="stype" id="stype" value="<%=param.getStype()%>"/>
 							<input type="hidden" name="sval" id="sval" value="<%=param.getSval()%>"/>
 							</form>
@@ -116,14 +116,14 @@ function groupDelete() {
 									<a class="btns" href="#" onclick="groupDelete();"><strong>삭제</strong> </a>
 								</div>
 								<div class="btnRight">
-									<a class="wbtn" href="write"><strong>회원등록</strong> </a>
+									<a class="wbtn" href="write.do"><strong>회원등록</strong> </a>
 								</div>
 							</div>
 							<!--//btn-->
 							<!-- 페이징 처리 -->
 							<%=Page.indexList(param.getReqPageNo(), totPage, request)%>
 							<!-- //페이징 처리 -->
-							<form name="searchForm" id="searchForm" action="index" method="post">
+							<form name="searchForm" id="searchForm" action="index.do" method="post">
 								<div class="search">
 									<select name="stype" title="검색을 선택해주세요">
 										<option value="all" <%=Function.getSelected(param.getStype(), "all") %>>전체</option>
