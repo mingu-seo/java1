@@ -49,7 +49,21 @@ public class MemberService {
 		MemberVO vo = memberDao.read(no);
 		return vo;
 	}
-
+	
+	public boolean loginCheck(MemberVO param) throws SQLException {
+		int cnt = memberDao.loginCheck(param);
+		boolean result = false;
+		if (cnt == 1) {
+			result = true;
+		}
+		return result;
+	}
+	
+	public MemberVO getLoginSessionInfo(MemberVO param) throws SQLException {
+		MemberVO vo = memberDao.getLoginSessionInfo(param);
+		vo.setIp(param.getIp());	// 아이피 추가
+		return vo;
+	}
 //	public boolean loginCheck(MemberVO param) throws SQLException {
 //		int cnt = memberDao.loginCheck(param);
 //		boolean result = false;
@@ -86,6 +100,7 @@ public class MemberService {
 	public int emailcheck(MemberVO param) throws SQLException {
 		return memberDao.emailcheck(param);
 	}
+	
 
 	public int groupDelete(HttpServletRequest request) throws SQLException {
 		String[] no = request.getParameterValues("no");

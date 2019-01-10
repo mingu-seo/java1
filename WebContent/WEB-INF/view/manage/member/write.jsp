@@ -42,7 +42,7 @@ function goSave() {
 	
 	$.ajax ({
 		type:'POST',
-		url:"/manage/member/emailcheck",
+		url:"/manage/member/emailcheck.do",
 		data:$("#email").serialize(),
 		async:false,
 		success:function(data) {
@@ -155,7 +155,7 @@ function goSave() {
 									</tr>
 								</tbody>
 							</table>
-							<input type="hidden" name="cmd" value="write"/>
+							<input type="hidden" name="cmd" value="write.do"/>
 							<input type="hidden" name="ip" id="ip" value="<%=request.getRemoteAddr()%>"/>
 							<input type="hidden" name="stype" id="stype" value="<%=param.getStype()%>"/>
 							<input type="hidden" name="sval" id="sval" value="<%=param.getSval()%>"/>
@@ -163,7 +163,7 @@ function goSave() {
 							</form>
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="<%=param.getTargetURLParam("index", param, 0)%>"><strong>목록</strong></a>
+									<a class="btns" href="<%=param.getTargetURLParam("index.do", param, 0)%>"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
 									<a class="btns" href="#" onclick="goSave();"><strong>등록</strong></a>

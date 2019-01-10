@@ -59,6 +59,12 @@ function goSave() {
 	if ($("#emailcheck").val() == "0") {
 		return false;
 	}
+	
+	function checkPw(){
+		var input = ${"#pw"};
+		var reinput = ${"#pw_check"};
+	}
+	
 }
 </script>
 <title>회원가입</title>
@@ -104,6 +110,12 @@ function goSave() {
 										<th scope="row"><label for="">*비밀번호</label></th>
 										<td>
 											<input type="password" id="pw" name="pw" value="" title="회원 비밀번호를 입력해주세요." />
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><label for="">*비밀번호 확인</label></th>
+										<td>
+											<input type="password" id="pw_check" name="pw_check" value="" title="회원 비밀번호를 입력해주세요." />
 										</td>
 									</tr>
 									<tr>
