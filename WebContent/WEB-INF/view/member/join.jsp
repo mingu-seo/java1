@@ -41,7 +41,7 @@ function goSave() {
 	
 	$.ajax ({
 		type:'POST',
-		url:"/manage/member/emailcheck",
+		url:"/manage/member/emailcheck.do",
 		data:$("#email").serialize(),
 		async:false,
 		success:function(data) {
@@ -133,7 +133,7 @@ function goSave() {
 							<input type="hidden" name="ip" id="ip" value="<%=request.getRemoteAddr()%>"/>
 							<input type="hidden" name="stype" id="stype" value="<%=param.getStype()%>"/>
 							<input type="hidden" name="sval" id="sval" value="<%=param.getSval()%>"/>
-							<input type="hidden" name="idcheck" id="idcheck" value="0"/>
+							<input type="hidden" name="emailcheck" id="emailcheck" value="0"/>
 							</form>
 							<div class="btn">
 								<div class="btnRight">
