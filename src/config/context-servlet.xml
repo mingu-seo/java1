@@ -39,6 +39,6 @@
 	</bean>
 	
 	<!-- 사용자 정적페이지 -->
-	<mvc:view-controller path="/index.do"/>
+	<mvc:view-controller path="/index.do"/> <!-- 지금ㄷ은 컨트롤러가 없지만 임시로 뷰페이지를 보여줌. 동적인 페이지에서만 사용 가능함 -->
 	
 </beans>
