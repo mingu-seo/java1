@@ -18,7 +18,7 @@ public class MainController {
 	@Autowired
 	private AdminService adminService;
 
-	@RequestMapping("/manage")
+	@RequestMapping(value= {"/manage/index.do","/manage", "/manage/"})
 	public String main(Model model) throws Exception {
 
 		return "manage/index";
