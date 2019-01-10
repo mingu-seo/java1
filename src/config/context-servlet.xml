@@ -13,18 +13,15 @@
 	<context:component-scan base-package="member" />
 	
 	<mvc:annotation-driven/>
-<!-- 
+
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/*Employee.do" />
-			<mvc:mapping path="/employeeList.do" />
-			<bean class="com.easycompany.cmm.interceptor.AuthenticInterceptor" />
+			<mvc:mapping path="/manage/**" />
+			<mvc:exclude-mapping path="/manage/index.do" />
+			<mvc:exclude-mapping path="/manage/login.do" />
+			<bean class="interceptor.AdminLoginInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
-
-	<mvc:view-controller path="/login.do"/>
-	<mvc:view-controller path="/validator.do"/>
- -->
  
  	<mvc:default-servlet-handler/>
  	
