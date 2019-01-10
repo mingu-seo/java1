@@ -56,7 +56,7 @@ public class MemberController {
 		return "manage/member/write";
 	}
 	
-	@RequestMapping("/member/join")
+	@RequestMapping("/member/join.do")
 	public String join(Model model, MemberVO param) throws Exception {
 		model.addAttribute("vo", param);
 		

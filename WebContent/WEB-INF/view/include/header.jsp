@@ -8,15 +8,15 @@ $(function() {
 	$(".depth1 > li").mouseleave(function(){
 		$(this).find(".depth2").stop().slideUp(300);
 	});
-	
+
 	$("#login_click").click(function() {
 		$(".login_info").toggle();
 	});
-	
+
 	$(".login_info > .top_area > img").click(function() {
 		$(".login_info").hide();
 	});
-	
+
 	var swiper = new Swiper('.swiper-container', {
 		loop: true,
 		autoplay: {
@@ -43,8 +43,8 @@ $(function() {
                 <h1 class="logo"><a href="/"><img src="/img/logo.png"/></a></h1>
                 <div class="util clear">
                     <a href="#;" id="login_click">로그인</a>
-                    <a href="member/join.do">회원가입</a>
-                    <!-- 
+                    <a href="/member/join.do">회원가입</a>
+                    <!--
                     <a href="">로그인</a>
                     <a href="">예매내역</a>
                      -->
