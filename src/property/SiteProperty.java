@@ -13,6 +13,10 @@ public class SiteProperty {
 	 */
 	public static final String	INDEX_PAGE				= "/manage/admin/index.do";
 	/**
+	 * 회원 시작페이지
+	 */
+	public static final String	MEMBER_INDEX_PAGE		= "/index.do";
+	/**
 	 * 보안서버인증서(SSL)사용여부
 	 */
 	public static final boolean	SSL_USE					= false;
@@ -97,5 +101,6 @@ public class SiteProperty {
 	 * 공지사항 첨부파일 경로
 	 */
 	public static final String NOTICE_UPLOAD_PATH		= "/upload/notice/";
+	public static final String MOVIE_UPLOAD_PATH		= "/upload/movie/";
 
 }

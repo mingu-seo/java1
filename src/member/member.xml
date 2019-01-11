@@ -36,7 +36,7 @@
         insert into member
         	(name, birth, email, pw, gender, hp, credate, moddate)
         values
-        	(#name#, #birth#, #email#, #pw#, #gender#, #hp#, now(), now())
+        	(#name#, #birth#, #email#, password(#pw#), #gender#, #hp#, now(), now())
         <selectKey keyProperty="no" resultClass="Integer">
 			SELECT  LAST_INSERT_ID()
 		</selectKey>
@@ -65,6 +65,15 @@
         select count(*) as cnt from member where email=#email#
     </select>
     
+    
+    <select id="loginCheck" parameterClass="member_param" resultClass="Integer">
+        select count(*) as cnt from member where email=#email# and pw=password(#pw#)
+    </select>
+    
+    
+    <select id="loginSessionInfo" parameterClass="member_param" resultClass="member_vo">
+        select * from member where email=#email# and pw=password(#pw#)
+    </select>
     <!--
     <select id="loginCheck" parameterClass="member_param" resultClass="Integer">
         select count(*) as cnt from admin where id=#id# and password=password(#password#)
