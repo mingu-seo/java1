@@ -101,6 +101,10 @@ public class MemberService {
 		return memberDao.emailcheck(param);
 	}
 	
+	public MemberVO searchemail(MemberVO param) throws SQLException {
+		return memberDao.searchemail(param);
+	}
+	
 
 	public int groupDelete(HttpServletRequest request) throws SQLException {
 		String[] no = request.getParameterValues("no");

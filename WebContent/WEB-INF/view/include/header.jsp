@@ -41,9 +41,9 @@ function loginCheck(){
 		getObject("loginEmail").focus();
 		return false;
 	}
-	if ( getObject("LoginPw").value.length < 1 ) {
+	if ( getObject("loginPw").value.length < 1 ) {
 		alert("비밀번호를 입력해주세요.");
-		getObject("LoginPw").focus();
+		getObject("loginPw").focus();
 		return false;
 	}
 	var f = document.board;
@@ -106,7 +106,7 @@ function CookieVal(cookieName) {
                 	<div class="middle_area">
                 		<div class="input_area">
                 			<input type="text" id="loginEmail" name="email" value="" placeholder="이메일"/>
-                			<input type="password" id="LoginPw" name="pw" value="" placeholder="비밀번호"/>
+                			<input type="password" id="loginPw" name="pw" value="" placeholder="비밀번호"/>
                 		</div>
                 		<div class="login_btn">
                 			<input type="submit" value="로그인"/>

@@ -98,6 +98,16 @@ public class MemberDAO extends SqlMapClientDAOSupport {
 		return (Integer) getSqlMapClient().queryForObject("member.emailcheck", param);
 	}
 	
+	/**
+	 * 이메일 찾기
+	 * @param param
+	 * @return
+	 * @throws SQLException
+	 */
+	public MemberVO searchemail(MemberVO param) throws SQLException {
+		return (MemberVO) getSqlMapClient().queryForObject("member.searchemail", param);
+	}
+	
 	
 //	public MemberVO getLoginSessionInfo(MemberVO param) throws SQLException {
 //		return (MemberVO) getSqlMapClient().queryForObject("member.loginSessionInfo", param);

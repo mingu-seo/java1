@@ -66,6 +66,11 @@
     </select>
     
     
+    <select id="searchemail" parameterClass="member_param" resultClass="member_vo">
+        select email from member where name=#name# and hp=#hp#
+    </select>
+    
+    
     <select id="loginCheck" parameterClass="member_param" resultClass="Integer">
         select count(*) as cnt from member where email=#email# and pw=password(#pw#)
     </select>
