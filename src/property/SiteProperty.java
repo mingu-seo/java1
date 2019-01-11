@@ -7,7 +7,7 @@ public class SiteProperty {
 	/**
 	 * 업체명
 	 */
-	public static final String 	COMPANY_NAME			= "SPRING";
+	public static final String 	COMPANY_NAME			= "MOVIE";
 	/**
 	 * 관리자 시작페이지
 	 */
@@ -23,14 +23,14 @@ public class SiteProperty {
 	/**
 	 * URL http
 	 */
-	public static final String 	COMPANY_URL				= "http://localhost:8080";
+	public static final String 	COMPANY_URL				= "http://localhost";
 //	public static final String 	COMPANY_URL_MO			= "http://m.bigbang";
 
 	/**
 	 * URL https SSL
 	 */
-	public static final String 	COMPANY_SSL_URL			= "https://localhost:8080";
-	public static final String 	COMPANY_SSL_URL_MO		= "https://localhost:8080";
+	public static final String 	COMPANY_SSL_URL			= "https://localhost";
+	public static final String 	COMPANY_SSL_URL_MO		= "https://localhost";
 	
 	/**
 	 * JSP 파일경로위치
@@ -53,15 +53,16 @@ public class SiteProperty {
 	/**
 	 * 메일서버
 	 */
-	public static final String 	SMTP_HOST				= "mail.";
+	public static final String 	SMTP_HOST				= "mail.sanggong.co.kr";
+	public static final String 	SMTP_PORT				= "25";
 	/**
 	 * 메일계정 아이디
 	 */
-	public static final String 	SMTP_USER				= "";
+	public static final String 	SMTP_USER				= "withsky@sanggong.co.kr";
 	/**
 	 * 메일계정 패스워드
 	 */
-	public static final String 	SMTP_PASSWORD			= "";
+	public static final String 	SMTP_PASSWORD			= "tjalsrn9";
 	/**
 	 * 이메일 기본 폼
 	 */
@@ -96,7 +97,7 @@ public class SiteProperty {
 	/**
 	 * 로컬 홈디렉토리경로 (실서버 변경 필요)
 	 */
-	public static final String REAL_PATH				= "E:\\workspace\\java1\\WebContent";
+	public static final String REAL_PATH				= "D:\\workspace\\java1\\WebContent";
 	/**
 	 * 공지사항 첨부파일 경로
 	 */

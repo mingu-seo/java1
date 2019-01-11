@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Repository;
 
 import db.SqlMapClientDAOSupport;
+import mail.SendMail;
 
 @Repository
 public class TestDAO extends SqlMapClientDAOSupport {
@@ -16,12 +17,14 @@ public class TestDAO extends SqlMapClientDAOSupport {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		TestDAO dao = new TestDAO();
-		ArrayList<TestVO> list = dao.getList();
+//		TestDAO dao = new TestDAO();
+//		ArrayList<TestVO> list = dao.getList();
 		
-		for (int i=0; i<list.size(); i++) {
-			System.out.println(list.get(i).getNo() + " " + list.get(i).getId() + " " +list.get(i).getName());
-		}
+		SendMail.sendEmail("withsky@sanggong.co.kr", "withsky999@gmail.com","제목", "내용");
+		
+//		for (int i=0; i<list.size(); i++) {
+//			System.out.println(list.get(i).getNo() + " " + list.get(i).getId() + " " +list.get(i).getName());
+//		}
 	}
 
 }

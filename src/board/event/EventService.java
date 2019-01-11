@@ -1,4 +1,4 @@
-package board.notice;
+package board.event;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -15,13 +15,13 @@ import util.Function;
 import util.Page;
 
 @Service
-public class NoticeService {
+public class EventService {
 
 	@Autowired
-	private NoticeDAO noticeDao;
+	private EventDAO eventDao;
 	
-	public int[] count(NoticeVO vo) throws Exception {
-		int rowCount = noticeDao.count(vo);
+	public int[] count(EventVO vo) throws Exception {
+		int rowCount = eventDao.count(vo);
 		int[] rowPageCount = new int[2];
 		int pageCount = Page.getPageCount(vo.getPageRows(), rowCount);
 		rowPageCount[0] = rowCount;
@@ -29,12 +29,12 @@ public class NoticeService {
 		return rowPageCount;
 	}
 
-	public ArrayList list(NoticeVO vo) throws Exception {
-		ArrayList list = noticeDao.list(vo);
+	public ArrayList list(EventVO vo) throws Exception {
+		ArrayList list = eventDao.list(vo);
 		return list;
 	}
 
-	public int insert(NoticeVO vo, HttpServletRequest request) throws Exception {
+	public int insert(EventVO vo, HttpServletRequest request) throws Exception {
 		
 		FileUtil fu = new FileUtil();
 		Map fileMap = fu.getFileMap(request);
@@ -47,21 +47,21 @@ public class NoticeService {
 			vo.setFilesize(fu.getSrcSize());
 		}
 		
-		int lastNo = (Integer)noticeDao.insert(vo);
+		int lastNo = (Integer)eventDao.insert(vo);
 		
 		return lastNo;
 	}
 	
-	public NoticeVO read(NoticeVO vo, boolean userCon) throws Exception {
-		NoticeVO data = noticeDao.read(vo);
+	public EventVO read(EventVO vo, boolean userCon) throws Exception {
+		EventVO data = eventDao.read(vo);
 		if (userCon) {	// 사용자쪽 조회시만 update
-			noticeDao.updateReadno(vo);
+			eventDao.updateReadno(vo);
 		}
 		return data;
 	}
 
-	public int update(NoticeVO vo, HttpServletRequest request) throws Exception {
-		NoticeVO data = noticeDao.read(vo);
+	public int update(EventVO vo, HttpServletRequest request) throws Exception {
+		EventVO data = eventDao.read(vo);
 		
 		FileUtil fu = new FileUtil();
 		Map fileMap = fu.getFileMap(request);
@@ -74,7 +74,7 @@ public class NoticeService {
 			vo.setFilesize(fu.getSrcSize());
 		}
 		
-		int r = (Integer)noticeDao.update(vo);
+		int r = (Integer)eventDao.update(vo);
 		if(r > 0){
 			if("1".equals(vo.getFilename_chk()) || !"".equals(Function.checkNull(vo.getFilename()))){
 				Function.fileDelete(vo.getUploadPath(), data.getFilename());
@@ -84,23 +84,23 @@ public class NoticeService {
 	}
 
 	
-	public int delete(NoticeVO vo) throws Exception {
-		NoticeVO data = noticeDao.read(vo);
-		int r = noticeDao.delete(vo);
+	public int delete(EventVO vo) throws Exception {
+		EventVO data = eventDao.read(vo);
+		int r = eventDao.delete(vo);
 		if (r > 0) {
 			Function.fileDelete(vo.getUploadPath(), data.getFilename());
 		}
 		return r;
 	}
 	
-	public int groupDelete(NoticeVO vo, HttpServletRequest request) throws Exception {
+	public int groupDelete(EventVO vo, HttpServletRequest request) throws Exception {
 		String[] nos = request.getParameterValues("no");
 		int delCount = 0;
 		if (nos.length > 0) {
 			for (int i=0; i<nos.length; i++) {
 				vo.setNo(Function.getIntParameter(nos[i]));
-				NoticeVO data = noticeDao.read(vo);
-				int r = noticeDao.delete(vo);
+				EventVO data = eventDao.read(vo);
+				int r = eventDao.delete(vo);
 				if (r > 0) {
 					delCount++;
 					Function.fileDelete(vo.getUploadPath(), data.getFilename());

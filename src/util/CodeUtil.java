@@ -7,7 +7,28 @@ package util;
  *
  */
 public class CodeUtil {
-
+	public static String getType(int type) {
+		String result = "";
+		switch (type) {
+		case 1:
+			result = "시스템공지";
+			break;
+		case 2:
+			result = "극장";
+			break;
+		case 3:
+			result = "기타";
+			break;
+		}
+		return result;
+	}
+	public static String getTypeOption(int arg){
+        StringBuffer result = new StringBuffer();
+        	result.append("<option value='1'"+Function.getSelected(1,arg)+">"+getType(1)+"</option>");
+        	result.append("<option value='2'"+Function.getSelected(2,arg)+">"+getType(2)+"</option>");
+        	result.append("<option value='3'"+Function.getSelected(3,arg)+">"+getType(3)+"</option>");
+        return result.toString();
+	}
 	/**
 	 * 관리자 등급
 	 * @param type int

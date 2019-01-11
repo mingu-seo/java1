@@ -84,4 +84,12 @@ public class NoticeDAO extends SqlMapClientDAOSupport {
 	public ArrayList mainList(NoticeVO vo) throws SQLException {
 		return (ArrayList)getSqlMapClient().queryForList("notice.mainList", vo);
 	}
+	
+	public static void main(String[] args) throws Exception {
+		NoticeDAO dao = new NoticeDAO();
+		NoticeVO vo = new NoticeVO();
+		vo.setTablename("notice");
+		
+		dao.count(vo);
+	}
 }
