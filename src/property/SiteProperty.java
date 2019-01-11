@@ -19,14 +19,14 @@ public class SiteProperty {
 	/**
 	 * URL http
 	 */
-	public static final String 	COMPANY_URL				= "http://localhost:8080";
+	public static final String 	COMPANY_URL				= "http://localhost";
 //	public static final String 	COMPANY_URL_MO			= "http://m.bigbang";
 
 	/**
 	 * URL https SSL
 	 */
-	public static final String 	COMPANY_SSL_URL			= "https://localhost:8080";
-	public static final String 	COMPANY_SSL_URL_MO		= "https://localhost:8080";
+	public static final String 	COMPANY_SSL_URL			= "https://localhost";
+	public static final String 	COMPANY_SSL_URL_MO		= "https://localhost";
 	
 	/**
 	 * JSP 파일경로위치
@@ -92,7 +92,7 @@ public class SiteProperty {
 	/**
 	 * 로컬 홈디렉토리경로 (실서버 변경 필요)
 	 */
-	public static final String REAL_PATH				= "D:\\workspace\\java\\spring\\WebContent";
+	public static final String REAL_PATH				= "D:\\workspace\\java1\\WebContent";
 	/**
 	 * 공지사항 첨부파일 경로
 	 */

@@ -17,16 +17,9 @@
      <transactionManager type="JDBC">     
 		<dataSource type="DBCP">
 			<property name="JDBC.Driver" value="com.mysql.jdbc.Driver"/>
-			 	
 			<property name="JDBC.ConnectionURL" value="jdbc:mysql://localhost:3306/movie?useUnicode=true&amp;characterEncoding=utf8"/>			
-			<property name="JDBC.Username" value="study"/>
-			<property name="JDBC.Password" value="study"/>
-			 
-			<!--
-			<property name="JDBC.ConnectionURL" value="jdbc:mysql://:3306/bigbang?useUnicode=true&amp;characterEncoding=utf8"/>			
-			<property name="JDBC.Username" value=""/>
-			<property name="JDBC.Password" value=""/>
-			-->
+			<property name="JDBC.Username" value="root"/>
+			<property name="JDBC.Password" value="javaroqkfg"/>
 			<property name="Pool.MaximumActiveConnections" value="10"/>
 			<property name="Pool.MaximumIdleConnections" value="5"/>
 			<property name="Pool.MaximumCheckoutTime" value="120000"/>
@@ -36,6 +29,7 @@
     
 	<sqlMap resource="test/test.xml"/>	
 	<sqlMap resource="manage/admin/admin.xml"/>	
-	<sqlMap resource="board/notice/notice.xml"/>	
+	<sqlMap resource="board/notice/notice.xml"/>		
+	<sqlMap resource="board/event/event.xml"/>		
 	<sqlMap resource="member/member.xml"/>	
 </sqlMapConfig>

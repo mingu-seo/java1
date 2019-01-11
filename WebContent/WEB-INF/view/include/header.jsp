@@ -90,10 +90,10 @@ $(function() {
                             </ul>
                         </li>
                         <li>
-                            <a href="" >STORE</a>
+                            <a href="" >MORE</a>
                             <ul class="depth2">
-                                <li><a href="" >상품권</a></li>
-                                <li><a href="" >스낵</a></li>
+                                <li><a href="" >스토어</a></li>
+                                <li><a href="" >Q&A</a></li>
                             </ul>
                         </li>
                     </ul>
