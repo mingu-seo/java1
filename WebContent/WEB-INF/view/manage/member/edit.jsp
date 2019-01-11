@@ -95,14 +95,14 @@ function goSave() {
 									</tr>
 								</tbody>
 							</table>
-							<input type="hidden" name="cmd" value="edit">
+							<input type="hidden" name="cmd" value="edit.do">
 							<input type="hidden" name="stype" id="stype" value="<%=param.getStype()%>"/>
 							<input type="hidden" name="sval" id="sval" value="<%=param.getSval()%>"/>
 							<input type="hidden" name="no" id="no" value="<%=param.getNo()%>"/>
 							</form>
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="<%=param.getTargetURLParam("index", param, 0)%>"><strong>목록</strong></a>
+									<a class="btns" href="<%=param.getTargetURLParam("index.do", param, 0)%>"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
 									<a class="btns" href="#" onclick="goSave();"><strong>저장</strong></a>

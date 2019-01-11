@@ -1,63 +1,62 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
-<sqlMap namespace="notice">
+<sqlMap namespace="movie">
     
-    <typeAlias alias="notice_vo" type="board.notice.NoticeVO"/>
+    <typeAlias alias="movie_vo" type="movie.MovieVo"/>
     
     <!-- 공통조건 -->
 	<sql id="searchSql">		
 		<!-- WHERE 절 검색 -->
 		<dynamic prepend="where">
-			1=1
 			<isNotEqual property="sdisplay" compareValue="-1">
-			    and display = #sdisplay#
+			    display = #sdisplay#
 			</isNotEqual>
 			<!-- 검색어 검색 -->
 			<isNotEqual property="sval" compareValue="">
 				<!-- 검색 타입이 all일 때 -->
 				<isEqual property="stype" compareValue="all" prepend="and">
-					and ( (writer like '%$sval$%' ) or (contents like '%$sval$%' ) or (title like '%$sval$%' ) ) 					
+					( (name like '%$sval$%' ) or (contents like '%$sval$%' ) or (title like '%$sval$%' ) ) 					
 				</isEqual>
 				<!-- 검색 타입이 all이 아닐때 해당 stype으로 검색 -->
 				<isNotEqual property="stype" compareValue="all" prepend="and">
-					and ($stype$ like '%$sval$%' )
+					($stype$ like '%$sval$%' )
 				</isNotEqual>
 			</isNotEqual>
 		</dynamic>
 	</sql>
 	
 	<!-- 해당 테이블의 총 게시글 수 -->
-	<select id="count" parameterClass="notice_vo" resultClass="Integer">
+	<select id="count" parameterClass="movie_vo" resultClass="Integer">
         select count(*) from $tablename$
         <include refid="searchSql" />	
     </select>
     
-	<select id="list" parameterClass="notice_vo" resultClass="notice_vo">
+	<select id="list" parameterClass="movie_vo" resultClass="notice_vo">
         select *
         from $tablename$
         <include refid="searchSql" />
-		ORDER BY cre_date DESC LIMIT $startPageNo$, $pageRows$
+		ORDER BY releaseDate DESC LIMIT $startPageNo$, $pageRows$
     </select>
 	
 	<!-- 해당 테이블에 게시글 작성 -->
-    <insert id="insert" parameterClass="notice_vo">
+    <insert id="insert" parameterClass="movie_vo">
         INSERT INTO $tablename$ (
-        	type, writer, title, contents, cre_date, readno,
-        	filename_org, filename, filesize, display
+        	title, director, genre, rating, runtime, releaseDate,
+        	endDate, poster, display, contents
         ) VALUES (
-        	#type#, #writer#, #title#, #contents#, now(), #readno#,
-        	#filename_org#, #filename#, #filesize#, #display#
+        	#title#, #director#, #genre#, #rating#, #runtime#, #releaseDate#,
+        	#endDate#, #poster#, #display#, #contents#
         )
         <selectKey keyProperty="no" resultClass="Integer">
         	SELECT LAST_INSERT_ID()
         </selectKey>
     </insert>
     
-    <update id="update" parameterClass="notice_vo">
+    <update id="update" parameterClass="movie_vo">
         UPDATE $tablename$ SET
-        	type=#type#, writer=#writer#, title=#title#, display=#display#,
-        <isNotEqual property="cre_date" compareValue="">
-       	    cre_date = #cre_date#,
+        	name=#name#, title=#title#, display=#display#,
+        <isNotEqual property="registdate" compareValue="">
+       	    registdate = #registdate#,
        	</isNotEqual>
         <isNotEqual property="readno" compareValue="0">
        	    readno = #readno#,
@@ -74,14 +73,14 @@
         WHERE no = #no#
     </update>
     
-    <select id="read" parameterClass="notice_vo" resultClass="notice_vo">
+    <select id="read" parameterClass="movie_vo" resultClass="movie_vo">
         SELECT 
         	*
         FROM $tablename$
         where no = #no#
     </select>
     
-    <select id="filenames" parameterClass="notice_vo" resultClass="notice_vo">
+    <select id="filenames" parameterClass="movie_vo" resultClass="movie_vo">
     	<![CDATA[
         SELECT 
         	file_name
@@ -90,52 +89,52 @@
         ]]>
     </select> 
         
-    <select id="getRowNum" parameterClass="notice_vo" resultClass="Integer">
+    <select id="getRowNum" parameterClass="movie_vo" resultClass="Integer">
         select rownum from (
         	select @rownum:=@rownum+1 as rownum, no, title from $tablename$, (select @rownum:=0) as r
         	<include refid="searchSql" />
-        	ORDER BY cre_date DESC
+        	ORDER BY registdate DESC
         ) as r2
         where r2.no = #no#
     </select>
     
-    <select id="getNextRowNum" parameterClass="notice_vo" resultClass="notice_vo">
+    <select id="getNextRowNum" parameterClass="movie_vo" resultClass="movie_vo">
         select ifnull(rownum,0), ifnull(no,0) as next_no, title as next_title
         from (
         	select @rownum:=@rownum+1 as rownum, no, title from $tablename$, (select @rownum:=0) as r
         	<include refid="searchSql" />
-        	ORDER BY cre_date DESC
+        	ORDER BY registdate DESC
         ) as r2
         <![CDATA[
         where r2.rownum = $rownum$+1
     	]]>
     </select>
     
-    <select id="getPrevRowNum" parameterClass="notice_vo" resultClass="notice_vo">
+    <select id="getPrevRowNum" parameterClass="movie_vo" resultClass="movie_vo">
     	select ifnull(rownum,0), ifnull(no,0) as prev_no, title as prev_title
         from (
         	select @rownum:=@rownum+1 as rownum, no, title from $tablename$, (select @rownum:=0) as r
         	<include refid="searchSql" />
-        	ORDER BY cre_date DESC
+        	ORDER BY registdate DESC
         ) as r2
         <![CDATA[
         where r2.rownum = $rownum$-1
     	]]>
     </select>
     
-    <delete id="delete" parameterClass="notice_vo">
+    <delete id="delete" parameterClass="movie_vo">
         DELETE FROM $tablename$ WHERE no=#no#
     </delete>
     
-    <update id="updateReadno" parameterClass="notice_vo">
+    <update id="updateReadno" parameterClass="movie_vo">
         UPDATE $tablename$ SET readno = readno+1 WHERE no = #no#
     </update>
     
-    <select id="mainList" parameterClass="notice_vo" resultClass="notice_vo">
+    <select id="mainList" parameterClass="movie_vo" resultClass="movie_vo">
         select *
         from $tablename$
         <include refid="searchSql" />
-		ORDER BY cre_date DESC LIMIT 0, $number$
+		ORDER BY registdate DESC LIMIT 0, $number$
     </select>
     
 </sqlMap>

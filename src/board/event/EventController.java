@@ -1,4 +1,4 @@
-package board.notice;
+package board.event;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -16,56 +16,41 @@ import util.FileUtil;
 import util.Function;
 
 @Controller
-public class NoticeController {
+public class EventController {
 
 	@Autowired
-	NoticeService noticeService;
+	EventService eventService;
 	
-	@RequestMapping("/manage/board/notice/index.do")
-	public String index(Model model, NoticeVO param) throws Exception {
+	@RequestMapping("/manage/board/event/index.do")
+	public String index(Model model, EventVO param) throws Exception {
 		System.out.println(param.getSdisplay());
-		param.setTablename("notice");
-		int[] rowPageCount = noticeService.count(param);
-		ArrayList<AdminVO> list = noticeService.list(param);
+		param.setTablename("event");
+		int[] rowPageCount = eventService.count(param);
+		ArrayList<AdminVO> list = eventService.list(param);
 		
 		model.addAttribute("totCount", rowPageCount[0]);
 		model.addAttribute("totPage", rowPageCount[1]);
 		model.addAttribute("list", list);
 		model.addAttribute("vo", param);
 		
-		return "manage/board/notice/index";
+		return "manage/board/event/index";
 	}
 	
-	@RequestMapping("/board/notice/index.do")
-	public String indexv(Model model, NoticeVO param) throws Exception {
-		System.out.println(param.getSdisplay());
-		param.setTablename("notice");
-		int[] rowPageCount = noticeService.count(param);
-		ArrayList<AdminVO> list = noticeService.list(param);
-		
-		model.addAttribute("totCount", rowPageCount[0]);
-		model.addAttribute("totPage", rowPageCount[1]);
-		model.addAttribute("list", list);
+	@RequestMapping("/manage/board/event/write.do")
+	public String write(Model model, EventVO param) throws Exception {
 		model.addAttribute("vo", param);
 		
-		return "board/notice/index";
+		return "manage/board/event/write";
 	}
 	
-	@RequestMapping("/manage/board/notice/write.do")
-	public String write(Model model, NoticeVO param) throws Exception {
-		model.addAttribute("vo", param);
-		
-		return "manage/board/notice/write";
-	}
-	
-	@RequestMapping("/manage/board/notice/edit.do")
-	public String edit(Model model, NoticeVO param) throws Exception {
-		param.setTablename("notice");
-		NoticeVO data = noticeService.read(param, false);
+	@RequestMapping("/manage/board/event/edit.do")
+	public String edit(Model model, EventVO param) throws Exception {
+		param.setTablename("event");
+		EventVO data = eventService.read(param, false);
 		model.addAttribute("data", data);
 		model.addAttribute("param", param);
 		
-		return "manage/board/notice/edit";
+		return "manage/board/event/edit";
 	}
 	
 	/**
@@ -76,29 +61,29 @@ public class NoticeController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("/manage/board/notice/process.do")
-	public String process(Model model, NoticeVO param, HttpServletRequest request) throws Exception {
+	@RequestMapping("/manage/board/event/process.do")
+	public String process(Model model, EventVO param, HttpServletRequest request) throws Exception {
 		model.addAttribute("vo", param);
-		param.setTablename("notice");
+		param.setTablename("event");
 		System.out.println(param.getCmd());
 		if ("write".equals(param.getCmd())) {
 			
-			int r = noticeService.insert(param, request);
+			int r = eventService.insert(param, request);
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "정상적으로 등록되었습니다.", "등록실패"));
 			model.addAttribute("url", "index.do");
 		} else if ("edit".equals(param.getCmd())) {
-			int r = noticeService.update(param, request);
+			int r = eventService.update(param, request);
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "정상적으로 수정되었습니다.", "수정실패"));
 			model.addAttribute("url", param.getTargetURLParam("index.do", param, 0));
 		} else if ("groupDelete".equals(param.getCmd())) {
-			int r = noticeService.groupDelete(param, request);
+			int r = eventService.groupDelete(param, request);
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "총 "+r+"건이 삭제되었습니다.", "삭제실패"));
 			model.addAttribute("url", param.getTargetURLParam("index.do", param, 0));
 		} else if ("delete".equals(param.getCmd())) {
-			int r = noticeService.delete(param);
+			int r = eventService.delete(param);
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "정상적으로 삭제되었습니다.", "삭제실패"));
 			model.addAttribute("url", param.getTargetURLParam("index.do", param, 0));

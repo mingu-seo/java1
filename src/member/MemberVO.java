@@ -18,7 +18,7 @@ public class MemberVO extends Parameter {
 	private Timestamp moddate;//회원정보 수정일
 	
 	
-	
+	private String ip;				// 접속 아이피
 	private int prev_no;			// 이전글 no
 	private int next_no;			// 다음글 no
 	private String prev_title;		// 이전글 제목
@@ -125,6 +125,12 @@ public class MemberVO extends Parameter {
 	}
 	
 	
+	public String getIp() {
+		return ip;
+	}
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
 	public int getPrev_no() {
 		return prev_no;
 	}

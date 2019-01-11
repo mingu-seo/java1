@@ -1,22 +1,23 @@
-package board.notice;
+package board.event;
 
 import java.sql.Timestamp;
 
 import util.Parameter;
 
-public class NoticeVO extends Parameter {
+public class EventVO extends Parameter {
 
 	private int			no;						// 글 번호
-	private int		 	type;					// 종류
-	private String 		title;					// 제목
+	private String 		event_name;					// 글 제목
 	private String		contents;				// 내용
+	private Timestamp	sta_date;				// 작성일
+	private Timestamp	end_date;				// 작성일
 	private Timestamp	cre_date;				// 작성일
 	private int 		readno;					// 조회수
-	private String		writer;					// 작성자
-	private int			display;					// 노출여부
+	private String		writer;
 	private String 		filename_org;			// 첨부파일 이름 [사용자]
 	private String 		filename;				// 첨부파일 이름 [시스템 처리용]
 	private long 		filesize;				// 첨부파일 크기
+	private int			display;				// 노출여부
 	
 	private String 		filename_chk;
 	private int 		prev_no;				// 이전글 no
@@ -25,11 +26,11 @@ public class NoticeVO extends Parameter {
 	private String 		next_title;				// 다음글 제목
 	
 	//검색조건
-	private int 		sdisplay;
+	private int			sdisplay;				// 노출여부 (-1:전체, 0:미노출, 1:노출)
 	
-	public NoticeVO() {
+	public EventVO() {
 		super.setPageRows(10);
-		this.setSdisplay(-1);	// 검색기본값(전체)
+		this.setSdisplay(-1);
 	}
 
 	public int getNo() {
@@ -40,20 +41,12 @@ public class NoticeVO extends Parameter {
 		this.no = no;
 	}
 
-	public int getType() {
-		return type;
+	public String getEvent_name() {
+		return event_name;
 	}
 
-	public void setType(int type) {
-		this.type = type;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
+	public void setEvent_name(String event_name) {
+		this.event_name = event_name;
 	}
 
 	public String getContents() {
@@ -62,6 +55,22 @@ public class NoticeVO extends Parameter {
 
 	public void setContents(String contents) {
 		this.contents = contents;
+	}
+
+	public Timestamp getSta_date() {
+		return sta_date;
+	}
+
+	public void setSta_date(Timestamp sta_date) {
+		this.sta_date = sta_date;
+	}
+
+	public Timestamp getEnd_date() {
+		return end_date;
+	}
+
+	public void setEnd_date(Timestamp end_date) {
+		this.end_date = end_date;
 	}
 
 	public Timestamp getCre_date() {
@@ -88,14 +97,6 @@ public class NoticeVO extends Parameter {
 		this.writer = writer;
 	}
 
-	public int getDisplay() {
-		return display;
-	}
-
-	public void setDisplay(int display) {
-		this.display = display;
-	}
-
 	public String getFilename_org() {
 		return filename_org;
 	}
@@ -118,6 +119,14 @@ public class NoticeVO extends Parameter {
 
 	public void setFilesize(long filesize) {
 		this.filesize = filesize;
+	}
+
+	public int getDisplay() {
+		return display;
+	}
+
+	public void setDisplay(int display) {
+		this.display = display;
 	}
 
 	public String getFilename_chk() {
@@ -159,15 +168,13 @@ public class NoticeVO extends Parameter {
 	public void setNext_title(String next_title) {
 		this.next_title = next_title;
 	}
+
 	public int getSdisplay() {
 		return sdisplay;
 	}
-	
+
 	public void setSdisplay(int sdisplay) {
 		this.sdisplay = sdisplay;
 	}
 
-	
-	
-	
 }

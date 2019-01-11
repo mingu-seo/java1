@@ -1,11 +1,11 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page import="java.util.*" %>
-<%@ page import="board.notice.*" %>
+<%@ page import="board.event.*" %>
 <%@ page import="util.*" %>
 <%@ page import="property.*" %>
 <%
-NoticeVO param = (NoticeVO)request.getAttribute("param");
-NoticeVO data = (NoticeVO)request.getAttribute("data");
+EventVO param = (EventVO)request.getAttribute("param");
+EventVO data = (EventVO)request.getAttribute("data");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
@@ -60,7 +60,7 @@ NoticeVO data = (NoticeVO)request.getAttribute("data");
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>공지사항 - [수정]</h2>
+					<h2>이벤트 - [수정]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -74,17 +74,13 @@ NoticeVO data = (NoticeVO)request.getAttribute("data");
 									<col width="15%" />
 									<col width="10%" />
 									<col width="15%" />
-									<col width="25%" />
-									<col width="25%" />
+									<col width="10%" />
+									<col width="15%" />
+									<col width="10%" />
+									<col width="15%" />
 								</colgroup>
 								<tbody>
 									<tr>
-										<th scope="row"><label for="">종류</label></th>
-										<td>
-											<select name="type">
-												<%=CodeUtil.getTypeOption(data.getType())%>
-											</select>
-										</td>
 										<th scope="row"><label for="">상태</label></th>
 										<td>
 											<select name="display">
@@ -94,6 +90,20 @@ NoticeVO data = (NoticeVO)request.getAttribute("data");
 										<th scope="row"><label for="">등록일</label></th>
 										<td>
 											<input type="text" id="cre_date" name="cre_date" class="inputTitle" value="<%=DateUtil.getDateTimeFormat(data.getCre_date())%>" title="등록일을 입력해주세요"/>&nbsp;
+											<span id="CalregistdateIcon">
+												<img src="/manage/img/calendar_icon.png" id="CalregistdateIconImg" style="cursor:pointer;"/>
+											</span>
+										</td>
+										<th scope="row"><label for="">시작일</label></th>
+										<td>
+											<input type="text" id="sta_date" name="sta_date" class="inputTitle" value="<%=DateUtil.getDateTimeFormat(data.getSta_date())%>" title="시작일을 입력해주세요"/>&nbsp;
+											<span id="CalregistdateIcon">
+												<img src="/manage/img/calendar_icon.png" id="CalregistdateIconImg" style="cursor:pointer;"/>
+											</span>
+										</td>
+										<th scope="row"><label for="">종료일</label></th>
+										<td>
+											<input type="text" id="end_date" name="end_date" class="inputTitle" value="<%=DateUtil.getDateTimeFormat(data.getEnd_date())%>" title="종료일을 입력해주세요"/>&nbsp;
 											<span id="CalregistdateIcon">
 												<img src="/manage/img/calendar_icon.png" id="CalregistdateIconImg" style="cursor:pointer;"/>
 											</span>
@@ -116,9 +126,9 @@ NoticeVO data = (NoticeVO)request.getAttribute("data");
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">*제목</label></th>
+										<th scope="row"><label for="">*이벤트명</label></th>
 										<td colspan="10">
-											<input type="text" id="title" name="title" class="w50" title="제목을 입력해주세요" value="<%=Function.checkNull(data.getTitle())%>" />	
+											<input type="text" id="event_name" name="event_name" class="w50" title="제목을 입력해주세요" value="<%=Function.checkNull(data.getEvent_name())%>" />	
 										</td>
 									</tr>
 									<tr>
