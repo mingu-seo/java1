@@ -19,7 +19,7 @@
 			<property name="JDBC.Driver" value="com.mysql.jdbc.Driver"/>
 			<property name="JDBC.ConnectionURL" value="jdbc:mysql://localhost:3306/movie?useUnicode=true&amp;characterEncoding=utf8"/>			
 			<property name="JDBC.Username" value="root"/>
-			<property name="JDBC.Password" value="tjalsrn"/>
+			<property name="JDBC.Password" value="brood14"/>
 			 
 			<!--
 			<property name="JDBC.ConnectionURL" value="jdbc:mysql://:3306/bigbang?useUnicode=true&amp;characterEncoding=utf8"/>			

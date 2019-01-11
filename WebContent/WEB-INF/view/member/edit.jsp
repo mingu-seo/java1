@@ -8,7 +8,7 @@ MemberVO data = (MemberVO)request.getAttribute("data");
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>회원가입</title>
+<title>회원정보수정</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=yes">
