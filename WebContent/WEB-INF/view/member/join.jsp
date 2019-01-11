@@ -9,17 +9,20 @@
 <meta name="format-detection" content="telephone=no, address=no, email=no">
 <meta name="keywords" content="">
 <meta name="description" content="">
+<title>MOVIE</title>
+<%@ include file="/WEB-INF/view/include/headHtml.jsp" %>
 <script>
 function checkEmail(){
-	if($("#newEmail").val()==""){
+	if($("#email").val()==""){
 		alert("이메일을 입력해주세요.");
-	}else if($("#newEmail").val()!=""){
+	}else if($("#email").val()!=""){
 		$.ajax ({
 			type:'POST',
 			url:"/manage/member/emailcheck.do",
-			data:$("#newEmail").serialize(),
+			data:$("#email").serialize(),
 			async:false,
 			success:function(data) {
+				
 				var val = data.trim();
 				if (val == "0") {
 					alert("사용 가능한 이메일입니다.")
@@ -29,7 +32,6 @@ function checkEmail(){
 					$("#checkEmail").val("0");
 					return false;
 				}
-				
 			}
 		});
 		if ($("#checkEmail").val() == "0"){
@@ -43,14 +45,14 @@ function goSave() {
 		$("#name").focus();
 		return false;
 	}
-	if ($("#newEmail").val() == "") {
+	if ($("#email").val() == "") {
 		alert("이메일을 입력해주세요.");
-		$("#newEmail").focus();
+		$("#email").focus();
 		return false;
 	}
-	if ($("#newPw").val() == "") {
+	if ($("#pw").val() == "") {
 		alert("비밀번호를 입력해주세요.");
-		$("#newPw").focus();
+		$("#pw").focus();
 		return false;
 	}
 	if ($("#birth").val() == "") {
@@ -63,17 +65,24 @@ function goSave() {
 		$("#hp").focus();
 		return false;
 	}
+	debugger;
 	// 비밀번호 유효성체크
-	if(!validPassword($("#newPw"))) return false;
+	if(!validPassword($("#pw"))) return false;
 	
-	
-	if($("#checkEmail").val()==1){
-		$("#frm").submit();
+	//비밀번호 확인 체크
+	if($("#pw").val()==$("#pw_check").val()){
+		if($("#checkEmail").val()==1){
+			$("#frm").submit();
+		}
+	}else{
+		alert("비밀번호를 확인해주세요.");
+		$("#pw_check").focus();
+		return false;
 	}
+	
+	
 }
 </script>
-<title>MOVIE</title>
-<%@ include file="/WEB-INF/view/include/headHtml.jsp" %>
 </head>
 <body>
     <%@ include file="/WEB-INF/view/include/header.jsp" %>
@@ -92,13 +101,13 @@ function goSave() {
 					<tr>
 						<th>이메일</th>
 						<td>
-							<input type="text" name="newEmail" id="newEmail" class="inNextBtn" class="wid200" style="float:left;">
+							<input type="text" name="email" id="email" class="inNextBtn" class="wid200" style="float:left;">
 							<span class="email_check"><a href="javascript:;" onclick="checkEmail();" class="btn bgGray" style="float:left; width:auto; clear:none;">중복확인</a></span>
 						</td>
 					</tr>
 					<tr>
 						<th>비밀번호</th>
-						<td><input type="password" name="newPw" id="newPw" class="wid200" style="float:left;"> <span class="ptxt">비밀번호는 숫자, 영문 조합으로 8자 이상으로 입력해주세요.</span> </td>
+						<td><input type="password" name="pw" id="pw" class="wid200" style="float:left;"> <span class="ptxt">비밀번호는 숫자, 영문 조합으로 8자 이상으로 입력해주세요.</span> </td>
 					</tr>
 					<tr>
 						<th>비밀번호<span>확인</span></th>

@@ -36,14 +36,14 @@ $(function() {
 
 //로그인, 이메일 체크
 function loginCheck(){
-	if ( getObject("email").value.length < 1 ) {
+	if ( getObject("loginEmail").value.length < 1 ) {
 		alert("이메일을 입력해주세요.");
-		getObject("email").focus();
+		getObject("loginEmail").focus();
 		return false;
 	}
-	if ( getObject("pw").value.length < 1 ) {
+	if ( getObject("LoginPw").value.length < 1 ) {
 		alert("비밀번호를 입력해주세요.");
-		getObject("password").focus();
+		getObject("LoginPw").focus();
 		return false;
 	}
 	var f = document.board;
@@ -105,8 +105,8 @@ function CookieVal(cookieName) {
                 	<div class="title_area"><span>MOVIE 로그인</span></div>
                 	<div class="middle_area">
                 		<div class="input_area">
-                			<input type="text" id="email" name="email" value="" placeholder="이메일"/>
-                			<input type="password" id="pw" name="pw" value="" placeholder="비밀번호"/>
+                			<input type="text" id="loginEmail" name="email" value="" placeholder="이메일"/>
+                			<input type="password" id="LoginPw" name="pw" value="" placeholder="비밀번호"/>
                 		</div>
                 		<div class="login_btn">
                 			<input type="submit" value="로그인"/>

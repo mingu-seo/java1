@@ -19,6 +19,7 @@
 			<mvc:mapping path="/manage/**" />
 			<mvc:exclude-mapping path="/manage/index.do" />
 			<mvc:exclude-mapping path="/manage/login.do" />
+			<mvc:exclude-mapping path="/manage/member/emailcheck.do" />
 			<bean class="interceptor.AdminLoginInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
