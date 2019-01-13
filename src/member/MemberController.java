@@ -86,16 +86,6 @@ public class MemberController {
 	}
 	
 	
-	//회원 개인정보 페이지 리턴
-	@RequestMapping("/member/read.do")
-	public String memberRead(Model model, MemberVO param) throws Exception {
-		MemberVO data = memberService.read(param.getNo());
-		model.addAttribute("data", data);
-		model.addAttribute("vo", param);
-		
-		return "member/read";
-	}
-	
 	@RequestMapping("/member/edit.do")
 	public String memberEdit(Model model, MemberVO param) throws Exception {
 		MemberVO data = memberService.read(param.getNo());
@@ -128,6 +118,35 @@ public class MemberController {
 		return "manage/member/read";
 	}
 	
+
+	
+	//회원 개인정보 페이지 리턴
+	@RequestMapping("/member/read.do")
+	public String memberRead(Model model, MemberVO param) throws Exception {
+		MemberVO data = memberService.read(param.getNo());
+		model.addAttribute("data", data);
+		model.addAttribute("vo", param);
+		
+		return "member/read";
+	}
+	
+	
+	@RequestMapping("/manage/member/write.do")
+	public String write(Model model, MemberVO param) throws Exception {
+		model.addAttribute("vo", param);
+		
+		return "manage/member/write";
+	}
+	
+	@RequestMapping("/member/write.do")
+	public String memberwrite(Model model, MemberVO param) throws Exception {
+		model.addAttribute("vo", param);
+		
+		return "member/write";
+	}
+	
+	
+	
 	@RequestMapping("/manage/member/edit.do")
 	public String edit(Model model, MemberVO param) throws Exception {
 		MemberVO data = memberService.read(param.getNo());
@@ -137,12 +156,10 @@ public class MemberController {
 		return "manage/member/edit";
 	}
 	
-	@RequestMapping("/manage/member/write.do")
-	public String write(Model model, MemberVO param) throws Exception {
-		model.addAttribute("vo", param);
-		
-		return "manage/member/write";
-	}
+
+	
+	
+
 	
 	
 	/**

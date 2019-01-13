@@ -18,42 +18,11 @@ MemberVO data = (MemberVO)request.getAttribute("data");
 <title>MOVIE</title>
 <%@ include file="/WEB-INF/view/include/headHtml.jsp" %>
 <script>
-function checkEmail(){
-	if($("#email").val()==""){
-		alert("이메일을 입력해주세요.");
-	}else if($("#email").val()!=""){
-		$.ajax ({
-			type:'POST',
-			url:"/manage/member/emailcheck.do",
-			data:$("#email").serialize(),
-			async:false,
-			success:function(data) {
-				var val = data.trim();
-				if (val == "0") {
-					alert("사용 가능한 이메일입니다.")
-					$("#checkEmail").val("1");
-				} else {
-					alert("존재하는 이메일입니다.");
-					$("#checkEmail").val("0");
-					return false;
-				}
-			}
-		});
-		if ($("#checkEmail").val() == "0"){
-			return false;
-		}
-	}
-}
 
 function goSave() {
 	if ($("#name").val() == "") {
 		alert("이름을 입력해주세요.");
 		$("#name").focus();
-		return false;
-	}
-	if ($("#email").val() == "") {
-		alert("이메일을 입력해주세요.");
-		$("#email").focus();
 		return false;
 	}
 	if ($("#pw").val() == "") {
@@ -76,9 +45,9 @@ function goSave() {
 	
 	//비밀번호 확인 체크
 	if($("#pw").val()==$("#pw_check").val()){
-		if($("#pw").val()==1){
+		
 			$("#frm").submit();
-		}
+		
 	}else{
 		alert("비밀번호를 확인해주세요.");
 		$("#pw_check").focus();
@@ -139,6 +108,7 @@ function goSave() {
 					</tr>
 				</tbody>
 			</table>
+					<input type="hidden" id="no" name="no" value="<%=data.getNo() %>"/>
 					<input type="hidden" name="cmd" value="edit.do"/>
 					<input type="hidden" name="checkEmail" id="checkEmail" value="0"/>
 			</form>

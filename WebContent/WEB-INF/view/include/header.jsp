@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%member.MemberVO memberInfo = (member.MemberVO)session.getAttribute("memberInfo"); %>
+<%member.MemberVO memberInfo = (member.MemberVO)session.getAttribute("memberInfo"); //로그인 세션 가져오기 %>
 <script type="text/javascript" src="/js/swiper.min.js"></script>
 <script>
 
@@ -10,11 +10,9 @@ $(function() {
 	$(".depth1 > li").mouseleave(function(){
 		$(this).find(".depth2").stop().slideUp(300);
 	});
-
 	$("#login_click").click(function() {
 		$(".login_info").toggle();
 	});
-
 	$(".login_info > .top_area > img").click(function() {
 		$(".login_info").hide();
 	});
@@ -78,7 +76,6 @@ function CookieVal(cookieName) {
 		}
 	}
 	return "null" ;
-
 }
 </script>
 	<div id="header">
@@ -137,7 +134,11 @@ function CookieVal(cookieName) {
                         <li>
                             <a href="" >TICKET</a>
                             <ul class="depth2">
-                                <li><a href="" >예매하기</a></li>
+							<%if(memberInfo==null){ %>
+							<li><a href="login.do" >예매하기</a></li>
+							<%}else{%>
+							<li><a href="" >예매하기</a></li>	<!-- memberinfo 세션 존재시 가야할 페이지(미구현) -->
+							<% } %>
                                 <li><a href="" >상영 시간표</a></li>
                             </ul>
                         </li>
