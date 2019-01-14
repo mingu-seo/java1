@@ -77,7 +77,6 @@ function goSave() {
 						<th>이메일</th>
 						<td>
 							<input type="text" name="email" id="email" class="inNextBtn" value=<%=data.getEmail()%> disabled class="wid200" style="float:left;">
-							<span class="email_check"><a href="javascript:;" onclick="checkEmail();" class="btn bgGray" style="float:left; width:auto; clear:none;">중복확인</a></span>
 						</td>
 					</tr>
 					<tr>

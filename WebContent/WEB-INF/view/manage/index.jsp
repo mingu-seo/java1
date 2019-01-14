@@ -19,6 +19,7 @@ function loginCheck(){
 	}
 	var f = document.board;
 	if (f.reg.checked==true) {
+		debugger;
 	   document.cookie = "cookie_userid=" + f.id.value + ";path=/;expires=Sat, 31 Dec 2050 23:59:59 GMT;";
 	} else {
 	   var now = new Date();	

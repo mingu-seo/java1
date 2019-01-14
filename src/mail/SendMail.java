@@ -18,9 +18,11 @@ public class SendMail {
 		int result = 0;
 		try {
 			Properties props = System.getProperties();
-			props.put("mail.smtp.port", SiteProperty.SMTP_PORT);
 			props.put("mail.smtp.host", SiteProperty.SMTP_HOST);
+			props.put("mail.smtp.port", SiteProperty.SMTP_PORT);
 			props.put("mail.smtp.auth", "true");
+			props.put("mail.smtp.ssl.enable", "true");  
+			props.put("mail.smtp.ssl.trust", SiteProperty.SMTP_HOST);  
 			Authenticator loAuthenticator = new MailAuthenticator(SiteProperty.SMTP_USER, SiteProperty.SMTP_PASSWORD); 
 			Session session = Session.getInstance(props, loAuthenticator);
 			

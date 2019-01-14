@@ -2,7 +2,6 @@ package member;
 
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import mail.SendMail;
 import property.SiteProperty;
 import util.Function;
 
@@ -45,7 +45,6 @@ public class MemberController {
 			return "include/alert";
 		}
 	}
-	
 	
 	/**
 	 * 로그아웃 처리
@@ -83,6 +82,13 @@ public class MemberController {
 		model.addAttribute("vo", param);
 		
 		return "member/pwsearch";
+	}
+	
+	@RequestMapping("/searchpw.do")
+	public String searchpw(Model model, MemberVO param) throws Exception{
+		MemberVO data = memberService.searchpw(param);
+		SendMail.sendEmail("zebra_yun@naver.com", "tssu106@naver.com", "님의 비밀번호는", "입니다.");
+		return "index";
 	}
 	
 	
