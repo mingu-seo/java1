@@ -98,18 +98,19 @@ function goSearch() {
 										MovieVo data;
 										for (int i=0; i<list.size(); i++) {
 											data = list.get(i);
-											targetUrl = "style='cursor:pointer;' onclick=\"location.href='"+param.getTargetURLParam("edit", param, data.getNo())+"'\"";
+											targetUrl = "style='cursor:pointer;' onclick=\"location.href='"+param.getTargetURLParam("edit.do", param, data.getNo())+"'\"";
 								%>
 									<tr <%=topClass%>>
 										<td class="first"><input type="checkbox" name="no" id="no" value="<%=data.getNo()%>"/></td>
 										<td <%=targetUrl%>><%=totCount - ((param.getReqPageNo()-1)*param.getPageRows()) - i%></td>
 										<td <%=targetUrl%> class="title"><%=data.getTitle()%></td>
 										<td <%=targetUrl%>><%=data.getDirector()%></td>
+										<td <%=targetUrl%>><%=data.getRating()%></td>
 										<td <%=targetUrl%>><%=data.getReleaseDate()%></td>
 										<td <%=targetUrl%>><%=data.getEndDate()%></td>
-										<td <%=targetUrl%>><%=data.getPoster()%></td>
-										<td <%=targetUrl%>><%=data.getDisplay()%></td>
-										<td class="last"><input type="button" value="삭제" onclick="goDelete(<%=data.getNo()%>);"/></td>
+										<td <%=targetUrl%>><img src="<%=SiteProperty.MOVIE_UPLOAD_PATH%><%=data.getPoster()%>" width="100px" height="150px"></img></td>
+										<td <%=targetUrl%>><% if(data.getDisplay()==0){out.print("노출");} else {out.print("숨김");}%></td>
+										
 									</tr>
 								<%
 										}

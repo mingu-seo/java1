@@ -38,10 +38,12 @@ public class MovieService {
 		
 		FileUtil fu = new FileUtil();
 		Map fileMap = fu.getFileMap(request);
-		MultipartFile file= (MultipartFile)fileMap.get("poster");
+		MultipartFile file= (MultipartFile)fileMap.get("poster_tmp");
 		if (!file.isEmpty()) {
+			
 			fu.upload(file, SiteProperty.MOVIE_UPLOAD_PATH, SiteProperty.REAL_PATH, "movie");
 			vo.setPoster(fu.getName());
+			vo.setPosterSize(fu.getSrcSize());
 			
 		}
 		
