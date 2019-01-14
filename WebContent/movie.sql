@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version 5.6.41-log)
-# Date: 2019-01-09 10:57:57
+# Date: 2019-01-14 10:32:22
 # Generator: MySQL-Front 6.1  (Build 1.26)
 
 
@@ -18,6 +18,11 @@ CREATE TABLE `movie` (
   `releaseDate` char(10) DEFAULT '' COMMENT '개봉일',
   `endDate` char(10) DEFAULT NULL COMMENT '상영종료일',
   `poster` varchar(255) DEFAULT NULL COMMENT '포스터',
+  `display` int(11) NOT NULL DEFAULT '0' COMMENT '노출여부',
+  `contents` text COMMENT '줄거리',
+  `registdate` varchar(255) DEFAULT NULL COMMENT '등록일',
+  `poster_chk` varchar(255) DEFAULT NULL COMMENT '삭제할때 받아올 파일이름값',
+  `posterSize` bigint(20) DEFAULT NULL COMMENT '포스터 첨부파일 크기',
   PRIMARY KEY (`no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

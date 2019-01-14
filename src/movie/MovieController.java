@@ -25,7 +25,7 @@ public class MovieController {
 	public String index(Model model, MovieVo param) throws Exception {
 		param.setTablename("movie");
 		int[] rowPageCount = movieService.count(param);
-		ArrayList<AdminVO> list = movieService.list(param);
+		ArrayList<MovieVo> list = movieService.list(param);
 		
 		model.addAttribute("totCount", rowPageCount[0]);
 		model.addAttribute("totPage", rowPageCount[1]);
@@ -42,14 +42,14 @@ public class MovieController {
 		return "manage/movie/write";
 	}
 	
-	@RequestMapping("/manage/movie/edit")
+	@RequestMapping("/manage/movie/edit.do")
 	public String edit(Model model, MovieVo param) throws Exception {
-		param.setTablename("notice");
+		param.setTablename("movie");
 		MovieVo data = movieService.read(param, false);
 		model.addAttribute("data", data);
 		model.addAttribute("param", param);
 		
-		return "movie/edit";
+		return "manage/movie/edit";
 	}
 	
 	/**
@@ -60,35 +60,35 @@ public class MovieController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("/movie/process.do")
+	@RequestMapping("/manage/movie/process.do")
 	public String process(Model model, MovieVo param, HttpServletRequest request) throws Exception {
 		model.addAttribute("vo", param);
-		param.setTablename("notice");
+		param.setTablename("movie");
 		System.out.println(param.getCmd());
 		if ("write".equals(param.getCmd())) {
 			
 			int r = movieService.insert(param, request);
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "정상적으로 등록되었습니다.", "등록실패"));
-			model.addAttribute("url", "index");
-	/*	} else if ("edit".equals(param.getCmd())) {
-			int r = movieService.update(param);
+			model.addAttribute("url", "index.do");
+		} else if ("edit".equals(param.getCmd())) {
+			int r = movieService.update(param, request);
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "정상적으로 수정되었습니다.", "수정실패"));
-			model.addAttribute("url", param.getTargetURLParam("index", param, 0));
+			model.addAttribute("url", param.getTargetURLParam("index.do", param, 0));
 		} else if ("groupDelete".equals(param.getCmd())) {
 			int r = movieService.groupDelete(param, request);
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "총 "+r+"건이 삭제되었습니다.", "삭제실패"));
-			model.addAttribute("url", param.getTargetURLParam("index", param, 0));
+			model.addAttribute("url", param.getTargetURLParam("index.do", param, 0));
 		} else if ("delete".equals(param.getCmd())) {
 			int r = movieService.delete(param);
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "정상적으로 삭제되었습니다.", "삭제실패"));
-			model.addAttribute("url", param.getTargetURLParam("index", param, 0));
+			model.addAttribute("url", param.getTargetURLParam("index.do", param, 0));
 		}
-		*/
-		}
+		
+		
 		return "include/alert";
 	}
 }
