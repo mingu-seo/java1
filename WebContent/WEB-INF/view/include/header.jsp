@@ -1,4 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%
+member.MemberVO memberInfo = (member.MemberVO)session.getAttribute("memberInfo");
+%>
 <script type="text/javascript" src="/js/swiper.min.js"></script>
 <script>
 $(function() {
@@ -42,12 +45,13 @@ $(function() {
                 </div>
                 <h1 class="logo"><a href="/"><img src="/img/logo.png"/></a></h1>
                 <div class="util clear">
+                <% if (memberInfo == null) { %>
                     <a href="#;" id="login_click">로그인</a>
                     <a href="/member/join.do">회원가입</a>
-                    <!--
+                <% } else { %>
                     <a href="">로그인</a>
                     <a href="">예매내역</a>
-                     -->
+                <% } %>
                 </div>
                 <div class="login_info">
                 	<div class="top_area"><img src="/img/btn_del.gif"/></div>
