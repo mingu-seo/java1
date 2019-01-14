@@ -65,24 +65,22 @@ function CookieVal(cookieName) {
 	<form action="/login.do" method="post">
     <div class="sub">
 		<div class="size">
-			<h3 class="sub_title">로그인</h3>
+			<h3 class="sub_title">비밀번호 찾기</h3>
 			
 			<div class="member">
 				<div class="box">
-					<p>아이디(이메일) 비밀번호를 입력해 주세요.
+					<p>이름과 휴대폰 번호를 입력해 주세요.
 					</p>
 					<fieldset class="login_form">
 						<ul>
-							<li><input type="text" name="email" id="email" placeholder="아이디(이메일)"></li>
-							<li><input type="password" name="pw" id="pw" placeholder="비밀번호"></li>
-							<li><label><input type="checkbox" name="reg" id="reg"/> 아이디저장</label></li>
+							<li><input type="text" name="email" id="email" placeholder="이메일"></li>
+							<li><input type="password" name="hp" id="hp" placeholder="휴대폰번호"></li>
 						</ul>
-						<div class="login_btn"><input type="submit" value="로그인" alt="로그인" /></div>
+						<div class="login_btn"><input type="submit" value="비밀번호찾기" alt="비밀번호찾기" /></div>
 					</fieldset>
 					<div class="btnSet clear">
 						<div>
-							<a href="join.do" class="btn">회원가입</a> 
-							<a href="idsearch.do" class="btn">이메일/비밀번호 찾기</a>
+							<a href="idsearch.do" class="btn">아이디 찾기</a> 
 						</div>
 					</div>
 				</div>

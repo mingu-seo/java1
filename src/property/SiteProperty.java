@@ -7,7 +7,7 @@ public class SiteProperty {
 	/**
 	 * 업체명
 	 */
-	public static final String 	COMPANY_NAME			= "SPRING";
+	public static final String 	COMPANY_NAME			= "MOVIE";
 	/**
 	 * 관리자 시작페이지
 	 */
@@ -53,15 +53,16 @@ public class SiteProperty {
 	/**
 	 * 메일서버
 	 */
-	public static final String 	SMTP_HOST				= "mail.";
+	public static final String 	SMTP_HOST				= "mail.sanggong.co.kr";
+	public static final String 	SMTP_PORT				= "25";
 	/**
 	 * 메일계정 아이디
 	 */
-	public static final String 	SMTP_USER				= "";
+	public static final String 	SMTP_USER				= "withsky@sanggong.co.kr";
 	/**
 	 * 메일계정 패스워드
 	 */
-	public static final String 	SMTP_PASSWORD			= "";
+	public static final String 	SMTP_PASSWORD			= "tjalsrn9";
 	/**
 	 * 이메일 기본 폼
 	 */

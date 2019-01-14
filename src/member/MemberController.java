@@ -15,13 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import property.SiteProperty;
 import util.Function;
 
-
 @Controller
 public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
-	
 	
 	@RequestMapping("/login.do")
 	public String login(Model model, @RequestParam(value="login_url", required=false) String login_url, @RequestParam(value="login_param", required=false) String login_param, MemberVO vo, HttpSession session) throws Exception {
@@ -64,12 +62,37 @@ public class MemberController {
 		return "include/alert";		
 	}
 	
-	
+	//회원가입 페이지 리턴
 	@RequestMapping("/member/join.do")
 	public String join(Model model, MemberVO param) throws Exception {
 		model.addAttribute("vo", param);
 		
 		return "member/join";
+	}
+	
+	//아이디 찾기 페이지 리턴
+	@RequestMapping("/member/idsearch.do")
+	public String idsearch(Model model, MemberVO param) throws Exception {
+		model.addAttribute("vo", param);
+		
+		return "member/idsearch";
+	}
+	//비밀번호 찾기 페이지 리턴
+	@RequestMapping("/member/pwsearch.do")
+	public String pwsearch(Model model, MemberVO param) throws Exception {
+		model.addAttribute("vo", param);
+		
+		return "member/pwsearch";
+	}
+	
+	
+	@RequestMapping("/member/edit.do")
+	public String memberEdit(Model model, MemberVO param) throws Exception {
+		MemberVO data = memberService.read(param.getNo());
+		model.addAttribute("data", data);
+		model.addAttribute("vo", param);
+		
+		return "member/edit";
 	}
 	
 	
@@ -95,6 +118,35 @@ public class MemberController {
 		return "manage/member/read";
 	}
 	
+
+	
+	//회원 개인정보 페이지 리턴
+	@RequestMapping("/member/read.do")
+	public String memberRead(Model model, MemberVO param) throws Exception {
+		MemberVO data = memberService.read(param.getNo());
+		model.addAttribute("data", data);
+		model.addAttribute("vo", param);
+		
+		return "member/read";
+	}
+	
+	
+	@RequestMapping("/manage/member/write.do")
+	public String write(Model model, MemberVO param) throws Exception {
+		model.addAttribute("vo", param);
+		
+		return "manage/member/write";
+	}
+	
+	@RequestMapping("/member/write.do")
+	public String memberwrite(Model model, MemberVO param) throws Exception {
+		model.addAttribute("vo", param);
+		
+		return "member/write";
+	}
+	
+	
+	
 	@RequestMapping("/manage/member/edit.do")
 	public String edit(Model model, MemberVO param) throws Exception {
 		MemberVO data = memberService.read(param.getNo());
@@ -104,12 +156,10 @@ public class MemberController {
 		return "manage/member/edit";
 	}
 	
-	@RequestMapping("/manage/member/write.do")
-	public String write(Model model, MemberVO param) throws Exception {
-		model.addAttribute("vo", param);
-		
-		return "manage/member/write";
-	}
+
+	
+	
+
 	
 	
 	/**
@@ -124,8 +174,17 @@ public class MemberController {
 	public String emailcheck(Model model, MemberVO param) throws Exception {
 		model.addAttribute("vo", param);
 		int value = memberService.emailcheck(param);
-
 		model.addAttribute("value", value);
+		
+		return "include/return";
+	}
+	
+	@RequestMapping("member/searchemail.do")
+	public String searcheamil(Model model, MemberVO param) throws Exception {
+		MemberVO data = memberService.searchemail(param);
+		String email = "";
+		if (data != null) {email = data.getEmail();}
+		model.addAttribute("value", email);
 		
 		return "include/return";
 	}

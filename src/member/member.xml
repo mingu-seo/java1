@@ -45,9 +45,9 @@
     <update id="update" parameterClass="member_vo">
         update member set
         	<isNotEqual property="pw" compareValue="">
-        	    pw = #pw#,
+        	    pw = password(#pw#),
         	</isNotEqual>
-        	name = #name#, email=#email#, hp=#hp#, point=#point#, moddate=now()
+        	name = #name#, hp=#hp#, point=#point#, moddate=now()
         where no=#no#
     </update>
    
@@ -63,6 +63,11 @@
       
     <select id="emailcheck" parameterClass="member_param" resultClass="Integer">
         select count(*) as cnt from member where email=#email#
+    </select>
+    
+    
+    <select id="searchemail" parameterClass="member_param" resultClass="member_vo">
+        select email from member where name=#name# and hp=#hp#
     </select>
     
     
