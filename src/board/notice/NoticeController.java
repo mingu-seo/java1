@@ -68,6 +68,16 @@ public class NoticeController {
 		return "manage/board/notice/edit";
 	}
 	
+	@RequestMapping("/board/notice/view.do")
+	public String view(Model model, NoticeVO param) throws Exception {
+		param.setTablename("notice");
+		NoticeVO data = noticeService.read(param, false);
+		model.addAttribute("data", data);
+		model.addAttribute("param", param);
+		
+		return "board/notice/view";
+	}
+	
 	/**
 	 * 등록, 수정, 삭제 cmd값으로 구분해서 처리
 	 * @param model

@@ -1,10 +1,10 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ page import="board.notice.*" %>
+<%@ page import="board.event.*" %>
 <%@ page import="property.SiteProperty" %>
 <%@ page import="util.*" %>
 <%@ page import="java.util.*" %>
 <%
-NoticeVO param = (NoticeVO)request.getAttribute("data");
+EventVO param = (EventVO)request.getAttribute("data");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -22,13 +22,15 @@ NoticeVO param = (NoticeVO)request.getAttribute("data");
     <%@ include file="/WEB-INF/view/include/header.jsp" %>
     <div class="sub">
 		<div class="size">
-			<h3 class="sub_title">공지사항</h3>
+			<h3 class="sub_title">이벤트</h3>
 			<div class="bbs">
 				<div class="view">
 					<div class="title">
 						<dl>
-							<dt><%=param.getTitle()%> </dt>
-							<dd class="writer">작성자 : <%=param.getWriter()%> </dd>
+							<dt><%=param.getEvent_name()%> </dt>
+							<dd class="writer">작성자 : <%=param.getWriter()%> </dd> 
+							<dd class="date">시작일 : <%=param.getSta_date()%> </dd>
+							<dd class="date">종료일 : <%=param.getEnd_date()%> </dd>
 							<dd class="date">작성일 : <%=param.getCre_date()%> </dd>
 						</dl>
 					</div>
