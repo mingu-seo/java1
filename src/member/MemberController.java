@@ -95,7 +95,7 @@ public class MemberController {
 	@RequestMapping("/searchpw.do")
 	public String searchpw(Model model, MemberVO param) throws Exception{
 		MemberVO data = memberService.searchpw(param);
-		SendMail.sendEmail("zebra_yun@naver.com", "tssu106@naver.com", "님의 비밀번호는", "입니다.");
+		SendMail.sendEmail();
 		return "index";
 	}
 	

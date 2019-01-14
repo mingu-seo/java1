@@ -58,7 +58,7 @@ public class SiteProperty {
 	/**
 	 * 메일계정 아이디
 	 */
-	public static final String 	SMTP_USER				= "zebra_yun@naver.com";
+	public static final String 	SMTP_USER				= "zebra_yun";
 	/**
 	 * 메일계정 패스워드
 	 */
