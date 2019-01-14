@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -21,7 +22,7 @@
 				<ul>
 					<li><a href="">예매확인/취소</a></li>
 					<li><a href="">포인트</a></li>
-					<li><a href="">내 정보</a></li>
+					<li><a href="/member/edit.do">내 정보</a></li>
 				</ul>
 			</div>
 			<div class="mypage_tab_bottom"></div>

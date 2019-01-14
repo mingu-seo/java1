@@ -2,7 +2,6 @@
 <%@ page import="member.*" %>
 <%@ page import="java.util.*" %>
 <%
-MemberVO param = (MemberVO)request.getAttribute("vo");
 MemberVO data = (MemberVO)request.getAttribute("data");
 %>
 <!DOCTYPE html>
@@ -81,7 +80,7 @@ function goSave() {
 					</tr>
 					<tr>
 						<th>비밀번호</th>
-						<td><input type="password" name="pw" id="pw" class="wid200" value=<%=data.getPw() %> style="float:left;"> <span class="ptxt">비밀번호는 숫자, 영문 조합으로 8자 이상으로 입력해주세요.</span> </td>
+						<td><input type="password" name="pw" id="pw" class="wid200" value="" style="float:left;"> <span class="ptxt">비밀번호는 숫자, 영문 조합으로 8자 이상으로 입력해주세요.</span> </td>
 					</tr>
 					<tr>
 						<th>비밀번호<span>확인</span></th>

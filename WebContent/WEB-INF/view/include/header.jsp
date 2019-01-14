@@ -99,7 +99,7 @@ function CookieVal(cookieName) {
                     <a href="/member/join.do">회원가입</a>
                 <%}else{%>
                 	<a href="/logout.do">로그아웃</a>
-                    <a href="">마이페이지</a>
+                    <a href="/mypage/index.do">마이페이지</a>
                 <% } %>
                 </div>
                 <form action="/login.do" id="board" name="board" method="post" onsubmit="return loginCheck();">
