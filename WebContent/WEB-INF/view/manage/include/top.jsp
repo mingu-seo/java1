@@ -77,8 +77,8 @@ $(window).load(function(){
 					<ul>
 						<li><a href="<%=request.getContextPath()%>/manage/board/notice/index.do"><span>공지사항</span></a></li>
 						<li><a href="<%=request.getContextPath()%>/manage/board/"><span>영화후기</span></a></li>
-						<li><a href="<%=request.getContextPath()%>/manage/board/"><span>자유게시판</span></a></li>
-						<li><a href="<%=request.getContextPath()%>/manage/board/"><span>자주하는질문</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/manage/board/event/index.do"><span>이벤트</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/manage/board/"><span>스토어</span></a></li>
 						<li><a href="<%=request.getContextPath()%>/manage/board/"><span>FAQ분류관리</span></a></li>
 						
 					</ul>

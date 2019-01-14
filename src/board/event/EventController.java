@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import board.notice.NoticeVO;
 import util.FileUtil;
 import util.Function;
 
@@ -35,7 +36,20 @@ public class EventController {
 		
 		return "manage/board/event/index";
 	}
-	
+	@RequestMapping("/board/event/index.do")
+	public String indexv(Model model, EventVO param) throws Exception {
+		System.out.println(param.getSdisplay());
+		param.setTablename("event");
+		int[] rowPageCount = eventService.count(param);
+		ArrayList<AdminVO> list = eventService.list(param);
+		
+		model.addAttribute("totCount", rowPageCount[0]);
+		model.addAttribute("totPage", rowPageCount[1]);
+		model.addAttribute("list", list);
+		model.addAttribute("vo", param);
+		
+		return "board/event/index";
+	}
 	@RequestMapping("/manage/board/event/write.do")
 	public String write(Model model, EventVO param) throws Exception {
 		model.addAttribute("vo", param);
@@ -52,7 +66,15 @@ public class EventController {
 		
 		return "manage/board/event/edit";
 	}
-	
+	@RequestMapping("/board/event/view.do")
+	public String view(Model model, EventVO param) throws Exception {
+		param.setTablename("event");
+		EventVO data = eventService.read(param, false);
+		model.addAttribute("data", data);
+		model.addAttribute("param", param);
+		
+		return "board/event/view";
+	}
 	/**
 	 * 등록, 수정, 삭제 cmd값으로 구분해서 처리
 	 * @param model
