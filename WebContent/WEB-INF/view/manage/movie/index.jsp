@@ -105,7 +105,7 @@ function goSearch() {
 										<td <%=targetUrl%>><%=totCount - ((param.getReqPageNo()-1)*param.getPageRows()) - i%></td>
 										<td <%=targetUrl%> class="title"><%=data.getTitle()%></td>
 										<td <%=targetUrl%>><%=data.getDirector()%></td>
-										<td <%=targetUrl%>><%=data.getRating()%></td>
+										<td <%=targetUrl%>><% if(data.getRating()==0){out.print("전체관람가");} else{ %> <%=data.getRating()%> <%} %></td>
 										<td <%=targetUrl%>><%=data.getReleaseDate()%></td>
 										<td <%=targetUrl%>><%=data.getEndDate()%></td>
 										<td <%=targetUrl%>><img src="<%=SiteProperty.MOVIE_UPLOAD_PATH%><%=data.getPoster()%>" width="100px" height="150px"></img></td>

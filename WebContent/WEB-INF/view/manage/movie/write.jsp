@@ -112,7 +112,7 @@
 											</tr>
 											
 											<tr>
-												<td colspan="4"><textarea id="contents" name="content"
+												<td colspan="4"><textarea id="contents" name="contents"
 														title="내용을 입력해주세요" style="width: 100%;"></textarea></td>
 											</tr>
 											<tr>
