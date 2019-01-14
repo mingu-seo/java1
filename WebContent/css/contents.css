@@ -87,7 +87,7 @@
 /* ==================================================
 	board
 ================================================== */
-.bbs{position:relative; width:100%; height:100%; overflow:hidden; /*min-width:320px;*/ clear:both;}
+.bbs{position:relative; width:100%; height:100%; overflow:hidden; /*min-width:320px;*/ clear:both; padding-bottom:10px;}
 .bbs a:hover{color:#000;}
 
 /* list */
@@ -143,6 +143,29 @@
 .bbs .view .file dt{float:left; width:80px; color:#999;}
 .bbs .view .file dd{float:left; text-decoration:underline !important; color:#00aeef; }
 
+.bbs .postSection {width:100%; }
+.bbs .postSection .postList {width:100%; margin-left:-2%; margin-top:-2%; }
+.bbs .postSection .postList li {float:left; width:100%; margin-left:2%; margin-top:2%; }
+.bbs .postSection .postList li .postObj {display:block; width:100%; height:350px; box-sizing:border-box; padding:10px; border:1px solid #dadada; position:relative; overflow:hidden; transition:all .2s; -webkit-transition:all .2s; letter-spacing:-.5px;}
+.bbs .postSection .postList li .postObj .reserveNum {width:100%; font-size:16px; padding:10px 0;}
+.bbs .postSection .postList li .postObj .imgs {display:block; position:absolute; left:0; top:50; vertical-align:middle; width:220px; height:100%;  }
+.bbs .postSection .postList li .postObj .imgs img { width:195px; height:280px; margin:10px;}
+.bbs .postSection .postList li .postObj .imgs i {display:block; position:absolute; left:0; top:0px; }
+.bbs .postSection .postList li .postObj .txt {display:block; width:100%; padding-left:220px;  padding-top:10px; box-sizing:border-box;  vertical-align:top; position:relative;  padding-right:15px; padding-bottom:25px;}
+.bbs .postSection .postList li .postObj .txt .category {font-size:18px; color:#1091ff; font-weight:600; position:relative; height:30px; line-height:30px;  margin-bottom:5px;}
+.bbs .postSection .postList li .postObj .txt .category:after {clear:both; content:''; ;display:block; position:absolute; left:0; bottom:-.5px; width:25px; height:1px; background:#1091ff; }
+.bbs .postSection .postList li .postObj .txt .title {font-size:18px; color:#333; height:25px; line-height:25px; overflow:hidden; display:block; -webkit-line-clamp:1; white-space:nowrap; text-overflow:ellipsis;  word-break:keep-all; max-width:100%; margin-bottom:10px;}
+.bbs .postSection .postList li .postObj .txt .detail {width:100%; margin-right:10px;}
+.bbs .postSection .postList li .postObj .txt .detail table {border-collapse:collapse; border-spacing:0; box-sizing:border-box;}
+.bbs .postSection .postList li .postObj .txt .detail table tr {height:50px;border-top:1px solid #c3d69b; border-bottom:1px solid #c3d69b;}
+.bbs .postSection .postList li .postObj .txt .detail table tr th {width:100px;font-size:14px;}
+.bbs .postSection .postList li .postObj .txt .btn_area {display:block; position:absolute; height:100px; width:100%; text-align:right; top:250px; right:0px; bottom:0;}
+.bbs .postSection .postList li .postObj .wdate { box-sizing:border-box; position:absolute; bottom:0; left:32%; color:#999; font-size:15px; overflow:hidden;}
+.bbs .postSection .postList li .postObj .wdate span {display:block; float:left; line-height:20px; height:20px; position:relative; padding:0 7.5px;}
+.bbs .postSection .postList li .postObj .wdate span:first-child {padding-left:0;}
+.bbs .postSection .postList li .postObj .wdate span:before {position:absolute; width:1px; height:12px; margin-top:-6px; top:50%; left:-.5px; background:#ccc; clear:both; content:''; display:block; }
+.bbs .postSection .postList li .postObj .wdate span:first-child:before {display:none; }
+
 
 
 /* 페이징처리 */
@@ -159,3 +182,9 @@
 .pagenate li a.board.last {background:#f3f3f3 url('/img/ico_last.png') no-repeat center center;}
 .pagenate li a.current {color:#fff; background-color:#c3d69b; font-weight:bold;  border:1px solid #c3d69b;}
 
+/* 마이페이지 탭 */
+.mypage_tab {width:100%; position:relative; padding:10px 0; padding-bottom:10px;}
+.mypage_tab_bottom {clear:both; height:10px;}
+.mypage_tab ul li {float:left; width:33%; position:relative;}
+.mypage_tab ul li:last-child {width:34%;}
+.mypage_tab ul li a {display:block; height:48px; line-height:46px; text-align:center; color:#000000; font-size:18px; box-sizing:border-box; border:1px solid #c3d69b; transition:all .3s; -webkit-transition:all .3s; font-weight:500;}
