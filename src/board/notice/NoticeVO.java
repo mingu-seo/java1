@@ -7,15 +7,16 @@ import util.Parameter;
 public class NoticeVO extends Parameter {
 
 	private int			no;						// 글 번호
-	private String	 	name;					// 작성자
-	private String 		title;					// 글 제목
+	private int		 	type;					// 종류
+	private String 		title;					// 제목
 	private String		contents;				// 내용
-	private Timestamp	registdate;				// 작성일
+	private Timestamp	cre_date;				// 작성일
 	private int 		readno;					// 조회수
+	private String		writer;					// 작성자
+	private int			display;					// 노출여부
 	private String 		filename_org;			// 첨부파일 이름 [사용자]
 	private String 		filename;				// 첨부파일 이름 [시스템 처리용]
 	private long 		filesize;				// 첨부파일 크기
-	private int			display;				// 노출여부
 	
 	private String 		filename_chk;
 	private int 		prev_no;				// 이전글 no
@@ -24,27 +25,11 @@ public class NoticeVO extends Parameter {
 	private String 		next_title;				// 다음글 제목
 	
 	//검색조건
-	private int			sdisplay;				// 노출여부 (-1:전체, 0:미노출, 1:노출)
+	private int 		sdisplay;
 	
 	public NoticeVO() {
 		super.setPageRows(10);
 		this.setSdisplay(-1);	// 검색기본값(전체)
-	}
-
-	public int getDisplay() {
-		return display;
-	}
-
-	public void setDisplay(int display) {
-		this.display = display;
-	}
-
-	public int getSdisplay() {
-		return sdisplay;
-	}
-
-	public void setSdisplay(int sdisplay) {
-		this.sdisplay = sdisplay;
 	}
 
 	public int getNo() {
@@ -55,12 +40,12 @@ public class NoticeVO extends Parameter {
 		this.no = no;
 	}
 
-	public String getName() {
-		return name;
+	public int getType() {
+		return type;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setType(int type) {
+		this.type = type;
 	}
 
 	public String getTitle() {
@@ -79,12 +64,12 @@ public class NoticeVO extends Parameter {
 		this.contents = contents;
 	}
 
-	public Timestamp getRegistdate() {
-		return registdate;
+	public Timestamp getCre_date() {
+		return cre_date;
 	}
 
-	public void setRegistdate(Timestamp registdate) {
-		this.registdate = registdate;
+	public void setCre_date(Timestamp cre_date) {
+		this.cre_date = cre_date;
 	}
 
 	public int getReadno() {
@@ -93,6 +78,46 @@ public class NoticeVO extends Parameter {
 
 	public void setReadno(int readno) {
 		this.readno = readno;
+	}
+
+	public String getWriter() {
+		return writer;
+	}
+
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+
+	public int getDisplay() {
+		return display;
+	}
+
+	public void setDisplay(int display) {
+		this.display = display;
+	}
+
+	public String getFilename_org() {
+		return filename_org;
+	}
+
+	public void setFilename_org(String filename_org) {
+		this.filename_org = filename_org;
+	}
+
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+
+	public long getFilesize() {
+		return filesize;
+	}
+
+	public void setFilesize(long filesize) {
+		this.filesize = filesize;
 	}
 
 	public String getFilename_chk() {
@@ -134,29 +159,15 @@ public class NoticeVO extends Parameter {
 	public void setNext_title(String next_title) {
 		this.next_title = next_title;
 	}
-
-	public String getFilename_org() {
-		return filename_org;
+	public int getSdisplay() {
+		return sdisplay;
+	}
+	
+	public void setSdisplay(int sdisplay) {
+		this.sdisplay = sdisplay;
 	}
 
-	public void setFilename_org(String filename_org) {
-		this.filename_org = filename_org;
-	}
-
-	public String getFilename() {
-		return filename;
-	}
-
-	public void setFilename(String filename) {
-		this.filename = filename;
-	}
-
-	public long getFilesize() {
-		return filesize;
-	}
-
-	public void setFilesize(long filesize) {
-		this.filesize = filesize;
-	}
+	
+	
 	
 }

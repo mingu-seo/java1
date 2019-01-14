@@ -11,7 +11,7 @@
 	<context:component-scan base-package="manage" />
 	<context:component-scan base-package="board" />
 	<context:component-scan base-package="member" />
-	
+	<context:component-scan base-package="movie" />
 	<mvc:annotation-driven/>
 
 	<mvc:interceptors>
@@ -19,6 +19,8 @@
 			<mvc:mapping path="/manage/**" />
 			<mvc:exclude-mapping path="/manage/index.do" />
 			<mvc:exclude-mapping path="/manage/login.do" />
+			<mvc:exclude-mapping path="/manage/member/emailcheck.do" />
+			<mvc:exclude-mapping path="/member/searchemail.do" />
 			<bean class="interceptor.AdminLoginInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

@@ -27,7 +27,7 @@ function groupDelete() {
 
 function goDelete(v) {	
 	if (confirm ('삭제하시겠습니까?')) {
-		document.location.href = "process?no="+v+"&cmd=delete";
+		document.location.href = "process.do?no="+v+"&cmd=delete";
 	}
 }
 
@@ -63,9 +63,10 @@ function goSearch() {
 								<colgroup>
 									<col class="w3" />
 									<col class="w4" />
-									<col class="" />
 									<col class="w6" />
-									<col class="w10" />
+									<col class="" />
+									<col class="w5" />
+									<col class="w5" />
 									<col class="w5" />
 									<col class="w5" />
 								</colgroup>
@@ -73,10 +74,11 @@ function goSearch() {
 									<tr>
 										<th scope="col" class="first"><input type="checkbox" name="allChk" id="allChk" onClick="check(this, document.frm.no)"/></th>
 										<th scope="col">번호</th>
+										<th scope="col">종류</th>
 										<th scope="col">제목</th> 
-										<th scope="col">상태</th> 
+										<th scope="col">노출여부</th> 
 										<th scope="col">작성일</th> 
-										<th scope="col">조회</th>
+										<th scope="col">조회수</th>
 										<th scope="col" class="last">삭제</th>
 									</tr>
 								</thead>
@@ -92,16 +94,15 @@ function goSearch() {
 										NoticeVO data;
 										for (int i=0; i<list.size(); i++) {
 											data = list.get(i);
-											targetUrl = "style='cursor:pointer;' onclick=\"location.href='"+param.getTargetURLParam("edit", param, data.getNo())+"'\"";
+											targetUrl = "style='cursor:pointer;' onclick=\"location.href='"+param.getTargetURLParam("edit.do", param, data.getNo())+"'\"";
 								%>
 									<tr <%=topClass%>>
 										<td class="first"><input type="checkbox" name="no" id="no" value="<%=data.getNo()%>"/></td>
 										<td <%=targetUrl%>><%=totCount - ((param.getReqPageNo()-1)*param.getPageRows()) - i%></td>
-										<td <%=targetUrl%> class="title">
-											<%=data.getTitle()%>
-										</td>
+										<td <%=targetUrl%>><%=CodeUtil.getType(data.getType())%></td>
+										<td <%=targetUrl%> class="title"><%=data.getTitle()%></td>
 										<td <%=targetUrl%>><%=CodeUtil.getDisplayName(data.getDisplay())%></td>
-										<td <%=targetUrl%>><%=DateUtil.getDateFormat(data.getRegistdate())%></td>
+										<td <%=targetUrl%>><%=DateUtil.getDateFormat(data.getCre_date())%></td>
 										<td <%=targetUrl%>><%=data.getReadno()%></td>
 										<td class="last"><input type="button" value="삭제" onclick="goDelete(<%=data.getNo()%>);"/></td>
 									</tr>
@@ -120,14 +121,14 @@ function goSearch() {
 									<a class="btns" href="#" onclick="groupDelete();"><strong>삭제</strong> </a>
 								</div>
 								<div class="btnRight">
-									<a class="wbtn" href="write"><strong>등록</strong> </a>
+									<a class="wbtn" href="write.do"><strong>등록</strong> </a>
 								</div>
 							</div>
 							<!--//btn-->
 							<!-- 페이징 처리 -->
 							<%=Page.indexList(param.getReqPageNo(), totPage, request)%>
 							<!-- //페이징 처리 -->
-							<form name="searchForm" id="searchForm" action="index" method="post">
+							<form name="searchForm" id="searchForm" action="index.do"  method="post">
 								<div class="search">
 									<select name="sdisplay" onchange="$('#searchForm').submit();">
 										<option value="-1" <%=Function.getSelected(param.getSdisplay(), -1)%>>전체</option>
@@ -136,9 +137,9 @@ function goSearch() {
 									</select>
 									<select name="stype" title="검색을 선택해주세요">
 										<option value="all" <%=Function.getSelected(param.getStype(), "all") %>>전체</option>
-										<option value="name" <%=Function.getSelected(param.getStype(), "name") %>>작성자</option>
-										<option value="email" <%=Function.getSelected(param.getStype(), "email") %>>이메일</option>
-										<option value="memo" <%=Function.getSelected(param.getStype(), "memo") %>>내용</option>
+										<option value="writer" <%=Function.getSelected(param.getStype(), "writer") %>>작성자</option>
+										<option value="title" <%=Function.getSelected(param.getStype(), "title") %>>제목</option>
+										<option value="type" <%=Function.getSelected(param.getStype(), "type") %>>종류</option>
 									</select>
 									<input type="text" name="sval" value="<%=param.getSval()%>" title="검색할 내용을 입력해주세요" />
 									<input type="image" src="/manage/img/btn_search.gif" class="sbtn" alt="검색" />

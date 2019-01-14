@@ -9,7 +9,8 @@
 	if(path==null || path.indexOf("..")>-1 || vf==null || vf.indexOf("..")>-1  || af==null || af.indexOf("..")>-1 ) {
 		throw new Exception("Do you want something?");
 	}
-	String vf2 = java.net.URLEncoder.encode(vf, "UTF-8");		// 다시 UTF-8로 인코딩 필요
+	//String vf2 = java.net.URLEncoder.encode(vf, "UTF-8");		// 다시 UTF-8로 인코딩 필요
+	String vf2 = vf;
 	path = request.getRealPath(path+af); 			 			// 로컬
 
 	try {

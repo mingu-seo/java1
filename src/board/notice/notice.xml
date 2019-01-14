@@ -8,18 +8,19 @@
 	<sql id="searchSql">		
 		<!-- WHERE 절 검색 -->
 		<dynamic prepend="where">
+			1=1
 			<isNotEqual property="sdisplay" compareValue="-1">
-			    display = #sdisplay#
+			    and display = #sdisplay#
 			</isNotEqual>
 			<!-- 검색어 검색 -->
 			<isNotEqual property="sval" compareValue="">
 				<!-- 검색 타입이 all일 때 -->
 				<isEqual property="stype" compareValue="all" prepend="and">
-					( (name like '%$sval$%' ) or (contents like '%$sval$%' ) or (title like '%$sval$%' ) ) 					
+					and ( (writer like '%$sval$%' ) or (contents like '%$sval$%' ) or (title like '%$sval$%' ) ) 					
 				</isEqual>
 				<!-- 검색 타입이 all이 아닐때 해당 stype으로 검색 -->
 				<isNotEqual property="stype" compareValue="all" prepend="and">
-					($stype$ like '%$sval$%' )
+					and ($stype$ like '%$sval$%' )
 				</isNotEqual>
 			</isNotEqual>
 		</dynamic>
@@ -35,16 +36,16 @@
         select *
         from $tablename$
         <include refid="searchSql" />
-		ORDER BY registdate DESC LIMIT $startPageNo$, $pageRows$
+		ORDER BY cre_date DESC LIMIT $startPageNo$, $pageRows$
     </select>
 	
 	<!-- 해당 테이블에 게시글 작성 -->
     <insert id="insert" parameterClass="notice_vo">
         INSERT INTO $tablename$ (
-        	name, title, contents, registdate, readno,
+        	type, writer, title, contents, cre_date, readno,
         	filename_org, filename, filesize, display
         ) VALUES (
-        	#name#, #title#, #contents#, now(), #readno#,
+        	#type#, #writer#, #title#, #contents#, now(), #readno#,
         	#filename_org#, #filename#, #filesize#, #display#
         )
         <selectKey keyProperty="no" resultClass="Integer">
@@ -54,9 +55,9 @@
     
     <update id="update" parameterClass="notice_vo">
         UPDATE $tablename$ SET
-        	name=#name#, title=#title#, display=#display#,
-        <isNotEqual property="registdate" compareValue="">
-       	    registdate = #registdate#,
+        	type=#type#, writer=#writer#, title=#title#, display=#display#,
+        <isNotEqual property="cre_date" compareValue="">
+       	    cre_date = #cre_date#,
        	</isNotEqual>
         <isNotEqual property="readno" compareValue="0">
        	    readno = #readno#,
@@ -93,7 +94,7 @@
         select rownum from (
         	select @rownum:=@rownum+1 as rownum, no, title from $tablename$, (select @rownum:=0) as r
         	<include refid="searchSql" />
-        	ORDER BY registdate DESC
+        	ORDER BY cre_date DESC
         ) as r2
         where r2.no = #no#
     </select>
@@ -103,7 +104,7 @@
         from (
         	select @rownum:=@rownum+1 as rownum, no, title from $tablename$, (select @rownum:=0) as r
         	<include refid="searchSql" />
-        	ORDER BY registdate DESC
+        	ORDER BY cre_date DESC
         ) as r2
         <![CDATA[
         where r2.rownum = $rownum$+1
@@ -115,7 +116,7 @@
         from (
         	select @rownum:=@rownum+1 as rownum, no, title from $tablename$, (select @rownum:=0) as r
         	<include refid="searchSql" />
-        	ORDER BY registdate DESC
+        	ORDER BY cre_date DESC
         ) as r2
         <![CDATA[
         where r2.rownum = $rownum$-1
@@ -134,7 +135,7 @@
         select *
         from $tablename$
         <include refid="searchSql" />
-		ORDER BY registdate DESC LIMIT 0, $number$
+		ORDER BY cre_date DESC LIMIT 0, $number$
     </select>
     
 </sqlMap>

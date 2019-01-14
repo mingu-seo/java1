@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Repository;
 
 import db.SqlMapClientDAOSupport;
+import member.MemberVO;
 
 @Repository
 public class MemberDAO extends SqlMapClientDAOSupport {
@@ -63,7 +64,18 @@ public class MemberDAO extends SqlMapClientDAOSupport {
 	public MemberVO read(int no) throws SQLException {
 		return (MemberVO)getSqlMapClient().queryForObject("member.read", no);
 	}
+	
+	
+	public int loginCheck(MemberVO param) throws SQLException {
+		return (Integer) getSqlMapClient().queryForObject("member.loginCheck", param);
+	}
 
+	
+	public MemberVO getLoginSessionInfo(MemberVO param) throws SQLException {
+		return (MemberVO) getSqlMapClient().queryForObject("member.loginSessionInfo", param);
+	}
+	
+	
 	/**
 	 * 관리자 로그인체크
 	 * id, password로 조회 후 존재하면 true 리턴
@@ -77,7 +89,7 @@ public class MemberDAO extends SqlMapClientDAOSupport {
 //	}
 //	
 //	/**
-//	 * 관리자 아이디체크
+//	 * 관리자, 회원 이메일체크
 //	 * @param param
 //	 * @return
 //	 * @throws SQLException
@@ -85,7 +97,18 @@ public class MemberDAO extends SqlMapClientDAOSupport {
 	public int emailcheck(MemberVO param) throws SQLException {
 		return (Integer) getSqlMapClient().queryForObject("member.emailcheck", param);
 	}
-//
+	
+	/**
+	 * 이메일 찾기
+	 * @param param
+	 * @return
+	 * @throws SQLException
+	 */
+	public MemberVO searchemail(MemberVO param) throws SQLException {
+		return (MemberVO) getSqlMapClient().queryForObject("member.searchemail", param);
+	}
+	
+	
 //	public MemberVO getLoginSessionInfo(MemberVO param) throws SQLException {
 //		return (MemberVO) getSqlMapClient().queryForObject("member.loginSessionInfo", param);
 //	}
@@ -122,6 +145,10 @@ public class MemberDAO extends SqlMapClientDAOSupport {
 
 	
 	public static void main(String[] args) throws Exception {
+		MemberVO param = new MemberVO();
+		MemberDAO data = new MemberDAO();
+		
+		data.loginCheck(param);
 		
 	}
 }

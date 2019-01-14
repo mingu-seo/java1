@@ -17,7 +17,6 @@
      <transactionManager type="JDBC">     
 		<dataSource type="DBCP">
 			<property name="JDBC.Driver" value="com.mysql.jdbc.Driver"/>
-			 	
 			<property name="JDBC.ConnectionURL" value="jdbc:mysql://localhost:3306/movie?useUnicode=true&amp;characterEncoding=utf8"/>			
 			<property name="JDBC.Username" value="study"/>
 			<property name="JDBC.Password" value="study"/>
@@ -36,6 +35,8 @@
     
 	<sqlMap resource="test/test.xml"/>	
 	<sqlMap resource="manage/admin/admin.xml"/>	
-	<sqlMap resource="board/notice/notice.xml"/>	
+	<sqlMap resource="board/notice/notice.xml"/>		
+	<sqlMap resource="board/event/event.xml"/>		
 	<sqlMap resource="member/member.xml"/>	
+	<sqlMap resource="movie/movie.xml"/>	
 </sqlMapConfig>

@@ -21,8 +21,9 @@ public class NoticeController {
 	@Autowired
 	NoticeService noticeService;
 	
-	@RequestMapping("/manage/board/notice/index")
+	@RequestMapping("/manage/board/notice/index.do")
 	public String index(Model model, NoticeVO param) throws Exception {
+		System.out.println(param.getSdisplay());
 		param.setTablename("notice");
 		int[] rowPageCount = noticeService.count(param);
 		ArrayList<AdminVO> list = noticeService.list(param);
@@ -35,14 +36,29 @@ public class NoticeController {
 		return "manage/board/notice/index";
 	}
 	
-	@RequestMapping("/manage/board/notice/write")
+	@RequestMapping("/board/notice/index.do")
+	public String indexv(Model model, NoticeVO param) throws Exception {
+		System.out.println(param.getSdisplay());
+		param.setTablename("notice");
+		int[] rowPageCount = noticeService.count(param);
+		ArrayList<AdminVO> list = noticeService.list(param);
+		
+		model.addAttribute("totCount", rowPageCount[0]);
+		model.addAttribute("totPage", rowPageCount[1]);
+		model.addAttribute("list", list);
+		model.addAttribute("vo", param);
+		
+		return "board/notice/index";
+	}
+	
+	@RequestMapping("/manage/board/notice/write.do")
 	public String write(Model model, NoticeVO param) throws Exception {
 		model.addAttribute("vo", param);
 		
 		return "manage/board/notice/write";
 	}
 	
-	@RequestMapping("/manage/board/notice/edit")
+	@RequestMapping("/manage/board/notice/edit.do")
 	public String edit(Model model, NoticeVO param) throws Exception {
 		param.setTablename("notice");
 		NoticeVO data = noticeService.read(param, false);
@@ -70,22 +86,22 @@ public class NoticeController {
 			int r = noticeService.insert(param, request);
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "정상적으로 등록되었습니다.", "등록실패"));
-			model.addAttribute("url", "index");
+			model.addAttribute("url", "index.do");
 		} else if ("edit".equals(param.getCmd())) {
-			int r = noticeService.update(param);
+			int r = noticeService.update(param, request);
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "정상적으로 수정되었습니다.", "수정실패"));
-			model.addAttribute("url", param.getTargetURLParam("index", param, 0));
+			model.addAttribute("url", param.getTargetURLParam("index.do", param, 0));
 		} else if ("groupDelete".equals(param.getCmd())) {
 			int r = noticeService.groupDelete(param, request);
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "총 "+r+"건이 삭제되었습니다.", "삭제실패"));
-			model.addAttribute("url", param.getTargetURLParam("index", param, 0));
+			model.addAttribute("url", param.getTargetURLParam("index.do", param, 0));
 		} else if ("delete".equals(param.getCmd())) {
 			int r = noticeService.delete(param);
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "정상적으로 삭제되었습니다.", "삭제실패"));
-			model.addAttribute("url", param.getTargetURLParam("index", param, 0));
+			model.addAttribute("url", param.getTargetURLParam("index.do", param, 0));
 		}
 		
 		return "include/alert";

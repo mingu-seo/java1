@@ -18,15 +18,15 @@ NoticeVO data = (NoticeVO)request.getAttribute("data");
 		oEditors = setEditor("contents"); // 에디터 셋팅
 		
 		// 달력
-		initCal({id:"registdate",type:"day",today:"y",timeYN:"y"});
+		initCal({id:"cre_date",type:"day",today:"y",timeYN:"y"});
 	});
 	
 	function goSave() {
 		var regex=/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i; 
 			var regex2=/[0-9]{4}[\-][0-1][0-9][\-][0-3][0-9]\s[0-2][0-9]:[0-6][0-9]:[0-6][0-9]$/i; 
-			if(!regex2.test($("#registdate").val())){
+			if(!regex2.test($("#cre_date").val())){
 				alert('잘못된 날짜 형식입니다.\\n올바로 입력해 주세요.\\n ex)2013-02-14 03:28:85.0');
-				$("#registdate").focus();
+				$("#cre_date").focus();
 				return false;
 			} 
 		if ($("#title").val() == "") {
@@ -70,13 +70,21 @@ NoticeVO data = (NoticeVO)request.getAttribute("data");
 							<form method="post" name="frm" id="frm" action="process.do" enctype="multipart/form-data" onsubmit="return goSave();">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 								<colgroup>
+									<col width="10%" />
 									<col width="15%" />
-									<col width="35%" />
+									<col width="10%" />
 									<col width="15%" />
-									<col width="35%" />
+									<col width="25%" />
+									<col width="25%" />
 								</colgroup>
 								<tbody>
 									<tr>
+										<th scope="row"><label for="">종류</label></th>
+										<td>
+											<select name="type">
+												<%=CodeUtil.getTypeOption(data.getType())%>
+											</select>
+										</td>
 										<th scope="row"><label for="">상태</label></th>
 										<td>
 											<select name="display">
@@ -85,7 +93,7 @@ NoticeVO data = (NoticeVO)request.getAttribute("data");
 										</td>
 										<th scope="row"><label for="">등록일</label></th>
 										<td>
-											<input type="text" id="registdate" name="registdate" class="inputTitle" value="<%=DateUtil.getDateTimeFormat(data.getRegistdate())%>" title="등록일을 입력해주세요"/>&nbsp;
+											<input type="text" id="cre_date" name="cre_date" class="inputTitle" value="<%=DateUtil.getDateTimeFormat(data.getCre_date())%>" title="등록일을 입력해주세요"/>&nbsp;
 											<span id="CalregistdateIcon">
 												<img src="/manage/img/calendar_icon.png" id="CalregistdateIconImg" style="cursor:pointer;"/>
 											</span>
@@ -93,7 +101,7 @@ NoticeVO data = (NoticeVO)request.getAttribute("data");
 									</tr>
 									<tr>
 										<th scope="row"><label for="">첨부파일</label></th>
-										<td colspan="3">
+										<td colspan="10">
 											<% if (data.getFilename() == null || "".equals(data.getFilename())) { %>
 											<input type="file" name="filename_tmp" id="filename_tmp" title="첨부파일" />
 											<% } else { %>
@@ -109,12 +117,12 @@ NoticeVO data = (NoticeVO)request.getAttribute("data");
 									</tr>
 									<tr>
 										<th scope="row"><label for="">*제목</label></th>
-										<td colspan="3">
+										<td colspan="10">
 											<input type="text" id="title" name="title" class="w50" title="제목을 입력해주세요" value="<%=Function.checkNull(data.getTitle())%>" />	
 										</td>
 									</tr>
 									<tr>
-										<td colspan="4">
+										<td colspan="10">
 											<textarea id="contents" name="contents" title="내용을 입력해주세요" style="width:100%;"><%=Function.checkNull(data.getContents())%></textarea>	
 										</td>
 									</tr>
@@ -127,7 +135,7 @@ NoticeVO data = (NoticeVO)request.getAttribute("data");
 							</form>
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="<%=param.getTargetURLParam("index", param, 0)%>"><strong>목록</strong></a>
+									<a class="btns" href="<%=param.getTargetURLParam("index.do", param, 0)%>"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
 									<a class="btns" style="cursor:pointer;" onclick="$('#frm').submit();"><strong>저장</strong></a>

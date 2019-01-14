@@ -40,6 +40,7 @@ public class NoticeService {
 		Map fileMap = fu.getFileMap(request);
 		MultipartFile file= (MultipartFile)fileMap.get("filename_tmp");
 		if (!file.isEmpty()) {
+			System.out.println("파일업로드 가나?");
 			fu.upload(file, SiteProperty.NOTICE_UPLOAD_PATH, SiteProperty.REAL_PATH, "notice");
 			vo.setFilename(fu.getName());
 			vo.setFilename_org(fu.getSrcName());
@@ -59,8 +60,20 @@ public class NoticeService {
 		return data;
 	}
 
-	public int update(NoticeVO vo) throws Exception {
+	public int update(NoticeVO vo, HttpServletRequest request) throws Exception {
 		NoticeVO data = noticeDao.read(vo);
+		
+		FileUtil fu = new FileUtil();
+		Map fileMap = fu.getFileMap(request);
+		MultipartFile file= (MultipartFile)fileMap.get("filename_tmp");
+		if (!file.isEmpty()) {
+			System.out.println("파일업로드 가나?");
+			fu.upload(file, SiteProperty.NOTICE_UPLOAD_PATH, SiteProperty.REAL_PATH, "notice");
+			vo.setFilename(fu.getName());
+			vo.setFilename_org(fu.getSrcName());
+			vo.setFilesize(fu.getSrcSize());
+		}
+		
 		int r = (Integer)noticeDao.update(vo);
 		if(r > 0){
 			if("1".equals(vo.getFilename_chk()) || !"".equals(Function.checkNull(vo.getFilename()))){
@@ -85,8 +98,7 @@ public class NoticeService {
 		int delCount = 0;
 		if (nos.length > 0) {
 			for (int i=0; i<nos.length; i++) {
-				NoticeVO nvo = new NoticeVO();
-				nvo.setNo(Function.getIntParameter(nos[i]));
+				vo.setNo(Function.getIntParameter(nos[i]));
 				NoticeVO data = noticeDao.read(vo);
 				int r = noticeDao.delete(vo);
 				if (r > 0) {
