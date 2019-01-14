@@ -45,9 +45,9 @@
     <update id="update" parameterClass="member_vo">
         update member set
         	<isNotEqual property="pw" compareValue="">
-        	    pw = #pw#,
+        	    pw = password(#pw#),
         	</isNotEqual>
-        	name = #name#, email=#email#, hp=#hp#, point=#point#, moddate=now()
+        	name = #name#, hp=#hp#, point=#point#, moddate=now()
         where no=#no#
     </update>
    
