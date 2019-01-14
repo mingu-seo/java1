@@ -144,8 +144,8 @@ function CookieVal(cookieName) {
                         <li>
                             <a href="" >NOTICE</a>
                             <ul class="depth2">
-                                <li><a href="" >공지사항</a></li>
-                                <li><a href="" >이벤트</a></li>
+                                <li><a href="/board/notice/index.do">공지사항</a></li>
+                                <li><a href="/board/event/index.do" >이벤트</a></li>
                             </ul>
                         </li>
                         <li>

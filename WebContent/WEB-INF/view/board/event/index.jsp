@@ -1,11 +1,11 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ page import="board.notice.*" %>
+<%@ page import="board.event.*" %>
 <%@ page import="property.SiteProperty" %>
 <%@ page import="util.*" %>
 <%@ page import="java.util.*" %>
 <%
-NoticeVO param = (NoticeVO)request.getAttribute("vo");
-ArrayList<NoticeVO> list = (ArrayList)request.getAttribute("list");
+EventVO param = (EventVO)request.getAttribute("vo");
+ArrayList<EventVO> list = (ArrayList)request.getAttribute("list");
 int totCount = (Integer)request.getAttribute("totCount");
 int totPage = (Integer)request.getAttribute("totPage");
 %>
@@ -31,16 +31,17 @@ function goSearch() {
 
     <div class="sub">
 		<div class="size">
-			<h3 class="sub_title">공지사항</h3>
+			<h3 class="sub_title">이벤트</h3>
 
 			<div class="bbs">
 				<table class="list">
 				<p><span><strong>총 <%=totCount%>개</strong>  |  <%=param.getReqPageNo()%>/<%=totPage%>페이지</span></p>
-					<caption>게시판 목록</caption>
+					<caption>이벤트 목록</caption>
 					<colgroup>
 						<col width="80px" />
-						<col width="80px" />
 						<col width="*" />
+						<col width="80px" />
+						<col width="100px" />
 						<col width="100px" />
 						<col width="100px" />
 						<col width="80px" />
@@ -48,9 +49,10 @@ function goSearch() {
 					<thead>
 						<tr>
 							<th>번호</th>
-							<th>종류</th>
 							<th>제목</th>
 							<th>작성자</th>
+							<th>시작일</th>
+							<th>종료일</th>
 							<th>작성일</th>
 							<th>조회수</th>
 						</tr>
@@ -64,7 +66,7 @@ function goSearch() {
 									 } else {
 										String targetUrl = "";
 										String topClass = "";
-										NoticeVO data;
+										EventVO data;
 										for (int i=0; i<list.size(); i++) {
 											data = list.get(i);
 											targetUrl = "style='cursor:pointer;' onclick=\"location.href='"+param.getTargetURLParam("view.do", param, param.getNo())+"'\"";
@@ -72,9 +74,10 @@ function goSearch() {
 								
 						<tr style='cursor:pointer;' onclick="location.href='view.do?no=<%=data.getNo()%>'">
 							<td><%=totCount - ((param.getReqPageNo()-1)*param.getPageRows()) - i%> </td>
-							<td><%=CodeUtil.getType(data.getType())%></td>
-							<td class="txt_l"> <%=data.getTitle()%></td>
-							<td class="writer"> <%=data.getWriter()%></td>
+							<td class="txt_l"> <%=data.getEvent_name()%></td>
+							<td class="name"> 관리자</td>
+							<td class="date"><%=DateUtil.getDateFormat(data.getSta_date())%></td>
+							<td class="date"><%=DateUtil.getDateFormat(data.getEnd_date())%></td>
 							<td class="date"><%=DateUtil.getDateFormat(data.getCre_date())%></td>
 							<td class="hit" ><%=data.getReadno()%></td>
 						</tr>
@@ -96,8 +99,9 @@ function goSearch() {
 						<span class="srchSelect">
 							<select id="stype" name="stype" class="dSelect" title="검색분류 선택">
 								<option value="all" <%=Function.getSelected(param.getStype(), "all") %> >전체</option>
-								<option value="title" <%=Function.getSelected(param.getStype(), "title") %>>제목</option>
-								<option value="type" <%=Function.getSelected(param.getStype(), "type") %>>종류</option>
+								<option value="title" <%=Function.getSelected(param.getStype(), "event_name") %>>이벤트명</option>
+								<option value="type" <%=Function.getSelected(param.getStype(), "sta_date") %>>시작일</option>
+								<option value="type" <%=Function.getSelected(param.getStype(), "end_date") %>>종료일</option>
 								<option value="contents"<%=Function.getSelected(param.getStype(), "contents") %> >내용</option>
 							</select>
 						</span>
