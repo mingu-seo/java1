@@ -63,14 +63,31 @@ public class MovieController {
 	@RequestMapping("/manage/movie/process.do")
 	public String process(Model model, MovieVo param, HttpServletRequest request) throws Exception {
 		model.addAttribute("vo", param);
+		
 		param.setTablename("movie");
 		System.out.println(param.getCmd());
 		if ("write".equals(param.getCmd())) {
 			
 			int r = movieService.insert(param, request);
+			
+			
+			int r2 = movieService.insert2(r, request); 
+			int r3 = movieService.insert3(r, request);
+			
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "정상적으로 등록되었습니다.", "등록실패"));
 			model.addAttribute("url", "index.do");
+			
+		
+	//		model.addAttribute("code", "alertMessageUrl");
+	//		model.addAttribute("message", Function.message(r, "정상적으로 등록되었습니다.", "등록실패"));
+	//		model.addAttribute("url", "index.do");
+			
+			 
+		//	model.addAttribute("code", "alertMessageUrl");
+		//	model.addAttribute("message", Function.message(r, "정상적으로 등록되었습니다.", "등록실패"));
+		//	model.addAttribute("url", "index.do");
+		
 		} else if ("edit".equals(param.getCmd())) {
 			int r = movieService.update(param, request);
 			model.addAttribute("code", "alertMessageUrl");
