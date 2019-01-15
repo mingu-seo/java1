@@ -17,19 +17,6 @@ $(function() {
 		$(".login_info").hide();
 	});
 
-	var swiper = new Swiper('.swiper-container', {
-		loop: true,
-		autoplay: {
-		    delay: 5000,
-		  },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-        pagination: {
-            el: '.swiper-pagination',
-       	},
-	});
 });
 
 //로그인, 이메일 체크
