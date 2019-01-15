@@ -72,7 +72,7 @@
     
     <!-- 비밀번호 찾기 할시 기존 비밀번랑 맞는지 체크 -->
     <select id="searchpw" parameterClass="member_param" resultClass="member_vo">
-        select * from member where email=#email# and hp=#hp#
+        select * from member where email=#email# and hp=#hp# and secession=1
     </select>
     
     <!-- 임시 비밀번호 생성 -->
@@ -86,7 +86,7 @@
     <update id="secession" parameterClass="member_param">
         update member set
         	    secession = 2
-        where email=#email# and pw=password(#pw#) and hp=#hp#
+        where email=#email# and pw=password(#pw#) and hp=#hp# and secession=1
     </update>
     
     
