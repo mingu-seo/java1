@@ -16,6 +16,7 @@ public class MemberVO extends Parameter {
 	private int point;        //영화 포인트
 	private Timestamp credate;//회원 가입일
 	private Timestamp moddate;//회원정보 수정일
+	private int secession; 	  //회원탈퇴 상태 "1=가입" "2=탈퇴"
 	
 	
 	private String ip;				// 접속 아이피
@@ -122,6 +123,12 @@ public class MemberVO extends Parameter {
 	}
 	public void setModdate(Timestamp moddate) {
 		this.moddate = moddate;
+	}
+	public int getSecession() {
+		return secession;
+	}
+	public void setSecession(int secession) {
+		this.secession = secession;
 	}
 	
 	

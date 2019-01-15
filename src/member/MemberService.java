@@ -62,8 +62,13 @@ public class MemberService {
 	}
 	
 	public int secession(MemberVO vo) throws SQLException{
-		int cnt = memberDao.secession(vo);
-		return cnt;
+		if(vo.getSecession()==1) {
+			int cnt = memberDao.secession(vo);
+			return cnt;
+		}else {
+			int	cnt = 0;
+			return cnt;
+		}
 	}
 	
 	public MemberVO getLoginSessionInfo(MemberVO param) throws SQLException {

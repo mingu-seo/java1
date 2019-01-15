@@ -107,7 +107,7 @@ public class MemberController {
 		model.addAttribute("vo", param);
 		int r = memberService.secession(param);
 		model.addAttribute("code", "alertMessageUrl");
-		model.addAttribute("message", Function.message(r, "정상적으로 탈퇴되었습니다.", "탈퇴실패"));
+		model.addAttribute("message", Function.message(r, "정상적으로 탈퇴되었습니다.", "존재하지않는 이메일이거나 이메일과 비밀번호가 같지않습니다."));
 		model.addAttribute("url", "/index.do");
 		return "include/alert";
 	}
