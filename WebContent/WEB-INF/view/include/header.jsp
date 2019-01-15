@@ -17,21 +17,6 @@ $(function() {
 		$(".login_info").hide();
 	});
 
-	var swiper = new Swiper('.swiper-container', {
-		loop: true,
-		autoplay: {
-		    delay: 5000,
-		  },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-        pagination: {
-            el: '.swiper-pagination',
-       	},
-	});
-	
-	
 });
 
 //로그인, 이메일 체크
@@ -149,16 +134,16 @@ function CookieVal(cookieName) {
                             </ul>
                         </li>
                         <li>
-                            <a href="" >NOTICE</a>
+                            <a href="/board/notice/index.do" >NOTICE</a>
                             <ul class="depth2">
                                 <li><a href="/board/notice/index.do">공지사항</a></li>
                                 <li><a href="/board/event/index.do" >이벤트</a></li>
                             </ul>
                         </li>
                         <li>
-                            <a href="" >MORE</a>
+                            <a href="/board/faq/index.do" >고객센터</a>
                             <ul class="depth2">
-                                <li><a href="" >스토어</a></li>
+                                <li><a href="/board/faq/index.do" >자주하는질문</a></li>
                                 <li><a href="" >Q&A</a></li>
                             </ul>
                         </li>

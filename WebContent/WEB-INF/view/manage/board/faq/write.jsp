@@ -1,10 +1,10 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page import="java.util.*" %>
-<%@ page import="board.notice.*" %>
+<%@ page import="board.faq.*" %>
 <%@ page import="manage.admin.*" %>
 <%@ page import="util.*" %>
 <%
-NoticeVO param = (NoticeVO)request.getAttribute("vo");
+FaqVO param = (FaqVO)request.getAttribute("vo");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
@@ -14,23 +14,22 @@ NoticeVO param = (NoticeVO)request.getAttribute("vo");
 <script>
 	var oEditors; // 에디터 객체 담을 곳
 	jQuery(window).load(function(){
-		oEditors = setEditor("contents"); // 에디터 셋팅
-		initCal({id:"cre_date",type:"day",today:"y",timeYN:"y"});
+		oEditors = setEditor("answer"); // 에디터 셋팅
 	});
 	
 	function goSave() {
-		if ($("#title").val() == "") {
-			alert('제목을 입력하세요.');
-			$("#title").focus();
+		if ($("#qeustion").val() == "") {
+			alert('질문을 입력하세요.');
+			$("#qeustion").focus();
 			return false;
 		}
-		var sHTML = oEditors.getById["contents"].getIR();
+		var sHTML = oEditors.getById["answer"].getIR();
 		if (sHTML == "" || sHTML == "<p><br></p>") {
 			alert('내용을 입력하세요.');
-			$("#contents").focus();
+			$("#answer").focus();
 			return false;
 		} else {
-			oEditors.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []);	// 에디터의 내용이 textarea에 적용됩니다.
+			oEditors.getById["answer"].exec("UPDATE_CONTENTS_FIELD", []);	// 에디터의 내용이 textarea에 적용됩니다.
 		}
 		return true;
 	}
@@ -51,7 +50,7 @@ NoticeVO param = (NoticeVO)request.getAttribute("vo");
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>공지사항 - [쓰기]</h2>
+					<h2>FAQ - [등록]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -60,59 +59,32 @@ NoticeVO param = (NoticeVO)request.getAttribute("vo");
 						<div id="bread">
 							<form method="post" name="frm" id="frm" action="<%=Function.getSslCheckUrl(request.getRequestURL())%>/process.do" enctype="multipart/form-data" onsubmit="return goSave();">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
-								<colgroup>
-									<col width="10%" />
-									<col width="15%" />
-									<col width="10%" />
-									<col width="10%" />
-									<col width="10%" />
-									<col width="15%" />
-								</colgroup>
+							
 								<tbody>
 									<tr>
 										<th scope="row"><label for="">종류</label></th>
 										<td>
 											<select name="type">
-												<%=CodeUtil.getTypeOption(1) %>
+												<%=CodeUtil.getQtypeOption(1) %>
 											</select>
-										</td>
-										<th scope="row"><label for="">상태</label></th>
-										<td>
-											<select name="display">
-												<%=CodeUtil.getDisplayOption(0) %>
-											</select>
-										</td>
-										<th scope="row"><label for="">등록일</label></th>
-										<td>
-											<input type="text" id="cre_date" name="cre_date" class="inputTitle" value="<%=DateUtil.getFullToday()%>" title="등록일을 입력해주세요" />&nbsp;
-											<span id="CalregistdateIcon">
-												<img src="/manage/img/calendar_icon.png" id="CalregistdateIconImg" style="cursor:pointer;"/>
-											</span>
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">첨부파일</label></th>
-										<td colspan="10">
-											<input type="file" id="filename_tmp" name="filename_tmp" class="w100" title="첨부파일을 업로드 해주세요." />	
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">*제목</label></th>
-										<td colspan="10">
-											<input type="text" id="title" name="title" class="w100" title="제목을 입력해주세요" />	
+										<th scope="row"><label for="">*문의</label></th>
+										<td colspan="5">
+											<input type="text" id="question" name="question" class="w100" title="질문입력" />	
 										</td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="">*내용</label></th>
-										<td colspan="10">
-											<textarea id="contents" name="contents" title="내용을 입력해주세요" style="width:100%;"></textarea>	
+										<td colspan="5">
+											<textarea id="answer" name="answer" title="내용을 입력해주세요" style="width:100%;"></textarea>	
 										</td>
 									</tr>
 									
 								</tbody>
 							</table>
 							<input type="hidden" name="cmd" value="write" />
-							<input type="hidden" name="writer" value="<%=request.getAttribute("admin_no")%>" />
 							</form>
 							<div class="btn">
 								<div class="btnLeft">

@@ -28,7 +28,7 @@ EventVO param = (EventVO)request.getAttribute("data");
 					<div class="title">
 						<dl>
 							<dt><%=param.getEvent_name()%> </dt>
-							<dd class="writer">작성자 : <%=param.getWriter()%> </dd> 
+							
 							<dd class="date">시작일 : <%=param.getSta_date()%> </dd>
 							<dd class="date">종료일 : <%=param.getEnd_date()%> </dd>
 							<dd class="date">작성일 : <%=param.getCre_date()%> </dd>

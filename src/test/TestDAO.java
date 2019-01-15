@@ -20,7 +20,7 @@ public class TestDAO extends SqlMapClientDAOSupport {
 //		TestDAO dao = new TestDAO();
 //		ArrayList<TestVO> list = dao.getList();
 		
-		SendMail.sendEmail("withsky@sanggong.co.kr", "tssu106@naver.com","제목", "내용");
+		SendMail.sendEmail();
 		
 //		for (int i=0; i<list.size(); i++) {
 //			System.out.println(list.get(i).getNo() + " " + list.get(i).getId() + " " +list.get(i).getName());

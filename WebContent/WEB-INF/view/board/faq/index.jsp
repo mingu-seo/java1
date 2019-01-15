@@ -1,11 +1,11 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ page import="board.notice.*" %>
+<%@ page import="board.faq.*" %>
 <%@ page import="property.SiteProperty" %>
 <%@ page import="util.*" %>
 <%@ page import="java.util.*" %>
 <%
-NoticeVO param = (NoticeVO)request.getAttribute("vo");
-ArrayList<NoticeVO> list = (ArrayList)request.getAttribute("list");
+FaqVO param = (FaqVO)request.getAttribute("vo");
+ArrayList<FaqVO> list = (ArrayList)request.getAttribute("list");
 int totCount = (Integer)request.getAttribute("totCount");
 int totPage = (Integer)request.getAttribute("totPage");
 %>
@@ -23,6 +23,10 @@ int totPage = (Integer)request.getAttribute("totPage");
 <script>
 function goSearch() {
 	$("#searchForm").submit();
+	
+}
+function showTr(id) {
+	$("#"+id).toggle();
 }
 </script>
 </head>
@@ -31,28 +35,22 @@ function goSearch() {
 
     <div class="sub">
 		<div class="size">
-			<h3 class="sub_title">공지사항</h3>
+			<h3 class="sub_title">자주하는질문</h3>
 
 			<div class="bbs">
 				<table class="list">
 				<p><span><strong>총 <%=totCount%>개</strong>  |  <%=param.getReqPageNo()%>/<%=totPage%>페이지</span></p>
-					<caption>게시판 목록</caption>
+					<caption>질문 목록</caption>
 					<colgroup>
 						<col width="80px" />
-						<col width="80px" />
+						<col width="100px" />
 						<col width="*" />
-						<col width="100px" />
-						<col width="100px" />
-						<col width="80px" />
 					</colgroup>
 					<thead>
 						<tr>
 							<th>번호</th>
 							<th>종류</th>
-							<th>제목</th>
-							<th>작성자</th>
-							<th>작성일</th>
-							<th>조회수</th>
+							<th>질문</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -62,23 +60,20 @@ function goSearch() {
 									</tr>
 								<%
 									 } else {
-										String targetUrl = "";
-										String topClass = "";
-										NoticeVO data;
+										FaqVO data;
 										for (int i=0; i<list.size(); i++) {
 											data = list.get(i);
-											targetUrl = "style='cursor:pointer;' onclick=\"location.href='"+param.getTargetURLParam("view.do", param, param.getNo())+"'\"";
 								%>
 								
-						<tr style='cursor:pointer;' onclick="location.href='view.do?no=<%=data.getNo()%>'">
+						<tr style='cursor:pointer;' onclick="showTr('tr<%=i%>');">
 							<td><%=totCount - ((param.getReqPageNo()-1)*param.getPageRows()) - i%> </td>
-							<td><%=CodeUtil.getType(data.getType())%></td>
-							<td class="txt_l"> <%=data.getTitle()%></td>
-							<td class="writer"> <%=data.getWriter_name()%></td>
-							<td class="date"><%=DateUtil.getDateFormat(data.getCre_date())%></td>
-							<td class="hit" ><%=data.getReadno()%></td>
+							<td><%=CodeUtil.getQtype(data.getType())%></td>
+							<td class="txt_l"><%=data.getQuestion() %></td>
 						</tr>
-						
+						<tr id="tr<%=i%>" style="display:none;">
+							<td colspan="2"></td>
+							<td class="txt_l"><%=data.getAnswer() %></td>
+						</tr>
 					<%}%>
 					<%}%>
 					</tbody>
@@ -96,8 +91,8 @@ function goSearch() {
 						<span class="srchSelect">
 							<select id="stype" name="stype" class="dSelect" title="검색분류 선택">
 								<option value="all" <%=Function.getSelected(param.getStype(), "all") %> >전체</option>
-								<option value="title" <%=Function.getSelected(param.getStype(), "title") %>>제목</option>
-								<option value="contents"<%=Function.getSelected(param.getStype(), "contents") %> >내용</option>
+								<option value="question" <%=Function.getSelected(param.getStype(), "question") %>>질문</option>
+								<option value="answer" <%=Function.getSelected(param.getStype(), "answer") %>>답변</option>
 							</select>
 						</span>
 						<span class="searchWord">

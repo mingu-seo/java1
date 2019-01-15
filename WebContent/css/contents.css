@@ -188,3 +188,59 @@
 .mypage_tab ul li {float:left; width:33%; position:relative;}
 .mypage_tab ul li:last-child {width:34%;}
 .mypage_tab ul li a {display:block; height:48px; line-height:46px; text-align:center; color:#000000; font-size:18px; box-sizing:border-box; border:1px solid #c3d69b; transition:all .3s; -webkit-transition:all .3s; font-weight:500;}
+
+/* 영화 */
+.bbs .gallery {width:100%; border-top:2px solid #333; border-bottom:1px solid #999;  padding:20px 0; position:relative;}
+.bbs .gallery > ul{overflow:hidden; width:102.3333%; margin-left:-2.3333%; margin-top:-20px;}
+.bbs .gallery > ul > li{border:1px solid #e7e7e7; width:31%; margin:20px 0 0 2.3333%; float:left; padding:15px; box-sizing:border-box;}
+.bbs .gallery > ul > li > a{width:100%; height:100%; display:block; text-align:center;}
+.bbs .gallery > ul > li > a dt{width:100%;height:auto; ; overflow:hidden; }
+.bbs .gallery > ul > li > a dt img{width:320px;height:474px; }
+.bbs .gallery > ul > li > a dt.noimg img{opacity:1; visibility:visible; filter:alpha(opacity=100); -ms-filter:alpha(opacity=100); width:100%; height:auto; }
+.bbs .gallery > ul > li > a dt .imgs {width:100%; background-repeat:no-repeat; background-position:center center; background-size:cover; padding-bottom:55%;}
+.bbs .gallery > ul > li > a dd{width:100%;}
+.bbs .gallery > ul > li > a dd.date{font-size:14px; color:#828282; padding:10px 0; text-align:left; padding-left:12px;}
+.bbs .gallery > ul > li > a dd.title{font-size:18px; font-weight:700; min-height:40px; text-align:left; padding-left:12px;}
+.bbs .gallery > ul > li > a dd.btnArea .btn{width:45%;}
+
+.bbs .movie {width:100%; border-top:2px solid #333; border-bottom:1px solid #999;  padding:20px 0; position:relative;}
+.bbs .movie .info {width:100%; display:block;height:100%;overflow:auto;}
+.bbs .movie .info .movie_img {width:30%; float:left; position:relative; text-align:left;}
+.bbs .movie .info .movie_img img {width:320px;height:474px;}
+.bbs .movie .info .movie_info {width:70%; float:left; position:relative; text-align:left;}
+.bbs .movie .info .movie_info dt {font-size:16px; color:#000000; height:50px;}
+.bbs .movie .info .movie_info dt.title{font-size:30px; font-weight:800; color:#000000; height:80px;}
+.bbs .movie .info .movie_info dt.synop{height:auto;}
+.bbs .movie .info .movie_info dt .synop_contents{overflow:auto;}
+.bbs .movie .info .movie_info dt.reser_btn{text-align:right; bottom:0;}
+.bbs .movie .info .movie_info dt.reser_btn .btn{width:100px; height:50px;}
+
+.bbs .movie .movie_title {width:100%; clear:both; font-size:25px; border-bottom:1px solid #999; margin-top:30px; margin-bottom:30px;}
+.bbs .movie .stillcut_area {width:100%; display:block;height:100%;overflow:auto;}
+.bbs .movie .stillcut_area .swiper_stillcut {width:100%; display:block;height:500px;}
+.stillcut_img {width:100%;}
+
+.bbs .movie .trailler_area {width:100%; display:block;height:100%;overflow:auto;}
+.bbs .movie .trailler_area ul li {width:30%; height:300px;float:left; padding:1.5%;}
+
+.bbs .movie .review_area {width:100%; display:block;height:100%;overflow:auto;}
+.bbs .movie .review_area .review_write {width:100%; display:block;height:100px;}
+.bbs .movie .review_area .review_write .input {
+	overflow: hidden;
+    height: 86px;
+    border: 1px solid #e1e1e1;
+ }
+ .bbs .movie .review_area .review_write .rate {width:10%;height:100%;float:left;text-align:center; vertical-align:middle;}
+ .bbs .movie .review_area .review_write .rate select{position:relative; top:35%;}
+ .bbs .movie .review_area .review_write .textarea {width:80%;height:100%;float:left;}
+ .bbs .movie .review_area .review_write .textarea textarea{width:100%;height:100%;float:left;border-top:0px; border-bottom:0px;}
+ .bbs .movie .review_area .review_write .btn_area {width:10%;float:left;height:100%;}
+ .bbs .movie .review_area .review_write .btn_area .btn{width:100% !important;height:100% !important;}
+
+.bbs .movie .review_area .review_list {width:100%; display:block;height:auto;}
+.bbs .movie .review_area .review_list ul li{width:45%; min-height:200px;padding:10px;float:left; border-bottom:1px solid #c3d69b; }
+.bbs .movie .review_area .review_list .review_writer{font-size:14px;}
+.bbs .movie .review_area .review_list .review_contents{font-size:16px;min-height:200px;padding-top:5px;}
+.bbs .movie .review_area .review_list .review_etc{width:100%;}
+.bbs .movie .review_area .review_list .review_date{font-size:14px;bottom:0;float:left;}
+.bbs .movie .review_area .review_list .review_btn{text-align:right;}
