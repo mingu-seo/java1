@@ -33,8 +33,9 @@
     </select>
     
 	<select id="list" parameterClass="notice_vo" resultClass="notice_vo">
-        select *
-        from $tablename$
+        select *,
+        (select name from admin where admin.no=notice.writer) as writer_name
+        from $tablename$ 
         <include refid="searchSql" />
 		ORDER BY cre_date DESC LIMIT $startPageNo$, $pageRows$
     </select>

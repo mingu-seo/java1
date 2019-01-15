@@ -14,6 +14,7 @@ public class EventVO extends Parameter {
 	private Timestamp	cre_date;				// 작성일
 	private int 		readno;					// 조회수
 	private String		writer;
+	private String		writer_name;
 	private String 		filename_org;			// 첨부파일 이름 [사용자]
 	private String 		filename;				// 첨부파일 이름 [시스템 처리용]
 	private long 		filesize;				// 첨부파일 크기
@@ -95,6 +96,14 @@ public class EventVO extends Parameter {
 
 	public void setWriter(String writer) {
 		this.writer = writer;
+	}
+	
+	public String getWriter_name() {
+		return writer_name;
+	}
+	
+	public void setWriter_name(String writer_name) {
+		this.writer_name = writer_name;
 	}
 
 	public String getFilename_org() {

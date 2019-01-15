@@ -80,6 +80,7 @@ function goSearch() {
 										<th scope="col">시작일</th> 
 										<th scope="col">종료일</th> 
 										<th scope="col">작성일</th> 
+										<th scope="col">작성자</th> 
 										<th scope="col">조회수</th>
 										<th scope="col" class="last">삭제</th>
 									</tr>
@@ -106,6 +107,7 @@ function goSearch() {
 										<td <%=targetUrl%>><%=DateUtil.getDateFormat(data.getSta_date())%></td>
 										<td <%=targetUrl%>><%=DateUtil.getDateFormat(data.getEnd_date())%></td>
 										<td <%=targetUrl%>><%=DateUtil.getDateFormat(data.getCre_date())%></td>
+										<td <%=targetUrl%>> <%=(data.getWriter_name())%></td>
 										<td <%=targetUrl%>><%=data.getReadno()%></td>
 										<td class="last"><input type="button" value="삭제" onclick="goDelete(<%=data.getNo()%>);"/></td>
 									</tr>

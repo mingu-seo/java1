@@ -123,6 +123,7 @@ EventVO param = (EventVO)request.getAttribute("vo");
 								</tbody>
 							</table>
 							<input type="hidden" name="cmd" value="write" />
+							<input type="hidden" name="writer" value="<%=request.getAttribute("admin_no")%>" />
 							</form>
 							<div class="btn">
 								<div class="btnLeft">

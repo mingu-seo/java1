@@ -99,9 +99,7 @@ function goSearch() {
 						<span class="srchSelect">
 							<select id="stype" name="stype" class="dSelect" title="검색분류 선택">
 								<option value="all" <%=Function.getSelected(param.getStype(), "all") %> >전체</option>
-								<option value="title" <%=Function.getSelected(param.getStype(), "event_name") %>>이벤트명</option>
-								<option value="type" <%=Function.getSelected(param.getStype(), "sta_date") %>>시작일</option>
-								<option value="type" <%=Function.getSelected(param.getStype(), "end_date") %>>종료일</option>
+								<option value="event_name" <%=Function.getSelected(param.getStype(), "event_name") %>>이벤트명</option>
 								<option value="contents"<%=Function.getSelected(param.getStype(), "contents") %> >내용</option>
 							</select>
 						</span>

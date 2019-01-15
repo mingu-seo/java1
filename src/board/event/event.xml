@@ -33,7 +33,8 @@
     </select>
     
 	<select id="list" parameterClass="event_vo" resultClass="event_vo">
-        select *
+        select *,
+        (select name from admin where admin.no=event.writer) as writer_name
         from $tablename$
         <include refid="searchSql" />
 		ORDER BY cre_date DESC LIMIT $startPageNo$, $pageRows$
