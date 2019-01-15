@@ -79,15 +79,15 @@
 												</td>
 												<th scope="row"><label for=""> 장르</label></th>
 												<td>
-													<input type="checkbox" id="title"/>액션 &nbsp;
-													<input type="checkbox" id="title"/>스릴러 &nbsp;
-													<input type="checkbox" id="title"/>멜로 &nbsp;
-													<input type="checkbox" id="title"/>코믹 &nbsp;
-													<input type="checkbox" id="title"/>범죄 &nbsp;
-													<input type="checkbox" id="title"/>판타지 &nbsp;
-													<input type="checkbox" id="title"/>SF &nbsp;
-													<input type="checkbox" id="title"/>가족 &nbsp;
-													<input type="checkbox" id="title"/>어린이 &nbsp;
+													<input type="checkbox" name="genre" value="action"/>액션 &nbsp;
+													<input type="checkbox" name="genre" value="thriller"/>스릴러 &nbsp;
+													<input type="checkbox" name="genre" value="melo"/>멜로 &nbsp;
+													<input type="checkbox" name="genre" value="comic"/>코믹 &nbsp;
+													<input type="checkbox" name="genre" value="crime"/>범죄 &nbsp;
+													<input type="checkbox" name="genre" value="fantasy"/>판타지 &nbsp;
+													<input type="checkbox" name="genre" value="sf"/>SF &nbsp;
+													<input type="checkbox" name="genre" value="family"/>가족 &nbsp;
+													<input type="checkbox" name="genre" value="child"/>어린이 &nbsp;
 												</td>
 											</tr>	
 											<tr>
@@ -96,10 +96,10 @@
 													name="director" class="w50" /></td>
 												<th scope="row"><label for="">등급</label></th>
 												<td>
-													<input type="radio" id="rating" name="rating" value="0"/>전체관람가 &nbsp;
-													<input type="radio" id="rating" name="rating" value="12"/>12세 관람가 &nbsp;
-													<input type="radio" id="rating" name="rating" value="15"/>15세 관람가 &nbsp;
-													<input type="radio" id="rating" name="rating" value="19"/>청소년 관람불가 &nbsp;
+													<input type="radio" id="rating1" name="rating" value="0"/>전체관람가 &nbsp;
+													<input type="radio" id="rating2" name="rating" value="12"/>12세 관람가 &nbsp;
+													<input type="radio" id="rating3" name="rating" value="15"/>15세 관람가 &nbsp;
+													<input type="radio" id="rating4" name="rating" value="19"/>청소년 관람불가 &nbsp;
 												</td>
 											</tr>		
 											<tr>
@@ -112,13 +112,13 @@
 											</tr>
 											
 											<tr>
-												<td colspan="4"><textarea id="contents" name="content"
+												<td colspan="4"><textarea id="contents" name="contents"
 														title="내용을 입력해주세요" style="width: 100%;"></textarea></td>
 											</tr>
 											<tr>
 												<th scope="row"><label for="">메인 포스터</label></th>
 												<td>
-													<input type="file" id="poster" name="poster" class="w50" title="포스터"/>
+													<input type="file" id="poster" name="poster_tmp" class="w50" title="포스터"/>
 												</td>
 												<th scope="row"><label for="">노출여부</label></th>
 												<td>
@@ -130,19 +130,27 @@
 											<tr>
 												<th scope="row"><label for="">스틸컷</label></th>
 												<td>
-													<input type="file" name="poster" class="w50" title="포스터"/><br/><br/>
-													<input type="file" name="poster" class="w50" title="포스터"/><br/><br/>
-													<input type="file" name="poster" class="w50" title="포스터"/><br/><br/>
-													<input type="file" name="poster" class="w50" title="포스터"/><br/><br/>
-													<input type="file" name="poster" class="w50" title="포스터"/>
+													<input type="file" name="stillCut1_tmp" class="w50" title="스틸컷1" /><br/><br/>
+													<input type="file" name="stillCut2_tmp" class="w50" title="스틸컷2" /><br/><br/>
+													<input type="file" name="stillCut3_tmp" class="w50" title="스틸컷3" /><br/><br/>
+													<input type="file" name="stillCut4_tmp" class="w50" title="스틸컷4" /><br/><br/>
+													<input type="file" name="stillCut5_tmp" class="w50" title="스틸컷5" /><br/><br/>
+													<input type="file" name="stillCut6_tmp" class="w50" title="스틸컷6" /><br/><br/>
 												</td>
 												<th scope="row"><label for="">트레일러 </label></th>
 												<td>
-													<input type="text" class="w50" name="trailer" value="" title="동영상 url주소를 첨부하세요"/><br/><br/>
-													<input type="text" class="w50" name="trailer" value="" title="동영상 url주소를 첨부하세요"/><br/><br/>
-													<input type="text" class="w50" name="trailer" value="" title="동영상 url주소를 첨부하세요"/><br/><br/>
-													<input type="text" class="w50" name="trailer" value="" title="동영상 url주소를 첨부하세요"/><br/><br/>
-													<input type="text" class="w50" name="trailer" value="" title="동영상 url주소를 첨부하세요"/>
+													<input type="text" class="w50" name="trailer1"
+													value="" title="동영상 url주소를 첨부하세요" /><br/><br/>
+												 	<input type="text" class="w50" name="trailer2"
+													value="" title="동영상 url주소를 첨부하세요" /><br/><br/>
+													<input type="text" class="w50" name="trailer3"
+													value="" title="동영상 url주소를 첨부하세요" /><br/><br/>
+													<input type="text" class="w50" name="trailer4"
+													value="" title="동영상 url주소를 첨부하세요" /><br/><br/>
+													<input type="text" class="w50" name="trailer5"
+													value="" title="동영상 url주소를 첨부하세요" /><br/><br/>
+													<input type="text" class="w50" name="trailer6"
+													value="" title="동영상 url주소를 첨부하세요" />
 												</td>
 											</tr>
 										</tbody>

@@ -14,38 +14,38 @@
 <script>
 
 //로그인, 이메일 체크
-function loginCheck(){
-	if ( getObject("email").value.length < 1 ) {
+function loginCheck1(){
+	if ( getObject("email1").value.length < 1 ) {
 		alert("이메일을 입력해주세요.");
-		getObject("email").focus();
+		getObject("email1").focus();
 		return false;
 	}
-	if ( getObject("pw").value.length < 1 ) {
+	if ( getObject("pw1").value.length < 1 ) {
 		alert("비밀번호를 입력해주세요.");
-		getObject("pw").focus();
+		getObject("pw1").focus();
 		return false;
 	}
-	var f = document.board;
-	if (f.reg.checked==true) {
-	   document.cookie = "cookie_userid=" + f.id.value + ";path=/;expires=Sat, 31 Dec 2050 23:59:59 GMT;";
+	var f = document.board1;
+	if (f.reg1.checked==true) {
+	   document.cookie = "cookie_userid=" + f.email1.value + ";path=/;expires=Sat, 31 Dec 2050 23:59:59 GMT;";
 	} else {
 	   var now = new Date();	
-	   document.cookie = "cookie_userid=" + f.id.value + ";path=/;expires="+now.getTime();
+	   document.cookie = "cookie_userid=" + f.email1.value + ";path=/;expires="+now.getTime();
 	}
 	return true;
 }
 
-function useremail_chk() {
-	var f=document.board;
-	var useridname = CookieVal("cookie_userid");
+function useremail_chk1() {
+	var f=document.board1;
+	var useremail = CookieVal("cookie_userid");
 	
-	if (useridname=="null"){	
-		f.id.focus();
-		f.id.value="";
+	if (useremail=="null"){	
+		f.email1.focus();
+		f.email1.value="";
 	} else {
-		f.password.focus();
-		f.id.value=useridname;
-		f.reg.checked=true;
+		f.pw1.focus();
+		f.email1.value=useremail;
+		f.reg1.checked=true;
 	}
 }
 
@@ -57,25 +57,22 @@ function CookieVal(cookieName) {
 		}
 	}
 	return "null" ;
-
-}
+}	
 </script>
-<body>
+<body onload="getObject('email1').focus();useremail_chk1();">
     <%@ include file="/WEB-INF/view/include/header.jsp" %>
-	<form action="/login.do" method="post">
+	<form action="/login.do" method="post" id="board1" name="board1" onsubmit="return loginCheck1();"><!-- header에서 id="board"이미 사용중이라서 board2로 함 -->
     <div class="sub">
 		<div class="size">
 			<h3 class="sub_title">로그인</h3>
 			
 			<div class="member">
 				<div class="box">
-					<p>아이디(이메일) 비밀번호를 입력해 주세요.
-					</p>
 					<fieldset class="login_form">
 						<ul>
-							<li><input type="text" name="email" id="email" placeholder="아이디(이메일)"></li>
-							<li><input type="password" name="pw" id="pw" placeholder="비밀번호"></li>
-							<li><label><input type="checkbox" name="reg" id="reg"/> 아이디저장</label></li>
+							<li><input type="text" id="email1" name="email" placeholder="이메일"></li>
+							<li><input type="password" id="pw1" name="pw" placeholder="비밀번호"></li>
+							<li><label><input type="checkbox" name="reg1" id="reg1"/> 아이디저장</label></li>
 						</ul>
 						<div class="login_btn"><input type="submit" value="로그인" alt="로그인" /></div>
 					</fieldset>
@@ -92,6 +89,5 @@ function CookieVal(cookieName) {
     </div>
 	</form>
     <%@ include file="/WEB-INF/view/include/footer.jsp" %>
-
 </body>
 </html>

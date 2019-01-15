@@ -33,24 +33,24 @@ function loginCheck(){
 	}
 	var f = document.board;
 	if (f.reg.checked==true) {
-	   document.cookie = "cookie_userid=" + f.id.value + ";path=/;expires=Sat, 31 Dec 2050 23:59:59 GMT;";
+	   document.cookie = "cookie_userid=" + f.loginEmail.value + ";path=/;expires=Sat, 31 Dec 2050 23:59:59 GMT;";
 	} else {
 	   var now = new Date();	
-	   document.cookie = "cookie_userid=" + f.id.value + ";path=/;expires="+now.getTime();
+	   document.cookie = "cookie_userid=" + f.loginEmail.value + ";path=/;expires="+now.getTime();
 	}
 	return true;
 }
 
 function useremail_chk() {
 	var f=document.board;
-	var useridname = CookieVal("cookie_userid");
+	var useremail = CookieVal("cookie_userid");
 	
-	if (useridname=="null"){	
-		f.id.focus();
-		f.id.value="";
+	if (useremail=="null"){	
+		f.loginEmail.focus();
+		f.loginEmail.value="";
 	} else {
-		f.password.focus();
-		f.id.value=useridname;
+		f.loginPw.focus();
+		f.loginEmail.value=useremail;
 		f.reg.checked=true;
 	}
 }
@@ -63,8 +63,12 @@ function CookieVal(cookieName) {
 		}
 	}
 	return "null" ;
-}
+}	
+
+
+
 </script>
+<body onload="getObject('loginEmail').focus();useremail_chk();">
 	<div id="header">
         <div class="head_top">
             <div class="size">
@@ -73,17 +77,17 @@ function CookieVal(cookieName) {
                         <a href=""></a>
                     </div>
                 </div>
-                <h1 class="logo"><a href="/"><img src="/img/logo.png"/></a></h1>
+                <h1 class="logo"><a href="/index.do"><img src="/img/logo.png"/></a></h1>
                 <div class="util clear">
                 <%if(memberInfo==null){ %>
                     <a href="#;" id="login_click">로그인</a>
                     <a href="/member/join.do">회원가입</a>
                 <%}else{%>
                 	<a href="/logout.do">로그아웃</a>
-                    <a href="">마이페이지</a>
+                    <a href="/mypage/index.do">마이페이지</a>
                 <% } %>
                 </div>
-                <form action="/login.do" method="post" onsubmit="return loginCheck();">
+                <form action="/login.do" id="board" name="board" method="post" onsubmit="return loginCheck();">
                 <div class="login_info">
                 	<div class="top_area"><img src="/img/btn_del.gif"/></div>
                 	<div class="title_area"><span>MOVIE 로그인</span></div>
@@ -97,7 +101,7 @@ function CookieVal(cookieName) {
                 		</div>
                 	</div>
                 	<div class="bottom_area">
-                		<input type="checkbox" id="saveEmail" name="saveEmail"/>이메일 저장
+                		<input type="checkbox" id="reg" name="reg"/><label for="reg">이메일 저장</label>
                 	</div>
                 	<!-- //joinList -->
 					<input type="hidden" name="url" id="url" value="<%//=url%>"/>
@@ -114,7 +118,7 @@ function CookieVal(cookieName) {
                         <li>
                             <a href="" >MOVIE</a>
                             <ul class="depth2">
-                                <li><a href="movie/list" >현재 상영작</a></li>
+                                <li><a href="manage/movie/list.do" >현재 상영작</a></li>
                                 <li><a href="" >개봉 예정작</a></li>
                             </ul>
                         </li>
@@ -148,3 +152,4 @@ function CookieVal(cookieName) {
             </div>
         </div>
     </div>
+</body>

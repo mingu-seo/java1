@@ -28,9 +28,9 @@ function searchEmail(){
 			success:function(data) {
 				var email = data.trim();
 				if (email != "") {
-					alert("아이디는 "+data+"입니다.");
+					alert("회원님의 아이디는 "+data+"입니다.");
 				} else {
-					alert("존재하지 않는 이메일입니다.");
+					alert("존재하지 않는 이름이거나 존재하지않는 휴대폰번호 입니다.");
 				}
 			}
 		});
@@ -52,9 +52,9 @@ function searchEmail(){
 					<fieldset class="login_form">
 						<ul>
 							<li><input type="text" name="name" id="name" placeholder="이름"></li>
-							<li><input type="password" name="hp" id="hp" placeholder="휴대폰번호"></li>
+							<li><input type="text" name="hp" id="hp" onkeyup="isNumberOrHyphen(this);cvtPhoneNumber(this);" placeholder="휴대폰번호"></li>
 						</ul>
-						<div class="login_btn"><input type="button" value="아이디찾기" alt="아이디찾기" onclick="searchEmail();"/></div>
+						<div class="login_btn"><input type="submit" value="아이디찾기" alt="아이디찾기" onclick="searchEmail();"/></div>
 					</fieldset>
 					<div class="btnSet clear">
 						<div>
