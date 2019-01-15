@@ -53,16 +53,16 @@ public class SiteProperty {
 	/**
 	 * 메일서버
 	 */
-	public static final String 	SMTP_HOST				= "mail.sanggong.co.kr";
-	public static final String 	SMTP_PORT				= "25";
+	public static final String 	SMTP_HOST				= "smtp.naver.com";
+	public static final String 	SMTP_PORT				= "465";
 	/**
 	 * 메일계정 아이디
 	 */
-	public static final String 	SMTP_USER				= "withsky@sanggong.co.kr";
+	public static final String 	SMTP_USER				= "zebra_yun";
 	/**
 	 * 메일계정 패스워드
 	 */
-	public static final String 	SMTP_PASSWORD			= "tjalsrn9";
+	public static final String 	SMTP_PASSWORD			= "Test123123!";
 	/**
 	 * 이메일 기본 폼
 	 */
@@ -97,7 +97,7 @@ public class SiteProperty {
 	/**
 	 * 로컬 홈디렉토리경로 (실서버 변경 필요)
 	 */
-	public static final String REAL_PATH				= "D:\\workspace\\java1\\WebContent";
+	public static final String REAL_PATH				= "E:\\Java\\workspace\\java1\\WebContent";
 	/**
 	 * 공지사항 첨부파일 경로
 	 */

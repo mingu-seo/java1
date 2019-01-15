@@ -3,6 +3,8 @@
 <sqlMap namespace="movie">
     
     <typeAlias alias="movie_vo" type="movie.MovieVo"/>
+    <typeAlias alias="stillCut_vo" type="movie.StillCutVo"/>
+    <typeAlias alias="trailer_vo" type="movie.TrailerVo"/>
     
     <!-- 공통조건 -->
 	<sql id="searchSql">		
@@ -31,7 +33,7 @@
         <include refid="searchSql" />	
     </select>
     
-	<select id="list" parameterClass="movie_vo" resultClass="notice_vo">
+	<select id="list" parameterClass="movie_vo" resultClass="movie_vo">
         select *
         from $tablename$
         <include refid="searchSql" />
@@ -40,7 +42,7 @@
 	
 	<!-- 해당 테이블에 게시글 작성 -->
     <insert id="insert" parameterClass="movie_vo">
-        INSERT INTO $tablename$ (
+        INSERT INTO MOVIE(
         	title, director, genre, rating, runtime, releaseDate,
         	endDate, poster, display, contents
         ) VALUES (
@@ -52,21 +54,44 @@
         </selectKey>
     </insert>
     
+    <!-- 해당 테이블에 스틸컷 첨부 -->
+    <insert id="insert2" parameterClass="stillCut_vo">
+        INSERT INTO STILLCUT (
+        	movie_no, stillCut1, stillCut2, stillCut3, stillCut4, stillCut5, stillCut6 
+        ) VALUES (
+        	#movie_no#, #stillCut1#, #stillCut2#, #stillCut3#, #stillCut4#, #stillCut5#,
+        	#stillCut6#
+        )
+        <selectKey keyProperty="no" resultClass="Integer">
+        	SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+    
+    <!-- 해당 테이블에 게시글 작성 -->
+    <insert id="insert3" parameterClass="trailer_vo">
+        INSERT INTO TRAILER (
+        	movie_no, trailer1, trailer2, trailer3, trailer4, trailer5, trailer6 
+        ) VALUES (
+        	#movie_no#, #trailer1#, #trailer2#, #trailer3#, #trailer4#, #trailer5#,
+        	#trailer6#
+        )
+        <selectKey keyProperty="no" resultClass="Integer">
+        	SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+    
     <update id="update" parameterClass="movie_vo">
         UPDATE $tablename$ SET
         	name=#name#, title=#title#, display=#display#,
-        <isNotEqual property="registdate" compareValue="">
-       	    registdate = #registdate#,
-       	</isNotEqual>
-        <isNotEqual property="readno" compareValue="0">
-       	    readno = #readno#,
-       	</isNotEqual>        	
-        <isEqual property="filename_chk" compareValue="1">
-        	filename='', filename_org='', filesize=0,
+        <isNotEqual property="releaseDate" compareValue="">
+       	    releaseDate = #releaseDate#,
+       	</isNotEqual>     	
+        <isEqual property="poster_chk" compareValue="1">
+        	poster='', posterSize=0,
         </isEqual>
-        <isNotEqual property="filename" compareValue="">
-            <isNotNull property="filename">
-        		filename=#filename#, filename_org=#filename_org#, filesize=#filesize#,
+        <isNotEqual property="poster" compareValue="">
+            <isNotNull property="poster">
+        		poster=#poster#, posterSize=#posterSize#,
         	</isNotNull>
         </isNotEqual>
         	contents=#contents#
@@ -80,7 +105,7 @@
         where no = #no#
     </select>
     
-    <select id="filenames" parameterClass="movie_vo" resultClass="movie_vo">
+    <select id="posternames" parameterClass="movie_vo" resultClass="movie_vo">
     	<![CDATA[
         SELECT 
         	file_name
@@ -93,7 +118,7 @@
         select rownum from (
         	select @rownum:=@rownum+1 as rownum, no, title from $tablename$, (select @rownum:=0) as r
         	<include refid="searchSql" />
-        	ORDER BY registdate DESC
+        	ORDER BY releaseDate DESC
         ) as r2
         where r2.no = #no#
     </select>
@@ -103,7 +128,7 @@
         from (
         	select @rownum:=@rownum+1 as rownum, no, title from $tablename$, (select @rownum:=0) as r
         	<include refid="searchSql" />
-        	ORDER BY registdate DESC
+        	ORDER BY releaseDate DESC
         ) as r2
         <![CDATA[
         where r2.rownum = $rownum$+1
@@ -115,7 +140,7 @@
         from (
         	select @rownum:=@rownum+1 as rownum, no, title from $tablename$, (select @rownum:=0) as r
         	<include refid="searchSql" />
-        	ORDER BY registdate DESC
+        	ORDER BY releaseDate DESC
         ) as r2
         <![CDATA[
         where r2.rownum = $rownum$-1
@@ -126,15 +151,12 @@
         DELETE FROM $tablename$ WHERE no=#no#
     </delete>
     
-    <update id="updateReadno" parameterClass="movie_vo">
-        UPDATE $tablename$ SET readno = readno+1 WHERE no = #no#
-    </update>
-    
+       
     <select id="mainList" parameterClass="movie_vo" resultClass="movie_vo">
         select *
         from $tablename$
         <include refid="searchSql" />
-		ORDER BY registdate DESC LIMIT 0, $number$
+		ORDER BY releaseDate DESC LIMIT 0, $number$
     </select>
     
 </sqlMap>

@@ -16,7 +16,7 @@
 			<isNotEqual property="sval" compareValue="">
 				<!-- 검색 타입이 all일 때 -->
 				<isEqual property="stype" compareValue="all" prepend="and">
-					and ( (writer like '%$sval$%' ) or (contents like '%$sval$%' ) or (event_name like '%$sval$%' ) ) 					
+					and ( (contents like '%$sval$%' ) or (event_name like '%$sval$%' ) ) 					
 				</isEqual>
 				<!-- 검색 타입이 all이 아닐때 해당 stype으로 검색 -->
 				<isNotEqual property="stype" compareValue="all" prepend="and">

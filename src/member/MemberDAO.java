@@ -108,6 +108,16 @@ public class MemberDAO extends SqlMapClientDAOSupport {
 		return (MemberVO) getSqlMapClient().queryForObject("member.searchemail", param);
 	}
 	
+	/**
+	 * 비밀번호 찾기
+	 * @param param
+	 * @return
+	 * @throws SQLException
+	 */
+	public MemberVO searchpw(MemberVO param) throws SQLException {
+		return (MemberVO) getSqlMapClient().queryForObject("member.searchpw", param);
+	}
+	
 	
 //	public MemberVO getLoginSessionInfo(MemberVO param) throws SQLException {
 //		return (MemberVO) getSqlMapClient().queryForObject("member.loginSessionInfo", param);

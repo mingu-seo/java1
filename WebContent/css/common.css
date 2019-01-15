@@ -65,9 +65,9 @@ html, body {
 
 .head_top {width:100%; position:relative; padding:25px 0;}
 .head_top .size {position:relative; text-align:center; }
-.head_top .size .logo {display:inline-block;height:50px; line-height:50px;}
+.head_top .size .logo {display:inline-block;height:100px; line-height:50px;}
 .head_top .size .logo a {display:block; line-height:50px;}
-.head_top .size .logo a img {vertical-align:middle; margin-top:-8px;}
+.head_top .size .logo a img {vertical-align:middle; margin-top:-8px; width:400px; height:100px;}
 .head_top .size .login_info {
 	width: 300px;
 	position: absolute;
@@ -161,6 +161,7 @@ html, body {
 .foot_info .info3 .imgs > a {padding:30px 50px !important; display:block;}
 
 #footer {background:#2f3134; width:100%; color:#fff; padding:25px 0 ; clear:both;}
+#footer .footer_logo {width:400px; height:100px;}
 #footer .size {position:relative;}
 #footer .util {position:absolute; top:0; right:0; z-index:2;}
 #footer .util a {display:inline-block; padding:0 10px; position:relative; font-size:16px; font-weight:300; }
