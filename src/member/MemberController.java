@@ -2,7 +2,6 @@ package member;
 
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import mail.SendMail;
 import property.SiteProperty;
 import util.Function;
 
@@ -46,7 +46,6 @@ public class MemberController {
 		}
 	}
 	
-	
 	/**
 	 * 로그아웃 처리
 	 * @param model
@@ -70,6 +69,14 @@ public class MemberController {
 		return "member/join";
 	}
 	
+	//마이페이지 리턴
+	@RequestMapping("/mypage/index.do")
+	public String mypage(Model model, MemberVO param) throws Exception {
+		model.addAttribute("vo", param);
+		
+		return "mypage/reserve/index";
+	}
+	
 	//아이디 찾기 페이지 리턴
 	@RequestMapping("/member/idsearch.do")
 	public String idsearch(Model model, MemberVO param) throws Exception {
@@ -84,13 +91,20 @@ public class MemberController {
 		
 		return "member/pwsearch";
 	}
+	//비밀번호 찾아 이메일 보내기
+	@RequestMapping("/searchpw.do")
+	public String searchpw(Model model, MemberVO param) throws Exception{
+		MemberVO data = memberService.searchpw(param);
+		SendMail.sendEmail();
+		return "index";
+	}
 	
-	
+	//회원정보 수정 페이지
 	@RequestMapping("/member/edit.do")
-	public String memberEdit(Model model, MemberVO param) throws Exception {
-		MemberVO data = memberService.read(param.getNo());
+	public String memberEdit(Model model, HttpServletRequest request) throws Exception {
+		MemberVO memberInfo = (MemberVO)request.getSession().getAttribute("memberInfo"); 	//로그인된 session정보 찾아서 get해오기
+		MemberVO data = memberService.read(memberInfo.getNo());			//가져온 session의 no를 read 메소드에 파라미터로 넣고 data에 대입해준다.
 		model.addAttribute("data", data);
-		model.addAttribute("vo", param);
 		
 		return "member/edit";
 	}

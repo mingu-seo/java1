@@ -75,23 +75,23 @@
 												<th scope="row"><label for=""> 장르</label></th>
 												<td>
 													<input type="checkbox" name="genre" value="action"
-													<%if (data.getGenre() == "action") {out.print("selected");}%> />액션
+													<%if (data.getGenre() == "action") {out.print("checked");}%> />액션
 													<input type="checkbox" name="genre" value="thriller"
-													  <%if (data.getGenre() == "thriller") {out.print("selected");}%> />스릴러
+													  <%if (data.getGenre() == "thriller") {out.print("checked");}%> />스릴러
 													<input type="checkbox" name="genre" value="melo"
-													<%if (data.getGenre() == "melo") {out.print("selected");}%> />멜로
+													<%if (data.getGenre() == "melo") {out.print("checked");}%> />멜로
 													<input type="checkbox" name="genre" value="comic" 
-													<%if (data.getGenre() == "comic") {out.print("selected");}%> />코믹
+													<%if (data.getGenre() == "comic") {out.print("checked");}%> />코믹
 													<input type="checkbox" name="genre" value="crime"
-													<%if (data.getGenre() == "crime") {out.print("selected");}%> />범죄
+													<%if (data.getGenre() == "crime") {out.print("checked");}%> />범죄
 													<input type="checkbox" name="genre" value="fantasy"
-													<%if (data.getGenre() == "fantasy") {out.print("selected");}%> />판타지
+													<%if (data.getGenre() == "fantasy") {out.print("checked");}%> />판타지
 													<input type="checkbox" name="genre" value="sf"
-													<%if (data.getGenre() == "sf") {out.print("selected");}%> />SF
+													<%if (data.getGenre() == "sf") {out.print("checked");}%> />SF
 													<input type="checkbox" name="genre" value="family"
-													<%if (data.getGenre() == "family") {out.print("selected");}%> />가족
-													&nbsp; <input type="checkbox" name="genre" value="child"
-													<%if (data.getGenre() == "child") {out.print("selected");}%> />어린이
+													<%if (data.getGenre() == "family") {out.print("checked");}%> />가족
+													<input type="checkbox" name="genre" value="child"
+													<%if (data.getGenre() == "child") {out.print("checked");}%> />어린이
 												</td>
 											</tr>
 											<tr>
@@ -100,10 +100,10 @@
 													value="<%=data.getDirector()%>" /></td>
 												<th scope="row"><label for="">등급</label></th>
 												<td>
-													<input type="radio" id="rating1" name="rating" value="0" <%if (data.getRating() == 0) { out.print("selected"); }%>/>전체관람가
-													<input type="radio" id="rating2" name="rating" value="12" <%if (data.getRating() == 12) { out.print("selected"); }%> />12세 관람가 
-													<input type="radio" id="rating3" name="rating" value="15" <%if (data.getRating() == 15) { out.print("selected"); }%> />15세 관람가 
-													<input type="radio" id="rating4" name="rating" value="19" <%if (data.getRating() == 19) { out.print("selected"); }%> />청소년 관람불가
+													<input type="radio" id="rating1" name="rating" value="0" <%if (data.getRating() == 0) { out.print("checked"); }%>/>전체관람가
+													<input type="radio" id="rating2" name="rating" value="12" <%if (data.getRating() == 12) { out.print("checked"); }%> />12세 관람가 
+													<input type="radio" id="rating3" name="rating" value="15" <%if (data.getRating() == 15) { out.print("checked"); }%> />15세 관람가 
+													<input type="radio" id="rating4" name="rating" value="19" <%if (data.getRating() == 19) { out.print("checked"); }%> />청소년 관람불가
 												</td>
 											</tr>
 											<tr>
@@ -133,24 +133,29 @@
 											</tr>
 											<tr>
 												<th scope="row"><label for="">스틸컷</label></th>
-												<td><input type="file" name="stillCut_smp" class="w50"
-													title="포스터" /><br />
-												<br /> <!-- 	<input type="file" name="poster" class="w50" title="포스터"/><br/><br/>
-													<input type="file" name="poster" class="w50" title="포스터"/><br/><br/>
-													<input type="file" name="poster" class="w50" title="포스터"/><br/><br/>
-													<input type="file" name="poster" class="w50" title="포스터"/>   -->
+												<td>
+													<input type="file" name="stillCut1" class="w50" title="스틸컷1" /><br/>
+													<input type="file" name="stillCut2" class="w50" title="스틸컷2" /><br/>
+													<input type="file" name="stillCut3" class="w50" title="스틸컷3" /><br/>
+													<input type="file" name="stillCut4" class="w50" title="스틸컷4" /><br/>
+													<input type="file" name="stillCut5" class="w50" title="스틸컷5" /><br/>
+													<input type="file" name="stillCut6" class="w50" title="스틸컷6" /><br/>
 												</td>
 												<th scope="row"><label for="">트레일러 </label></th>
-												<td><input type="text" class="w50" name="trailer"
+												<td>
+													<input type="text" class="w50" name="trailer1"
 													value="" title="동영상 url주소를 첨부하세요" /><br />
-												<br /> <input type="text" class="w50" name="trailer"
+												 	<input type="text" class="w50" name="trailer2"
 													value="" title="동영상 url주소를 첨부하세요" /><br />
-												<br /> <input type="text" class="w50" name="trailer"
+													<input type="text" class="w50" name="trailer3"
 													value="" title="동영상 url주소를 첨부하세요" /><br />
-												<br /> <input type="text" class="w50" name="trailer"
+													<input type="text" class="w50" name="trailer4"
 													value="" title="동영상 url주소를 첨부하세요" /><br />
-												<br /> <input type="text" class="w50" name="trailer"
+													<input type="text" class="w50" name="trailer5"
 													value="" title="동영상 url주소를 첨부하세요" /></td>
+													<input type="text" class="w50" name="trailer6"
+													value="" title="동영상 url주소를 첨부하세요" />
+												</td>
 											</tr>
 										</tbody>
 									</table>

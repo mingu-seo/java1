@@ -70,6 +70,10 @@
         select email from member where name=#name# and hp=#hp#
     </select>
     
+    <select id="searchpw" parameterClass="member_param" resultClass="member_vo">
+        select pw from member where email=#email# and hp=#hp#
+    </select>
+    
     
     <select id="loginCheck" parameterClass="member_param" resultClass="Integer">
         select count(*) as cnt from member where email=#email# and pw=password(#pw#)

@@ -2,7 +2,6 @@
 <%@ page import="member.*" %>
 <%@ page import="java.util.*" %>
 <%
-MemberVO param = (MemberVO)request.getAttribute("vo");
 MemberVO data = (MemberVO)request.getAttribute("data");
 %>
 <!DOCTYPE html>
@@ -77,12 +76,11 @@ function goSave() {
 						<th>이메일</th>
 						<td>
 							<input type="text" name="email" id="email" class="inNextBtn" value=<%=data.getEmail()%> disabled class="wid200" style="float:left;">
-							<span class="email_check"><a href="javascript:;" onclick="checkEmail();" class="btn bgGray" style="float:left; width:auto; clear:none;">중복확인</a></span>
 						</td>
 					</tr>
 					<tr>
 						<th>비밀번호</th>
-						<td><input type="password" name="pw" id="pw" class="wid200" value=<%=data.getPw() %> style="float:left;"> <span class="ptxt">비밀번호는 숫자, 영문 조합으로 8자 이상으로 입력해주세요.</span> </td>
+						<td><input type="password" name="pw" id="pw" class="wid200" value="" style="float:left;"> <span class="ptxt">비밀번호는 숫자, 영문 조합으로 8자 이상으로 입력해주세요.</span> </td>
 					</tr>
 					<tr>
 						<th>비밀번호<span>확인</span></th>

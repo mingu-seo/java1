@@ -96,13 +96,19 @@ public class MemberService {
 //	public void insertLoginHistory(MemberVO param) throws SQLException {
 //		memberDao.insertLoginHistory(param);
 //	}
-//
+	//이메일 체크
 	public int emailcheck(MemberVO param) throws SQLException {
 		return memberDao.emailcheck(param);
 	}
 	
+	//이메일 찾기
 	public MemberVO searchemail(MemberVO param) throws SQLException {
 		return memberDao.searchemail(param);
+	}
+	
+	//비밀번호 찾기
+	public MemberVO searchpw(MemberVO param) throws SQLException {
+		return memberDao.searchpw(param);
 	}
 	
 

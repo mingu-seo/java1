@@ -130,21 +130,27 @@
 											<tr>
 												<th scope="row"><label for="">스틸컷</label></th>
 												<td>
-													<input type="file" name="stillCut_tmp" class="w50" title="포스터"/><br/><br/>
-													<!-- 
-													<input type="file" name="poster" class="w50" title="포스터"/><br/><br/>
-													<input type="file" name="poster" class="w50" title="포스터"/><br/><br/>
-													<input type="file" name="poster" class="w50" title="포스터"/><br/><br/>
-													<input type="file" name="poster" class="w50" title="포스터"/>
-													 -->
+													<input type="file" name="stillCut1_tmp" class="w50" title="스틸컷1" /><br/><br/>
+													<input type="file" name="stillCut2_tmp" class="w50" title="스틸컷2" /><br/><br/>
+													<input type="file" name="stillCut3_tmp" class="w50" title="스틸컷3" /><br/><br/>
+													<input type="file" name="stillCut4_tmp" class="w50" title="스틸컷4" /><br/><br/>
+													<input type="file" name="stillCut5_tmp" class="w50" title="스틸컷5" /><br/><br/>
+													<input type="file" name="stillCut6_tmp" class="w50" title="스틸컷6" /><br/><br/>
 												</td>
 												<th scope="row"><label for="">트레일러 </label></th>
 												<td>
-													<input type="text" class="w50" name="trailer" value="" title="동영상 url주소를 첨부하세요"/><br/><br/>
-													<input type="text" class="w50" name="trailer" value="" title="동영상 url주소를 첨부하세요"/><br/><br/>
-													<input type="text" class="w50" name="trailer" value="" title="동영상 url주소를 첨부하세요"/><br/><br/>
-													<input type="text" class="w50" name="trailer" value="" title="동영상 url주소를 첨부하세요"/><br/><br/>
-													<input type="text" class="w50" name="trailer" value="" title="동영상 url주소를 첨부하세요"/>
+													<input type="text" class="w50" name="trailer1"
+													value="" title="동영상 url주소를 첨부하세요" /><br/><br/>
+												 	<input type="text" class="w50" name="trailer2"
+													value="" title="동영상 url주소를 첨부하세요" /><br/><br/>
+													<input type="text" class="w50" name="trailer3"
+													value="" title="동영상 url주소를 첨부하세요" /><br/><br/>
+													<input type="text" class="w50" name="trailer4"
+													value="" title="동영상 url주소를 첨부하세요" /><br/><br/>
+													<input type="text" class="w50" name="trailer5"
+													value="" title="동영상 url주소를 첨부하세요" /><br/><br/>
+													<input type="text" class="w50" name="trailer6"
+													value="" title="동영상 url주소를 첨부하세요" />
 												</td>
 											</tr>
 										</tbody>

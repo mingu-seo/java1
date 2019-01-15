@@ -39,6 +39,27 @@ public class MovieDao extends SqlMapClientDAOSupport {
 	public int insert(MovieVo vo) throws SQLException {
 		return (Integer)getSqlMapClient().insert("movie.insert",vo);
 	}
+	
+	/**
+	 * 영화 스틸컷 저장 
+	 * @param vo MovieVO
+	 * @return no Integer
+	 * @throws SQLException
+	 */
+	public int insert2(StillCutVo vo) throws SQLException {
+		return (Integer)getSqlMapClient().insert("movie.insert2",vo);
+	}
+
+	/**
+	 * 영화 트레일러 주소 저장 [게시글 저장 후 게시글의 번호를 가져옴]
+	 * @param tv MovieVO
+	 * @return no Integer
+	 * @throws SQLException
+	 */
+	public int insert3(TrailerVo tv) throws SQLException {
+		return (Integer)getSqlMapClient().insert("movie.insert3",tv);
+	}
+
 
 	/**
 	 * 수정
@@ -74,10 +95,5 @@ public class MovieDao extends SqlMapClientDAOSupport {
 		return (ArrayList)getSqlMapClient().queryForList("movie.mainList", vo);
 	}
 	
-	public static void main(String[] args) throws Exception {
-		MovieDao dao = new MovieDao();
-		MovieVo vo = new MovieVo();
-		vo.setTablename("movie");
-		dao.count(vo);
-	}
+	
 }

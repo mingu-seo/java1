@@ -3,6 +3,8 @@
 <sqlMap namespace="movie">
     
     <typeAlias alias="movie_vo" type="movie.MovieVo"/>
+    <typeAlias alias="stillCut_vo" type="movie.StillCutVo"/>
+    <typeAlias alias="trailer_vo" type="movie.TrailerVo"/>
     
     <!-- 공통조건 -->
 	<sql id="searchSql">		
@@ -40,12 +42,38 @@
 	
 	<!-- 해당 테이블에 게시글 작성 -->
     <insert id="insert" parameterClass="movie_vo">
-        INSERT INTO $tablename$ (
+        INSERT INTO MOVIE(
         	title, director, genre, rating, runtime, releaseDate,
         	endDate, poster, display, contents
         ) VALUES (
         	#title#, #director#, #genre#, #rating#, #runtime#, #releaseDate#,
         	#endDate#, #poster#, #display#, #contents#
+        )
+        <selectKey keyProperty="no" resultClass="Integer">
+        	SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+    
+    <!-- 해당 테이블에 스틸컷 첨부 -->
+    <insert id="insert2" parameterClass="stillCut_vo">
+        INSERT INTO STILLCUT (
+        	movie_no, stillCut1, stillCut2, stillCut3, stillCut4, stillCut5, stillCut6 
+        ) VALUES (
+        	#movie_no#, #stillCut1#, #stillCut2#, #stillCut3#, #stillCut4#, #stillCut5#,
+        	#stillCut6#
+        )
+        <selectKey keyProperty="no" resultClass="Integer">
+        	SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+    
+    <!-- 해당 테이블에 게시글 작성 -->
+    <insert id="insert3" parameterClass="trailer_vo">
+        INSERT INTO TRAILER (
+        	movie_no, trailer1, trailer2, trailer3, trailer4, trailer5, trailer6 
+        ) VALUES (
+        	#movie_no#, #trailer1#, #trailer2#, #trailer3#, #trailer4#, #trailer5#,
+        	#trailer6#
         )
         <selectKey keyProperty="no" resultClass="Integer">
         	SELECT LAST_INSERT_ID()
