@@ -92,7 +92,7 @@ function CookieVal(cookieName) {
                         <a href=""></a>
                     </div>
                 </div>
-                <h1 class="logo"><a href="/"><img src="/img/logo.png"/></a></h1>
+                <h1 class="logo"><a href="/index.do"><img src="/img/logo.png"/></a></h1>
                 <div class="util clear">
                 <%if(memberInfo==null){ %>
                     <a href="#;" id="login_click">로그인</a>
