@@ -75,7 +75,8 @@ public class MovieController {
 		MovieVo data = movieService.read(param, false);
 		model.addAttribute("data", data);
 		model.addAttribute("param", param);
-		
+		StillCutVo scv = movieService.readStillCut(data, false);
+		TrailerVo tv = movieService.readTrailer(data, false);
 		return "manage/movie/edit";
 	}
 	
@@ -90,14 +91,11 @@ public class MovieController {
 	@RequestMapping("/manage/movie/process.do")
 	public String process(Model model, MovieVo param, HttpServletRequest request) throws Exception {
 		model.addAttribute("vo", param);
-		
 		param.setTablename("movie");
 		System.out.println(param.getCmd());
 		if ("write".equals(param.getCmd())) {
 			
 			int r = movieService.insert(param, request);
-			
-			
 			int r2 = movieService.insert2(r, request); 
 			int r3 = movieService.insert3(r, request);
 			
@@ -117,6 +115,9 @@ public class MovieController {
 		
 		} else if ("edit".equals(param.getCmd())) {
 			int r = movieService.update(param, request);
+			int r2 = movieService.stillCutUpdate(r, request);
+			int r3 = movieService.trailerUpdate(r, request);
+			
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "정상적으로 수정되었습니다.", "수정실패"));
 			model.addAttribute("url", param.getTargetURLParam("index.do", param, 0));
