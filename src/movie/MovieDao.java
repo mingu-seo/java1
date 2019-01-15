@@ -95,5 +95,9 @@ public class MovieDao extends SqlMapClientDAOSupport {
 		return (ArrayList)getSqlMapClient().queryForList("movie.mainList", vo);
 	}
 	
-	
+	public static void main(String[] args) throws Exception  {
+		MovieDao dao = new MovieDao();
+		StillCutVo scv = new StillCutVo();
+		dao.insert2(scv);
+	}
 }

@@ -35,6 +35,33 @@ public class MovieController {
 		return "manage/movie/index";
 	}
 	
+	@RequestMapping("/movie/now.do")
+	public String movieList (Model model, MovieVo param) throws Exception {
+		param.setTablename("movie");
+		int[] rowPageCount = movieService.count(param);
+		ArrayList<MovieVo> list = movieService.list(param);
+		
+		model.addAttribute("totCount", rowPageCount[0]);
+		model.addAttribute("totPage", rowPageCount[1]);
+		model.addAttribute("list", list);
+		model.addAttribute("vo", param);
+		
+		return "movie/list";
+	}
+	
+	@RequestMapping("/movie/next.do")
+	public String movieNextList (Model model, MovieVo param) throws Exception {
+		param.setTablename("movie");
+		int[] rowPageCount = movieService.count(param);
+		ArrayList<MovieVo> list = movieService.list(param);
+		
+		model.addAttribute("totCount", rowPageCount[0]);
+		model.addAttribute("totPage", rowPageCount[1]);
+		model.addAttribute("list", list);
+		model.addAttribute("vo", param);
+		
+		return "movie/nextList";
+	}
 	@RequestMapping("/manage/movie/write.do")
 	public String write(Model model, MovieVo param) throws Exception {
 		model.addAttribute("vo", param);

@@ -1,10 +1,12 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="java.util.*"%>
-<%@ page import="movie.MovieVo"%>
+<%@ page import="movie.*"%>
 <%@ page import="util.*"%>
 <%
 	MovieVo param = (MovieVo) request.getAttribute("param");
 	MovieVo data = (MovieVo) request.getAttribute("data");
+	StillCutVo scv = (StillCutVo) request.getAttribute("scv");
+	TrailerVo tv = (TrailerVo) request.getAttribute("tv");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
@@ -124,7 +126,7 @@
 											<tr>
 												<th scope="row"><label for="">메인 포스터</label></th>
 												<td><input type="file" id="poster" name="poster_tmp"
-													value="<%=data.getPoster()%> class=" w50" title="포스터" /></td>
+													value="<%=data.getPoster()%>" class=" w50" title="포스터" /></td>
 												<th scope="row"><label for="">노출여부</label></th>
 												<td><input type="radio" name="display" value="0" />
 													노출&nbsp; <input type="radio" name="display" value="1" /> 숨김
@@ -134,27 +136,51 @@
 											<tr>
 												<th scope="row"><label for="">스틸컷</label></th>
 												<td>
-													<input type="file" name="stillCut1" class="w50" title="스틸컷1" /><br/>
-													<input type="file" name="stillCut2" class="w50" title="스틸컷2" /><br/>
-													<input type="file" name="stillCut3" class="w50" title="스틸컷3" /><br/>
-													<input type="file" name="stillCut4" class="w50" title="스틸컷4" /><br/>
-													<input type="file" name="stillCut5" class="w50" title="스틸컷5" /><br/>
-													<input type="file" name="stillCut6" class="w50" title="스틸컷6" /><br/>
+													<input type="file" name="stillCut1" class="w50" title="스틸컷1"/>
+													<%if (scv.getStillCut1()!=null){%>
+													<img src="<%=property.SiteProperty.MOVIE_UPLOAD_PATH%><%=scv.getStillCut1()%>" width="20px" height="30px"/>
+													<input type="checkbox" name="stillCut1_chk" value="1"/>파일 삭제<% } %>
+													<br/>
+													<input type="file" name="stillCut2" class="w50" title="스틸컷2"/>
+													<%if (scv.getStillCut2()!=null){%>
+													<img src="<%=property.SiteProperty.MOVIE_UPLOAD_PATH%><%=scv.getStillCut2()%>" width="20px" height="30px"/>
+													<input type="checkbox" name="stillCut2_chk" value="1"/>파일 삭제<% } %>
+													<br/>
+													<input type="file" name="stillCut3" class="w50" title="스틸컷3"/>
+													<%if (scv.getStillCut3()!=null){%>
+													<img src="<%=property.SiteProperty.MOVIE_UPLOAD_PATH%><%=scv.getStillCut3()%>" width="20px" height="30px"/>
+													<input type="checkbox" name="stillCut3_chk" value="1"/>파일 삭제<% } %>
+													<br/>
+													<input type="file" name="stillCut4" class="w50" title="스틸컷4"/>
+													<%if (scv.getStillCut4()!=null){%>
+													<img src="<%=property.SiteProperty.MOVIE_UPLOAD_PATH%><%=scv.getStillCut4()%>" width="20px" height="30px"/>
+													<input type="checkbox" name="stillCut4_chk" value="1"/>파일 삭제<% } %>
+													<br/>
+													<input type="file" name="stillCut5" class="w50" title="스틸컷5"/>
+													<%if (scv.getStillCut5()!=null){%>
+													<img src="<%=property.SiteProperty.MOVIE_UPLOAD_PATH%><%=scv.getStillCut5()%>" width="20px" height="30px"/>
+													<input type="checkbox" name="stillCut5_chk" value="1"/>파일 삭제<% } %>
+													<br/>
+													<input type="file" name="stillCut6" class="w50" title="스틸컷6"/>
+													<%if (scv.getStillCut6()!=null){%>
+													<img src="<%=property.SiteProperty.MOVIE_UPLOAD_PATH%><%=scv.getStillCut6()%>" width="20px" height="30px"/>
+													<input type="checkbox" name="stillCut6_chk" value="1"/>파일 삭제<% } %>
+													<br/>										
 												</td>
 												<th scope="row"><label for="">트레일러 </label></th>
 												<td>
 													<input type="text" class="w50" name="trailer1"
-													value="" title="동영상 url주소를 첨부하세요" /><br />
+													value="<%=tv.getTrailer1()%>" /><br/>
 												 	<input type="text" class="w50" name="trailer2"
-													value="" title="동영상 url주소를 첨부하세요" /><br />
+													value="<%=tv.getTrailer2()%>" /><br/>
 													<input type="text" class="w50" name="trailer3"
-													value="" title="동영상 url주소를 첨부하세요" /><br />
+													value="<%=tv.getTrailer3()%>" /><br/>
 													<input type="text" class="w50" name="trailer4"
-													value="" title="동영상 url주소를 첨부하세요" /><br />
+													value="<%=tv.getTrailer4()%>"/><br/>
 													<input type="text" class="w50" name="trailer5"
-													value="" title="동영상 url주소를 첨부하세요" /></td>
+													value="<%=tv.getTrailer5()%>" /><br/>
 													<input type="text" class="w50" name="trailer6"
-													value="" title="동영상 url주소를 첨부하세요" />
+													value="<%=tv.getTrailer6()%>" />
 												</td>
 											</tr>
 										</tbody>
