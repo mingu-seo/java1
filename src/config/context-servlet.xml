@@ -20,11 +20,10 @@
 			<mvc:exclude-mapping path="/manage/index.do" />
 			<mvc:exclude-mapping path="/manage/login.do" />
 			<mvc:exclude-mapping path="/manage/member/emailcheck.do" />
-			<mvc:exclude-mapping path="/member/searchemail.do" />
 			<bean class="interceptor.AdminLoginInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
- 
+	
  	<mvc:default-servlet-handler/>
  	
  	<mvc:view-resolvers>
@@ -42,5 +41,6 @@
 	<mvc:view-controller path="/member/login.do"/>
 	<mvc:view-controller path="/board/notice/index.do"/>
 	<mvc:view-controller path="/board/notice/view.do"/>
+	<mvc:view-controller path="/mypage/reserve/index.do"/>
 	
 </beans>
