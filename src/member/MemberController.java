@@ -104,11 +104,16 @@ public class MemberController {
 	
 	@RequestMapping("/member/secessionState.do")
 	public String secessionState(Model model, MemberVO param) throws Exception{
-		model.addAttribute("vo", param);
-		int r = memberService.secession(param);
-		model.addAttribute("code", "alertMessageUrl");
-		model.addAttribute("message", Function.message(r, "정상적으로 탈퇴되었습니다.", "존재하지않는 이메일이거나 이메일과 비밀번호가 같지않습니다."));
-		model.addAttribute("url", "/index.do");
+		int cnt = memberService.secession(param);
+		if(cnt==1) {
+			model.addAttribute("code", "alertMessageUrl");
+			model.addAttribute("message", "정상적으로 탈퇴되었습니다.");
+			model.addAttribute("url", "/index.do");
+		} else {
+			model.addAttribute("code", "alertMessageUrl");
+			model.addAttribute("message", "존재하지않는 이메일이거나 이메일과 비밀번호가 같지않습니다.");
+			model.addAttribute("url", "secession.do");
+		}
 		return "include/alert";
 	}
 	

@@ -62,11 +62,11 @@ public class MemberService {
 	}
 	
 	public int secession(MemberVO vo) throws SQLException{
-		if(vo.getSecession()==1) {
-			int cnt = memberDao.secession(vo);
+		int cnt = memberDao.secession(vo);
+		if(cnt==1) {
 			return cnt;
 		}else {
-			int	cnt = 0;
+			cnt=0;
 			return cnt;
 		}
 	}
