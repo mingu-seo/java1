@@ -8,7 +8,7 @@
 <meta name="format-detection" content="telephone=no, address=no, email=no">
 <meta name="keywords" content="">
 <meta name="description" content="">
-<title>MOVIE</title>
+<title>로그인</title>
 <%@ include file="/WEB-INF/view/include/headHtml.jsp" %>
 </head>
 <script>

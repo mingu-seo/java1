@@ -10,6 +10,7 @@ public class StillCutVo {
 	private String stillCut5; // 스틸컷1
 	private String stillCut6; // 스틸컷1
 	
+	
 	public StillCutVo() {}
 	
 	public int getNo() {

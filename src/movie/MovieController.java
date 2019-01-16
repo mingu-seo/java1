@@ -35,6 +35,33 @@ public class MovieController {
 		return "manage/movie/index";
 	}
 	
+	@RequestMapping("/movie/now.do")
+	public String movieList (Model model, MovieVo param) throws Exception {
+		param.setTablename("movie");
+		int[] rowPageCount = movieService.count(param);
+		ArrayList<MovieVo> list = movieService.list(param);
+		
+		model.addAttribute("totCount", rowPageCount[0]);
+		model.addAttribute("totPage", rowPageCount[1]);
+		model.addAttribute("list", list);
+		model.addAttribute("vo", param);
+		
+		return "movie/list";
+	}
+	
+	@RequestMapping("/movie/next.do")
+	public String movieNextList (Model model, MovieVo param) throws Exception {
+		param.setTablename("movie");
+		int[] rowPageCount = movieService.count(param);
+		ArrayList<MovieVo> list = movieService.list(param);
+		
+		model.addAttribute("totCount", rowPageCount[0]);
+		model.addAttribute("totPage", rowPageCount[1]);
+		model.addAttribute("list", list);
+		model.addAttribute("vo", param);
+		
+		return "movie/nextList";
+	}
 	@RequestMapping("/manage/movie/write.do")
 	public String write(Model model, MovieVo param) throws Exception {
 		model.addAttribute("vo", param);
@@ -48,7 +75,8 @@ public class MovieController {
 		MovieVo data = movieService.read(param, false);
 		model.addAttribute("data", data);
 		model.addAttribute("param", param);
-		
+		StillCutVo scv = movieService.readStillCut(data, false);
+		TrailerVo tv = movieService.readTrailer(data, false);
 		return "manage/movie/edit";
 	}
 	
@@ -63,14 +91,11 @@ public class MovieController {
 	@RequestMapping("/manage/movie/process.do")
 	public String process(Model model, MovieVo param, HttpServletRequest request) throws Exception {
 		model.addAttribute("vo", param);
-		
 		param.setTablename("movie");
 		System.out.println(param.getCmd());
 		if ("write".equals(param.getCmd())) {
 			
 			int r = movieService.insert(param, request);
-			
-			
 			int r2 = movieService.insert2(r, request); 
 			int r3 = movieService.insert3(r, request);
 			
@@ -90,6 +115,9 @@ public class MovieController {
 		
 		} else if ("edit".equals(param.getCmd())) {
 			int r = movieService.update(param, request);
+			int r2 = movieService.stillCutUpdate(r, request);
+			int r3 = movieService.trailerUpdate(r, request);
+			
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "정상적으로 수정되었습니다.", "수정실패"));
 			model.addAttribute("url", param.getTargetURLParam("index.do", param, 0));

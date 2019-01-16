@@ -51,14 +51,18 @@ public class EventController {
 		return "board/event/index";
 	}
 	@RequestMapping("/manage/board/event/write.do")
-	public String write(Model model, EventVO param) throws Exception {
+	public String write(Model model, EventVO param, HttpServletRequest request) throws Exception {
+		AdminVO adminInfo = (AdminVO)request.getSession().getAttribute("adminInfo");
+		model.addAttribute("admin_no", adminInfo.getNo());
 		model.addAttribute("vo", param);
 		
 		return "manage/board/event/write";
 	}
 	
 	@RequestMapping("/manage/board/event/edit.do")
-	public String edit(Model model, EventVO param) throws Exception {
+	public String edit(Model model, EventVO param, HttpServletRequest request) throws Exception {
+		AdminVO adminInfo = (AdminVO)request.getSession().getAttribute("adminInfo");
+		model.addAttribute("admin_no", adminInfo.getNo());
 		param.setTablename("event");
 		EventVO data = eventService.read(param, false);
 		model.addAttribute("data", data);
@@ -69,7 +73,7 @@ public class EventController {
 	@RequestMapping("/board/event/view.do")
 	public String view(Model model, EventVO param) throws Exception {
 		param.setTablename("event");
-		EventVO data = eventService.read(param, false);
+		EventVO data = eventService.read(param, true);
 		model.addAttribute("data", data);
 		model.addAttribute("param", param);
 		

@@ -28,7 +28,6 @@ NoticeVO param = (NoticeVO)request.getAttribute("data");
 					<div class="title">
 						<dl>
 							<dt><%=param.getTitle()%> </dt>
-							<dd class="writer">작성자 : <%=param.getWriter()%> </dd>
 							<dd class="date">작성일 : <%=param.getCre_date()%> </dd>
 						</dl>
 					</div>

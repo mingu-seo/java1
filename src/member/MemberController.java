@@ -28,7 +28,7 @@ public class MemberController {
 			MemberVO memberInfo = memberService.getLoginSessionInfo(vo);
 			memberInfo.setIp(vo.getIp());
 			session.setAttribute("memberInfo", memberInfo);	// 세션 저장
-			String redirectUrl = SiteProperty.MEMBER_INDEX_PAGE; // 시작페이지
+			String redirectUrl = SiteProperty.MOVIE_INDEX_PAGE; // 시작페이지
 			
 			// 로그인 이전페이지 존재하는 경우
 			if(login_url != null && !"".equals(login_url)) {
@@ -84,6 +84,7 @@ public class MemberController {
 		
 		return "member/idsearch";
 	}
+	
 	//비밀번호 찾기 페이지 리턴
 	@RequestMapping("/member/pwsearch.do")
 	public String pwsearch(Model model, MemberVO param) throws Exception {
@@ -91,12 +92,42 @@ public class MemberController {
 		
 		return "member/pwsearch";
 	}
+	
+	//회원탈퇴 페이지 리턴
+	@RequestMapping("/member/secession.do")
+	public String secession(Model model, MemberVO param) throws Exception {
+		model.addAttribute("vo", param);
+		
+		return "member/secession";
+	}
+	
+	
+	@RequestMapping("/member/secessionState.do")
+	public String secessionState(Model model, MemberVO param) throws Exception{
+		model.addAttribute("vo", param);
+		int r = memberService.secession(param);
+		model.addAttribute("code", "alertMessageUrl");
+		model.addAttribute("message", Function.message(r, "정상적으로 탈퇴되었습니다.", "존재하지않는 이메일이거나 이메일과 비밀번호가 같지않습니다."));
+		model.addAttribute("url", "/index.do");
+		return "include/alert";
+	}
+	
 	//비밀번호 찾아 이메일 보내기
-	@RequestMapping("/searchpw.do")
+	@RequestMapping("/member/searchpw.do")
 	public String searchpw(Model model, MemberVO param) throws Exception{
-		MemberVO data = memberService.searchpw(param);
-		SendMail.sendEmail();
-		return "index";
+		boolean success = memberService.searchpw(param);
+		
+		if (success) {
+			model.addAttribute("code", "alertMessageUrl");
+			model.addAttribute("message", "임시비밀번호가 메일로 발송되었습니다.");
+			model.addAttribute("url", "pwsearch.do");
+		} else {
+			model.addAttribute("code", "alertMessageUrl");
+			model.addAttribute("message", "회원정보가 존재하지 않습니다.");
+			model.addAttribute("url", "pwsearch.do");
+		}
+		
+		return "include/alert";	
 	}
 	
 	//회원정보 수정 페이지

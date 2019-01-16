@@ -15,7 +15,7 @@ public class SiteProperty {
 	/**
 	 * 회원 시작페이지
 	 */
-	public static final String	MEMBER_INDEX_PAGE		= "/index.do";
+	public static final String	MOVIE_INDEX_PAGE		= "/index.do";
 	/**
 	 * 보안서버인증서(SSL)사용여부
 	 */

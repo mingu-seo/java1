@@ -94,7 +94,7 @@ public class Page {
 		// 첫번째 페이지 인덱스 화면이 아닌경우
 		if ( reqPageNo > pagenumber) {
 			curpage = startpage - 1;    // 시작페이지 번호보다 1 적은 페이지로 이동
-			strList.append("<a href='"+listUrl+"reqPageNo="+curpage+"' class='next'><img src='/img/list_prev.gif' alt='' />이전</a> ");
+			strList.append("<a href='"+listUrl+"reqPageNo="+curpage+"' class='next'><img src='/img/ico_prev.png' alt='' />이전</a> ");
 //			strList.append("<a href='"+listUrl+"reqPageNo=1' CLASS='b_num'>[1]</a> ");
 		}else{
 			strList.append(" ");
@@ -147,7 +147,7 @@ public class Page {
 		// 첫번째 페이지 인덱스 화면이 아닌경우
 		if ( reqPageNo > pagenumber) {
 			curpage = startpage - 1;    // 시작페이지 번호보다 1 적은 페이지로 이동
-			strList.append("<a href='javascript:pageIndex("+curpage+")' class='next'><img src='/img/list_prev.gif' alt='' />이전</a> ");
+			strList.append("<a href='javascript:pageIndex("+curpage+")' class='next'><img src='/img/ico_prev.png' alt='' />이전</a> ");
 //			strList.append("<a href='"+listUrl+"reqPageNo=1' CLASS='b_num'>[1]</a> ");
 		}else{
 			strList.append(" ");

@@ -17,21 +17,6 @@ $(function() {
 		$(".login_info").hide();
 	});
 
-	var swiper = new Swiper('.swiper-container', {
-		loop: true,
-		autoplay: {
-		    delay: 5000,
-		  },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-        pagination: {
-            el: '.swiper-pagination',
-       	},
-	});
-	
-	
 });
 
 //로그인, 이메일 체크
@@ -92,7 +77,7 @@ function CookieVal(cookieName) {
                         <a href=""></a>
                     </div>
                 </div>
-                <h1 class="logo"><a href="/"><img src="/img/logo.png"/></a></h1>
+                <h1 class="logo"><a href="/index.do"><img src="/img/logo.png"/></a></h1>
                 <div class="util clear">
                 <%if(memberInfo==null){ %>
                     <a href="#;" id="login_click">로그인</a>
@@ -133,7 +118,7 @@ function CookieVal(cookieName) {
                         <li>
                             <a href="" >MOVIE</a>
                             <ul class="depth2">
-                                <li><a href="manage/movie/list.do" >현재 상영작</a></li>
+                                <li><a href="" >현재 상영작</a></li>
                                 <li><a href="" >개봉 예정작</a></li>
                             </ul>
                         </li>
@@ -149,16 +134,16 @@ function CookieVal(cookieName) {
                             </ul>
                         </li>
                         <li>
-                            <a href="" >NOTICE</a>
+                            <a href="/board/notice/index.do" >NOTICE</a>
                             <ul class="depth2">
                                 <li><a href="/board/notice/index.do">공지사항</a></li>
                                 <li><a href="/board/event/index.do" >이벤트</a></li>
                             </ul>
                         </li>
                         <li>
-                            <a href="" >MORE</a>
+                            <a href="/board/faq/index.do" >고객센터</a>
                             <ul class="depth2">
-                                <li><a href="" >스토어</a></li>
+                                <li><a href="/board/faq/index.do" >자주하는질문</a></li>
                                 <li><a href="" >Q&A</a></li>
                             </ul>
                         </li>

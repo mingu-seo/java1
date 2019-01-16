@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import mail.SendMail;
+import util.Function;
 import util.Page;
 
 @Service
@@ -59,10 +61,25 @@ public class MemberService {
 		return result;
 	}
 	
+	public int secession(MemberVO vo) throws SQLException{
+		if(vo.getSecession()==1) {
+			int cnt = memberDao.secession(vo);
+			return cnt;
+		}else {
+			int	cnt = 0;
+			return cnt;
+		}
+	}
+	
 	public MemberVO getLoginSessionInfo(MemberVO param) throws SQLException {
 		MemberVO vo = memberDao.getLoginSessionInfo(param);
 		vo.setIp(param.getIp());	// 아이피 추가
 		return vo;
+	}
+	
+	public int tempPw(MemberVO vo) throws SQLException {
+		int cnt = memberDao.update(vo);
+		return cnt;
 	}
 //	public boolean loginCheck(MemberVO param) throws SQLException {
 //		int cnt = memberDao.loginCheck(param);
@@ -107,8 +124,19 @@ public class MemberService {
 	}
 	
 	//비밀번호 찾기
-	public MemberVO searchpw(MemberVO param) throws SQLException {
-		return memberDao.searchpw(param);
+	public boolean searchpw(MemberVO param) throws Exception {
+		boolean success = false;
+		MemberVO vo = memberDao.searchpw(param);
+		if (vo == null) {
+			success = false;
+		} else {
+			success = true;
+			String tmpPwd = Function.randomNumber("");
+			param.setPw(tmpPwd);
+			memberDao.updatePw(param);
+			SendMail.sendEmail("zebra_yun@naver.com", param.getEmail(), "GIGABOX 비밀번호 찾기 서비스입니다.", "회원님의 임시 비밀번호는  "+tmpPwd+"입니다.");
+		}
+		return success;
 	}
 	
 

@@ -60,32 +60,32 @@ public class MovieService {
 		
 		FileUtil fu = new FileUtil();
 		Map fileMap = fu.getFileMap(request);
-		MultipartFile file= (MultipartFile)fileMap.get("stillcut1_tmp");
+		MultipartFile file= (MultipartFile)fileMap.get("stillCut1_tmp");
 		if (!file.isEmpty()) {
 			fu.upload(file, SiteProperty.MOVIE_UPLOAD_PATH, SiteProperty.REAL_PATH, "stillCut");
 			scv.setStillCut1(fu.getName());
 		}
-		MultipartFile file2= (MultipartFile)fileMap.get("stillcut2_tmp");
+		MultipartFile file2= (MultipartFile)fileMap.get("stillCut2_tmp");
 		if (!file2.isEmpty()) {
 			fu.upload(file, SiteProperty.MOVIE_UPLOAD_PATH, SiteProperty.REAL_PATH, "stillCut");
 			scv.setStillCut2(fu.getName());
 		}
-		MultipartFile file3= (MultipartFile)fileMap.get("stillcut3_tmp");
+		MultipartFile file3= (MultipartFile)fileMap.get("stillCut3_tmp");
 		if (!file3.isEmpty()) {
 			fu.upload(file, SiteProperty.MOVIE_UPLOAD_PATH, SiteProperty.REAL_PATH, "stillCut");
 			scv.setStillCut3(fu.getName());
 		}
-		MultipartFile file4= (MultipartFile)fileMap.get("stillcut4_tmp");
+		MultipartFile file4= (MultipartFile)fileMap.get("stillCut4_tmp");
 		if (!file4.isEmpty()) {
 			fu.upload(file, SiteProperty.MOVIE_UPLOAD_PATH, SiteProperty.REAL_PATH, "stillCut");
 			scv.setStillCut4(fu.getName());
 		}
-		MultipartFile file5= (MultipartFile)fileMap.get("stillcut5_tmp");
+		MultipartFile file5= (MultipartFile)fileMap.get("stillCut5_tmp");
 		if (!file5.isEmpty()) {
 			fu.upload(file, SiteProperty.MOVIE_UPLOAD_PATH, SiteProperty.REAL_PATH, "stillCut");
 			scv.setStillCut5(fu.getName());
 		}
-		MultipartFile file6= (MultipartFile)fileMap.get("stillcut6_tmp");
+		MultipartFile file6= (MultipartFile)fileMap.get("stillCut6_tmp");
 		if (!file6.isEmpty()) {
 			fu.upload(file, SiteProperty.MOVIE_UPLOAD_PATH, SiteProperty.REAL_PATH, "stillCut");
 			scv.setStillCut1(fu.getName());
@@ -94,11 +94,11 @@ public class MovieService {
 		return r;	
 	}
 	
-	public int insert3(int movie_vo, HttpServletRequest request) throws Exception {
+	public int insert3(int movie_no, HttpServletRequest request) throws Exception {
 		
 		
 		TrailerVo tv = new TrailerVo();
-		tv.setMovie_no(movie_vo); 
+		tv.setMovie_no(movie_no); 
 		tv.setTrailer1(request.getParameter("trailer1"));
 		tv.setTrailer2(request.getParameter("trailer2"));
 		tv.setTrailer3(request.getParameter("trailer3"));
@@ -115,6 +115,16 @@ public class MovieService {
 		MovieVo data = movieDao.read(vo);
 		return data;
 	}
+	
+	public StillCutVo readStillCut(MovieVo vo, boolean userCon) throws Exception {
+		StillCutVo data = movieDao.readStillCut(vo);
+		return data;
+	}
+	public TrailerVo readTrailer(MovieVo vo, boolean userCon) throws Exception {
+		TrailerVo data = movieDao.readTrailer(vo);
+		return data;
+	}
+	
 
 	public int update(MovieVo vo, HttpServletRequest request) throws Exception {
 		MovieVo data = movieDao.read(vo);
@@ -134,8 +144,63 @@ public class MovieService {
 		}
 		return r;
 	}
-
+	public int stillCutUpdate(int movie_no, HttpServletRequest request) throws Exception {
+		StillCutVo scv = new StillCutVo();
+		scv.setMovie_no(movie_no);
+		
+		FileUtil fu = new FileUtil();
+		Map fileMap = fu.getFileMap(request);
+		MultipartFile file= (MultipartFile)fileMap.get("stillCut1_tmp");
+		if (!file.isEmpty()) {
+			fu.upload(file, SiteProperty.MOVIE_UPLOAD_PATH, SiteProperty.REAL_PATH, "stillCut");
+			scv.setStillCut1(fu.getName());
+		}
+		MultipartFile file2= (MultipartFile)fileMap.get("stillCut2_tmp");
+		if (!file2.isEmpty()) {
+			fu.upload(file, SiteProperty.MOVIE_UPLOAD_PATH, SiteProperty.REAL_PATH, "stillCut");
+			scv.setStillCut2(fu.getName());
+		}
+		MultipartFile file3= (MultipartFile)fileMap.get("stillCut3_tmp");
+		if (!file3.isEmpty()) {
+			fu.upload(file, SiteProperty.MOVIE_UPLOAD_PATH, SiteProperty.REAL_PATH, "stillCut");
+			scv.setStillCut3(fu.getName());
+		}
+		MultipartFile file4= (MultipartFile)fileMap.get("stillCut4_tmp");
+		if (!file4.isEmpty()) {
+			fu.upload(file, SiteProperty.MOVIE_UPLOAD_PATH, SiteProperty.REAL_PATH, "stillCut");
+			scv.setStillCut4(fu.getName());
+		}
+		MultipartFile file5= (MultipartFile)fileMap.get("stillCut5_tmp");
+		if (!file5.isEmpty()) {
+			fu.upload(file, SiteProperty.MOVIE_UPLOAD_PATH, SiteProperty.REAL_PATH, "stillCut");
+			scv.setStillCut5(fu.getName());
+		}
+		MultipartFile file6= (MultipartFile)fileMap.get("stillCut6_tmp");
+		if (!file6.isEmpty()) {
+			fu.upload(file, SiteProperty.MOVIE_UPLOAD_PATH, SiteProperty.REAL_PATH, "stillCut");
+			scv.setStillCut1(fu.getName());
+		}
+		
+		return movieDao.stillCutUpdate(scv);
+	}
 	
+	public int trailerUpdate(int movie_no, HttpServletRequest request) throws Exception {
+		
+		TrailerVo tv = new TrailerVo();
+		tv.setMovie_no(movie_no); 
+		tv.setTrailer1(request.getParameter("trailer1"));
+		tv.setTrailer2(request.getParameter("trailer2"));
+		tv.setTrailer3(request.getParameter("trailer3"));
+		tv.setTrailer4(request.getParameter("trailer4"));
+		tv.setTrailer5(request.getParameter("trailer5"));
+		tv.setTrailer6(request.getParameter("trailer6"));
+	
+		
+		int r = movieDao.trailerUpdate(tv);
+		return r;
+		
+	}	
+		
 	public int delete(MovieVo vo) throws Exception {
 		MovieVo data = movieDao.read(vo);
 		int r = movieDao.delete(vo);

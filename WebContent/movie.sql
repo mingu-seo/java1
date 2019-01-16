@@ -7,7 +7,7 @@
 # Structure for table "movie"
 #
 
-DROP TABLE IF EXISTS `movie`;
+
 CREATE TABLE `movie` (
   `no` int(11) NOT NULL AUTO_INCREMENT COMMENT '영화 일련번호',
   `title` varchar(255) NOT NULL DEFAULT '' COMMENT '영화 제목',
