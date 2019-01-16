@@ -101,7 +101,13 @@ public class MemberController {
 		return "member/secession";
 	}
 	
-	
+	/**
+	 * 회원 탈퇴 기능
+	 * @param model
+	 * @param param
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("/member/secessionState.do")
 	public String secessionState(Model model, MemberVO param) throws Exception{
 		int cnt = memberService.secession(param);
