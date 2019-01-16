@@ -82,7 +82,7 @@
     
     <update id="update" parameterClass="movie_vo">
         UPDATE $tablename$ SET
-        	name=#name#, title=#title#, display=#display#,
+        	title=#title#, display=#display#,
         <isNotEqual property="releaseDate" compareValue="">
        	    releaseDate = #releaseDate#,
        	</isNotEqual>     	
@@ -143,6 +143,19 @@
         FROM $tablename$
         where no = #no#
     </select>
+    
+    <select id="readStillCut" parameterClass="Integer" resultClass="stillCut_vo">
+    SELECT *
+    FROM STILLCUT
+    where movie_no = #movie_no#
+    </select>
+    
+    <select id="readTrailer" parameterClass="Integer" resultClass="trailer_vo">
+    SELECT *
+    FROM TRAILER
+    where movie_no = #movie_no#
+    </select>
+    
     
     <select id="posternames" parameterClass="movie_vo" resultClass="movie_vo">
     	<![CDATA[

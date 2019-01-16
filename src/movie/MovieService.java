@@ -116,12 +116,12 @@ public class MovieService {
 		return data;
 	}
 	
-	public StillCutVo readStillCut(MovieVo vo, boolean userCon) throws Exception {
-		StillCutVo data = movieDao.readStillCut(vo);
+	public StillCutVo readStillCut(int movie_no) throws Exception {
+		StillCutVo data = movieDao.readStillCut(movie_no);
 		return data;
 	}
-	public TrailerVo readTrailer(MovieVo vo, boolean userCon) throws Exception {
-		TrailerVo data = movieDao.readTrailer(vo);
+	public TrailerVo readTrailer(int movie_no) throws Exception {
+		TrailerVo data = movieDao.readTrailer(movie_no);
 		return data;
 	}
 	

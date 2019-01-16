@@ -80,11 +80,11 @@ public class MovieDao extends SqlMapClientDAOSupport {
 	public MovieVo read(MovieVo vo) throws SQLException {
 		return (MovieVo)getSqlMapClient().queryForObject("movie.read", vo);
 	}
-	public StillCutVo readStillCut(MovieVo vo) throws SQLException {
+	public StillCutVo readStillCut(int vo) throws SQLException {
 		// TODO Auto-generated method stub
 		return (StillCutVo)getSqlMapClient().queryForObject("movie.readStillCut", vo);
 	}
-	public TrailerVo readTrailer(MovieVo vo) throws SQLException {
+	public TrailerVo readTrailer(int vo) throws SQLException {
 		// TODO Auto-generated method stub
 		return (TrailerVo)getSqlMapClient().queryForObject("movie.readTrailer", vo);
 	}

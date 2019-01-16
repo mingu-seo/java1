@@ -34,7 +34,7 @@
 		} else {
 			oEditors.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []); // 에디터의 내용이 textarea에 적용됩니다.
 		}
-		return true;
+		$("#frm").submit();
 	}
 </script>
 </head>
@@ -60,7 +60,7 @@
 							<div id="bread">
 								<form method="post" name="frm" id="frm"
 									action="<%=Function.getSslCheckUrl(request.getRequestURL())%>/process.do"
-									enctype="multipart/form-data" onsubmit="return goSave();">
+									enctype="multipart/form-data">
 									<table width="100%" border="0" cellspacing="0" cellpadding="0"
 										summary="관리자 관리 기본내용입니다.">
 										<colgroup>
@@ -128,41 +128,41 @@
 												<td><input type="file" id="poster" name="poster_tmp"
 													value="<%=data.getPoster()%>" class=" w50" title="포스터" /></td>
 												<th scope="row"><label for="">노출여부</label></th>
-												<td><input type="radio" name="display" value="0" />
-													노출&nbsp; <input type="radio" name="display" value="1" /> 숨김
-
+												<td>
+													<input type="radio" name="display" value="0" <%if (data.getDisplay() == 0) { out.print("checked"); }%>/>노출&nbsp; 
+													<input type="radio" name="display" value="1" <%if (data.getDisplay() == 1) { out.print("checked"); }%>/> 숨김
 												</td>
 											</tr>
 											<tr>
 												<th scope="row"><label for="">스틸컷</label></th>
 												<td>
 													<input type="file" name="stillCut1" class="w50" title="스틸컷1"/>
-													<%if (scv.getStillCut1()!=null){%>
+													<%if (scv != null && scv.getStillCut1()!=null){%>
 													<img src="<%=property.SiteProperty.MOVIE_UPLOAD_PATH%><%=scv.getStillCut1()%>" width="20px" height="30px"/>
 													<input type="checkbox" name="stillCut1_chk" value="1"/>파일 삭제<% } %>
 													<br/>
 													<input type="file" name="stillCut2" class="w50" title="스틸컷2"/>
-													<%if (scv.getStillCut2()!=null){%>
+													<%if (scv != null && scv.getStillCut2()!=null){%>
 													<img src="<%=property.SiteProperty.MOVIE_UPLOAD_PATH%><%=scv.getStillCut2()%>" width="20px" height="30px"/>
 													<input type="checkbox" name="stillCut2_chk" value="1"/>파일 삭제<% } %>
 													<br/>
 													<input type="file" name="stillCut3" class="w50" title="스틸컷3"/>
-													<%if (scv.getStillCut3()!=null){%>
+													<%if (scv != null && scv.getStillCut3()!=null){%>
 													<img src="<%=property.SiteProperty.MOVIE_UPLOAD_PATH%><%=scv.getStillCut3()%>" width="20px" height="30px"/>
 													<input type="checkbox" name="stillCut3_chk" value="1"/>파일 삭제<% } %>
 													<br/>
 													<input type="file" name="stillCut4" class="w50" title="스틸컷4"/>
-													<%if (scv.getStillCut4()!=null){%>
+													<%if (scv != null && scv.getStillCut4()!=null){%>
 													<img src="<%=property.SiteProperty.MOVIE_UPLOAD_PATH%><%=scv.getStillCut4()%>" width="20px" height="30px"/>
 													<input type="checkbox" name="stillCut4_chk" value="1"/>파일 삭제<% } %>
 													<br/>
 													<input type="file" name="stillCut5" class="w50" title="스틸컷5"/>
-													<%if (scv.getStillCut5()!=null){%>
+													<%if (scv != null && scv.getStillCut5()!=null){%>
 													<img src="<%=property.SiteProperty.MOVIE_UPLOAD_PATH%><%=scv.getStillCut5()%>" width="20px" height="30px"/>
 													<input type="checkbox" name="stillCut5_chk" value="1"/>파일 삭제<% } %>
 													<br/>
 													<input type="file" name="stillCut6" class="w50" title="스틸컷6"/>
-													<%if (scv.getStillCut6()!=null){%>
+													<%if (scv != null && scv.getStillCut6()!=null){%>
 													<img src="<%=property.SiteProperty.MOVIE_UPLOAD_PATH%><%=scv.getStillCut6()%>" width="20px" height="30px"/>
 													<input type="checkbox" name="stillCut6_chk" value="1"/>파일 삭제<% } %>
 													<br/>										
@@ -170,17 +170,17 @@
 												<th scope="row"><label for="">트레일러 </label></th>
 												<td>
 													<input type="text" class="w50" name="trailer1"
-													value="<%=tv.getTrailer1()%>" /><br/>
+													value="<%if(tv!=null && tv.getTrailer1()!=null) { %><%=tv.getTrailer1()%><%} else {out.print("");} %>" /><br/>
 												 	<input type="text" class="w50" name="trailer2"
-													value="<%=tv.getTrailer2()%>" /><br/>
+													value="<%if(tv!=null && tv.getTrailer2()!=null) { %><%=tv.getTrailer2()%><%} else {out.print("");} %>" /><br/>
 													<input type="text" class="w50" name="trailer3"
-													value="<%=tv.getTrailer3()%>" /><br/>
+													value="<%if(tv!=null && tv.getTrailer3()!=null) { %><%=tv.getTrailer3()%><%} else {out.print("");} %>" /><br/>
 													<input type="text" class="w50" name="trailer4"
-													value="<%=tv.getTrailer4()%>"/><br/>
+													value="<%if(tv!=null && tv.getTrailer4()!=null) { %><%=tv.getTrailer4()%><%} else {out.print("");} %>"/><br/>
 													<input type="text" class="w50" name="trailer5"
-													value="<%=tv.getTrailer5()%>" /><br/>
+													value="<%if(tv!=null && tv.getTrailer5()!=null) { %><%=tv.getTrailer5()%><%} else {out.print("");} %>" /><br/>
 													<input type="text" class="w50" name="trailer6"
-													value="<%=tv.getTrailer6()%>" />
+													value="<%if(tv!=null && tv.getTrailer6()!=null) { %><%=tv.getTrailer6()%><%} else {out.print("");} %>" />
 												</td>
 											</tr>
 										</tbody>
