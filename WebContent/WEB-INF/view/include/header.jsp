@@ -33,17 +33,17 @@ function loginCheck(){
 	}
 	var f = document.board;
 	if (f.reg.checked==true) { <!-- reg(이미지 저장) 체크되어있는지 확인 -->
-	   document.cookie = "cookie_userid=" + f.loginEmail.value + ";path=/;expires=Sat, 31 Dec 2050 23:59:59 GMT;";
+	   document.cookie = "cookie_useremail=" + f.loginEmail.value + ";path=/;expires=Sat, 31 Dec 2050 23:59:59 GMT;";
 	} else {
 	   var now = new Date();	
-	   document.cookie = "cookie_userid=" + f.loginEmail.value + ";path=/;expires="+now.getTime();
+	   document.cookie = "cookie_useremail=" + f.loginEmail.value + ";path=/;expires="+now.getTime();
 	}
 	return true;
 }
 
 function useremail_chk() {
 	var f=document.board;
-	var useremail = CookieVal("cookie_userid");
+	var useremail = CookieVal("cookie_useremail");
 	
 	if (useremail=="null"){	
 		f.loginEmail.focus();
@@ -118,11 +118,7 @@ function CookieVal(cookieName) {
                         <li>
                             <a href="/movie/index.do" >MOVIE</a>
                             <ul class="depth2">
-<<<<<<< HEAD
                                 <li><a href="/movie/index.do" >현재 상영작</a></li>
-=======
-                                <li><a href="" >현재 상영작</a></li>
->>>>>>> branch 'master' of https://github.com/mingu-seo/java1.git
                                 <li><a href="" >개봉 예정작</a></li>
                             </ul>
                         </li>
