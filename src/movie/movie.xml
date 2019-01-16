@@ -82,7 +82,7 @@
     
     <update id="update" parameterClass="movie_vo">
         UPDATE $tablename$ SET
-        	name=#name#, title=#title#, display=#display#,
+        	title=#title#, display=#display#,
         <isNotEqual property="releaseDate" compareValue="">
        	    releaseDate = #releaseDate#,
        	</isNotEqual>     	
@@ -98,12 +98,64 @@
         WHERE no = #no#
     </update>
     
+    <update id="update2" parameterClass="stillCut_vo">
+        UPDATE STILLCUT SET
+        	movie_no = #movie_no#
+        <isNotNull property="stillcut1">
+       	    ,stillcut1 = #stillcut1#
+       	</isNotNull>     	
+        <isNotNull property="stillcut2">
+       	    ,stillcut2 = #stillcut2#
+       	</isNotNull>     	
+        <isNotNull property="stillcut3">
+       	    ,stillcut3 = #stillcut3#
+       	</isNotNull> 
+        <isNotNull property="stillcut4">
+       	    ,stillcut4 = #stillcut4#
+       	</isNotNull>        	        	
+        <isNotNull property="stillcut5">
+       	    ,stillcut5 = #stillcut5#
+       	</isNotNull>    
+        <isNotNull property="stillcut6">
+       	    ,stillcut6 = #stillcut6#
+       	</isNotNull>        	    
+        WHERE movie_no = #movie_no#
+    </update>
+    
+    <update id="update3" parameterClass="trailer_vo">
+    	UPDATE TRAILER SET 
+    	
+    		movie_no = #movie_no#,
+    		trailer1 = #trailer1#,
+    		trailer1 = #trailer2#,
+    		trailer1 = #trailer3#,
+    		trailer1 = #trailer4#,
+    		trailer1 = #trailer5#,
+    		trailer1 = #trailer6#
+    		 
+    	WHERE movie_no = #movie_no#
+    
+    </update>
+    
     <select id="read" parameterClass="movie_vo" resultClass="movie_vo">
         SELECT 
         	*
         FROM $tablename$
         where no = #no#
     </select>
+    
+    <select id="readStillCut" parameterClass="Integer" resultClass="stillCut_vo">
+    SELECT *
+    FROM STILLCUT
+    where movie_no = #movie_no#
+    </select>
+    
+    <select id="readTrailer" parameterClass="Integer" resultClass="trailer_vo">
+    SELECT *
+    FROM TRAILER
+    where movie_no = #movie_no#
+    </select>
+    
     
     <select id="posternames" parameterClass="movie_vo" resultClass="movie_vo">
     	<![CDATA[

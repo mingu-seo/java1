@@ -70,6 +70,9 @@ public class MemberDAO extends SqlMapClientDAOSupport {
 		return (Integer) getSqlMapClient().queryForObject("member.loginCheck", param);
 	}
 
+	public int secession(MemberVO vo) throws SQLException{
+		return getSqlMapClient().update("member.secession", vo);
+	}
 	
 	public MemberVO getLoginSessionInfo(MemberVO param) throws SQLException {
 		return (MemberVO) getSqlMapClient().queryForObject("member.loginSessionInfo", param);
@@ -116,6 +119,10 @@ public class MemberDAO extends SqlMapClientDAOSupport {
 	 */
 	public MemberVO searchpw(MemberVO param) throws SQLException {
 		return (MemberVO) getSqlMapClient().queryForObject("member.searchpw", param);
+	}
+	
+	public int updatePw(MemberVO vo) throws SQLException {
+		return getSqlMapClient().update("member.updatePw", vo);
 	}
 	
 	

@@ -9,7 +9,61 @@ public class StillCutVo {
 	private String stillCut4; // 스틸컷1
 	private String stillCut5; // 스틸컷1
 	private String stillCut6; // 스틸컷1
+	private int stillCut1_chk;
+	private int stillCut2_chk;
+	private int stillCut3_chk;
+	private int stillCut4_chk;
+	private int stillCut5_chk;
+	private int stillCut6_chk;
 	
+	public int getStillCut1_chk() {
+		return stillCut1_chk;
+	}
+
+	public void setStillCut1_chk(int stillCut1_chk) {
+		this.stillCut1_chk = stillCut1_chk;
+	}
+
+	public int getStillCut2_chk() {
+		return stillCut2_chk;
+	}
+
+	public void setStillCut2_chk(int stillCut2_chk) {
+		this.stillCut2_chk = stillCut2_chk;
+	}
+
+	public int getStillCut3_chk() {
+		return stillCut3_chk;
+	}
+
+	public void setStillCut3_chk(int stillCut3_chk) {
+		this.stillCut3_chk = stillCut3_chk;
+	}
+
+	public int getStillCut4_chk() {
+		return stillCut4_chk;
+	}
+
+	public void setStillCut4_chk(int stillCut4_chk) {
+		this.stillCut4_chk = stillCut4_chk;
+	}
+
+	public int getStillCut5_chk() {
+		return stillCut5_chk;
+	}
+
+	public void setStillCut5_chk(int stillCut5_chk) {
+		this.stillCut5_chk = stillCut5_chk;
+	}
+
+	public int getStillCut6_chk() {
+		return stillCut6_chk;
+	}
+
+	public void setStillCut6_chk(int stillCut6_chk) {
+		this.stillCut6_chk = stillCut6_chk;
+	}
+
 	public StillCutVo() {}
 	
 	public int getNo() {
