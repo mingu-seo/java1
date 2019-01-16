@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import manage.admin.AdminVO;
+import property.SiteProperty;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -70,13 +71,35 @@ public class MovieController {
 	}
 	
 	@RequestMapping("/manage/movie/edit.do")
-	public String edit(Model model, MovieVo param) throws Exception {
+	public String edit(Model model, MovieVo param, HttpServletRequest request) throws Exception {
 		param.setTablename("movie");
 		MovieVo data = movieService.read(param, false);
 		model.addAttribute("data", data);
 		model.addAttribute("param", param);
-		StillCutVo scv = movieService.readStillCut(data, false);
-		TrailerVo tv = movieService.readTrailer(data, false);
+		
+		StillCutVo scv = movieService.readStillCut(data.getNo());
+		
+		if(Function.getIntParameter(request.getParameter("stillCut1_chk"))==1) {
+			Function.fileDelete(SiteProperty.MOVIE_UPLOAD_PATH, scv.getStillCut1());
+		}  
+		if(Function.getIntParameter(request.getParameter("stillCut2_chk"))==1) {
+			Function.fileDelete(SiteProperty.MOVIE_UPLOAD_PATH, scv.getStillCut2());
+		}
+		if(Function.getIntParameter(request.getParameter("stillCut3_chk"))==1) {
+			Function.fileDelete(SiteProperty.MOVIE_UPLOAD_PATH, scv.getStillCut3());
+		}
+		if(Function.getIntParameter(request.getParameter("stillCut4_chk"))==1){
+			Function.fileDelete(SiteProperty.MOVIE_UPLOAD_PATH, scv.getStillCut4());
+		}
+		if(Function.getIntParameter(request.getParameter("stillCut5_chk"))==1) {
+			Function.fileDelete(SiteProperty.MOVIE_UPLOAD_PATH, scv.getStillCut5());
+		}
+		if(Function.getIntParameter(request.getParameter("stillCut6_chk"))==1) {
+			Function.fileDelete(SiteProperty.MOVIE_UPLOAD_PATH, scv.getStillCut6());
+		}
+		model.addAttribute("scv", scv);
+		TrailerVo tv = movieService.readTrailer(data.getNo());
+		model.addAttribute("tv",tv);
 		return "manage/movie/edit";
 	}
 	
