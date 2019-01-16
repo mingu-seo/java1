@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -124,11 +125,9 @@
 						</li>
 					</ul>
 				</div>
-								
+			
 				<div class="pagenate clear">
-					<ul class='paging'>
-						<li><a href='javascript:;' class='current'>1</a></li>
-					</ul>
+					<li><a href='javascript:;' class='current'>1</a></li>
 				</div>
 			</div>
 		</div>

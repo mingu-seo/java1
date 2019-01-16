@@ -35,19 +35,19 @@ public class ReviewController {
 		return "manage/movie/review/index";
 	}
 	//리뷰 사용자
-//	@RequestMapping("/movie/review/index.do")
-//	public String indexv(Model model, ReviewVO param) throws Exception {
-//		param.setTablename("review");
-//		int[] rowPageCount = reviewService.count(param);
-//		ArrayList<AdminVO> list = reviewService.list(param);
-//		
-//		model.addAttribute("totCount", rowPageCount[0]);
-//		model.addAttribute("totPage", rowPageCount[1]);
-//		model.addAttribute("list", list);
-//		model.addAttribute("vo", param);
-//		
-//		return "movie/review/index";
-//	}
+	@RequestMapping("/movie/view.do")
+	public String indexv(Model model, ReviewVO param) throws Exception {
+		param.setTablename("review");
+		int[] rowPageCount = reviewService.count(param);
+		ArrayList<AdminVO> list = reviewService.list(param);
+		
+		model.addAttribute("totCount", rowPageCount[0]);
+		model.addAttribute("totPage", rowPageCount[1]);
+		model.addAttribute("list", list);
+		model.addAttribute("vo", param);
+		
+		return "movie/view";
+	}
 	
 	
 	

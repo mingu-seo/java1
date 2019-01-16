@@ -69,6 +69,7 @@ function goSearch() {
 									<col class="w5" />
 									<col class="w5" />
 									<col class="w5" />
+									<col class="w6" />
 								</colgroup>
 								<thead>
 									<tr>

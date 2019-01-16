@@ -58,6 +58,7 @@ function goSearch() {
 						</tr>
 					</thead>
 					<tbody>
+					
 					<% if (totCount == 0) { %>
 									<tr>
 										<td class="first" colspan="8">등록된 글이 없습니다.</td>
@@ -85,13 +86,11 @@ function goSearch() {
 					<%}%>
 					<%}%>
 					</tbody>
+					
 				</table>
 			
 				<div class="pagenate clear">
-					<ul class='paging'>
-						<li><a href='javascript:;' class='current'><%=Page.indexList(param.getReqPageNo(), totPage, request)%></a></li>
-				
-					</ul>
+						<%=Page.userindexList(param.getReqPageNo(), totPage, request)%>
 				</div>
 				<!-- 페이지처리 -->
 				<div class="bbsSearch">

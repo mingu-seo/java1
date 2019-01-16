@@ -38,11 +38,11 @@ public class Page {
 		if (pageCount <= endpage){
 		    endpage = pageCount;
 		}
-		strList.append("<div class='page'>");
+		strList.append("<ul class='paging'>");
 		// 첫번째 페이지 인덱스 화면이 아닌경우
 		if ( reqPageNo > pagenumber) {
 			curpage = startpage - 1;    // 시작페이지 번호보다 1 적은 페이지로 이동
-			strList.append("<a href='"+listUrl+"reqPageNo="+curpage+"' class='next'><img src='/img/ico_prev.png' alt='' />이전</a> ");
+			strList.append("<li><a href='"+listUrl+"reqPageNo="+curpage+"'><img src='/img/ico_prev.png' alt='' /></a></li>");
 //			strList.append("<a href='"+listUrl+"reqPageNo=1' CLASS='b_num'>[1]</a> ");
 		}else{
 			strList.append(" ");
@@ -52,9 +52,9 @@ public class Page {
 		curpage = startpage;
 		while (curpage <= endpage){
 			if (curpage == reqPageNo) {
-			  strList.append("<strong>"+reqPageNo+"</strong>");
+			  strList.append("<li><a href='javascript:;' class='current'>"+reqPageNo+"</a></li>");
 			} else {
-			  strList.append("<a href='"+listUrl+"reqPageNo="+curpage+"' class='b_num'>"+curpage+"</a>");
+			  strList.append("<li><a href='"+listUrl+"reqPageNo="+curpage+"'>"+curpage+"</a></li>");
 			}
 			curpage++;
 		}
@@ -62,12 +62,12 @@ public class Page {
 		// 뒤에 페이지가 더 있는경우
 		if ( pageCount > endpage) {
 			curpage = endpage + 1;  
-			strList.append(" <a href='"+listUrl+"reqPageNo="+curpage+"' class='next'>다음<img src='/img/ico_next.png' alt='' /></a>");
+			strList.append("<li><a href='"+listUrl+"reqPageNo="+curpage+"'><img src='/img/list_next.gif' alt='' /></a></li>");
 //			strList.append(" <a href='"+listUrl+"reqPageNo="+pageCount+"' CLASS='b_num'>["+pageCount+"]</a>");
 		}else{
 			strList.append(" ");
 		}
-		strList.append("</div> ");
+		strList.append("</ul> ");
 
 		return strList.toString();
 	}

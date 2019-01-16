@@ -116,9 +116,9 @@ function CookieVal(cookieName) {
                 <div class="gnb">
                     <ul class="depth1 clear">
                         <li>
-                            <a href="" >MOVIE</a>
+                            <a href="/movie/index.do" >MOVIE</a>
                             <ul class="depth2">
-                                <li><a href="manage/movie/list.do" >현재 상영작</a></li>
+                                <li><a href="/movie/index.do" >현재 상영작</a></li>
                                 <li><a href="" >개봉 예정작</a></li>
                             </ul>
                         </li>
