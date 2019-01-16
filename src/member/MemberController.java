@@ -314,7 +314,7 @@ public class MemberController {
 			int r = memberService.update(param);
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "정상적으로 수정되었습니다.", "수정실패"));
-			model.addAttribute("url", param.getTargetURLParam("index.do", param, 0));
+			model.addAttribute("url", param.getTargetURLParam("/index.do", param, 0));
 		} else if ("groupDelete.do".equals(param.getCmd())) {
 			int r = memberService.groupDelete(request);
 			model.addAttribute("code", "alertMessageUrl");
