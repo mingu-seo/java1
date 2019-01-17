@@ -1,3 +1,4 @@
+<%@page import="property.SiteProperty"%>
 <%@ page contentType="application;charset=utf-8" %>
 <%@ page import="java.net.URLDecoder"%>
 <%
@@ -11,7 +12,8 @@
 	}
 	//String vf2 = java.net.URLEncoder.encode(vf, "UTF-8");		// 다시 UTF-8로 인코딩 필요
 	String vf2 = vf;
-	path = request.getRealPath(path+af); 			 			// 로컬
+	//path = request.getRealPath(path+af); 			 			// 로컬
+	path = SiteProperty.REAL_PATH+path+af;
 
 	try {
 		java.io.File f = new java.io.File(path);

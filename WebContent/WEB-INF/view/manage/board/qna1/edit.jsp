@@ -1,11 +1,11 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page import="java.util.*" %>
-<%@ page import="board.reply2.*" %>
+<%@ page import="board.reply1.*" %>
 <%@ page import="util.*" %>
 <%@ page import="property.*" %>
 <%
-NoticeVO param = (NoticeVO)request.getAttribute("param");
-NoticeVO data = (NoticeVO)request.getAttribute("data");
+Reply1VO param = (Reply1VO)request.getAttribute("param");
+Reply1VO data = (Reply1VO)request.getAttribute("data");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
@@ -13,38 +13,38 @@ NoticeVO data = (NoticeVO)request.getAttribute("data");
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/manage/include/headHtml.jsp" %>
 <script>
-	var oEditors; // 에디터 객체 담을 곳
-	jQuery(window).load(function(){
-		oEditors = setEditor("contents"); // 에디터 셋팅
-		
-		// 달력
-		initCal({id:"cre_date",type:"day",today:"y",timeYN:"y"});
-	});
+var oEditors; // 에디터 객체 담을 곳
+jQuery(window).load(function(){
+	oEditors = setEditor("contents"); // 에디터 셋팅
 	
-	function goSave() {
-		var regex=/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i; 
-			var regex2=/[0-9]{4}[\-][0-1][0-9][\-][0-3][0-9]\s[0-2][0-9]:[0-6][0-9]:[0-6][0-9]$/i; 
-			if(!regex2.test($("#cre_date").val())){
-				alert('잘못된 날짜 형식입니다.\\n올바로 입력해 주세요.\\n ex)2013-02-14 03:28:85.0');
-				$("#cre_date").focus();
-				return false;
-			} 
-		if ($("#title").val() == "") {
-			alert('제목을 입력하세요.');
-			$("#title").focus();
+	// 달력
+	initCal({id:"cre_date",type:"day",today:"y",timeYN:"y"});
+});
+
+function goSave() {
+	var regex=/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i; 
+		var regex2=/[0-9]{4}[\-][0-1][0-9][\-][0-3][0-9]\s[0-2][0-9]:[0-6][0-9]:[0-6][0-9]$/i; 
+		if(!regex2.test($("#cre_date").val())){
+			alert('잘못된 날짜 형식입니다.\\n올바로 입력해 주세요.\\n ex)2013-02-14 03:28:85.0');
+			$("#cre_date").focus();
 			return false;
-		}
-		var sHTML = oEditors.getById["contents"].getIR();
-		if (sHTML == "" || sHTML == "<p><br></p>") {
-			alert('내용을 입력하세요.');
-			$("#contents").focus();
-			return false;
-		} else {
-			oEditors.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []);	// 에디터의 내용이 textarea에 적용됩니다.
-		}
-		
-		return true;
+		} 
+	if ($("#title").val() == "") {
+		alert('제목을 입력하세요.');
+		$("#title").focus();
+		return false;
 	}
+	var sHTML = oEditors.getById["contents"].getIR();
+	if (sHTML == "" || sHTML == "<p><br></p>") {
+		alert('내용을 입력하세요.');
+		$("#contents").focus();
+		return false;
+	} else {
+		oEditors.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []);	// 에디터의 내용이 textarea에 적용됩니다.
+	}
+	
+	return true;
+}
 </script>
 </head>
 <body> 
@@ -79,21 +79,9 @@ NoticeVO data = (NoticeVO)request.getAttribute("data");
 								</colgroup>
 								<tbody>
 									<tr>
-										<th scope="row"><label for="">종류</label></th>
-										<td>
-											<select name="type">
-												<%=CodeUtil.getTypeOption(data.getType())%>
-											</select>
-										</td>
-										<th scope="row"><label for="">상태</label></th>
-										<td>
-											<select name="display">
-												<%=CodeUtil.getDisplayOption(data.getDisplay())%>
-											</select>
-										</td>
 										<th scope="row"><label for="">등록일</label></th>
 										<td>
-											<input type="text" id="registdate" name="registdate" class="inputTitle" value="<%=DateUtil.getDateTimeFormat(data.getCre_date())%>" title="등록일을 입력해주세요"/>&nbsp;
+											<input type="text" id="cre_date" name="cre_date" class="inputTitle" value="<%=DateUtil.getDateTimeFormat(data.getRegistdate())%>" title="등록일을 입력해주세요"/>&nbsp;
 											<span id="CalregistdateIcon">
 												<img src="/manage/img/calendar_icon.png" id="CalregistdateIconImg" style="cursor:pointer;"/>
 											</span>
@@ -111,22 +99,6 @@ NoticeVO data = (NoticeVO)request.getAttribute("data");
 														<label for="file_name_chk">기존파일삭제</label>
 													</p>
 													<input type="file" name="filename_tmp" id="filename_tmp" title="첨부파일을 업로드 해주세요." />
-												</div>
-											<% } %>											
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">첨부파일2</label></th>
-										<td colspan="10">
-											<% if (data.getFilename2() == null || "".equals(data.getFilename2())) { %>
-											<input type="file" name="filename_tmp2" id="filename_tmp2" title="첨부파일2" />
-											<% } else { %>
-												<div class="weidtFile">
-													<p>기존파일 : <a href="<%= Function.downloadUrl(SiteProperty.NOTICE_UPLOAD_PATH, java.net.URLEncoder.encode(data.getFilename_org2(), "UTF-8"), data.getFilename2()) %>" target="_blank"><%= Function.checkNull(data.getFilename_org2()) %> [<%= Function.getFileSize(data.getFilesize2())%>]</a><br />
-														<input type="checkbox" id="filename_chk2" name="filename_chk2" value="1" title="첨부파일을 삭제하시려면 체크해주세요" />
-														<label for="file_name_chk2">기존파일삭제</label>
-													</p>
-													<input type="file" name="filename_tmp2" id="filename_tmp2" title="첨부파일을 업로드 해주세요." />
 												</div>
 											<% } %>											
 										</td>
@@ -155,7 +127,7 @@ NoticeVO data = (NoticeVO)request.getAttribute("data");
 									<a class="btns" href="<%=param.getTargetURLParam("index.do", param, 0)%>"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;" onclick="$('#frm').submit();"><strong>저장</strong></a>
+									<a class="btns" style="cursor:pointer;" href="javascript:$('#frm').submit();"><strong>수정</strong></a>
 								</div>
 							</div>
 							<!--//btn-->

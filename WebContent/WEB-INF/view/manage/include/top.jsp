@@ -77,9 +77,17 @@ $(window).load(function(){
 					<ul>
 						<li><a href="<%=request.getContextPath()%>/manage/board/notice/index.do"><span>공지사항</span></a></li>
 						<li><a href="<%=request.getContextPath()%>/manage/board/qna/index.do"><span>Q&A</span></a></li>
+<<<<<<< HEAD
 						<li><a href="<%=request.getContextPath()%>/manage/board/qna1/index.do"><span>Q&A(상윤)</span></a></li>
 						<li><a href="<%=request.getContextPath()%>/manage/board/qna2/index.do"><span>Q&A(아란)</span></a></li>
 						<li><a href="<%=request.getContextPath()%>/manage/board/qna3/index.do"><span>Q&A(나영)</span></a></li>
+=======
+
+						<li><a href="<%=request.getContextPath()%>/manage/board/qna1/index.do"><span>Q&A(상윤)</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/manage/board/qna2/index.do"><span>Q&A(아란)</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/manage/board/qna3/index.do"><span>Q&A(나영)</span></a></li>
+
+>>>>>>> branch 'master' of https://github.com/mingu-seo/java1.git
 						<li><a href="<%=request.getContextPath()%>/manage/movie/review/index.do"><span>영화후기</span></a></li>
 						<li><a href="<%=request.getContextPath()%>/manage/board/event/index.do"><span>이벤트</span></a></li>
 						<li><a href="<%=request.getContextPath()%>/manage/board/"><span>Q&A게시판</span></a></li>

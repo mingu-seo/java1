@@ -13,6 +13,7 @@
 	<context:component-scan base-package="member" />
 	<context:component-scan base-package="movie" />
 	<context:component-scan base-package="review" />
+	
 	<mvc:annotation-driven/>
 
 	<mvc:interceptors>
