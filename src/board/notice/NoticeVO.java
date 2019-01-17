@@ -20,6 +20,11 @@ public class NoticeVO extends Parameter {
 	private long 		filesize;				// 첨부파일 크기
 	
 	private String 		filename_chk;
+	private String 		filename_org2;			// 첨부파일 이름 [사용자]
+	private String 		filename2;				// 첨부파일 이름 [시스템 처리용]
+	private long 		filesize2;				// 첨부파일 크기
+	
+	private String 		filename_chk2;
 	private int 		prev_no;				// 이전글 no
 	private int 		next_no;				// 다음글 no
 	private String 		prev_title;				// 이전글 제목
@@ -27,7 +32,7 @@ public class NoticeVO extends Parameter {
 	
 	//검색조건
 	private int 		sdisplay;
-	
+	   
 	public NoticeVO() {
 		super.setPageRows(10);
 		this.setSdisplay(-1);	// 검색기본값(전체)
@@ -134,6 +139,37 @@ public class NoticeVO extends Parameter {
 
 	public void setFilename_chk(String filename_chk) {
 		this.filename_chk = filename_chk;
+	}
+	public String getFilename_org2() {
+		return filename_org2;
+	}
+	
+	public void setFilename_org2(String filename_org2) {
+		this.filename_org2 = filename_org2;
+	}
+	
+	public String getFilename2() {
+		return filename2;
+	}
+	
+	public void setFilename2(String filename2) {
+		this.filename2 = filename2;
+	}
+	
+	public long getFilesize2() {
+		return filesize2;
+	}
+	
+	public void setFilesize2(long filesize2) {
+		this.filesize2 = filesize2;
+	}
+	
+	public String getFilename_chk2() {
+		return filename_chk2;
+	}
+	
+	public void setFilename_chk2(String filename_chk2) {
+		this.filename_chk2 = filename_chk2;
 	}
 
 	public int getPrev_no() {

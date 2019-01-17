@@ -1,10 +1,10 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page import="java.util.*" %>
-<%@ page import="board.reply.*" %>
+<%@ page import="board.reply3.*" %>
 <%@ page import="manage.admin.*" %>
 <%@ page import="util.*" %>
 <%
-ReplyVO param = (ReplyVO)request.getAttribute("vo");
+ReplyVO3 param = (ReplyVO3)request.getAttribute("vo");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
@@ -70,18 +70,18 @@ ReplyVO param = (ReplyVO)request.getAttribute("vo");
 								</colgroup>
 								<tbody>
 									<tr>
+										<th scope="row"><label for="">*제목</label></th>
+										<td colspan="10">
+											<input type="text" id="title" name="title" class="w100" title="제목을 입력해주세요" />	
+										</td>
+									</tr>
+									<tr>
 										<th scope="row"><label for="">등록일</label></th>
 										<td>
 											<input type="text" id="cre_date" name="cre_date" class="inputTitle" value="<%=DateUtil.getFullToday()%>" title="등록일을 입력해주세요" />&nbsp;
 											<span id="CalregistdateIcon">
 												<img src="/manage/img/calendar_icon.png" id="CalregistdateIconImg" style="cursor:pointer;"/>
 											</span>
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">첨부파일</label></th>
-										<td colspan="10">
-											<input type="file" id="filename_tmp" name="filename_tmp" class="w100" title="첨부파일을 업로드 해주세요." />	
 										</td>
 									</tr>
 									<tr>

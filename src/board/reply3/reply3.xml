@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="reply">
+    
+    <typeAlias alias="reply_vo" type="board.reply3.ReplyVO3"/>
+    
+    <!-- 공통조건 -->
+	<sql id="searchSql">		
+		<!-- WHERE 절 검색 -->
+		<dynamic prepend="where">
+			<isNotEqual property="smain" compareValue="" prepend="and">
+					main = #smain#
+			</isNotEqual>			
+			
+			<!-- 검색어 검색 -->
+			<isNotEqual property="sval" compareValue="">
+				<!-- 검색 타입이 all일 때 -->
+				<isEqual property="stype" compareValue="all" prepend="and">
+					( (name like '%$sval$%' ) or (contents like '%$sval$%' ) or (title like '%$sval$%' ) ) 					
+				</isEqual>
+				<!-- 검색 타입이 all이 아닐때 해당 stype으로 검색 -->
+				<isNotEqual property="stype" compareValue="all" prepend="and">
+					($stype$ like '%$sval$%' )
+				</isNotEqual>
+			</isNotEqual>
+		</dynamic>
+	</sql>
+	
+	<!-- 해당 테이블의 총 게시글 수 -->
+	<select id="count" parameterClass="reply_vo" resultClass="Integer">
+        select count(*) from $tablename$
+        <include refid="searchSql" />	
+    </select>
+    
+	<select id="list" parameterClass="reply_vo" resultClass="reply_vo">
+        select *
+        from $tablename$
+        <include refid="searchSql" />
+		ORDER BY top DESC, gno DESC, ono ASC LIMIT $startPageNo$, $pageRows$
+    </select>
+    
+	<select id="getMaxGno" parameterClass="reply_vo" resultClass="Integer">
+        select ifnull(MAX(gno), 0)+1 from $tablename$
+    </select>
+	
+	<!-- 해당 테이블에 게시글 작성 -->
+    <insert id="insert" parameterClass="reply_vo">
+        INSERT INTO $tablename$ (
+        	member_fk, gno, ono, nested, 
+        	password, name, email, title, contents, relation_url, registdate, readno,
+        	imagename, imagename_org, filename, filename_org, filesize, 
+        	top, main, newicon
+        ) VALUES (
+        	#member_fk#, #gno#, #ono#, #nested#, 
+        	password(#password#), #name#, #email#, #title#, #contents#, #relation_url#, now(), #readno#,
+        	#imagename#, #imagename_org#, #filename#, #filename_org#, #filesize#,  
+        	#top#, #main#, #newicon#
+        )
+        <selectKey keyProperty="no" resultClass="Integer">
+        	SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+    
+    <!-- 같은 그룹 중 가장 큰 순서번호를 가져옴 -->
+	<select id="getMaxOno" parameterClass="reply_vo" resultClass="Integer">
+        select MAX(ono) as maxOno from $tablename$ where gno = #gno#
+    </select>
+    
+	<!-- 같은 그룹 중 순서번호가 현재글 보다 크고 중첩단계가 현재글보다 작거나 같은것 중 가장 작은 순서번호를 가져옴 -->
+	<select id="getMinOno" parameterClass="reply_vo" resultClass="Integer">
+	   	<![CDATA[
+        select IFNULL(MIN(ono), 0) as minOno from $tablename$ where gno = #gno# and ono > #ono# and nested <= #nested#
+        ]]>
+    </select>
+    
+	<!-- ono가 0이 아닌경우 같은 그룹내 minOno보다 크거나 같은 ono +1 -->
+	<update id="updateOno" parameterClass="java.util.Map">
+	    UPDATE $tablename$ SET ono = ono+1 WHERE gno = #gno# AND ono >= #minOno#
+	</update>
+    
+    <update id="update" parameterClass="reply_vo">
+        UPDATE $tablename$ SET
+        	member_fk=#member_fk#,
+        	name=#name#, email=#email#, title=#title#, contents=#contents#, relation_url=#relation_url#,
+        <isNotEqual property="password" compareValue="">
+       	    password = password(#password#),
+       	</isNotEqual>
+        <isNotEqual property="registdate" compareValue="">
+       	    registdate = #registdate#,
+       	</isNotEqual>
+        <isNotEqual property="readno" compareValue="0">
+       	    readno = #readno#,
+       	</isNotEqual>
+        <isEqual property="filename_chk" compareValue="1">
+        	filename='', filename_org='', filesize=0,
+        </isEqual>
+        <isNotEqual property="filename" compareValue="">
+            <isNotNull property="filename">
+        		filename=#filename#, filename_org=#filename_org#, filesize=#filesize#,
+        	</isNotNull>
+        </isNotEqual>
+        <isEqual property="imagename_chk" compareValue="1">
+        	imagename='', imagename_org='',
+        </isEqual>
+        <isNotEqual property="imagename" compareValue="">
+            <isNotNull property="imagename">
+        		imagename=#imagename#, imagename_org=#imagename_org#,
+        	</isNotNull>
+        </isNotEqual>
+        	top=#top#, main=#main#, newicon=#newicon#
+        WHERE no = #no#
+    </update>
+    
+    <select id="read" parameterClass="reply_vo" resultClass="reply_vo">
+    	<![CDATA[
+        SELECT 
+        	*
+        FROM $tablename$
+        where no = #no#
+        ]]>
+    </select>
+    
+    <select id="filenames" parameterClass="reply_vo" resultClass="reply_vo">
+    	<![CDATA[
+        SELECT 
+        	filename, imagename
+        FROM $tablename$
+        where no = #no#
+        ]]>
+    </select>    
+    
+    <select id="getRowNum" parameterClass="reply_vo" resultClass="Integer">
+        select rownum from (
+        	select @rownum:=@rownum+1 as rownum, no, title from $tablename$, (select @rownum:=0) as r
+        	<include refid="searchSql" />
+        	ORDER BY top DESC, gno DESC, ono ASC
+        ) as r2
+        where r2.no = #no#
+    </select>
+    
+    <select id="getNextRowNum" parameterClass="reply_vo" resultClass="reply_vo">
+        select ifnull(rownum,0), ifnull(no,0) as next_no, title as next_title
+        from (
+        	select @rownum:=@rownum+1 as rownum, no, title from $tablename$, (select @rownum:=0) as r
+        	<include refid="searchSql" />
+        	ORDER BY top DESC, gno DESC, ono ASC
+        ) as r2
+        <![CDATA[
+        where r2.rownum = $rownum$+1
+    	]]>
+    </select>
+    
+    <select id="getPrevRowNum" parameterClass="reply_vo" resultClass="reply_vo">
+    	select ifnull(rownum,0), ifnull(no,0) as prev_no, title as prev_title
+        from (
+        	select @rownum:=@rownum+1 as rownum, no, title from $tablename$, (select @rownum:=0) as r
+        	<include refid="searchSql" />
+        	ORDER BY top DESC, gno DESC, ono ASC
+        ) as r2
+        <![CDATA[
+        where r2.rownum = $rownum$-1
+    	]]>
+    </select>
+    
+    <delete id="delete" parameterClass="reply_vo">
+        DELETE FROM $tablename$ WHERE no=#no#
+    </delete>
+    
+    <update id="updateReadno" parameterClass="reply_vo">
+        UPDATE $tablename$ SET readno = readno+1 WHERE no = #no#
+    </update>
+    
+    <select id="checkPassword" parameterClass="reply_vo" resultClass="Integer">
+        select count(password) as cnt
+        from $tablename$
+		where no = #no# and password = password(#password#)
+    </select>
+    
+</sqlMap>

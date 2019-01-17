@@ -116,6 +116,22 @@ NoticeVO data = (NoticeVO)request.getAttribute("data");
 										</td>
 									</tr>
 									<tr>
+										<th scope="row"><label for="">첨부파일2</label></th>
+										<td colspan="10">
+											<% if (data.getFilename2() == null || "".equals(data.getFilename2())) { %>
+											<input type="file" name="filename_tmp2" id="filename_tmp2" title="첨부파일2" />
+											<% } else { %>
+												<div class="weidtFile">
+													<p>기존파일 : <a href="<%= Function.downloadUrl(SiteProperty.NOTICE_UPLOAD_PATH, java.net.URLEncoder.encode(data.getFilename_org2(), "UTF-8"), data.getFilename2()) %>" target="_blank"><%= Function.checkNull(data.getFilename_org2()) %> [<%= Function.getFileSize(data.getFilesize2())%>]</a><br />
+														<input type="checkbox" id="filename_chk2" name="filename_chk2" value="1" title="첨부파일을 삭제하시려면 체크해주세요" />
+														<label for="file_name_chk2">기존파일삭제</label>
+													</p>
+													<input type="file" name="filename_tmp2" id="filename_tmp2" title="첨부파일을 업로드 해주세요." />
+												</div>
+											<% } %>											
+										</td>
+									</tr>
+									<tr>
 										<th scope="row"><label for="">*제목</label></th>
 										<td colspan="10">
 											<input type="text" id="title" name="title" class="w50" title="제목을 입력해주세요" value="<%=Function.checkNull(data.getTitle())%>" />	

@@ -1,11 +1,11 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page import="java.util.*" %>
-<%@ page import="board.notice.*" %>
+<%@ page import="board.reply3.*" %>
 <%@ page import="util.*" %>
 <%@ page import="property.*" %>
 <%
-NoticeVO param = (NoticeVO)request.getAttribute("param");
-NoticeVO data = (NoticeVO)request.getAttribute("data");
+ReplyVO3 param = (ReplyVO3)request.getAttribute("param");
+ReplyVO3 data = (ReplyVO3)request.getAttribute("data");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
@@ -60,7 +60,7 @@ NoticeVO data = (NoticeVO)request.getAttribute("data");
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>공지사항 - [수정]</h2>
+					<h2>Q&A - [수정]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -79,40 +79,12 @@ NoticeVO data = (NoticeVO)request.getAttribute("data");
 								</colgroup>
 								<tbody>
 									<tr>
-										<th scope="row"><label for="">종류</label></th>
-										<td>
-											<select name="type">
-												<%=CodeUtil.getTypeOption(data.getType())%>
-											</select>
-										</td>
-										<th scope="row"><label for="">상태</label></th>
-										<td>
-											<select name="display">
-												<%=CodeUtil.getDisplayOption(data.getDisplay())%>
-											</select>
-										</td>
 										<th scope="row"><label for="">등록일</label></th>
 										<td>
-											<input type="text" id="cre_date" name="cre_date" class="inputTitle" value="<%=DateUtil.getDateTimeFormat(data.getCre_date())%>" title="등록일을 입력해주세요"/>&nbsp;
+											<input type="text" id="cre_date" name="cre_date" class="inputTitle" value="<%=DateUtil.getDateTimeFormat(data.getRegistdate())%>" title="등록일을 입력해주세요"/>&nbsp;
 											<span id="CalregistdateIcon">
 												<img src="/manage/img/calendar_icon.png" id="CalregistdateIconImg" style="cursor:pointer;"/>
 											</span>
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><label for="">첨부파일</label></th>
-										<td colspan="10">
-											<% if (data.getFilename() == null || "".equals(data.getFilename())) { %>
-											<input type="file" name="filename_tmp" id="filename_tmp" title="첨부파일" />
-											<% } else { %>
-												<div class="weidtFile">
-													<p>기존파일 : <a href="<%= Function.downloadUrl(SiteProperty.NOTICE_UPLOAD_PATH, java.net.URLEncoder.encode(data.getFilename_org(), "UTF-8"), data.getFilename()) %>" target="_blank"><%= Function.checkNull(data.getFilename_org()) %> [<%= Function.getFileSize(data.getFilesize())%>]</a><br />
-														<input type="checkbox" id="filename_chk" name="filename_chk" value="1" title="첨부파일을 삭제하시려면 체크해주세요" />
-														<label for="file_name_chk">기존파일삭제</label>
-													</p>
-													<input type="file" name="filename_tmp" id="filename_tmp" title="첨부파일을 업로드 해주세요." />
-												</div>
-											<% } %>											
 										</td>
 									</tr>
 									<tr>
@@ -122,6 +94,7 @@ NoticeVO data = (NoticeVO)request.getAttribute("data");
 										</td>
 									</tr>
 									<tr>
+										<th scope="row"><label for="">질문내용</label></th>
 										<td colspan="10">
 											<textarea id="contents" name="contents" title="내용을 입력해주세요" style="width:100%;"><%=Function.checkNull(data.getContents())%></textarea>	
 										</td>
@@ -130,10 +103,7 @@ NoticeVO data = (NoticeVO)request.getAttribute("data");
 							</table>
 								<input type="hidden" name="stype" id="stype" value="<%=param.getStype()%>"/>
 								<input type="hidden" name="sval" id="sval" value="<%=param.getSval()%>"/>
-								<input type="hidden" name="cmd" id="cmd" value="reply"/>
-								<input type="hidden" name="gno" id="gno" value="<%=data.getGno()%>"/>
-								<input type="hidden" name="ono" id="ono" value="<%=data.getOno()%>"/>
-								<input type="hidden" name="nested" id="nested" value="<%=data.getGno()%>"/>
+								<input type="hidden" name="cmd" id="cmd" value="edit"/>
 								<input type="hidden" name="no" id="no" value="<%=data.getNo()%>"/>
 								<input type="hidden" name="writer" value="<%=request.getAttribute("admin_no")%>" />
 							</form>

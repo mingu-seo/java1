@@ -1,11 +1,11 @@
 <%@ page contentType="text/html; charset=utf-8" %>
-<%@ page import="board.reply.*" %>
+<%@ page import="board.reply3.*" %>
 <%@ page import="property.SiteProperty" %>
 <%@ page import="util.*" %>
 <%@ page import="java.util.*" %>
 <%
-ReplyVO param = (ReplyVO)request.getAttribute("vo");
-ArrayList<ReplyVO> list = (ArrayList)request.getAttribute("list");
+ReplyVO3 param = (ReplyVO3)request.getAttribute("vo");
+ArrayList<ReplyVO3> list = (ArrayList)request.getAttribute("list");
 int totCount = (Integer)request.getAttribute("totCount");
 int totPage = (Integer)request.getAttribute("totPage");
 %>
@@ -67,7 +67,8 @@ function goSearch() {
 									<col class="w5" />
 									<col class="w5" />
 									<col class="w5" />
-									<col class="w6" />
+									<col class="w5" />
+									<col class="w5" />
 								</colgroup>
 								<thead>
 									<tr>
@@ -76,6 +77,7 @@ function goSearch() {
 										<th scope="col">제목</th> 
 										<th scope="col">작성일</th> 
 										<th scope="col">작성자</th> 
+										<th scope="col">답변</th> 
 										<th scope="col" class="last">삭제</th>
 									</tr>
 								</thead>
@@ -88,7 +90,7 @@ function goSearch() {
 									 } else {
 										String targetUrl = "";
 										String topClass = "";
-										ReplyVO data;
+										ReplyVO3 data;
 										for (int i=0; i<list.size(); i++) {
 											data = list.get(i);
 											targetUrl = "style='cursor:pointer;' onclick=\"location.href='"+param.getTargetURLParam("edit.do", param, data.getNo())+"'\"";
@@ -98,7 +100,7 @@ function goSearch() {
 										<td <%=targetUrl%>><%=totCount - ((param.getReqPageNo()-1)*param.getPageRows()) - i%></td>
 										<td <%=targetUrl%> class="title">
 											<% for (int j=0; j<data.getNested(); j++) { %>
-											&nbsp;&nbsp;&nbsp;&nbsp;
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<% } %>
 											<% if (data.getNested() > 0) { %>
 											<img src="/img/ico_re.png"/>
@@ -107,6 +109,7 @@ function goSearch() {
 										</td>
 										<td <%=targetUrl%>><%=DateUtil.getDateFormat(data.getRegistdate())%></td>
 										<td <%=targetUrl%>> <%=(data.getName())%></td>
+										<td class="last"><input type="button" value="답변" onclick="location.href='reply.do?no=<%=list.get(i).getNo()%>';"/></td>
 										<td class="last"><input type="button" value="삭제" onclick="goDelete(<%=data.getNo()%>);"/></td>
 									</tr>
 								<%

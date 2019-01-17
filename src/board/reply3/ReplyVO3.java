@@ -1,11 +1,11 @@
-package board.reply;
+package board.reply3;
 
 import java.sql.Timestamp;
 
 import property.SiteProperty;
 import util.Parameter;
 
-public class ReplyVO extends Parameter {
+public class ReplyVO3 extends Parameter {
 
 	private int no;
 	private int member_fk;
@@ -42,14 +42,14 @@ public class ReplyVO extends Parameter {
 
 	
 
-	public ReplyVO() {
+	public ReplyVO3() {
 		super.setPageRows(10);
 	}
 	/**
 	 * 생성자 페이지로우수 세팅
 	 * @param pageRows 페이지 로우수
 	 */
-	public ReplyVO(int pageRows, String tablename) {
+	public ReplyVO3(int pageRows, String tablename) {
 		super.setPageRows(pageRows);
 		super.setTablename(tablename);
 		super.setDb_encryption(SiteProperty.DB_ENCRYPTION);

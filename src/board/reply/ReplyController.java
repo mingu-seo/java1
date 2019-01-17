@@ -2,6 +2,8 @@ package board.reply;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,5 +31,13 @@ public class ReplyController {
 		model.addAttribute("vo", param);
 		
 		return "manage/board/qna/index";
+	}
+	@RequestMapping("/manage/board/qna/write.do")
+	public String write(Model model, NoticeVO param, HttpServletRequest request) throws Exception {
+		AdminVO adminInfo = (AdminVO)request.getSession().getAttribute("adminInfo");
+		model.addAttribute("admin_no", adminInfo.getNo());
+		model.addAttribute("vo", param);
+		
+		return "manage/board/qna/write";
 	}
 }

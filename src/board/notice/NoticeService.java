@@ -46,6 +46,13 @@ public class NoticeService {
 			vo.setFilename_org(fu.getSrcName());
 			vo.setFilesize(fu.getSrcSize());
 		}
+		MultipartFile file2= (MultipartFile)fileMap.get("filename_tmp2");
+		if (!file2.isEmpty()) {
+			fu.upload(file2, SiteProperty.NOTICE_UPLOAD_PATH, SiteProperty.REAL_PATH, "notice");
+			vo.setFilename2(fu.getName());
+			vo.setFilename_org2(fu.getSrcName());
+			vo.setFilesize2(fu.getSrcSize());
+		}
 		
 	
 		int lastNo = (Integer)noticeDao.insert(vo);
@@ -74,11 +81,23 @@ public class NoticeService {
 			vo.setFilename_org(fu.getSrcName());
 			vo.setFilesize(fu.getSrcSize());
 		}
+		MultipartFile file2= (MultipartFile)fileMap.get("filename_tmp2");
+		if (!file2.isEmpty()) {
+			fu.upload(file2, SiteProperty.NOTICE_UPLOAD_PATH, SiteProperty.REAL_PATH, "notice");
+			vo.setFilename2(fu.getName());
+			vo.setFilename_org2(fu.getSrcName());
+			vo.setFilesize2(fu.getSrcSize());
+		}
 		
 		int r = (Integer)noticeDao.update(vo);
 		if(r > 0){
 			if("1".equals(vo.getFilename_chk()) || !"".equals(Function.checkNull(vo.getFilename()))){
 				Function.fileDelete(vo.getUploadPath(), data.getFilename());
+			}
+		}
+		if(r > 0){
+			if("1".equals(vo.getFilename_chk2()) || !"".equals(Function.checkNull(vo.getFilename2()))){
+				Function.fileDelete(vo.getUploadPath(), data.getFilename2());
 			}
 		}
 		return r;
@@ -90,6 +109,7 @@ public class NoticeService {
 		int r = noticeDao.delete(vo);
 		if (r > 0) {
 			Function.fileDelete(vo.getUploadPath(), data.getFilename());
+			Function.fileDelete(vo.getUploadPath(), data.getFilename2());
 		}
 		return r;
 	}
@@ -105,6 +125,7 @@ public class NoticeService {
 				if (r > 0) {
 					delCount++;
 					Function.fileDelete(vo.getUploadPath(), data.getFilename());
+					Function.fileDelete(vo.getUploadPath(), data.getFilename2());
 				}
 			}
 		}

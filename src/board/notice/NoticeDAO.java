@@ -90,6 +90,6 @@ public class NoticeDAO extends SqlMapClientDAOSupport {
 		NoticeVO vo = new NoticeVO();
 		vo.setTablename("notice");
 		
-		dao.count(vo);
+		dao.list(vo);
 	}
 }

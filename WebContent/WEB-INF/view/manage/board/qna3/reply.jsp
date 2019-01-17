@@ -1,10 +1,11 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page import="java.util.*" %>
-<%@ page import="board.reply.*" %>
+<%@ page import="board.reply3.*" %>
 <%@ page import="manage.admin.*" %>
 <%@ page import="util.*" %>
 <%
-ReplyVO param = (ReplyVO)request.getAttribute("vo");
+ReplyVO3 param = (ReplyVO3)request.getAttribute("vo");
+ReplyVO3 data = (ReplyVO3)request.getAttribute("data");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
@@ -51,7 +52,7 @@ ReplyVO param = (ReplyVO)request.getAttribute("vo");
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>질문 - [쓰기]</h2>
+					<h2>답변 - [쓰기]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -70,6 +71,12 @@ ReplyVO param = (ReplyVO)request.getAttribute("vo");
 								</colgroup>
 								<tbody>
 									<tr>
+										<th scope="row"><label for="">*제목</label></th>
+										<td colspan="10">
+											<input type="text" id="title" name="title" class="w100" title="제목을 입력해주세요" />	
+										</td>
+									</tr>
+									<tr>
 										<th scope="row"><label for="">등록일</label></th>
 										<td>
 											<input type="text" id="cre_date" name="cre_date" class="inputTitle" value="<%=DateUtil.getFullToday()%>" title="등록일을 입력해주세요" />&nbsp;
@@ -85,7 +92,7 @@ ReplyVO param = (ReplyVO)request.getAttribute("vo");
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">*질문내용</label></th>
+										<th scope="row"><label for="">*답변내용</label></th>
 										<td colspan="10">
 											<textarea id="contents" name="contents" title="내용을 입력해주세요" style="width:100%;"></textarea>	
 										</td>
@@ -93,8 +100,11 @@ ReplyVO param = (ReplyVO)request.getAttribute("vo");
 									
 								</tbody>
 							</table>
-							<input type="hidden" name="cmd" value="write" />
+							<input type="hidden" name="cmd" value="reply" />
 							<input type="hidden" name="writer" value="<%=request.getAttribute("admin_no")%>" />
+							<input type="hidden" name="gno" value="<%=data.getGno()%>" />
+							<input type="hidden" name="ono" value="<%=data.getOno()%>" />
+							<input type="hidden" name="nested" value="<%=data.getNested()%>" />
 							</form>
 							<div class="btn">
 								<div class="btnLeft">

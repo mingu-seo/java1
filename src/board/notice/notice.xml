@@ -44,10 +44,10 @@
     <insert id="insert" parameterClass="notice_vo">
         INSERT INTO $tablename$ (
         	type, writer, title, contents, cre_date, readno,
-        	filename_org, filename, filesize, display
+        	filename_org, filename, filesize, filename_org2, filename2, filesize2, display
         ) VALUES (
         	#type#, #writer#, #title#, #contents#, now(), #readno#,
-        	#filename_org#, #filename#, #filesize#, #display#
+        	#filename_org#, #filename#, #filesize#, #filename_org2#, #filename2#, #filesize2#, #display#
         )
         <selectKey keyProperty="no" resultClass="Integer">
         	SELECT LAST_INSERT_ID()
@@ -71,6 +71,14 @@
         		filename=#filename#, filename_org=#filename_org#, filesize=#filesize#,
         	</isNotNull>
         </isNotEqual>
+        <isEqual property="filename_chk2" compareValue="1">
+        	filename2='', filename_org2='', filesize2=0,
+        </isEqual>
+        <isNotEqual property="filename2" compareValue="">
+            <isNotNull property="filename2">
+        		filename2=#filename2#, filename_org2=#filename_org2#, filesize2=#filesize2#,
+        	</isNotNull>
+        </isNotEqual>
         	contents=#contents#
         WHERE no = #no#
     </update>
@@ -86,6 +94,14 @@
     	<![CDATA[
         SELECT 
         	file_name
+        FROM $tablename$
+        where no = #no#
+        ]]>
+    </select> 
+    <select id="filenames2" parameterClass="notice_vo" resultClass="notice_vo">
+    	<![CDATA[
+        SELECT 
+        	file_name2
         FROM $tablename$
         where no = #no#
         ]]>
