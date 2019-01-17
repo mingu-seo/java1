@@ -1,10 +1,11 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page import="java.util.*" %>
-<%@ page import="board.notice.*" %>
-<%@ page import="manage.admin.*" %>
+<%@ page import="board.reply1.*" %>
 <%@ page import="util.*" %>
+<%@ page import="property.*" %>
 <%
-NoticeVO param = (NoticeVO)request.getAttribute("vo");
+Reply1VO param = (Reply1VO)request.getAttribute("param");
+Reply1VO data = (Reply1VO)request.getAttribute("data");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
@@ -12,13 +13,16 @@ NoticeVO param = (NoticeVO)request.getAttribute("vo");
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/manage/include/headHtml.jsp" %>
 <script>
-	var oEditors; // 에디터 객체 담을 곳
-	jQuery(window).load(function(){
-		oEditors = setEditor("contents"); // 에디터 셋팅
-		initCal({id:"cre_date",type:"day",today:"y",timeYN:"y"});
-	});
+	
 	
 	function goSave() {
+		var regex=/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i; 
+			var regex2=/[0-9]{4}[\-][0-1][0-9][\-][0-3][0-9]\s[0-2][0-9]:[0-6][0-9]:[0-6][0-9]$/i; 
+			if(!regex2.test($("#cre_date").val())){
+				alert('잘못된 날짜 형식입니다.\\n올바로 입력해 주세요.\\n ex)2013-02-14 03:28:85.0');
+				$("#cre_date").focus();
+				return false;
+			} 
 		if ($("#title").val() == "") {
 			alert('제목을 입력하세요.');
 			$("#title").focus();
@@ -32,10 +36,9 @@ NoticeVO param = (NoticeVO)request.getAttribute("vo");
 		} else {
 			oEditors.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []);	// 에디터의 내용이 textarea에 적용됩니다.
 		}
+		
 		return true;
 	}
-	
-	
 </script>
 </head>
 <body> 
@@ -51,40 +54,27 @@ NoticeVO param = (NoticeVO)request.getAttribute("vo");
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>공지사항 - [쓰기]</h2>
+					<h2>공지사항 - [읽기]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->
 					<div id="bbs">
 						<div id="bread">
-							<form method="post" name="frm" id="frm" action="<%=Function.getSslCheckUrl(request.getRequestURL())%>/process.do" enctype="multipart/form-data" onsubmit="return goSave();">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 								<colgroup>
 									<col width="10%" />
 									<col width="15%" />
 									<col width="10%" />
-									<col width="10%" />
-									<col width="10%" />
 									<col width="15%" />
+									<col width="25%" />
+									<col width="25%" />
 								</colgroup>
 								<tbody>
 									<tr>
-										<th scope="row"><label for="">종류</label></th>
-										<td>
-											<select name="type">
-												<%=CodeUtil.getTypeOption(1) %>
-											</select>
-										</td>
-										<th scope="row"><label for="">상태</label></th>
-										<td>
-											<select name="display">
-												<%=CodeUtil.getDisplayOption(0) %>
-											</select>
-										</td>
 										<th scope="row"><label for="">등록일</label></th>
 										<td>
-											<input type="text" id="cre_date" name="cre_date" class="inputTitle" value="<%=DateUtil.getFullToday()%>" title="등록일을 입력해주세요" />&nbsp;
+											<input type="text" id="cre_date" name="cre_date" class="inputTitle" value="<%=DateUtil.getDateTimeFormat(data.getRegistdate())%>" disabled title="등록일을 입력해주세요"/>&nbsp;
 											<span id="CalregistdateIcon">
 												<img src="/manage/img/calendar_icon.png" id="CalregistdateIconImg" style="cursor:pointer;"/>
 											</span>
@@ -93,33 +83,34 @@ NoticeVO param = (NoticeVO)request.getAttribute("vo");
 									<tr>
 										<th scope="row"><label for="">첨부파일</label></th>
 										<td colspan="10">
-											<input type="file" id="filename_tmp" name="filename_tmp" class="w100" title="첨부파일을 업로드 해주세요." />	
+											<% if (data.getFilename() != null && !"".equals(data.getFilename())) { %>
+												<div class="weidtFile">
+													<p><a href="<%= Function.downloadUrl(SiteProperty.REPLY_UPLOAD_PATH, java.net.URLEncoder.encode(data.getFilename_org(), "UTF-8"), data.getFilename()) %>" target="_blank"><%= Function.checkNull(data.getFilename_org()) %> [<%= Function.getFileSize(data.getFilesize())%>]</a><br />
+												</div>
+											<% } %>											
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">*제목</label></th>
+										<th scope="row"><label for="">제목</label></th>
 										<td colspan="10">
-											<input type="text" id="title" name="title" class="w100" title="제목을 입력해주세요" />	
+											<input type="text" id="title" name="title" class="w50" title="제목을 입력해주세요" disabled value="<%=Function.checkNull(data.getTitle())%>" />	
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">*내용</label></th>
-										<td colspan="10">
-											<textarea id="contents" name="contents" title="내용을 입력해주세요" style="width:100%;"></textarea>	
-										</td>
+										<th scope="row"><label for="">내용</label></th>
+											<td colspan="10">
+												<%=Function.checkNull(data.getContents())%><br/>
+											</td>
 									</tr>
-									
 								</tbody>
 							</table>
-							<input type="hidden" name="cmd" value="write" />
-							<input type="hidden" name="writer" value="<%=request.getAttribute("admin_no")%>" />
-							</form>
 							<div class="btn">
 								<div class="btnLeft">
 									<a class="btns" href="<%=param.getTargetURLParam("index.do", param, 0)%>"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
-									<a class="btns" style="cursor:pointer;" onclick="$('#frm').submit();"><strong>저장</strong></a>
+									<a class="btns" style="cursor:pointer;" href="edit.do?no=<%=data.getNo()%>"><strong>수정</strong></a>
+									<a class="btns" style="cursor:pointer;" href="reply.do?no=<%=data.getNo()%>"><strong>답변</strong></a>
 								</div>
 							</div>
 							<!--//btn-->

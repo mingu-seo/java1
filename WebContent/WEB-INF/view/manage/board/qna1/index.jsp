@@ -1,11 +1,11 @@
 <%@ page contentType="text/html; charset=utf-8" %>
-<%@ page import="board.reply.*" %>
+<%@ page import="board.reply1.*" %>
 <%@ page import="property.SiteProperty" %>
 <%@ page import="util.*" %>
 <%@ page import="java.util.*" %>
 <%
-ReplyVO param = (ReplyVO)request.getAttribute("vo");
-ArrayList<ReplyVO> list = (ArrayList)request.getAttribute("list");
+Reply1VO param = (Reply1VO)request.getAttribute("vo");
+ArrayList<Reply1VO> list = (ArrayList)request.getAttribute("list");
 int totCount = (Integer)request.getAttribute("totCount");
 int totPage = (Integer)request.getAttribute("totPage");
 %>
@@ -77,7 +77,6 @@ function goSearch() {
 										<th scope="col">번호</th>
 										<th scope="col">종류</th>
 										<th scope="col">제목</th> 
-										<th scope="col">노출여부</th> 
 										<th scope="col">작성일</th> 
 										<th scope="col">작성자</th> 
 										<th scope="col">조회수</th>
@@ -93,10 +92,10 @@ function goSearch() {
 									 } else {
 										String targetUrl = "";
 										String topClass = "";
-										ReplyVO data;
+										Reply1VO data;
 										for (int i=0; i<list.size(); i++) {
 											data = list.get(i);
-											targetUrl = "style='cursor:pointer;' onclick=\"location.href='"+param.getTargetURLParam("edit.do", param, data.getNo())+"'\"";
+											targetUrl = "style='cursor:pointer;' onclick=\"location.href='"+param.getTargetURLParam("read.do", param, data.getNo())+"'\"";
 								%>
 									<tr <%=topClass%>>
 										<td class="first"><input type="checkbox" name="no" id="no" value="<%=data.getNo()%>"/></td>
@@ -111,9 +110,8 @@ function goSearch() {
 											<% } %>
 											<%=data.getTitle()%>
 										</td>
-										<td <%=targetUrl%>></td>
 										<td <%=targetUrl%>><%=DateUtil.getDateFormat(data.getRegistdate())%></td>
-										<td <%=targetUrl%>> <%=(data.getName())%></td>
+										<td <%=targetUrl%>><%=data.getName()%></td>
 										<td <%=targetUrl%>><%=data.getReadno()%></td>
 										<td class="last"><input type="button" value="삭제" onclick="goDelete(<%=data.getNo()%>);"/></td>
 									</tr>

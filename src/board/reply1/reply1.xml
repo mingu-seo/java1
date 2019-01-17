@@ -2,7 +2,7 @@
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="reply">
     
-    <typeAlias alias="reply_vo" type="board.reply.ReplyVO"/>
+    <typeAlias alias="reply_vo" type="board.reply1.Reply1VO"/>
     
     <!-- 공통조건 -->
 	<sql id="searchSql">		

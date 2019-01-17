@@ -1,17 +1,23 @@
-package board.reply;
+package board.reply1;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import db.SqlMapClientDAOSupport;
+import property.SiteProperty;
+import util.FileUtil;
 import util.Function;
 import util.Page;
 
 @Repository
-public class ReplyDAO extends SqlMapClientDAOSupport {
+public class Reply1DAO extends SqlMapClientDAOSupport {
 
 	/**
 	 * 총 글 수, 총 글 페이지
@@ -19,7 +25,7 @@ public class ReplyDAO extends SqlMapClientDAOSupport {
 	 * @return rowPageCount Integer[]
 	 * @throws SQLException
 	 */
-	public int[] count(ReplyVO vo) throws SQLException {
+	public int[] count(Reply1VO vo) throws SQLException {
 		int rowCount = (Integer)getSqlMapClient().queryForObject("reply.count", vo);
 		int[] rowPageCount = new int[2];
 		int pageCount = Page.getPageCount(vo.getPageRows(), rowCount);
@@ -34,7 +40,7 @@ public class ReplyDAO extends SqlMapClientDAOSupport {
 	 * @return ArrayList
 	 * @throws SQLException
 	 */
-	public ArrayList list(ReplyVO vo) throws SQLException {
+	public ArrayList list(Reply1VO vo) throws SQLException {
 		ArrayList list = (ArrayList)getSqlMapClient().queryForList("reply.list", vo);
 		return list;
 	}
@@ -45,8 +51,17 @@ public class ReplyDAO extends SqlMapClientDAOSupport {
 	 * @return no Integer
 	 * @throws SQLException
 	 */
-	public int insert(ReplyVO vo) throws SQLException {
-		vo.setFilesize(Function.getFileSize(vo.getUploadPath(), vo.getFilename()));	// 파일 사이즈 구하기
+	public int insert(Reply1VO vo, HttpServletRequest request) throws Exception {
+		FileUtil fu = new FileUtil();
+		Map fileMap = fu.getFileMap(request);
+		MultipartFile file= (MultipartFile)fileMap.get("filename_tmp");
+		if (!file.isEmpty()) {
+			System.out.println("파일업로드 가나?");
+			fu.upload(file, SiteProperty.REPLY_UPLOAD_PATH, SiteProperty.REAL_PATH, "reply");
+			vo.setFilename(fu.getName());
+			vo.setFilename_org(fu.getSrcName());
+			vo.setFilesize(fu.getSrcSize());
+		}
 		int maxGno = (Integer)getSqlMapClient().queryForObject("reply.getMaxGno",vo);
 		vo.setGno(maxGno);
 		int no = (Integer)getSqlMapClient().insert("reply.insert",vo);
@@ -63,7 +78,7 @@ public class ReplyDAO extends SqlMapClientDAOSupport {
 	 * @return no Integer
 	 * @throws SQLException
 	 */
-	public int reply(ReplyVO vo) throws SQLException {
+	public int reply(Reply1VO vo) throws SQLException {
 		vo.setFilesize(Function.getFileSize(vo.getUploadPath(), vo.getFilename()));	// 파일 사이즈 구하기
 		int maxOno = (Integer)getSqlMapClient().queryForObject("reply.getMaxOno",vo);
 		int minOno = (Integer)getSqlMapClient().queryForObject("reply.getMinOno",vo);
@@ -88,18 +103,27 @@ public class ReplyDAO extends SqlMapClientDAOSupport {
 	 * @param vo
 	 * @throws SQLException
 	 */
-	public int update(ReplyVO vo) throws SQLException {
-		vo.setFilesize(Function.getFileSize(vo.getUploadPath(), vo.getFilename()));	// 파일 사이즈 구하기
-		int r = getSqlMapClient().update("reply.update", vo);
-		ReplyVO data = (ReplyVO)getSqlMapClient().queryForObject("reply.filenames", vo);
-		if(r > 0){
+	public int update(Reply1VO vo, HttpServletRequest request) throws Exception {
+
+		Reply1VO data = (Reply1VO)getSqlMapClient().queryForObject("reply.filenames", vo);
+		if(data != null){
+			System.out.println("체크:"+vo.getFilename_chk());
 			if("1".equals(vo.getFilename_chk()) || !"".equals(Function.checkNull(vo.getFilename()))){
-				Function.fileDelete(vo.getUploadPath(), data.getFilename());
-			}
-			if("1".equals(vo.getImagename_chk()) || !"".equals(Function.checkNull(vo.getImagename()))){
-				Function.fileDelete(vo.getUploadPath(), data.getImagename());
+				Function.fileDelete(SiteProperty.REAL_PATH+SiteProperty.REPLY_UPLOAD_PATH, data.getFilename());
 			}
 		}	
+		
+		FileUtil fu = new FileUtil();
+		Map fileMap = fu.getFileMap(request);
+		MultipartFile file= (MultipartFile)fileMap.get("filename_tmp");
+		if (!file.isEmpty()) {
+			fu.upload(file, SiteProperty.REPLY_UPLOAD_PATH, SiteProperty.REAL_PATH, "reply");
+			vo.setFilename(fu.getName());
+			vo.setFilename_org(fu.getSrcName());
+			vo.setFilesize(fu.getSrcSize());
+		}
+		
+		int r = getSqlMapClient().update("reply.update", vo);
 		return r;
 	}
 
@@ -111,21 +135,8 @@ public class ReplyDAO extends SqlMapClientDAOSupport {
 	 * @return
 	 * @throws SQLException
 	 */
-	public ReplyVO read(ReplyVO vo, boolean userCon) throws SQLException {
-		ReplyVO data = (ReplyVO)getSqlMapClient().queryForObject("reply.read", vo);
-		
-		vo.setRownum((Integer)getSqlMapClient().queryForObject("reply.getRowNum", vo));			// 해당no rownum구하기
-		ReplyVO prev = (ReplyVO)getSqlMapClient().queryForObject("reply.getPrevRowNum", vo);	// 이전글 no, title 구하기
-		ReplyVO next = (ReplyVO)getSqlMapClient().queryForObject("reply.getNextRowNum", vo);	// 다음글 no, title 구하기
-		
-		if (prev != null) {
-			data.setPrev_no(prev.getPrev_no());			// 이전글 번호		
-			data.setPrev_title(prev.getPrev_title());	// 이전글 제목
-		}
-		if (next != null) {
-			data.setNext_no(next.getNext_no());			// 다음글 번호
-			data.setNext_title(next.getNext_title());	// 다음글 제목
-		}
+	public Reply1VO read(Reply1VO vo, boolean userCon) throws SQLException {
+		Reply1VO data = (Reply1VO)getSqlMapClient().queryForObject("reply.read", vo);
 		
 		if (userCon) {
 			getSqlMapClient().update("reply.updateReadno", vo);
@@ -139,8 +150,8 @@ public class ReplyDAO extends SqlMapClientDAOSupport {
 	 * @param no
 	 * @throws SQLException
 	 */
-	public int delete(ReplyVO vo) throws SQLException {
-		ReplyVO data = (ReplyVO)getSqlMapClient().queryForObject("reply.read", vo);
+	public int delete(Reply1VO vo) throws SQLException {
+		Reply1VO data = (Reply1VO)getSqlMapClient().queryForObject("reply.read", vo);
 		int r = getSqlMapClient().delete("reply.delete", vo);
 		if (r > 0) {
 			Function.fileDelete(vo.getUploadPath(), data.getFilename());
@@ -159,7 +170,7 @@ public class ReplyDAO extends SqlMapClientDAOSupport {
 	 * @return boolean
 	 * @throws SQLException
 	 */
-	public boolean checkPassword(ReplyVO vo) throws SQLException {
+	public boolean checkPassword(Reply1VO vo) throws SQLException {
 		Integer cnt = (Integer)getSqlMapClient().queryForObject("reply.checkPassword", vo);
 		if (cnt > 0) {
 			return true;
@@ -169,8 +180,8 @@ public class ReplyDAO extends SqlMapClientDAOSupport {
 	}
 
 	public static void main(String[] args) throws Exception {
-		ReplyDAO rd = new ReplyDAO();
-		ReplyVO vo = new ReplyVO(10, "reply");
+		Reply1DAO rd = new Reply1DAO();
+		Reply1VO vo = new Reply1VO(10, "reply");
 		
 		
 		// 등록
