@@ -180,17 +180,17 @@ public class ReplyDAO extends SqlMapClientDAOSupport {
 //		vo.setMain("0");
 //		vo.setNewicon("0");
 //		vo.setEmail("withsky999@gmail.com");
-//		vo.setTitle("답변게시판 테스트");
+//		vo.setTitle("답변게시판 테스트2");
 //		vo.setContents("내용내용");
 //		System.out.println(rd.insert(vo));
 
-		int[] cnt = rd.count(vo);
-		System.out.println(cnt[0]+"   "+cnt[1]);
-
-		vo.setNo(7);
-		ReplyVO data = rd.read(vo, false);
-		System.out.println(data.getNo()+"\t"+data.getTitle()+"\t"+data.getContents());
-
+//		int[] cnt = rd.count(vo);
+//		System.out.println(cnt[0]+"   "+cnt[1]);
+//
+//		vo.setNo(7);
+//		ReplyVO data = rd.read(vo, false);
+//		System.out.println(data.getNo()+"\t"+data.getTitle()+"\t"+data.getContents());
+//
 		// 답변
 		vo.setPassword("111");
 		vo.setName("답변자");
@@ -201,6 +201,9 @@ public class ReplyDAO extends SqlMapClientDAOSupport {
 		vo.setTop("0");
 		vo.setMain("0");
 		vo.setNewicon("0");
+		
+		vo.setOno(2);
+		vo.setNested(2);
 		System.out.println(rd.reply(vo));
 
 		//목록
