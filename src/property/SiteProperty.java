@@ -103,5 +103,6 @@ public class SiteProperty {
 	 */
 	public static final String NOTICE_UPLOAD_PATH		= "/upload/notice/";
 	public static final String MOVIE_UPLOAD_PATH		= "/upload/movie/";
+	public static final String MEMBER_UPLOAD_PATH		= "/upload/member/";
 
 }

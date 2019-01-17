@@ -3,10 +3,11 @@ package member;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Repository;
 
 import db.SqlMapClientDAOSupport;
-import member.MemberVO;
 
 @Repository
 public class MemberDAO extends SqlMapClientDAOSupport {
@@ -33,7 +34,7 @@ public class MemberDAO extends SqlMapClientDAOSupport {
 	 * @return no 마지막 등록된 no
 	 * @throws SQLException
 	 */
-	public int insert(MemberVO vo) throws SQLException {
+	public int insert(MemberVO vo, HttpServletRequest request) throws SQLException {
 		return (Integer) getSqlMapClient().insert("member.insert", vo);
 	}
 	

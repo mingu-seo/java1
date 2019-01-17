@@ -27,17 +27,17 @@ function loginCheck1(){
 	}
 	var f = document.board1;
 	if (f.reg1.checked==true) {
-	   document.cookie = "cookie_userid=" + f.email1.value + ";path=/;expires=Sat, 31 Dec 2050 23:59:59 GMT;";
+	   document.cookie = "cookie_useremail=" + f.email1.value + ";path=/;expires=Sat, 31 Dec 2050 23:59:59 GMT;";
 	} else {
 	   var now = new Date();	
-	   document.cookie = "cookie_userid=" + f.email1.value + ";path=/;expires="+now.getTime();
+	   document.cookie = "cookie_useremail=" + f.email1.value + ";path=/;expires="+now.getTime();
 	}
 	return true;
 }
 
 function useremail_chk1() {
 	var f=document.board1;
-	var useremail = CookieVal("cookie_userid");
+	var useremail = CookieVal("cookie_useremail");
 	
 	if (useremail=="null"){	
 		f.email1.focus();

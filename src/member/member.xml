@@ -34,9 +34,9 @@
      
     <insert id="insert" parameterClass="member_vo" >
         insert into member
-        	(name, birth, email, pw, gender, hp, credate, moddate)
+        	(name, birth, email, pw, gender, hp, credate, moddate, filename)
         values
-        	(#name#, #birth#, #email#, password(#pw#), #gender#, #hp#, now(), now())
+        	(#name#, #birth#, #email#, password(#pw#), #gender#, #hp#, now(), now(), #filename#)
         <selectKey keyProperty="no" resultClass="Integer">
 			SELECT  LAST_INSERT_ID()
 		</selectKey>

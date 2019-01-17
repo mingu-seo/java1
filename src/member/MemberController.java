@@ -269,7 +269,7 @@ public class MemberController {
 		model.addAttribute("vo", param);
 		
 		if ("write.do".equals(param.getCmd())) {
-			int r = memberService.insert(param);
+			int r = memberService.insert(param, request);
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "정상적으로 등록되었습니다.", "등록실패"));
 			model.addAttribute("url", "index.do");
@@ -306,7 +306,7 @@ public class MemberController {
 		model.addAttribute("vo", param);
 		
 		if ("write.do".equals(param.getCmd())) {
-			int r = memberService.insert(param);
+			int r = memberService.insert(param, request);
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "정상적으로 등록되었습니다.", "등록실패"));
 			model.addAttribute("url", "/index.do");

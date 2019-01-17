@@ -33,17 +33,17 @@ function loginCheck(){
 	}
 	var f = document.board;
 	if (f.reg.checked==true) { <!-- reg(이미지 저장) 체크되어있는지 확인 -->
-	   document.cookie = "cookie_useremail=" + f.loginEmail.value + ";path=/;expires=Sat, 31 Dec 2050 23:59:59 GMT;";
+	   document.cookie = "cookie_userloginEmail=" + f.loginEmail.value + ";path=/;expires=Sat, 31 Dec 2050 23:59:59 GMT;";
 	} else {
 	   var now = new Date();	
-	   document.cookie = "cookie_useremail=" + f.loginEmail.value + ";path=/;expires="+now.getTime();
+	   document.cookie = "cookie_userloginEmail=" + f.loginEmail.value + ";path=/;expires="+now.getTime();
 	}
 	return true;
 }
 
 function useremail_chk() {
 	var f=document.board;
-	var useremail = CookieVal("cookie_useremail");
+	var useremail = CookieVal("cookie_userloginEmail");
 	
 	if (useremail=="null"){	
 		f.loginEmail.focus();
