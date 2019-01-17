@@ -39,4 +39,5 @@
 	<sqlMap resource="board/event/event.xml"/>		
 	<sqlMap resource="member/member.xml"/>	
 	<sqlMap resource="movie/movie.xml"/>	
+	<sqlMap resource="board/reply/reply.xml"/>	
 </sqlMapConfig>
