@@ -1,11 +1,11 @@
-package board.reply;
+package board.reply1;
 
 import java.sql.Timestamp;
 
 import property.SiteProperty;
 import util.Parameter;
 
-public class ReplyVO extends Parameter {
+public class Reply1VO extends Parameter {
 
 	private int no;
 	private int hospital_fk;
@@ -50,14 +50,14 @@ public class ReplyVO extends Parameter {
 	private String chkflag;			// spam입력
 	private String cur_password;	// 비로그인시 자기글 확인
 
-	public ReplyVO() {
+	public Reply1VO() {
 		super.setPageRows(10);
 	}
 	/**
 	 * 생성자 페이지로우수 세팅
 	 * @param pageRows 페이지 로우수
 	 */
-	public ReplyVO(int pageRows, String tablename) {
+	public Reply1VO(int pageRows, String tablename) {
 		super.setPageRows(pageRows);
 		super.setTablename(tablename);
 		super.setDb_encryption(SiteProperty.DB_ENCRYPTION);
