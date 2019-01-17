@@ -50,7 +50,9 @@ public class ReplyVO extends Parameter {
 	private String chkflag;			// spam입력
 	private String cur_password;	// 비로그인시 자기글 확인
 
-	public ReplyVO() {}
+	public ReplyVO() {
+		super.setPageRows(10);
+	}
 	/**
 	 * 생성자 페이지로우수 세팅
 	 * @param pageRows 페이지 로우수
