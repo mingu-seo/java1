@@ -19,14 +19,10 @@
 			<property name="JDBC.Driver" value="com.mysql.jdbc.Driver"/>
 			<property name="JDBC.ConnectionURL" value="jdbc:mysql://192.168.0.21:3306/movie?useUnicode=true&amp;characterEncoding=utf8"/>			
 			<property name="JDBC.Username" value="root"/>
-<<<<<<< HEAD
 			<property name="JDBC.Password" value="12345"/>
 			 
-=======
 
-			<property name="JDBC.Password" value="1234"/>
 
->>>>>>> branch 'master' of https://github.com/mingu-seo/java1.git
 			<!--
 			<property name="JDBC.ConnectionURL" value="jdbc:mysql://:3306/bigbang?useUnicode=true&amp;characterEncoding=utf8"/>			
 			<property name="JDBC.Username" value=""/>
@@ -46,12 +42,10 @@
 	<sqlMap resource="board/faq/faq.xml"/>		
 	<sqlMap resource="member/member.xml"/>	
 	<sqlMap resource="movie/movie.xml"/>	
-<<<<<<< HEAD
 	<sqlMap resource="board/reply3/reply3.xml"/>	
-=======
-
+	<sqlMap resource="board/reply3/reply1.xml"/>	
+	
 	<sqlMap resource="board/reply2/reply2.xml"/>	
 
->>>>>>> branch 'master' of https://github.com/mingu-seo/java1.git
 	<sqlMap resource="review/review.xml"/>	
 </sqlMapConfig>

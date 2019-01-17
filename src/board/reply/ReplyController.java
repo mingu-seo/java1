@@ -36,18 +36,6 @@ public class ReplyController {
 		
 		return "manage/board/qna/index";
 	}
-<<<<<<< HEAD
-	@RequestMapping("/manage/board/qna/write.do")
-	public String write(Model model, NoticeVO param, HttpServletRequest request) throws Exception {
-		AdminVO adminInfo = (AdminVO)request.getSession().getAttribute("adminInfo");
-		model.addAttribute("admin_no", adminInfo.getNo());
-		model.addAttribute("vo", param);
-		
-		return "manage/board/qna/write";
-	}
-=======
-	
-	
 	@RequestMapping("/manage/board/qna/write.do")
 	public String write(Model model, NoticeVO param, HttpServletRequest request) throws Exception {
 		AdminVO adminInfo = (AdminVO)request.getSession().getAttribute("adminInfo");
@@ -57,6 +45,8 @@ public class ReplyController {
 		return "manage/board/qna/write";
 	}
 	
->>>>>>> branch 'master' of https://github.com/mingu-seo/java1.git
+	
+
+	
 }
 

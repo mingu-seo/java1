@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page import="java.util.*" %>
-<%@ page import="board.reply2.*" %>
+<%@ page import="board.notice.*" %>
 <%@ page import="util.*" %>
 <%@ page import="property.*" %>
 <%
