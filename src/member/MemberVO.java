@@ -17,7 +17,7 @@ public class MemberVO extends Parameter {
 	private Timestamp credate;//회원 가입일
 	private Timestamp moddate;//회원정보 수정일
 	private int secession; 	  //회원탈퇴 상태 "1=가입" "2=탈퇴"
-	
+	private String filename;  //이미지 파일 네임
 	
 	private String ip;				// 접속 아이피
 	private int prev_no;			// 이전글 no
@@ -130,8 +130,12 @@ public class MemberVO extends Parameter {
 	public void setSecession(int secession) {
 		this.secession = secession;
 	}
-	
-	
+	public String getFilename() {
+		return filename;
+	}
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
 	public String getIp() {
 		return ip;
 	}

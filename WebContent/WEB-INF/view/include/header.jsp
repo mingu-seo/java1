@@ -34,7 +34,7 @@ function loginCheck(){
 	}
 	var f = document.loginFrm;
 	if (f.reg.checked==true) {
-	   document.cookie = "cookie_userid=" + f.loginEmail.value + ";path=/;expires=Sat, 31 Dec 2050 23:59:59 GMT;";
+	   document.cookie = "cookie_useremail=" + f.loginEmail.value + ";path=/;expires=Sat, 31 Dec 2050 23:59:59 GMT;";
 	} else {
 	   var now = new Date();	
 	   document.cookie = "cookie_useremail=" + f.loginEmail.value + ";path=/;expires="+now.getTime();
@@ -44,7 +44,7 @@ function loginCheck(){
 
 function useremail_chk() {
 	var f=document.loginFrm;
-	var useremail = CookieVal("cookie_userid");
+	var useremail = CookieVal("cookie_useremail");
 	
 	if (useremail=="null"){	
 		f.loginEmail.focus();

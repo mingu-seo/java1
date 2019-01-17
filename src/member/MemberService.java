@@ -2,13 +2,17 @@ package member;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import mail.SendMail;
+import property.SiteProperty;
+import util.FileUtil;
 import util.Function;
 import util.Page;
 
@@ -32,8 +36,16 @@ public class MemberService {
 		return list;
 	}
 
-	public int insert(MemberVO vo) throws SQLException {
-		int no = memberDao.insert(vo);
+	public int insert(MemberVO vo, HttpServletRequest request) throws Exception {
+		FileUtil fu = new FileUtil();
+		Map fileMap = fu.getFileMap(request);
+		MultipartFile file= (MultipartFile)fileMap.get("filename_tmp");
+		if (!file.isEmpty()) {
+			fu.upload(file, SiteProperty.MEMBER_UPLOAD_PATH, SiteProperty.REAL_PATH, "member");
+			vo.setFilename(fu.getName());
+		}
+		
+		int no = memberDao.insert(vo, request);
 		return no;
 	}
 	
