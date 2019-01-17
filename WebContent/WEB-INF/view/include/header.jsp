@@ -12,18 +12,19 @@ $(function() {
 	});
 	$("#login_click").click(function() {
 		$(".login_info").toggle();
+		$("#loginEmail").focus();
 	});
 	$(".login_info > .top_area > img").click(function() {
 		$(".login_info").hide();
 	});
-
+	useremail_chk();
 });
 
 //로그인, 이메일 체크
 function loginCheck(){
-	if ( getObject("loginEmail").value.length < 1 ) { <!--값이 없을 때 -->
+	if ( $("#loginEmail").val().length < 1 ) {
 		alert("이메일을 입력해주세요.");
-		getObject("loginEmail").focus();
+		$("#loginEmail").focus();
 		return false;
 	}
 	if ( getObject("loginPw").value.length < 1 ) {
@@ -31,19 +32,19 @@ function loginCheck(){
 		getObject("loginPw").focus();
 		return false;
 	}
-	var f = document.board;
-	if (f.reg.checked==true) { <!-- reg(이미지 저장) 체크되어있는지 확인 -->
-	   document.cookie = "cookie_userloginEmail=" + f.loginEmail.value + ";path=/;expires=Sat, 31 Dec 2050 23:59:59 GMT;";
+	var f = document.loginFrm;
+	if (f.reg.checked==true) {
+	   document.cookie = "cookie_useremail=" + f.loginEmail.value + ";path=/;expires=Sat, 31 Dec 2050 23:59:59 GMT;";
 	} else {
 	   var now = new Date();	
-	   document.cookie = "cookie_userloginEmail=" + f.loginEmail.value + ";path=/;expires="+now.getTime();
+	   document.cookie = "cookie_useremail=" + f.loginEmail.value + ";path=/;expires="+now.getTime();
 	}
 	return true;
 }
 
 function useremail_chk() {
-	var f=document.board;
-	var useremail = CookieVal("cookie_userloginEmail");
+	var f=document.loginFrm;
+	var useremail = CookieVal("cookie_useremail");
 	
 	if (useremail=="null"){	
 		f.loginEmail.focus();
@@ -68,7 +69,6 @@ function CookieVal(cookieName) {
 
 
 </script>
-<body onload="getObject('loginEmail').focus();useremail_chk();">
 	<div id="header">
         <div class="head_top">
             <div class="size">
@@ -87,7 +87,7 @@ function CookieVal(cookieName) {
                     <a href="/mypage/index.do">마이페이지</a>
                 <% } %>
                 </div>
-                <form action="/login.do" id="board" name="board" method="post" onsubmit="return loginCheck();">
+                <form action="/login.do" id="loginFrm" name="loginFrm" method="post" onsubmit="return loginCheck();">
                 <div class="login_info">
                 	<div class="top_area"><img src="/img/btn_del.gif"/></div>
                 	<div class="title_area"><span>MOVIE 로그인</span></div>
@@ -103,10 +103,6 @@ function CookieVal(cookieName) {
                 	<div class="bottom_area">
                 		<input type="checkbox" id="reg" name="reg"/><label for="reg">이메일 저장</label>
                 	</div>
-                	<!-- //joinList -->
-					<input type="hidden" name="url" id="url" value="<%//=url%>"/>
-					<input type="hidden" name="param" id="param" value="<%//=param%>"/>
-					<input type="hidden" name="ip" id="ip" value="<%=request.getRemoteAddr()%>"/>
                 </div>
                 </form>
             </div>

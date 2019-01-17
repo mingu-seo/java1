@@ -16,6 +16,15 @@ public class TestDAO extends SqlMapClientDAOSupport {
 		return list;
 	}
 	
+	public static String getStringBuffer() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("1");
+		sb.append("2");
+		sb.append("3");
+		sb.append("4");
+		return sb.toString();
+	}
+	
 	public static void main(String[] args) throws Exception {
 //		TestDAO dao = new TestDAO();
 //		ArrayList<TestVO> list = dao.getList();
@@ -24,6 +33,8 @@ public class TestDAO extends SqlMapClientDAOSupport {
 //		for (int i=0; i<list.size(); i++) {
 //			System.out.println(list.get(i).getNo() + " " + list.get(i).getId() + " " +list.get(i).getName());
 //		}
+		
+		System.out.println(getStringBuffer());
 	}
 
 }
