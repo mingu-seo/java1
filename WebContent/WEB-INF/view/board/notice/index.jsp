@@ -85,7 +85,7 @@ function goSearch() {
 				</table>
 			
 				<div class="pagenate clear">
-						<%=Page.userindexList(param.getReqPageNo(), totPage, request)%>
+					<%=Page.userindexList(param.getReqPageNo(), totPage, request)%>
 				</div>
 				<!-- 페이지처리 -->
 				<div class="bbsSearch">

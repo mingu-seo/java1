@@ -136,6 +136,12 @@ function goSave() {
 							<input type="text" name="hp" id="hp" value=""  class="wid50" maxlength="15" onkeyup="isNumberOrHyphen(this);cvtPhoneNumber(this);" style="float:left;">
 						</td>
 					</tr>
+					<tr>
+						<th>회원 이미지</th>
+						<td>
+							<input type="file" id="filename_tmp" name="filename_tmp" class="w100" title="첨부파일을 업로드 해주세요." />
+						</td>
+					</tr>
 				</tbody>
 			</table>
 					<input type="hidden" name="cmd" value="write.do"/>
