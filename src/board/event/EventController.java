@@ -39,6 +39,7 @@ public class EventController {
 	@RequestMapping("/board/event/index.do")
 	public String indexv(Model model, EventVO param) throws Exception {
 		System.out.println(param.getSdisplay());
+		param.setSdisplay(1);
 		param.setTablename("event");
 		int[] rowPageCount = eventService.count(param);
 		ArrayList<AdminVO> list = eventService.list(param);

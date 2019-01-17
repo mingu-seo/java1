@@ -80,10 +80,7 @@ function showTr(id) {
 				</table>
 			
 				<div class="pagenate clear">
-					<ul class='paging'>
-						<li><a href='javascript:;' class='current'><%=Page.indexList(param.getReqPageNo(), totPage, request)%></a></li>
-				
-					</ul>
+					<%=Page.userindexList(param.getReqPageNo(), totPage, request)%>
 				</div>
 				<!-- 페이지처리 -->
 				<div class="bbsSearch">

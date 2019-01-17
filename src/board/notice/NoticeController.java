@@ -40,6 +40,7 @@ public class NoticeController {
 	public String indexv(Model model, NoticeVO param) throws Exception {
 		System.out.println(param.getSdisplay());
 		param.setTablename("notice");
+		param.setSdisplay(1);
 		int[] rowPageCount = noticeService.count(param);
 		ArrayList<AdminVO> list = noticeService.list(param);
 		

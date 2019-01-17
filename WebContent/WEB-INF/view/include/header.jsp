@@ -37,7 +37,7 @@ function loginCheck(){
 	   document.cookie = "cookie_userid=" + f.loginEmail.value + ";path=/;expires=Sat, 31 Dec 2050 23:59:59 GMT;";
 	} else {
 	   var now = new Date();	
-	   document.cookie = "cookie_userid=" + f.loginEmail.value + ";path=/;expires="+now.getTime();
+	   document.cookie = "cookie_useremail=" + f.loginEmail.value + ";path=/;expires="+now.getTime();
 	}
 	return true;
 }
@@ -112,9 +112,9 @@ function CookieVal(cookieName) {
                 <div class="gnb">
                     <ul class="depth1 clear">
                         <li>
-                            <a href="" >MOVIE</a>
+                            <a href="/movie/index.do" >MOVIE</a>
                             <ul class="depth2">
-                                <li><a href="" >현재 상영작</a></li>
+                                <li><a href="/movie/index.do" >현재 상영작</a></li>
                                 <li><a href="" >개봉 예정작</a></li>
                             </ul>
                         </li>
