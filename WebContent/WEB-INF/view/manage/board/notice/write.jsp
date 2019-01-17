@@ -93,7 +93,7 @@ NoticeVO param = (NoticeVO)request.getAttribute("vo");
 									<tr>
 										<th scope="row"><label for="">첨부파일</label></th>
 										<td colspan="10">
-											<input type="file" id="filename_tmp" name="filename_tmp" class="w100" title="첨부파일을 업로드 해주세요." />	
+											<input type="file" id="filename_tmp" name="filename_tmp" class="w100" title="첨부파일을 업로드 해주세요." />	</br>
 										</td>
 									</tr>
 									<tr>

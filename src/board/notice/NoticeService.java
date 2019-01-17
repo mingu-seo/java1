@@ -47,6 +47,7 @@ public class NoticeService {
 			vo.setFilesize(fu.getSrcSize());
 		}
 		
+	
 		int lastNo = (Integer)noticeDao.insert(vo);
 		
 		return lastNo;

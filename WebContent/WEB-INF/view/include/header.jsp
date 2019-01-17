@@ -118,11 +118,7 @@ function CookieVal(cookieName) {
                         <li>
                             <a href="/movie/index.do" >MOVIE</a>
                             <ul class="depth2">
-<<<<<<< HEAD
                                 <li><a href="/movie/index.do" >현재 상영작</a></li>
-=======
-                                <li><a href="" >현재 상영작</a></li>
->>>>>>> branch 'master' of https://github.com/mingu-seo/java1.git
                                 <li><a href="" >개봉 예정작</a></li>
                             </ul>
                         </li>
