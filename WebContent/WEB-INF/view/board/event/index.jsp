@@ -58,6 +58,7 @@ function goSearch() {
 						</tr>
 					</thead>
 					<tbody>
+					
 					<% if (totCount == 0) { %>
 									<tr>
 										<td class="first" colspan="8">등록된 글이 없습니다.</td>
@@ -85,13 +86,11 @@ function goSearch() {
 					<%}%>
 					<%}%>
 					</tbody>
+					
 				</table>
 			
 				<div class="pagenate clear">
-					<ul class='paging'>
-						<li><a href='javascript:;' class='current'><%=Page.indexList(param.getReqPageNo(), totPage, request)%></a></li>
-				
-					</ul>
+						<%=Page.userindexList(param.getReqPageNo(), totPage, request)%>
 				</div>
 				<!-- 페이지처리 -->
 				<div class="bbsSearch">
@@ -99,9 +98,7 @@ function goSearch() {
 						<span class="srchSelect">
 							<select id="stype" name="stype" class="dSelect" title="검색분류 선택">
 								<option value="all" <%=Function.getSelected(param.getStype(), "all") %> >전체</option>
-								<option value="title" <%=Function.getSelected(param.getStype(), "event_name") %>>이벤트명</option>
-								<option value="type" <%=Function.getSelected(param.getStype(), "sta_date") %>>시작일</option>
-								<option value="type" <%=Function.getSelected(param.getStype(), "end_date") %>>종료일</option>
+								<option value="event_name" <%=Function.getSelected(param.getStype(), "event_name") %>>이벤트명</option>
 								<option value="contents"<%=Function.getSelected(param.getStype(), "contents") %> >내용</option>
 							</select>
 						</span>

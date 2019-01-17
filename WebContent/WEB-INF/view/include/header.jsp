@@ -21,7 +21,7 @@ $(function() {
 
 //로그인, 이메일 체크
 function loginCheck(){
-	if ( getObject("loginEmail").value.length < 1 ) {
+	if ( getObject("loginEmail").value.length < 1 ) { <!--값이 없을 때 -->
 		alert("이메일을 입력해주세요.");
 		getObject("loginEmail").focus();
 		return false;
@@ -32,18 +32,18 @@ function loginCheck(){
 		return false;
 	}
 	var f = document.board;
-	if (f.reg.checked==true) {
-	   document.cookie = "cookie_userid=" + f.loginEmail.value + ";path=/;expires=Sat, 31 Dec 2050 23:59:59 GMT;";
+	if (f.reg.checked==true) { <!-- reg(이미지 저장) 체크되어있는지 확인 -->
+	   document.cookie = "cookie_useremail=" + f.loginEmail.value + ";path=/;expires=Sat, 31 Dec 2050 23:59:59 GMT;";
 	} else {
 	   var now = new Date();	
-	   document.cookie = "cookie_userid=" + f.loginEmail.value + ";path=/;expires="+now.getTime();
+	   document.cookie = "cookie_useremail=" + f.loginEmail.value + ";path=/;expires="+now.getTime();
 	}
 	return true;
 }
 
 function useremail_chk() {
 	var f=document.board;
-	var useremail = CookieVal("cookie_userid");
+	var useremail = CookieVal("cookie_useremail");
 	
 	if (useremail=="null"){	
 		f.loginEmail.focus();
@@ -116,9 +116,9 @@ function CookieVal(cookieName) {
                 <div class="gnb">
                     <ul class="depth1 clear">
                         <li>
-                            <a href="" >MOVIE</a>
+                            <a href="/movie/index.do" >MOVIE</a>
                             <ul class="depth2">
-                                <li><a href="manage/movie/list.do" >현재 상영작</a></li>
+                                <li><a href="/movie/index.do" >현재 상영작</a></li>
                                 <li><a href="" >개봉 예정작</a></li>
                             </ul>
                         </li>
@@ -134,16 +134,16 @@ function CookieVal(cookieName) {
                             </ul>
                         </li>
                         <li>
-                            <a href="" >NOTICE</a>
+                            <a href="/board/notice/index.do" >NOTICE</a>
                             <ul class="depth2">
                                 <li><a href="/board/notice/index.do">공지사항</a></li>
                                 <li><a href="/board/event/index.do" >이벤트</a></li>
                             </ul>
                         </li>
                         <li>
-                            <a href="" >MORE</a>
+                            <a href="/board/faq/index.do" >고객센터</a>
                             <ul class="depth2">
-                                <li><a href="" >스토어</a></li>
+                                <li><a href="/board/faq/index.do" >자주하는질문</a></li>
                                 <li><a href="" >Q&A</a></li>
                             </ul>
                         </li>

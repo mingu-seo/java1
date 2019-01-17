@@ -69,12 +69,26 @@ public class MovieDao extends SqlMapClientDAOSupport {
 	public int update(MovieVo vo) throws SQLException {
 		return getSqlMapClient().update("movie.update", vo);
 	}
+	public int stillCutUpdate(StillCutVo scv) throws SQLException {
+		return getSqlMapClient().update("movie.stillCutUpdate", scv);
+	}
+	public int trailerUpdate(TrailerVo tv) throws SQLException {
+		return getSqlMapClient().update("movie.trailerUpdate", tv);
+	}
+	
 
 	public MovieVo read(MovieVo vo) throws SQLException {
 		return (MovieVo)getSqlMapClient().queryForObject("movie.read", vo);
 	}
-
-	/**
+	public StillCutVo readStillCut(int vo) throws SQLException {
+		// TODO Auto-generated method stub
+		return (StillCutVo)getSqlMapClient().queryForObject("movie.readStillCut", vo);
+	}
+	public TrailerVo readTrailer(int vo) throws SQLException {
+		// TODO Auto-generated method stub
+		return (TrailerVo)getSqlMapClient().queryForObject("movie.readTrailer", vo);
+	}
+		/**
 	 * 삭제
 	 * @param vo
 	 * @throws SQLException
@@ -95,5 +109,14 @@ public class MovieDao extends SqlMapClientDAOSupport {
 		return (ArrayList)getSqlMapClient().queryForList("movie.mainList", vo);
 	}
 	
+	public static void main(String[] args) throws Exception  {
+		MovieDao dao = new MovieDao();
+		StillCutVo scv = new StillCutVo();
+		
+		dao.insert2(scv);
+	}
+
+	
+
 	
 }

@@ -29,6 +29,41 @@ public class CodeUtil {
         	result.append("<option value='3'"+Function.getSelected(3,arg)+">"+getType(3)+"</option>");
         return result.toString();
 	}
+	
+	public static String getQtype(int type) {
+		String result = "";
+		switch (type) {
+		case 1:
+			result = "영화예매";
+			break;
+		case 2:
+			result = "영화관";
+			break;
+		case 3:
+			result = "멤버십";
+			break;
+		case 4:
+			result = "할인/결제수단";
+			break;
+		case 5:
+			result = "홈페이지";
+			break;
+		case 6:
+			result = "기타";
+			break;
+		}
+		return result;
+	}
+	public static String getQtypeOption(int arg){
+		StringBuffer result = new StringBuffer();
+		result.append("<option value='1'"+Function.getSelected(1,arg)+">"+getQtype(1)+"</option>");
+		result.append("<option value='2'"+Function.getSelected(2,arg)+">"+getQtype(2)+"</option>");
+		result.append("<option value='3'"+Function.getSelected(3,arg)+">"+getQtype(3)+"</option>");
+		result.append("<option value='4'"+Function.getSelected(4,arg)+">"+getQtype(4)+"</option>");
+		result.append("<option value='5'"+Function.getSelected(5,arg)+">"+getQtype(5)+"</option>");
+		result.append("<option value='6'"+Function.getSelected(6,arg)+">"+getQtype(6)+"</option>");
+		return result.toString();
+	}
 	/**
 	 * 관리자 등급
 	 * @param type int

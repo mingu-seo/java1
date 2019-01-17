@@ -40,6 +40,7 @@ public class NoticeController {
 	public String indexv(Model model, NoticeVO param) throws Exception {
 		System.out.println(param.getSdisplay());
 		param.setTablename("notice");
+		param.setSdisplay(1);
 		int[] rowPageCount = noticeService.count(param);
 		ArrayList<AdminVO> list = noticeService.list(param);
 		
@@ -52,14 +53,18 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("/manage/board/notice/write.do")
-	public String write(Model model, NoticeVO param) throws Exception {
+	public String write(Model model, NoticeVO param, HttpServletRequest request) throws Exception {
+		AdminVO adminInfo = (AdminVO)request.getSession().getAttribute("adminInfo");
+		model.addAttribute("admin_no", adminInfo.getNo());
 		model.addAttribute("vo", param);
 		
 		return "manage/board/notice/write";
 	}
 	
 	@RequestMapping("/manage/board/notice/edit.do")
-	public String edit(Model model, NoticeVO param) throws Exception {
+	public String edit(Model model, NoticeVO param, HttpServletRequest request) throws Exception {
+		AdminVO adminInfo = (AdminVO)request.getSession().getAttribute("adminInfo");
+		model.addAttribute("admin_no", adminInfo.getNo());
 		param.setTablename("notice");
 		NoticeVO data = noticeService.read(param, false);
 		model.addAttribute("data", data);
@@ -71,7 +76,7 @@ public class NoticeController {
 	@RequestMapping("/board/notice/view.do")
 	public String view(Model model, NoticeVO param) throws Exception {
 		param.setTablename("notice");
-		NoticeVO data = noticeService.read(param, false);
+		NoticeVO data = noticeService.read(param, true);
 		model.addAttribute("data", data);
 		model.addAttribute("param", param);
 		

@@ -142,6 +142,7 @@ EventVO data = (EventVO)request.getAttribute("data");
 								<input type="hidden" name="sval" id="sval" value="<%=param.getSval()%>"/>
 								<input type="hidden" name="cmd" id="cmd" value="edit"/>
 								<input type="hidden" name="no" id="no" value="<%=data.getNo()%>"/>
+								<input type="hidden" name="writer" value="<%=request.getAttribute("admin_no")%>" />
 							</form>
 							<div class="btn">
 								<div class="btnLeft">

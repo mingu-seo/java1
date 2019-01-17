@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="review">
+    
+    <typeAlias alias="review_vo" type="review.ReviewVO"/>
+    <sql id="searchSql">		
+		<!-- WHERE 절 검색 -->
+		<dynamic prepend="where">
+			<!-- 검색어 검색 -->
+			<isNotEqual property="sval" compareValue="">
+				<!-- 검색 타입이 all일 때 -->
+				<isEqual property="stype" compareValue="all" prepend="and">
+					 ( (member_pk like '%$sval$%' ) or (movie_pk like '%$sval$%' )  ) 					
+				</isEqual>
+				<!-- 검색 타입이 all이 아닐때 해당 stype으로 검색 -->
+				<isNotEqual property="stype" compareValue="all" prepend="and">
+					 ($stype$ like '%$sval$%' )
+				</isNotEqual>
+			</isNotEqual>
+		</dynamic>
+	</sql>
+	
+	<!-- 해당 테이블의 총 게시글 수 -->
+	<select id="count" parameterClass="review_vo" resultClass="Integer">
+        select count(*) from $tablename$
+        <include refid="searchSql" />	
+    </select>
+    
+	<select id="list" parameterClass="review_vo" resultClass="review_vo">
+        select *
+        from $tablename$
+        <include refid="searchSql" />
+		ORDER BY cre_date DESC LIMIT $startPageNo$, $pageRows$
+    </select>
+	
+	<!-- 해당 테이블에 게시글 작성 -->
+    
+    
+    <select id="getRowNum" parameterClass="review_vo" resultClass="Integer">
+        select rownum from (
+        	select @rownum:=@rownum+1 as rownum, no, movie_pk from $tablename$, (select @rownum:=0) as r
+        	<include refid="searchSql" />
+        	ORDER BY cre_date DESC
+        ) as r2
+        where r2.no = #no#
+    </select>
+    
+    <select id="getNextRowNum" parameterClass="review_vo" resultClass="review_vo">
+        select ifnull(rownum,0), ifnull(no,0) as next_no
+        from (
+        	select @rownum:=@rownum+1 as rownum, no, movie_pk from $tablename$, (select @rownum:=0) as r
+        	<include refid="searchSql" />
+        	ORDER BY cre_date DESC
+        ) as r2
+        <![CDATA[
+        where r2.rownum = $rownum$+1
+    	]]>
+    </select>
+    
+    <select id="getPrevRowNum" parameterClass="review_vo" resultClass="review_vo">
+    	select ifnull(rownum,0), ifnull(no,0) as prev_no
+        from (
+        	select @rownum:=@rownum+1 as rownum, no, movie_pk from $tablename$, (select @rownum:=0) as r
+        	<include refid="searchSql" />
+        	ORDER BY cre_date DESC
+        ) as r2
+        <![CDATA[
+        where r2.rownum = $rownum$-1
+    	]]>
+    </select>
+    
+    <delete id="delete" parameterClass="review_vo">
+        DELETE FROM $tablename$ WHERE no=#no#
+    </delete>
+    
+    <select id="mainList" parameterClass="review_vo" resultClass="review_vo">
+        select *
+        from $tablename$
+        <include refid="searchSql" />
+		ORDER BY cre_date DESC LIMIT 0, $number$
+    </select>
+    
+</sqlMap>

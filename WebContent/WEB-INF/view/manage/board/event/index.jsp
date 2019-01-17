@@ -80,6 +80,7 @@ function goSearch() {
 										<th scope="col">시작일</th> 
 										<th scope="col">종료일</th> 
 										<th scope="col">작성일</th> 
+										<th scope="col">작성자</th> 
 										<th scope="col">조회수</th>
 										<th scope="col" class="last">삭제</th>
 									</tr>
@@ -106,6 +107,7 @@ function goSearch() {
 										<td <%=targetUrl%>><%=DateUtil.getDateFormat(data.getSta_date())%></td>
 										<td <%=targetUrl%>><%=DateUtil.getDateFormat(data.getEnd_date())%></td>
 										<td <%=targetUrl%>><%=DateUtil.getDateFormat(data.getCre_date())%></td>
+										<td <%=targetUrl%>> <%=(data.getWriter_name())%></td>
 										<td <%=targetUrl%>><%=data.getReadno()%></td>
 										<td class="last"><input type="button" value="삭제" onclick="goDelete(<%=data.getNo()%>);"/></td>
 									</tr>
@@ -140,8 +142,8 @@ function goSearch() {
 									</select>
 									<select name="stype" title="검색을 선택해주세요">
 										<option value="all" <%=Function.getSelected(param.getStype(), "all") %>>전체</option>
-										<option value="writer" <%=Function.getSelected(param.getStype(), "writer") %>>작성자</option>
 										<option value="event_name" <%=Function.getSelected(param.getStype(), "event_name") %>>이벤트명</option>
+										<option value="contents" <%=Function.getSelected(param.getStype(), "contents") %>>내용</option>
 									</select>
 									<input type="text" name="sval" value="<%=param.getSval()%>" title="검색할 내용을 입력해주세요" />
 									<input type="image" src="/manage/img/btn_search.gif" class="sbtn" alt="검색" />

@@ -12,6 +12,7 @@
 	<context:component-scan base-package="board" />
 	<context:component-scan base-package="member" />
 	<context:component-scan base-package="movie" />
+	<context:component-scan base-package="review" />
 	<mvc:annotation-driven/>
 
 	<mvc:interceptors>
@@ -39,8 +40,6 @@
 	<!-- 사용자 정적페이지 -->
 	<mvc:view-controller path="/index.do"/>
 	<mvc:view-controller path="/member/login.do"/>
-	<mvc:view-controller path="/board/notice/index.do"/>
-	<mvc:view-controller path="/board/notice/view.do"/>
 	<mvc:view-controller path="/mypage/reserve/index.do"/>
 	<mvc:view-controller path="/movie/index.do"/>
 	<mvc:view-controller path="/movie/view.do"/>

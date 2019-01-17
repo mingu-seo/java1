@@ -74,7 +74,7 @@ function goSearch() {
 							<td><%=totCount - ((param.getReqPageNo()-1)*param.getPageRows()) - i%> </td>
 							<td><%=CodeUtil.getType(data.getType())%></td>
 							<td class="txt_l"> <%=data.getTitle()%></td>
-							<td class="writer"> <%=data.getWriter()%></td>
+							<td class="writer"> <%=data.getWriter_name()%></td>
 							<td class="date"><%=DateUtil.getDateFormat(data.getCre_date())%></td>
 							<td class="hit" ><%=data.getReadno()%></td>
 						</tr>
@@ -85,10 +85,7 @@ function goSearch() {
 				</table>
 			
 				<div class="pagenate clear">
-					<ul class='paging'>
-						<li><a href='javascript:;' class='current'><%=Page.indexList(param.getReqPageNo(), totPage, request)%></a></li>
-				
-					</ul>
+						<%=Page.userindexList(param.getReqPageNo(), totPage, request)%>
 				</div>
 				<!-- 페이지처리 -->
 				<div class="bbsSearch">
@@ -97,7 +94,6 @@ function goSearch() {
 							<select id="stype" name="stype" class="dSelect" title="검색분류 선택">
 								<option value="all" <%=Function.getSelected(param.getStype(), "all") %> >전체</option>
 								<option value="title" <%=Function.getSelected(param.getStype(), "title") %>>제목</option>
-								<option value="type" <%=Function.getSelected(param.getStype(), "type") %>>종류</option>
 								<option value="contents"<%=Function.getSelected(param.getStype(), "contents") %> >내용</option>
 							</select>
 						</span>
