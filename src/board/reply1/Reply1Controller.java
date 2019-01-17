@@ -67,10 +67,13 @@ public class Reply1Controller {
 	}
 	
 	@RequestMapping("/manage/board/qna1/reply.do")
-	public String reply(Model model, NoticeVO param, HttpServletRequest request) throws Exception {
+	public String reply(Model model, Reply1VO param, HttpServletRequest request) throws Exception {
 		AdminVO adminInfo = (AdminVO)request.getSession().getAttribute("adminInfo");
 		model.addAttribute("admin_no", adminInfo.getNo());
-		model.addAttribute("vo", param);
+		model.addAttribute("param", param);
+		param.setTablename("reply");
+		Reply1VO data = replyDao.read(param, false);
+		model.addAttribute("data", data);
 		
 		return "manage/board/qna1/reply";
 	}
@@ -91,15 +94,20 @@ public class Reply1Controller {
 			model.addAttribute("message", Function.message(r, "정상적으로 수정되었습니다.", "수정실패"));
 			model.addAttribute("url", param.getTargetURLParam("index.do", param, 0));
 		} else if ("groupDelete".equals(param.getCmd())) {
-//			int r = replyDao.groupDelete(param, request);
-//			model.addAttribute("code", "alertMessageUrl");
-//			model.addAttribute("message", Function.message(r, "총 "+r+"건이 삭제되었습니다.", "삭제실패"));
-//			model.addAttribute("url", param.getTargetURLParam("index.do", param, 0));
+			int r = replyDao.groupDelete(param, request);
+			model.addAttribute("code", "alertMessageUrl");
+			model.addAttribute("message", Function.message(r, "총 "+r+"건이 삭제되었습니다.", "삭제실패"));
+			model.addAttribute("url", param.getTargetURLParam("index.do", param, 0));
 		} else if ("delete".equals(param.getCmd())) {
-//			int r = replyDao.delete(param);
-//			model.addAttribute("code", "alertMessageUrl");
-//			model.addAttribute("message", Function.message(r, "정상적으로 삭제되었습니다.", "삭제실패"));
-//			model.addAttribute("url", param.getTargetURLParam("index.do", param, 0));
+			int r = replyDao.delete(param);
+			model.addAttribute("code", "alertMessageUrl");
+			model.addAttribute("message", Function.message(r, "정상적으로 삭제되었습니다.", "삭제실패"));
+			model.addAttribute("url", param.getTargetURLParam("index.do", param, 0));
+		}else if("reply".equals(param.getCmd())) {
+			int r = replyDao.reply(param);
+			model.addAttribute("code", "alertMessageUrl");
+			model.addAttribute("message", Function.message(r, "정상적으로 등록되었습니다.", "등록실패"));
+			model.addAttribute("url", "index.do");
 		}
 		
 		return "include/alert";

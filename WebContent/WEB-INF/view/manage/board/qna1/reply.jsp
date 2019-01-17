@@ -90,8 +90,6 @@ Reply1VO data = (Reply1VO)request.getAttribute("data");
 									<tr>
 										<th scope="row"><label for="">첨부파일</label></th>
 										<td colspan="10">
-											
-											<input type="file" name="filename_tmp" id="filename_tmp" title="첨부파일" />
 												<div class="weidtFile">
 													<input type="file" name="filename_tmp" id="filename_tmp" title="첨부파일을 업로드 해주세요." />
 												</div>

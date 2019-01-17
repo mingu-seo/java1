@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
+import board.notice.NoticeVO;
 import db.SqlMapClientDAOSupport;
 import property.SiteProperty;
 import util.FileUtil;
@@ -160,6 +161,29 @@ public class Reply1DAO extends SqlMapClientDAOSupport {
 		return r;
 	}
 
+	/**
+	 * 그룹삭제
+	 * @param vo
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	public int groupDelete(Reply1VO vo, HttpServletRequest request) throws Exception {
+		String[] nos = request.getParameterValues("no");
+		int delCount = 0;
+		if (nos.length > 0) {
+			for (int i=0; i<nos.length; i++) {
+				vo.setNo(Function.getIntParameter(nos[i]));
+				Reply1VO data = read(vo, false);
+				int r = delete(vo);
+				if (r > 0) {
+					delCount++;
+					Function.fileDelete(vo.getUploadPath(), data.getFilename());
+				}
+			}
+		}
+		return delCount;
+	}
 
 	/**
 	 * 비밀번호 확인
