@@ -18,6 +18,7 @@ public class MemberVO extends Parameter {
 	private Timestamp moddate;//회원정보 수정일
 	private int secession; 	  //회원탈퇴 상태 "1=가입" "2=탈퇴"
 	private String filename;  //이미지 파일 네임
+	private String filename_chk;
 	
 	private String ip;				// 접속 아이피
 	private int prev_no;			// 이전글 no
@@ -135,6 +136,13 @@ public class MemberVO extends Parameter {
 	}
 	public void setFilename(String filename) {
 		this.filename = filename;
+	}
+	
+	public String getFilename_chk() {
+		return filename_chk;
+	}
+	public void setFilename_chk(String filename_chk) {
+		this.filename_chk = filename_chk;
 	}
 	public String getIp() {
 		return ip;
