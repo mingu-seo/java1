@@ -22,7 +22,7 @@ public class ReplyDAO3 extends SqlMapClientDAOSupport {
 	 * @throws SQLException
 	 */
 	public int[] count(ReplyVO3 vo) throws SQLException {
-		int rowCount = (Integer)getSqlMapClient().queryForObject("reply.count", vo);
+		int rowCount = (Integer)getSqlMapClient().queryForObject("reply3.count", vo);
 		int[] rowPageCount = new int[2];
 		int pageCount = Page.getPageCount(vo.getPageRows(), rowCount);
 		rowPageCount[0] = rowCount;
@@ -37,7 +37,7 @@ public class ReplyDAO3 extends SqlMapClientDAOSupport {
 	 * @throws SQLException
 	 */
 	public ArrayList list(ReplyVO3 vo) throws SQLException {
-		ArrayList list = (ArrayList)getSqlMapClient().queryForList("reply.list", vo);
+		ArrayList list = (ArrayList)getSqlMapClient().queryForList("reply3.list", vo);
 		return list;
 	}
 
@@ -50,9 +50,9 @@ public class ReplyDAO3 extends SqlMapClientDAOSupport {
 	 */
 	public int insert(ReplyVO3 vo) throws SQLException {
 		vo.setFilesize(Function.getFileSize(vo.getUploadPath(), vo.getFilename()));	// 파일 사이즈 구하기
-		int maxGno = (Integer)getSqlMapClient().queryForObject("reply.getMaxGno",vo);
+		int maxGno = (Integer)getSqlMapClient().queryForObject("reply3.getMaxGno",vo);
 		vo.setGno(maxGno);
-		int no = (Integer)getSqlMapClient().insert("reply.insert",vo);
+		int no = (Integer)getSqlMapClient().insert("reply3.insert",vo);
 		return no;
 	}
 
@@ -68,8 +68,8 @@ public class ReplyDAO3 extends SqlMapClientDAOSupport {
 	 */
 	public int reply(ReplyVO3 vo) throws SQLException {
 		vo.setFilesize(Function.getFileSize(vo.getUploadPath(), vo.getFilename()));	// 파일 사이즈 구하기
-		int maxOno = (Integer)getSqlMapClient().queryForObject("reply.getMaxOno",vo);
-		int minOno = (Integer)getSqlMapClient().queryForObject("reply.getMinOno",vo);
+		int maxOno = (Integer)getSqlMapClient().queryForObject("reply3.getMaxOno",vo);
+		int minOno = (Integer)getSqlMapClient().queryForObject("reply3.getMinOno",vo);
 		if (minOno == 0) {
 			vo.setOno(maxOno+1);
 		} else {	// minOno가 0보다 크면 같은 그룹내 minOno보다 큰 ono를 +1
@@ -77,11 +77,11 @@ public class ReplyDAO3 extends SqlMapClientDAOSupport {
 			hm.put("tablename", vo.getTablename());
 			hm.put("gno", vo.getGno());
 			hm.put("minOno", minOno);
-			getSqlMapClient().update("reply.updateOno", hm);
+			getSqlMapClient().update("reply3.updateOno", hm);
 			vo.setOno(minOno);
 		}
 		vo.setNested(vo.getNested()+1);		// 뎁스 1추가
-		int no = (Integer)getSqlMapClient().insert("reply.insert",vo);
+		int no = (Integer)getSqlMapClient().insert("reply3.insert",vo);
 		return no;
 	}
 
@@ -94,8 +94,8 @@ public class ReplyDAO3 extends SqlMapClientDAOSupport {
 	 */
 	public int update(ReplyVO3 vo) throws SQLException {
 		vo.setFilesize(Function.getFileSize(vo.getUploadPath(), vo.getFilename()));	// 파일 사이즈 구하기
-		int r = getSqlMapClient().update("reply.update", vo);
-		ReplyVO3 data = (ReplyVO3)getSqlMapClient().queryForObject("reply.filenames", vo);
+		int r = getSqlMapClient().update("reply3.update", vo);
+		ReplyVO3 data = (ReplyVO3)getSqlMapClient().queryForObject("reply3.filenames", vo);
 		if(r > 0){
 			if("1".equals(vo.getFilename_chk()) || !"".equals(Function.checkNull(vo.getFilename()))){
 				Function.fileDelete(vo.getUploadPath(), data.getFilename());
@@ -116,11 +116,11 @@ public class ReplyDAO3 extends SqlMapClientDAOSupport {
 	 * @throws SQLException
 	 */
 	public ReplyVO3 read(ReplyVO3 vo, boolean userCon) throws SQLException {
-		ReplyVO3 data = (ReplyVO3)getSqlMapClient().queryForObject("reply.read", vo);
+		ReplyVO3 data = (ReplyVO3)getSqlMapClient().queryForObject("reply3.read", vo);
 		
-		vo.setRownum((Integer)getSqlMapClient().queryForObject("reply.getRowNum", vo));			// 해당no rownum구하기
-		ReplyVO3 prev = (ReplyVO3)getSqlMapClient().queryForObject("reply.getPrevRowNum", vo);	// 이전글 no, title 구하기
-		ReplyVO3 next = (ReplyVO3)getSqlMapClient().queryForObject("reply.getNextRowNum", vo);	// 다음글 no, title 구하기
+		vo.setRownum((Integer)getSqlMapClient().queryForObject("reply3.getRowNum", vo));			// 해당no rownum구하기
+		ReplyVO3 prev = (ReplyVO3)getSqlMapClient().queryForObject("reply3.getPrevRowNum", vo);	// 이전글 no, title 구하기
+		ReplyVO3 next = (ReplyVO3)getSqlMapClient().queryForObject("reply3.getNextRowNum", vo);	// 다음글 no, title 구하기
 		
 		if (prev != null) {
 			data.setPrev_no(prev.getPrev_no());			// 이전글 번호		
@@ -132,7 +132,7 @@ public class ReplyDAO3 extends SqlMapClientDAOSupport {
 		}
 		
 		if (userCon) {
-			getSqlMapClient().update("reply.updateReadno", vo);
+			getSqlMapClient().update("reply3.updateReadno", vo);
 		}
 		return data;
 	}
@@ -144,8 +144,8 @@ public class ReplyDAO3 extends SqlMapClientDAOSupport {
 	 * @throws SQLException
 	 */
 	public int delete(ReplyVO3 vo) throws SQLException {
-		ReplyVO3 data = (ReplyVO3)getSqlMapClient().queryForObject("reply.read", vo);
-		int r = getSqlMapClient().delete("reply.delete", vo);
+		ReplyVO3 data = (ReplyVO3)getSqlMapClient().queryForObject("reply3.read", vo);
+		int r = getSqlMapClient().delete("reply3.delete", vo);
 		if (r > 0) {
 			Function.fileDelete(vo.getUploadPath(), data.getFilename());
 			Function.fileDelete(vo.getUploadPath(), data.getImagename());
@@ -164,7 +164,7 @@ public class ReplyDAO3 extends SqlMapClientDAOSupport {
 	 * @throws SQLException
 	 */
 	public boolean checkPassword(ReplyVO3 vo) throws SQLException {
-		Integer cnt = (Integer)getSqlMapClient().queryForObject("reply.checkPassword", vo);
+		Integer cnt = (Integer)getSqlMapClient().queryForObject("reply3.checkPassword", vo);
 		if (cnt > 0) {
 			return true;
 		} else {

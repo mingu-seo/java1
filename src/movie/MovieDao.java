@@ -111,9 +111,10 @@ public class MovieDao extends SqlMapClientDAOSupport {
 	
 	public static void main(String[] args) throws Exception  {
 		MovieDao dao = new MovieDao();
-		StillCutVo scv = new StillCutVo();
-		
-		dao.insert2(scv);
+		MovieVo mv = new MovieVo();
+		TrailerVo tv = new TrailerVo();
+	
+		dao.trailerUpdate(tv);
 	}
 
 	

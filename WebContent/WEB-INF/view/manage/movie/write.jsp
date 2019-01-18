@@ -140,17 +140,17 @@
 												<th scope="row"><label for="">트레일러 </label></th>
 												<td>
 													<input type="text" class="w50" name="trailer1"
-													value="" title="동영상 url주소를 첨부하세요" /><br/><br/>
+													 title="동영상 url주소를 첨부하세요" /><br/><br/>
 												 	<input type="text" class="w50" name="trailer2"
-													value="" title="동영상 url주소를 첨부하세요" /><br/><br/>
+													 title="동영상 url주소를 첨부하세요" /><br/><br/>
 													<input type="text" class="w50" name="trailer3"
-													value="" title="동영상 url주소를 첨부하세요" /><br/><br/>
+													 title="동영상 url주소를 첨부하세요" /><br/><br/>
 													<input type="text" class="w50" name="trailer4"
-													value="" title="동영상 url주소를 첨부하세요" /><br/><br/>
+													 title="동영상 url주소를 첨부하세요" /><br/><br/>
 													<input type="text" class="w50" name="trailer5"
-													value="" title="동영상 url주소를 첨부하세요" /><br/><br/>
+													 title="동영상 url주소를 첨부하세요" /><br/><br/>
 													<input type="text" class="w50" name="trailer6"
-													value="" title="동영상 url주소를 첨부하세요" />
+													 title="동영상 url주소를 첨부하세요" />
 												</td>
 											</tr>
 										</tbody>
