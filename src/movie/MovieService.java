@@ -67,27 +67,27 @@ public class MovieService {
 		}
 		MultipartFile file2= (MultipartFile)fileMap.get("stillCut2_tmp");
 		if (!file2.isEmpty()) {
-			fu.upload(file, SiteProperty.MOVIE_UPLOAD_PATH, SiteProperty.REAL_PATH, "stillCut");
+			fu.upload(file2, SiteProperty.MOVIE_UPLOAD_PATH, SiteProperty.REAL_PATH, "stillCut");
 			scv.setStillCut2(fu.getName());
 		}
 		MultipartFile file3= (MultipartFile)fileMap.get("stillCut3_tmp");
 		if (!file3.isEmpty()) {
-			fu.upload(file, SiteProperty.MOVIE_UPLOAD_PATH, SiteProperty.REAL_PATH, "stillCut");
+			fu.upload(file3, SiteProperty.MOVIE_UPLOAD_PATH, SiteProperty.REAL_PATH, "stillCut");
 			scv.setStillCut3(fu.getName());
 		}
 		MultipartFile file4= (MultipartFile)fileMap.get("stillCut4_tmp");
 		if (!file4.isEmpty()) {
-			fu.upload(file, SiteProperty.MOVIE_UPLOAD_PATH, SiteProperty.REAL_PATH, "stillCut");
+			fu.upload(file4, SiteProperty.MOVIE_UPLOAD_PATH, SiteProperty.REAL_PATH, "stillCut");
 			scv.setStillCut4(fu.getName());
 		}
 		MultipartFile file5= (MultipartFile)fileMap.get("stillCut5_tmp");
 		if (!file5.isEmpty()) {
-			fu.upload(file, SiteProperty.MOVIE_UPLOAD_PATH, SiteProperty.REAL_PATH, "stillCut");
+			fu.upload(file5, SiteProperty.MOVIE_UPLOAD_PATH, SiteProperty.REAL_PATH, "stillCut");
 			scv.setStillCut5(fu.getName());
 		}
 		MultipartFile file6= (MultipartFile)fileMap.get("stillCut6_tmp");
 		if (!file6.isEmpty()) {
-			fu.upload(file, SiteProperty.MOVIE_UPLOAD_PATH, SiteProperty.REAL_PATH, "stillCut");
+			fu.upload(file6, SiteProperty.MOVIE_UPLOAD_PATH, SiteProperty.REAL_PATH, "stillCut");
 			scv.setStillCut1(fu.getName());
 		}
 		int r = movieDao.insert2(scv);
@@ -131,7 +131,7 @@ public class MovieService {
 		int r = (Integer)movieDao.update(vo);
 		FileUtil fu = new FileUtil();
 		Map fileMap = fu.getFileMap(request);
-		MultipartFile file= (MultipartFile)fileMap.get("poster");
+		MultipartFile file= (MultipartFile)fileMap.get("poster_tmp");
 		if (!file.isEmpty()) {
 			fu.upload(file, SiteProperty.MOVIE_UPLOAD_PATH, SiteProperty.REAL_PATH, "movie");
 			vo.setPoster(fu.getName());
@@ -147,7 +147,7 @@ public class MovieService {
 	public int stillCutUpdate(int movie_no, HttpServletRequest request) throws Exception {
 		StillCutVo scv = new StillCutVo();
 		scv.setMovie_no(movie_no);
-		
+				
 		FileUtil fu = new FileUtil();
 		Map fileMap = fu.getFileMap(request);
 		MultipartFile file= (MultipartFile)fileMap.get("stillCut1_tmp");
@@ -178,7 +178,7 @@ public class MovieService {
 		MultipartFile file6= (MultipartFile)fileMap.get("stillCut6_tmp");
 		if (!file6.isEmpty()) {
 			fu.upload(file, SiteProperty.MOVIE_UPLOAD_PATH, SiteProperty.REAL_PATH, "stillCut");
-			scv.setStillCut1(fu.getName());
+			scv.setStillCut6(fu.getName());
 		}
 		
 		return movieDao.stillCutUpdate(scv);

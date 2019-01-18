@@ -36,9 +36,11 @@ public class MovieController {
 		return "manage/movie/index";
 	}
 	
-	@RequestMapping("/movie/now.do")
-	public String movieList (Model model, MovieVo param) throws Exception {
+	@RequestMapping("/movie/index.do")
+	public String movieIndex (Model model, MovieVo param) throws Exception {
 		param.setTablename("movie");
+		param.setPageRows(9);
+		
 		int[] rowPageCount = movieService.count(param);
 		ArrayList<MovieVo> list = movieService.list(param);
 		
@@ -47,7 +49,7 @@ public class MovieController {
 		model.addAttribute("list", list);
 		model.addAttribute("vo", param);
 		
-		return "movie/list";
+		return "movie/index";
 	}
 	
 	@RequestMapping("/movie/next.do")
@@ -69,6 +71,43 @@ public class MovieController {
 		
 		return "manage/movie/write";
 	}
+	
+	@RequestMapping("/movie/detail.do")
+	public String detail(Model model, MovieVo param, HttpServletRequest request) throws Exception {
+		model.addAttribute("vo", param);
+		
+		param.setTablename("movie");
+		MovieVo data = movieService.read(param, false);
+		model.addAttribute("data", data);
+		model.addAttribute("param", param);
+		
+		StillCutVo scv = movieService.readStillCut(data.getNo());
+		
+		if(Function.getIntParameter(request.getParameter("stillCut1_chk"))==1) {
+			Function.fileDelete(SiteProperty.MOVIE_UPLOAD_PATH, scv.getStillCut1());
+		}  
+		if(Function.getIntParameter(request.getParameter("stillCut2_chk"))==1) {
+			Function.fileDelete(SiteProperty.MOVIE_UPLOAD_PATH, scv.getStillCut2());
+		}
+		if(Function.getIntParameter(request.getParameter("stillCut3_chk"))==1) {
+			Function.fileDelete(SiteProperty.MOVIE_UPLOAD_PATH, scv.getStillCut3());
+		}
+		if(Function.getIntParameter(request.getParameter("stillCut4_chk"))==1){
+			Function.fileDelete(SiteProperty.MOVIE_UPLOAD_PATH, scv.getStillCut4());
+		}
+		if(Function.getIntParameter(request.getParameter("stillCut5_chk"))==1) {
+			Function.fileDelete(SiteProperty.MOVIE_UPLOAD_PATH, scv.getStillCut5());
+		}
+		if(Function.getIntParameter(request.getParameter("stillCut6_chk"))==1) {
+			Function.fileDelete(SiteProperty.MOVIE_UPLOAD_PATH, scv.getStillCut6());
+		}
+		model.addAttribute("scv", scv);
+		TrailerVo tv = movieService.readTrailer(data.getNo());
+		model.addAttribute("tv",tv);
+		
+		return "movie/detail";
+	}
+	
 	
 	@RequestMapping("/manage/movie/edit.do")
 	public String edit(Model model, MovieVo param, HttpServletRequest request) throws Exception {
@@ -137,9 +176,9 @@ public class MovieController {
 		//	model.addAttribute("url", "index.do");
 		
 		} else if ("edit".equals(param.getCmd())) {
-			int r = movieService.update(param, request);
-			int r2 = movieService.stillCutUpdate(r, request);
-			int r3 = movieService.trailerUpdate(r, request);
+			int r = movieService.update(param, request); // 리턴값이 업데이트 한 갯수 
+			int r2 = movieService.stillCutUpdate(param.getNo(), request);
+			int r3 = movieService.trailerUpdate(param.getNo(), request);
 			
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "정상적으로 수정되었습니다.", "수정실패"));

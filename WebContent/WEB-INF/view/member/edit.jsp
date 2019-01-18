@@ -1,6 +1,9 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ page import="member.*" %>
 <%@ page import="java.util.*" %>
+<%@ page import="property.SiteProperty" %>
+<%@ page import="util.*" %>
+
 <%
 MemberVO data = (MemberVO)request.getAttribute("data");
 %>
@@ -64,7 +67,7 @@ function goSave() {
     <div class="sub">
 		<div class="size">
 			<h3 class="sub_title">회원정보 수정</h3>
-			<form name="frm" id="frm" action="process.do" method="post">
+			<form name="frm" id="frm" action="process.do" method="post" enctype="multipart/form-data">
 			<table class="board_write">
 				<caption>회원정보 수정</caption>
 				<colgroup>
@@ -103,6 +106,20 @@ function goSave() {
 						<th>휴대폰 번호</th>
 						<td>
 							<input type="text" name="hp" id="hp" value=<%=data.getHp() %>  class="wid50" maxlength="15" onkeyup="isNumberOrHyphen(this);cvtPhoneNumber(this);" style="float:left;">
+						</td>
+					</tr>
+					<tr>
+						<th>프로필</th>
+						<td>
+							
+							<% if (data.getFilename() != null && !"".equals(data.getFilename())) { %>
+							<p>
+								<img src="<%=SiteProperty.MEMBER_UPLOAD_PATH%><%=data.getFilename()%>"  width="100px" height="150px"></img>
+								<input type="checkbox" id="filename_chk" name="filename_chk" value="1" title="첨부파일을 삭제하시려면 체크해주세요" />
+								<label for="file_name_chk">기존파일삭제</label>
+							</p>
+							<%}%>
+								<input type="file" name="filename_tmp" id="filename_tmp" title="첨부파일"/>
 						</td>
 					</tr>
 				</tbody>

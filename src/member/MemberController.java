@@ -274,7 +274,7 @@ public class MemberController {
 			model.addAttribute("message", Function.message(r, "정상적으로 등록되었습니다.", "등록실패"));
 			model.addAttribute("url", "index.do");
 		} else if ("edit.do".equals(param.getCmd())) {
-			int r = memberService.update(param);
+			int r = memberService.update(param, request);
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "정상적으로 수정되었습니다.", "수정실패"));
 			model.addAttribute("url", param.getTargetURLParam("index.do", param, 0));
@@ -311,7 +311,7 @@ public class MemberController {
 			model.addAttribute("message", Function.message(r, "정상적으로 등록되었습니다.", "등록실패"));
 			model.addAttribute("url", "/index.do");
 		} else if ("edit.do".equals(param.getCmd())) {
-			int r = memberService.update(param);
+			int r = memberService.update(param, request);
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "정상적으로 수정되었습니다.", "수정실패"));
 			model.addAttribute("url", param.getTargetURLParam("/index.do", param, 0));

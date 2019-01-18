@@ -98,40 +98,40 @@
         WHERE no = #no#
     </update>
     
-    <update id="update2" parameterClass="stillCut_vo">
+    <update id="stillCutUpdate" parameterClass="stillCut_vo">
         UPDATE STILLCUT SET
         	movie_no = #movie_no#
-        <isNotNull property="stillcut1">
-       	    ,stillcut1 = #stillcut1#
+        <isNotNull property="stillCut1">
+       	    ,stillcut1 = #stillCut1#
        	</isNotNull>     	
-        <isNotNull property="stillcut2">
-       	    ,stillcut2 = #stillcut2#
+        <isNotNull property="stillCut2">
+       	    ,stillcut2 = #stillCut2#
        	</isNotNull>     	
-        <isNotNull property="stillcut3">
-       	    ,stillcut3 = #stillcut3#
+        <isNotNull property="stillCut3">
+       	    ,stillcut3 = #stillCut3#
        	</isNotNull> 
-        <isNotNull property="stillcut4">
-       	    ,stillcut4 = #stillcut4#
+        <isNotNull property="stillCut4">
+       	    ,stillcut4 = #stillCut4#
        	</isNotNull>        	        	
-        <isNotNull property="stillcut5">
-       	    ,stillcut5 = #stillcut5#
+        <isNotNull property="stillCut5">
+       	    ,stillcut5 = #stillCut5#
        	</isNotNull>    
-        <isNotNull property="stillcut6">
-       	    ,stillcut6 = #stillcut6#
+        <isNotNull property="stillCut6">
+       	    ,stillcut6 = #stillCut6#
        	</isNotNull>        	    
         WHERE movie_no = #movie_no#
     </update>
     
-    <update id="update3" parameterClass="trailer_vo">
+    <update id="trailerUpdate" parameterClass="trailer_vo">
     	UPDATE TRAILER SET 
     	
     		movie_no = #movie_no#,
     		trailer1 = #trailer1#,
-    		trailer1 = #trailer2#,
-    		trailer1 = #trailer3#,
-    		trailer1 = #trailer4#,
-    		trailer1 = #trailer5#,
-    		trailer1 = #trailer6#
+    		trailer2 = #trailer2#,
+    		trailer3 = #trailer3#,
+    		trailer4 = #trailer4#,
+    		trailer5 = #trailer5#,
+    		trailer6 = #trailer6#
     		 
     	WHERE movie_no = #movie_no#
     

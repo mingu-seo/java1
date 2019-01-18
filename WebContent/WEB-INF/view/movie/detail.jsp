@@ -1,4 +1,15 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page import="property.SiteProperty" %>
+<%@ page import="util.*" %>
+<%@ page import="java.util.*" %>
+<%@ page import="movie.*" %>
+<% 
+MovieVo param = (MovieVo)request.getAttribute("vo");
+MovieVo data = (MovieVo) request.getAttribute("data");
+StillCutVo scv = (StillCutVo) request.getAttribute("scv");
+TrailerVo tv = (TrailerVo) request.getAttribute("tv"); 
+%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -21,34 +32,32 @@
 				<div class="movie">
 					<div class="info">
 						<div class="movie_img">
-							<img src="/img/poster1.jpg" />
+							<img src="<%=SiteProperty.MOVIE_UPLOAD_PATH%><%=data.getPoster()%>" />
 						</div>
 						<div class="movie_info">
 							<dl>
 								<dt class="title">
-									랄프2 : 인터넷 속으로
+									<%=data.getTitle()%>
 								</dt>
 								<dt class="info_detail">
 									예매율 50%
 								</dt>
 								<dt class="info_detail">
-									감독 김청기
+									감독 <%=data.getDirector()%>
 								</dt>
 								<dt class="info_detail">
 									배우 심형래, 라푼젤, 엘사
 								</dt>
 								<dt class="info_detail">
-									장르 액션
+									장르 <%=data.getGenre()%>
 								</dt>
 								<dt class="info_detail">
-									개봉일
+									개봉일 <%=data.getReleaseDate()%>
 								</dt>
 								<dt class="synop">
-									시놉시스
+									시놉시스 <br/>
 									<div class="synop_contents">
-										1940년대 우리말이 점점 사라져가고 있는 경성.<br/>
-										극장에서 해고된 후 아들 학비 때문에 가방을 훔치다 실패한 판수.<br/>
-										하필 면접 보러 간 조선어학회 대표가 가방 주인 정환이다.<br/>
+										<%=data.getContents() %>
 									</div>
 								</dt>
 								<dt class="reser_btn">
@@ -61,18 +70,37 @@
 					<div class="stillcut_area">
 							<div class="swiper_stillcut swiper-container">
 				                <div class="swiper-wrapper">
+				                
+				                    <%if(scv.getStillCut1()!=null && scv.getStillCut1()!="") { %>
 				                    <div class="swiper-slide" >
-				                    	<img class="stillcut_img" src="/img/stillcut1.jpg"/>
+				                    	<img class="stillcut_img" src="<%=SiteProperty.MOVIE_UPLOAD_PATH%><%=scv.getStillCut1()%>"/>
 				                    </div>
+				                    <%} %>
+				                    <%if(scv.getStillCut2()!=null && scv.getStillCut2()!="") { %>
 				                    <div class="swiper-slide">
-				                    	<img class="stillcut_img" src="/img/stillcut2.jpg"/>
+				                    	<img class="stillcut_img" src="<%=SiteProperty.MOVIE_UPLOAD_PATH%><%=scv.getStillCut2()%>"/>
 				                    </div>
+				                    <%} %>
+				                    <%if(scv.getStillCut3()!=null && scv.getStillCut3()!="") { %>
 				                    <div class="swiper-slide">
-				                    	<img class="stillcut_img" src="/img/stillcut3.jpg"/>
+				                    	<img class="stillcut_img" src="<%=SiteProperty.MOVIE_UPLOAD_PATH%><%=scv.getStillCut3()%>"/>
 				                    </div>
+				                    <%} %>
+				                    <%if(scv.getStillCut4()!=null && scv.getStillCut4()!="") { %>
 				                    <div class="swiper-slide">
-				                    	<img class="stillcut_img" src="/img/stillcut4.jpg"/>
+				                    	<img class="stillcut_img" src="<%=SiteProperty.MOVIE_UPLOAD_PATH%><%=scv.getStillCut4()%>"/>
 				                    </div>
+				                    <%} %>
+				                    <%if(scv.getStillCut5()!=null && scv.getStillCut5()!="") { %>
+				                    <div class="swiper-slide" >
+				                    	<img class="stillcut_img" src="<%=SiteProperty.MOVIE_UPLOAD_PATH%><%=scv.getStillCut5()%>"/>
+				                    </div>
+				                    <%} %>
+				                    <%if(scv.getStillCut6()!=null && scv.getStillCut6()!="") { %>
+				                    <div class="swiper-slide" >
+				                    	<img class="stillcut_img" src="<%=SiteProperty.MOVIE_UPLOAD_PATH%><%=scv.getStillCut6()%>"/>
+				                    </div>
+				                    <%} %>
 				                </div>
 				    
 				                <div class="swiper-pagination"></div>
@@ -85,17 +113,32 @@
 						<ul>
 							<li>
 								<div class="video_container">
-									<iframe src="https://www.youtube.com/embed/dVXbK4Mz_NY" frameborder="0"  wmode="Opaque" width="100%" height="315"></iframe>
+									<iframe src="<%=tv.getTrailer1()%>" frameborder="0"  wmode="Opaque" width="100%" height="315"></iframe>
 								</div>
 							</li>
 							<li>
 								<div class="video_container">
-									<iframe src="https://www.youtube.com/embed/dVXbK4Mz_NY" frameborder="0"  wmode="Opaque" width="100%" height="315"></iframe>
+									<iframe src="<%=tv.getTrailer2()%>" frameborder="0"  wmode="Opaque" width="100%" height="315"></iframe>
 								</div>
 							</li>
 							<li>
 								<div class="video_container">
-									<iframe src="https://www.youtube.com/embed/dVXbK4Mz_NY" frameborder="0"  wmode="Opaque" width="100%" height="315"></iframe>
+									<iframe src="<%=tv.getTrailer3()%>" frameborder="0"  wmode="Opaque" width="100%" height="315"></iframe>
+								</div>
+							</li>
+							<li>	
+								<div class="video_container">
+									<iframe src="<%=tv.getTrailer4()%>" frameborder="0"  wmode="Opaque" width="100%" height="315"></iframe>
+								</div>
+							</li>	
+							<li>	
+								<div class="video_container">
+									<iframe src="<%=tv.getTrailer5()%>" frameborder="0"  wmode="Opaque" width="100%" height="315"></iframe>
+								</div>
+							</li>
+							<li>	
+								<div class="video_container">
+									<iframe src="<%=tv.getTrailer6()%>" frameborder="0"  wmode="Opaque" width="100%" height="315"></iframe>
 								</div>
 							</li>
 						</ul>

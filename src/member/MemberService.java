@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import db.SqlMapClientDAOSupport;
+import board.reply1.Reply1VO;
 import mail.SendMail;
 import property.SiteProperty;
 import util.FileUtil;
@@ -17,7 +19,7 @@ import util.Function;
 import util.Page;
 
 @Service
-public class MemberService {
+public class MemberService extends SqlMapClientDAOSupport{
 	
 	@Autowired
 	private MemberDAO memberDao;
@@ -49,7 +51,23 @@ public class MemberService {
 		return no;
 	}
 	
-	public int update(MemberVO vo) throws SQLException {
+	public int update(MemberVO vo, HttpServletRequest request) throws Exception {
+		MemberVO data = (MemberVO)getSqlMapClient().queryForObject("member.filenames", vo);
+		if(data != null){
+			System.out.println("체크:"+vo.getFilename_chk());
+			if("1".equals(vo.getFilename_chk()) || !"".equals(Function.checkNull(vo.getFilename()))){
+				Function.fileDelete(SiteProperty.REAL_PATH+SiteProperty.MEMBER_UPLOAD_PATH, data.getFilename());
+			}
+		}
+		
+		FileUtil fu = new FileUtil();
+		Map fileMap = fu.getFileMap(request);
+		MultipartFile file= (MultipartFile)fileMap.get("filename_tmp");
+		if (!file.isEmpty()) {
+			fu.upload(file, SiteProperty.MEMBER_UPLOAD_PATH, SiteProperty.REAL_PATH, "reply");
+			vo.setFilename(fu.getName());
+		}
+		
 		int cnt = memberDao.update(vo);
 		return cnt;
 	}

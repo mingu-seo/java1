@@ -1,4 +1,13 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page import="property.SiteProperty" %>
+<%@ page import="util.*" %>
+<%@ page import="java.util.*" %>
+<%@ page import="movie.*" %>
+<% 
+MovieVo param = (MovieVo)request.getAttribute("vo");
+ArrayList<MovieVo> list = (ArrayList)request.getAttribute("list");
+int totCount = (Integer)request.getAttribute("totCount");
+int totPage = (Integer)request.getAttribute("totPage"); %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -21,15 +30,22 @@
 			<div class="bbs">
 				<div class="gallery">
 					<ul>
+						<% MovieVo data;
+							for(int i=0; i<list.size();i++) {
+								data = list.get(i);
+								%>
 						<li>
-							<a href="view.do?no=1">
+						
+								
+							
+							<a href="detail.do?no=<%=data.getNo()%>">
 							<dl>
 								<dt class="img">
-										<img src="/img/poster1.jpg" alt=""/>
+										<img src="<%=SiteProperty.MOVIE_UPLOAD_PATH%><%=data.getPoster()%>" alt=""/>
 								</dt>
 								<dd class="date">평점 4.5</dd>
 								<dd class="title">
-									주먹왕 랄프 : 인터넷속으로
+									<%=data.getTitle()%>
 								</dd>
 								<dd class="btnArea">
 									<input type="button" class="btn" value="상세"/>
@@ -37,92 +53,9 @@
 								</dd>
 							</dl>
 							</a>
+						
 						</li>
-						<li>
-							<a href="view.do?no=1">
-							<dl>
-								<dt class="img">
-										<img src="/img/poster2.jpg" alt=""/>
-								</dt>
-								<dd class="date">평점 4.5</dd>
-								<dd class="title">
-									말모이
-								</dd>
-								<dd class="btnArea">
-									<input type="button" class="btn" value="상세"/>
-									<input type="button" class="btn" value="예매"/>
-								</dd>
-							</dl>
-							</a>
-						</li>
-						<li>
-							<a href="view.do?no=1">
-							<dl>
-								<dt class="img">
-										<img src="/img/poster3.jpg" alt=""/>
-								</dt>
-								<dd class="date">평점 4.5</dd>
-								<dd class="title">
-									내 안의 그놈
-								</dd>
-								<dd class="btnArea">
-									<input type="button" class="btn" value="상세"/>
-									<input type="button" class="btn" value="예매"/>
-								</dd>
-							</dl>
-							</a>
-						</li>
-						<li>
-							<a href="view.do?no=1">
-							<dl>
-								<dt class="img">
-										<img src="/img/poster4.jpg" alt=""/>
-								</dt>
-								<dd class="date">평점 4.5</dd>
-								<dd class="title">
-									그린북
-								</dd>
-								<dd class="btnArea">
-									<input type="button" class="btn" value="상세"/>
-									<input type="button" class="btn" value="예매"/>
-								</dd>
-							</dl>
-							</a>
-						</li>
-						<li>
-							<a href="view.do?no=1">
-							<dl>
-								<dt class="img">
-										<img src="/img/poster5.jpg" alt=""/>
-								</dt>
-								<dd class="date">평점 4.5</dd>
-								<dd class="title">
-									아쿠아맨
-								</dd>
-								<dd class="btnArea">
-									<input type="button" class="btn" value="상세"/>
-									<input type="button" class="btn" value="예매"/>
-								</dd>
-							</dl>
-							</a>
-						</li>
-						<li>
-							<a href="view.do?no=1">
-							<dl>
-								<dt class="img">
-										<img src="/img/poster6.jpg" alt=""/>
-								</dt>
-								<dd class="date">평점 4.5</dd>
-								<dd class="title">
-									보헤미안 랩소디
-								</dd>
-								<dd class="btnArea">
-									<input type="button" class="btn" value="상세"/>
-									<input type="button" class="btn" value="예매"/>
-								</dd>
-							</dl>
-							</a>
-						</li>
+							<%} %>
 					</ul>
 				</div>
 			
