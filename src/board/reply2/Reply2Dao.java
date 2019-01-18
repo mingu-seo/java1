@@ -92,9 +92,9 @@ public class Reply2Dao extends SqlMapClientDAOSupport {
 	 * @throws SQLException
 	 */
 	public int update(Reply2Vo vo) throws SQLException {
-		vo.setFilesize(Function.getFileSize(vo.getUploadPath(), vo.getFilename()));	// 파일 사이즈 구하기
+	//	vo.setFilesize(Function.getFileSize(vo.getUploadPath(), vo.getFilename()));	// 파일 사이즈 구하기
 		int r = getSqlMapClient().update("reply2.update", vo);
-		Reply2Vo data = (Reply2Vo)getSqlMapClient().queryForObject("reply2.filenames", vo);
+	//	Reply2Vo data = (Reply2Vo)getSqlMapClient().queryForObject("reply2.filenames", vo);
 			
 		return r;
 	}
