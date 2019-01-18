@@ -143,6 +143,13 @@
 .bbs .view .file dt{float:left; width:80px; color:#999;}
 .bbs .view .file dd{float:left; text-decoration:underline !important; color:#00aeef; }
 
+.bbs .write{border-collapse:collapse; border-spacing:0; box-sizing:border-box;}  /* tr에 shadow_down 클래스 사용하는 경우 border-collapse:separate; 으로 변경*/
+.bbs .write {border-top:2px solid #c3d69b; border-bottom:1px solid #c3d69b;}
+.bbs .write tbody tr th{padding:15px 20px; font-size:13px; height:20px; line-height:14px; color:#333;}
+.bbs .write input[type=text] {width:100%;}
+.bbs .write textarea {width:92%;}
+
+
 .bbs .postSection {width:100%; }
 .bbs .postSection .postList {width:100%; margin-left:-2%; margin-top:-2%; }
 .bbs .postSection .postList li {float:left; width:100%; margin-left:2%; margin-top:2%; }

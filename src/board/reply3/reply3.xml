@@ -33,7 +33,8 @@
     </select>
     
 	<select id="list" parameterClass="reply_vo3" resultClass="reply_vo3">
-        select *
+        select *,
+        (select name from admin where admin.no=reply.admin_fk) as admin_writer
         from $tablename$
         <include refid="searchSql" />
 		ORDER BY top DESC, gno DESC, ono ASC LIMIT $startPageNo$, $pageRows$
@@ -46,12 +47,12 @@
 	<!-- 해당 테이블에 게시글 작성 -->
     <insert id="insert" parameterClass="reply_vo3">
         INSERT INTO $tablename$ (
-        	member_fk, gno, ono, nested, 
+        	member_fk, admin_fk, gno, ono, nested, 
         	password, name, email, title, contents, relation_url, registdate, readno,
         	imagename, imagename_org, filename, filename_org, filesize, 
         	top, main, newicon
         ) VALUES (
-        	#member_fk#, #gno#, #ono#, #nested#, 
+        	#member_fk#, #admin_fk#, #gno#, #ono#, #nested#, 
         	password(#password#), #name#, #email#, #title#, #contents#, #relation_url#, now(), #readno#,
         	#imagename#, #imagename_org#, #filename#, #filename_org#, #filesize#,  
         	#top#, #main#, #newicon#
@@ -80,7 +81,7 @@
     
     <update id="update" parameterClass="reply_vo3">
         UPDATE $tablename$ SET
-        	member_fk=#member_fk#,
+        	member_fk=#member_fk#, admin_fk=#admin_fk#,
         	name=#name#, email=#email#, title=#title#, contents=#contents#, relation_url=#relation_url#,
         <isNotEqual property="password" compareValue="">
        	    password = password(#password#),

@@ -60,14 +60,6 @@ ReplyVO3 param = (ReplyVO3)request.getAttribute("vo");
 						<div id="bread">
 							<form method="post" name="frm" id="frm" action="<%=Function.getSslCheckUrl(request.getRequestURL())%>/process.do" enctype="multipart/form-data" onsubmit="return goSave();">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
-								<colgroup>
-									<col width="10%" />
-									<col width="15%" />
-									<col width="10%" />
-									<col width="10%" />
-									<col width="10%" />
-									<col width="15%" />
-								</colgroup>
 								<tbody>
 									<tr>
 										<th scope="row"><label for="">*제목</label></th>
@@ -94,7 +86,7 @@ ReplyVO3 param = (ReplyVO3)request.getAttribute("vo");
 								</tbody>
 							</table>
 							<input type="hidden" name="cmd" value="write" />
-							<input type="hidden" name="writer" value="<%=request.getAttribute("admin_no")%>" />
+							<input type="hidden" name="admin_fk" value="<%=request.getAttribute("admin_no")%>" />
 							</form>
 							<div class="btn">
 								<div class="btnLeft">

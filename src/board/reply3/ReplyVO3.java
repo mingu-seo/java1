@@ -8,12 +8,12 @@ import util.Parameter;
 public class ReplyVO3 extends Parameter {
 
 	private int no;
-	private int member_fk;
 	private int gno;
 	private int ono;
 	private int nested;
 	private String password;
 	private String name;
+	private String admin_writer;
 	private String email;
 	private String title;
 	private String contents;
@@ -30,6 +30,9 @@ public class ReplyVO3 extends Parameter {
 	private String newicon;
 	private int readno;
 	private int secret;
+	private int member_fk;
+	private int admin_fk;
+	
 	
 	// DB
 	private String member_name;
@@ -60,12 +63,6 @@ public class ReplyVO3 extends Parameter {
 	public void setNo(int no) {
 		this.no = no;
 	}
-	public int getMember_fk() {
-		return member_fk;
-	}
-	public void setMember_fk(int member_fk) {
-		this.member_fk = member_fk;
-	}
 	public int getGno() {
 		return gno;
 	}
@@ -95,6 +92,12 @@ public class ReplyVO3 extends Parameter {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getAdmin_writer() {
+		return admin_writer;
+	}
+	public void setAdmin_writer(String admin_writer) {
+		this.admin_writer = admin_writer;
 	}
 	public String getEmail() {
 		return email;
@@ -191,6 +194,18 @@ public class ReplyVO3 extends Parameter {
 	}
 	public void setSecret(int secret) {
 		this.secret = secret;
+	}
+	public int getMember_fk() {
+		return member_fk;
+	}
+	public void setMember_fk(int member_fk) {
+		this.member_fk = member_fk;
+	}
+	public int getAdmin_fk() {
+		return admin_fk;
+	}
+	public void setAdmin_fk(int admin_fk) {
+		this.admin_fk = admin_fk;
 	}
 	public String getMember_name() {
 		return member_name;

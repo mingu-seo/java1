@@ -140,7 +140,7 @@ function CookieVal(cookieName) {
                             <a href="/board/faq/index.do" >고객센터</a>
                             <ul class="depth2">
                                 <li><a href="/board/faq/index.do" >자주하는질문</a></li>
-                                <li><a href="" >Q&A</a></li>
+                                <li><a href="/board/qna/index.do" >Q&A</a></li>
                             </ul>
                         </li>
                     </ul>
