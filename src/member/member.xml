@@ -47,9 +47,26 @@
         	<isNotEqual property="pw" compareValue="">
         	    pw = password(#pw#),
         	</isNotEqual>
-        	name = #name#, hp=#hp#, point=#point#, moddate=now()
+        	<isEqual property="filename_chk" compareValue="1">
+        	filename='',
+       		</isEqual>
+        	<isNotEqual property="filename" compareValue="">
+            <isNotNull property="filename">
+        		filename=#filename#,
+        	</isNotNull>
+        </isNotEqual>
+        	name = #name#, gender=#gender#, hp=#hp#, point=#point#, moddate=now()
         where no=#no#
     </update>
+    
+    <select id="filenames" parameterClass="member_vo" resultClass="member_vo">
+    	<![CDATA[
+        SELECT 
+        	filename
+        FROM member
+        where no = #no#
+        ]]>
+    </select>   
    
     <delete id="delete" parameterClass="Integer">
         delete from member where no=#no#

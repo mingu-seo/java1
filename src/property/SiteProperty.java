@@ -97,8 +97,13 @@ public class SiteProperty {
 	/**
 	 * 로컬 홈디렉토리경로 (실서버 변경 필요)
 	 */
+<<<<<<< HEAD
 	public static final String REAL_PATH				= "E:\\Java\\workspace\\java1\\WebContent";
 //	public static final String REAL_PATH				= "D:\\jsphome\\java1\\aran\\www";
+=======
+	public static final String REAL_PATH				= "E:\\workspace\\java1\\WebContent";
+//	public static final String REAL_PATH				= "D:\\jsphome\\java1\\tssu\\www";
+>>>>>>> branch 'master' of https://github.com/mingu-seo/java1.git
 	/**
 	 * 공지사항 첨부파일 경로
 	 */

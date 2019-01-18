@@ -90,7 +90,7 @@ function goSave() {
     <div class="sub">
 		<div class="size">
 			<h3 class="sub_title">회원가입</h3>
-			<form name="frm" id="frm" action="process.do" method="post">
+			<form name="frm" id="frm" action="process.do" method="post" enctype="multipart/form-data">
 			<table class="board_write">
 				<caption>회원가입</caption>
 				<colgroup>
@@ -99,26 +99,26 @@ function goSave() {
 				</colgroup>
 				<tbody>
 					<tr>
-						<th>이메일</th>
+						<th>*이메일</th>
 						<td>
 							<input type="text" name="email" id="email" class="inNextBtn" class="wid200" style="float:left;">
 							<span class="email_check"><a href="javascript:;" onclick="checkEmail();" class="btn bgGray" style="float:left; width:auto; clear:none;">중복확인</a></span>
 						</td>
 					</tr>
 					<tr>
-						<th>비밀번호</th>
+						<th>*비밀번호</th>
 						<td><input type="password" name="pw" id="pw" class="wid200" style="float:left;"> <span class="ptxt">비밀번호는 숫자, 영문 조합으로 8자 이상으로 입력해주세요.</span> </td>
 					</tr>
 					<tr>
-						<th>비밀번호<span>확인</span></th>
+						<th>*비밀번호<span>확인</span></th>
 						<td><input type="password" name="pw_check" id="pw_check" class="wid200" style="float:left;"></td>
 					</tr>
 					<tr>
-						<th>이름</th>
+						<th>*이름</th>
 						<td><input type="text" name="name" id="name" class="wid200" style="float:left;"> </td>
 					</tr>
 					<tr>
-						<th>성별</th>
+						<th>*성별</th>
 						<td>
 						<select name="gender" id="gender">
 						<option value="1">남성</option>
@@ -127,17 +127,17 @@ function goSave() {
 						</td>
 					</tr>
 					<tr>
-						<th>생년월일</th>
+						<th>*생년월일</th>
 						<td><input type="text" name="birth" id="birth" class="wid200" style="float:left;"> </td>
 					</tr>
 					<tr>
-						<th>휴대폰 번호</th>
+						<th>*휴대폰 번호</th>
 						<td>
 							<input type="text" name="hp" id="hp" value=""  class="wid50" maxlength="15" onkeyup="isNumberOrHyphen(this);cvtPhoneNumber(this);" style="float:left;">
 						</td>
 					</tr>
 					<tr>
-						<th>회원 이미지</th>
+						<th>프로필 사진 첨부</th>
 						<td>
 							<input type="file" id="filename_tmp" name="filename_tmp" class="w100" title="첨부파일을 업로드 해주세요." />
 						</td>
