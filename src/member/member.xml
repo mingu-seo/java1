@@ -55,7 +55,7 @@
         		filename=#filename#,
         	</isNotNull>
         </isNotEqual>
-        	name = #name#, hp=#hp#, point=#point#, moddate=now()
+        	name = #name#, gender=#gender#, hp=#hp#, point=#point#, moddate=now()
         where no=#no#
     </update>
     
