@@ -51,6 +51,6 @@
 	<sqlMap resource="board/reply1/reply1.xml"/>	
 	<sqlMap resource="board/reply2/reply2.xml"/>	
 	<sqlMap resource="board/reply3/reply3.xml"/>	
-
 	<sqlMap resource="review/review.xml"/>	
+	
 </sqlMapConfig>

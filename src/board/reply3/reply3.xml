@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
-<sqlMap namespace="reply">
+<sqlMap namespace="reply3">
     
-    <typeAlias alias="reply_vo" type="board.reply3.ReplyVO3"/>
+    <typeAlias alias="reply_vo3" type="board.reply3.ReplyVO3"/>
     
     <!-- 공통조건 -->
 	<sql id="searchSql">		
@@ -27,24 +27,24 @@
 	</sql>
 	
 	<!-- 해당 테이블의 총 게시글 수 -->
-	<select id="count" parameterClass="reply_vo" resultClass="Integer">
+	<select id="count" parameterClass="reply_vo3" resultClass="Integer">
         select count(*) from $tablename$
         <include refid="searchSql" />	
     </select>
     
-	<select id="list" parameterClass="reply_vo" resultClass="reply_vo">
+	<select id="list" parameterClass="reply_vo3" resultClass="reply_vo3">
         select *
         from $tablename$
         <include refid="searchSql" />
 		ORDER BY top DESC, gno DESC, ono ASC LIMIT $startPageNo$, $pageRows$
     </select>
     
-	<select id="getMaxGno" parameterClass="reply_vo" resultClass="Integer">
+	<select id="getMaxGno" parameterClass="reply_vo3" resultClass="Integer">
         select ifnull(MAX(gno), 0)+1 from $tablename$
     </select>
 	
 	<!-- 해당 테이블에 게시글 작성 -->
-    <insert id="insert" parameterClass="reply_vo">
+    <insert id="insert" parameterClass="reply_vo3">
         INSERT INTO $tablename$ (
         	member_fk, gno, ono, nested, 
         	password, name, email, title, contents, relation_url, registdate, readno,
@@ -62,12 +62,12 @@
     </insert>
     
     <!-- 같은 그룹 중 가장 큰 순서번호를 가져옴 -->
-	<select id="getMaxOno" parameterClass="reply_vo" resultClass="Integer">
+	<select id="getMaxOno" parameterClass="reply_vo3" resultClass="Integer">
         select MAX(ono) as maxOno from $tablename$ where gno = #gno#
     </select>
     
 	<!-- 같은 그룹 중 순서번호가 현재글 보다 크고 중첩단계가 현재글보다 작거나 같은것 중 가장 작은 순서번호를 가져옴 -->
-	<select id="getMinOno" parameterClass="reply_vo" resultClass="Integer">
+	<select id="getMinOno" parameterClass="reply_vo3" resultClass="Integer">
 	   	<![CDATA[
         select IFNULL(MIN(ono), 0) as minOno from $tablename$ where gno = #gno# and ono > #ono# and nested <= #nested#
         ]]>
@@ -78,7 +78,7 @@
 	    UPDATE $tablename$ SET ono = ono+1 WHERE gno = #gno# AND ono >= #minOno#
 	</update>
     
-    <update id="update" parameterClass="reply_vo">
+    <update id="update" parameterClass="reply_vo3">
         UPDATE $tablename$ SET
         	member_fk=#member_fk#,
         	name=#name#, email=#email#, title=#title#, contents=#contents#, relation_url=#relation_url#,
@@ -111,7 +111,7 @@
         WHERE no = #no#
     </update>
     
-    <select id="read" parameterClass="reply_vo" resultClass="reply_vo">
+    <select id="read" parameterClass="reply_vo3" resultClass="reply_vo3">
     	<![CDATA[
         SELECT 
         	*
@@ -120,7 +120,7 @@
         ]]>
     </select>
     
-    <select id="filenames" parameterClass="reply_vo" resultClass="reply_vo">
+    <select id="filenames" parameterClass="reply_vo3" resultClass="reply_vo3">
     	<![CDATA[
         SELECT 
         	filename, imagename
@@ -129,7 +129,7 @@
         ]]>
     </select>    
     
-    <select id="getRowNum" parameterClass="reply_vo" resultClass="Integer">
+    <select id="getRowNum" parameterClass="reply_vo3" resultClass="Integer">
         select rownum from (
         	select @rownum:=@rownum+1 as rownum, no, title from $tablename$, (select @rownum:=0) as r
         	<include refid="searchSql" />
@@ -138,7 +138,7 @@
         where r2.no = #no#
     </select>
     
-    <select id="getNextRowNum" parameterClass="reply_vo" resultClass="reply_vo">
+    <select id="getNextRowNum" parameterClass="reply_vo3" resultClass="reply_vo3">
         select ifnull(rownum,0), ifnull(no,0) as next_no, title as next_title
         from (
         	select @rownum:=@rownum+1 as rownum, no, title from $tablename$, (select @rownum:=0) as r
@@ -150,7 +150,7 @@
     	]]>
     </select>
     
-    <select id="getPrevRowNum" parameterClass="reply_vo" resultClass="reply_vo">
+    <select id="getPrevRowNum" parameterClass="reply_vo3" resultClass="reply_vo3">
     	select ifnull(rownum,0), ifnull(no,0) as prev_no, title as prev_title
         from (
         	select @rownum:=@rownum+1 as rownum, no, title from $tablename$, (select @rownum:=0) as r
@@ -162,15 +162,15 @@
     	]]>
     </select>
     
-    <delete id="delete" parameterClass="reply_vo">
+    <delete id="delete" parameterClass="reply_vo3">
         DELETE FROM $tablename$ WHERE no=#no#
     </delete>
     
-    <update id="updateReadno" parameterClass="reply_vo">
+    <update id="updateReadno" parameterClass="reply_vo3">
         UPDATE $tablename$ SET readno = readno+1 WHERE no = #no#
     </update>
     
-    <select id="checkPassword" parameterClass="reply_vo" resultClass="Integer">
+    <select id="checkPassword" parameterClass="reply_vo3" resultClass="Integer">
         select count(password) as cnt
         from $tablename$
 		where no = #no# and password = password(#password#)
