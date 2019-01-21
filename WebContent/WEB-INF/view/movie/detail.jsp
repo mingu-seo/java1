@@ -111,36 +111,48 @@ TrailerVo tv = (TrailerVo) request.getAttribute("tv");
 					<h5 class="movie_title">트레일러</h5>
 					<div class="trailler_area">
 						<ul>
+						 <%if(tv.getTrailer1()!=null && tv.getTrailer1()!="") { %>
 							<li>
 								<div class="video_container">
 									<iframe src="<%=tv.getTrailer1()%>" frameborder="0"  wmode="Opaque" width="100%" height="315"></iframe>
 								</div>
 							</li>
+						<% } %>
+						 <%if(tv.getTrailer2()!=null && tv.getTrailer2()!="") { %>
 							<li>
 								<div class="video_container">
 									<iframe src="<%=tv.getTrailer2()%>" frameborder="0"  wmode="Opaque" width="100%" height="315"></iframe>
 								</div>
 							</li>
+						<% } %>	
+						<%if(tv.getTrailer3()!=null && tv.getTrailer3()!="") { %>
 							<li>
 								<div class="video_container">
 									<iframe src="<%=tv.getTrailer3()%>" frameborder="0"  wmode="Opaque" width="100%" height="315"></iframe>
 								</div>
 							</li>
+						<% } %>		
+						 <%if(tv.getTrailer4()!=null && tv.getTrailer4()!="") { %>	
 							<li>	
 								<div class="video_container">
 									<iframe src="<%=tv.getTrailer4()%>" frameborder="0"  wmode="Opaque" width="100%" height="315"></iframe>
 								</div>
 							</li>	
+							<% } %>
+							 <%if(tv.getTrailer5()!=null && tv.getTrailer5()!="") { %>		
 							<li>	
 								<div class="video_container">
 									<iframe src="<%=tv.getTrailer5()%>" frameborder="0"  wmode="Opaque" width="100%" height="315"></iframe>
 								</div>
 							</li>
+								<% } %>
+								 <%if(tv.getTrailer6()!=null && tv.getTrailer6()!="") { %>		
 							<li>	
 								<div class="video_container">
 									<iframe src="<%=tv.getTrailer6()%>" frameborder="0"  wmode="Opaque" width="100%" height="315"></iframe>
 								</div>
 							</li>
+							<% } %>
 						</ul>
 					</div>
 					<h5 class="movie_title">리뷰</h5>
