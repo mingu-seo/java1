@@ -1300,7 +1300,26 @@ public class Function {
 		}
 		return fu;
 	}
-		
+	
+	public static String getGenreChecked(String genre, String val) {
+		String[] genreArr = genre.split(",");
+		for (int i=0; i<genreArr.length; i++) {
+			if (val.equals(genreArr[i])) {
+				return "checked";
+			}
+		}
+		return "";
+	}
+	
+	public static String getFormatChecked(String format, String val) {
+		String[] formatArr = format.split(",");
+		for (int i=0; i<formatArr.length; i++) {
+			if (val.equals(formatArr[i])) {
+				return "checked";
+			}
+		}
+		return "";
+	}
 	public static void main(String[] args)throws Exception{
 //		System.out.println(strCut("MONTBLANCＩTABLE_MONTBLANCBENCH_COCOROCHAIR", "", 30, 0, true, true));
 //		System.out.println(strCut("한글은 어떻게 나올까 이렇게 저렇게", "", 30, 0, true, true));

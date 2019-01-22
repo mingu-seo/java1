@@ -115,7 +115,7 @@ function CookieVal(cookieName) {
                             <a href="/movie/index.do" >MOVIE</a>
                             <ul class="depth2">
                                 <li><a href="/movie/index.do" >현재 상영작</a></li>
-                                <li><a href="" >개봉 예정작</a></li>
+                                <li><a href="/movie/next.do" >개봉 예정작</a></li>
                             </ul>
                         </li>
                         <li>

@@ -28,13 +28,59 @@ public class MovieService {
 		rowPageCount[1] = pageCount;
 		return rowPageCount;
 	}
+	
+	public int[] nowCount(MovieVo vo) throws Exception {
+		int rowCount = movieDao.nowCount(vo);
+		int[] rowPageCount = new int[2];
+		int pageCount = Page.getPageCount(vo.getPageRows(), rowCount);
+		rowPageCount[0] = rowCount;
+		rowPageCount[1] = pageCount;
+		return rowPageCount;
+	}
+	
+	public int[] nextCount(MovieVo vo) throws Exception {
+		int rowCount = movieDao.nextCount(vo);
+		int[] rowPageCount = new int[2];
+		int pageCount = Page.getPageCount(vo.getPageRows(), rowCount);
+		rowPageCount[0] = rowCount;
+		rowPageCount[1] = pageCount;
+		return rowPageCount;
+	}
 
 	public ArrayList list(MovieVo vo) throws Exception {
 		ArrayList list = movieDao.list(vo);
 		return list;
 	}
 	
+	public ArrayList nowList(MovieVo vo) throws Exception {
+		ArrayList nowlist = movieDao.nowList(vo);
+		return nowlist;
+	}
+	
+	public ArrayList nextList(MovieVo vo) throws Exception {
+		ArrayList nextList = movieDao.nextList(vo);
+		return nextList;
+	}
+	
 	public int insert(MovieVo vo, HttpServletRequest request) throws Exception {
+		
+		String[] genreArr = request.getParameterValues("genre");
+		String genreVal = "";
+		for (int i=0; i<genreArr.length; i++) {
+			if (i>0) genreVal += ",";
+			genreVal += genreArr[i];
+		}
+		
+		String[] formatArr = request.getParameterValues("format");
+		String formatVal = "";
+		if (formatArr != null) {
+			for (int i=0; i<formatArr.length; i++) {
+				if (i>0) formatVal += ",";
+				formatVal += formatArr[i];
+			}
+		}
+		
+		System.out.println(genreVal);	// insert/update할때
 		FileUtil fu = new FileUtil();
 		Map fileMap = fu.getFileMap(request);
 		MultipartFile file= (MultipartFile)fileMap.get("poster_tmp");
@@ -111,6 +157,21 @@ public class MovieService {
 		return r;
 	}
 	
+	public int insertActor(int movie_no, HttpServletRequest request) throws Exception {
+		
+		ActorVo av = new ActorVo();
+		av.setMovie_no(movie_no);
+		av.setActor1(request.getParameter("actor1"));
+		av.setActor2(request.getParameter("actor2"));
+		av.setActor3(request.getParameter("actor3"));
+		av.setActor4(request.getParameter("actor4"));
+		av.setActor5(request.getParameter("actor5"));
+		av.setActor6(request.getParameter("actor6"));
+		
+		int r = movieDao.insertActor(av);
+		return r;
+		
+	}
 	public MovieVo read(MovieVo vo, boolean userCon) throws Exception {
 		MovieVo data = movieDao.read(vo);
 		return data;
@@ -125,9 +186,32 @@ public class MovieService {
 		return data;
 	}
 	
+	public ActorVo readActor(int movie_no) throws Exception {
+		ActorVo data = movieDao.readActor(movie_no);
+		return data;
+	}
 
 	public int update(MovieVo vo, HttpServletRequest request) throws Exception {
 		MovieVo data = movieDao.read(vo);
+		
+		
+		String[] genreArr = request.getParameterValues("genre");
+		String genreVal = "";
+		for (int i=0; i<genreArr.length; i++) {
+			if (i>0) genreVal += ",";
+			genreVal += genreArr[i];
+		}
+		
+		String[] formatArr = request.getParameterValues("format");
+		String formatVal = "";
+		if(formatArr!=null) {
+			for (int i=0; i<formatArr.length; i++) {
+				if (i>0) formatVal += ",";
+				formatVal += formatArr[i];
+			}
+		}
+	
+		
 		int r = (Integer)movieDao.update(vo);
 		FileUtil fu = new FileUtil();
 		Map fileMap = fu.getFileMap(request);
@@ -197,6 +281,23 @@ public class MovieService {
 	
 		
 		int r = movieDao.trailerUpdate(tv);
+		return r;
+		
+	}
+	
+public int actorUpdate (int movie_no, HttpServletRequest request) throws Exception {
+		
+		ActorVo av = new ActorVo();
+		av.setMovie_no(movie_no); 
+		av.setActor1(request.getParameter("actor1"));
+		av.setActor2(request.getParameter("actor2"));
+		av.setActor3(request.getParameter("actor3"));
+		av.setActor4(request.getParameter("actor4"));
+		av.setActor5(request.getParameter("actor5"));
+		av.setActor6(request.getParameter("actor6"));
+	
+		
+		int r = movieDao.actorUpdate(av);
 		return r;
 		
 	}	

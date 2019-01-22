@@ -8,6 +8,7 @@ MovieVo param = (MovieVo)request.getAttribute("vo");
 MovieVo data = (MovieVo) request.getAttribute("data");
 StillCutVo scv = (StillCutVo) request.getAttribute("scv");
 TrailerVo tv = (TrailerVo) request.getAttribute("tv"); 
+ActorVo av = (ActorVo) request.getAttribute("av"); 
 %>
 
 <!DOCTYPE html>
@@ -37,25 +38,44 @@ TrailerVo tv = (TrailerVo) request.getAttribute("tv");
 						<div class="movie_info">
 							<dl>
 								<dt class="title">
-									<%=data.getTitle()%>
+									<%=data.getTitle()%> 
+									<%if(data.getRating()==19) {%>
+									<img src="/img/19.png" width="30"> 
+									<%}else if(data.getRating()==15) {  %>
+									<img src="/img/15.png" width="30">
+									<%}else if(data.getRating()==12) {  %>
+									<img src="/img/12.png" width="30">
+									<%}else { %>
+									<img src="/img/all.png" width="30"> <%} %>
 								</dt>
 								<dt class="info_detail">
-									예매율 50%
+									<strong>예매율</strong>&nbsp; 50%
 								</dt>
 								<dt class="info_detail">
-									감독 <%=data.getDirector()%>
+									<strong>감독</strong>&nbsp; <%=data.getDirector()%>
 								</dt>
 								<dt class="info_detail">
-									배우 심형래, 라푼젤, 엘사
+									<strong>배우</strong>&nbsp; 
+									<%if(av !=null && av.getActor1()!=null){ %><%=av.getActor1()%><%}  %>&nbsp; 
+									<%if(av !=null && av.getActor2()!=null){ %><%=av.getActor2()%><%} %>&nbsp; 
+									<%if(av !=null && av.getActor3()!=null){ %><%=av.getActor3()%><%} %>&nbsp; 
+									<%if(av !=null && av.getActor4()!=null){ %><%=av.getActor4()%><%} %>&nbsp; 
+									<%if(av !=null && av.getActor5()!=null){ %><%=av.getActor5()%><%} %>&nbsp;  
+									<%if(av !=null && av.getActor6()!=null){ %><%=av.getActor6()%><%} %>&nbsp; 
 								</dt>
 								<dt class="info_detail">
-									장르 <%=data.getGenre()%>
+									<strong>장르</strong>&nbsp; <%=data.getGenre()%>
 								</dt>
 								<dt class="info_detail">
-									개봉일 <%=data.getReleaseDate()%>
+									<strong>상영시간</strong>&nbsp; <%=data.getRuntime()%>분
+								</dt>
+								<dt class="info_detail">
+									<strong>포맷</strong>&nbsp; <%=data.getFormat() %>
+								<dt class="info_detail">
+									<strong>개봉일</strong>&nbsp; <%=data.getReleaseDate()%>
 								</dt>
 								<dt class="synop">
-									시놉시스 <br/>
+									<strong>시놉시스</strong> <br/>
 									<div class="synop_contents">
 										<%=data.getContents() %>
 									</div>
@@ -66,7 +86,7 @@ TrailerVo tv = (TrailerVo) request.getAttribute("tv");
 							</dl>
 						</div>
 					</div>
-					<h5 class="movie_title">스틸컷</h5>
+					<h5 class="movie_title"><strong>스틸컷</strong></h5>
 					<div class="stillcut_area">
 							<div class="swiper_stillcut swiper-container">
 				                <div class="swiper-wrapper">
@@ -108,39 +128,51 @@ TrailerVo tv = (TrailerVo) request.getAttribute("tv");
 				                <div class="swiper-button-next"></div>
 				            </div>
 					</div>
-					<h5 class="movie_title">트레일러</h5>
+					<h5 class="movie_title"><strong>트레일러</strong></h5>
 					<div class="trailler_area">
 						<ul>
+						 <%if(tv.getTrailer1()!=null && !("").equals(tv.getTrailer1())) { %>
 							<li>
 								<div class="video_container">
 									<iframe src="<%=tv.getTrailer1()%>" frameborder="0"  wmode="Opaque" width="100%" height="315"></iframe>
 								</div>
 							</li>
+						<% } %>
+						 <%if(tv.getTrailer2()!=null && !("").equals(tv.getTrailer2())) { %>
 							<li>
 								<div class="video_container">
 									<iframe src="<%=tv.getTrailer2()%>" frameborder="0"  wmode="Opaque" width="100%" height="315"></iframe>
 								</div>
 							</li>
+						<% } %>	
+						<%if(tv.getTrailer3()!=null && !("").equals(tv.getTrailer3())) { %>
 							<li>
 								<div class="video_container">
 									<iframe src="<%=tv.getTrailer3()%>" frameborder="0"  wmode="Opaque" width="100%" height="315"></iframe>
 								</div>
 							</li>
+						<% } %>		
+						 <%if(tv.getTrailer4()!=null && !("").equals(tv.getTrailer4())) { %>	
 							<li>	
 								<div class="video_container">
 									<iframe src="<%=tv.getTrailer4()%>" frameborder="0"  wmode="Opaque" width="100%" height="315"></iframe>
 								</div>
 							</li>	
+							<% } %>
+							 <%if(tv.getTrailer5()!=null && !("").equals(tv.getTrailer5())) { %>		
 							<li>	
 								<div class="video_container">
 									<iframe src="<%=tv.getTrailer5()%>" frameborder="0"  wmode="Opaque" width="100%" height="315"></iframe>
 								</div>
 							</li>
+								<% } %>
+								 <%if(tv.getTrailer6()!=null && !("").equals(tv.getTrailer6())) { %>		
 							<li>	
 								<div class="video_container">
 									<iframe src="<%=tv.getTrailer6()%>" frameborder="0"  wmode="Opaque" width="100%" height="315"></iframe>
 								</div>
 							</li>
+							<% } %>
 						</ul>
 					</div>
 					<h5 class="movie_title">리뷰</h5>

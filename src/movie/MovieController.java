@@ -41,8 +41,8 @@ public class MovieController {
 		param.setTablename("movie");
 		param.setPageRows(9);
 		
-		int[] rowPageCount = movieService.count(param);
-		ArrayList<MovieVo> list = movieService.list(param);
+		int[] rowPageCount = movieService.nowCount(param);
+		ArrayList<MovieVo> list = movieService.nowList(param);
 		
 		model.addAttribute("totCount", rowPageCount[0]);
 		model.addAttribute("totPage", rowPageCount[1]);
@@ -55,8 +55,8 @@ public class MovieController {
 	@RequestMapping("/movie/next.do")
 	public String movieNextList (Model model, MovieVo param) throws Exception {
 		param.setTablename("movie");
-		int[] rowPageCount = movieService.count(param);
-		ArrayList<MovieVo> list = movieService.list(param);
+		int[] rowPageCount = movieService.nextCount(param);
+		ArrayList<MovieVo> list = movieService.nextList(param);
 		
 		model.addAttribute("totCount", rowPageCount[0]);
 		model.addAttribute("totPage", rowPageCount[1]);
@@ -104,6 +104,8 @@ public class MovieController {
 		model.addAttribute("scv", scv);
 		TrailerVo tv = movieService.readTrailer(data.getNo());
 		model.addAttribute("tv",tv);
+		ActorVo av = movieService.readActor(data.getNo());
+		model.addAttribute("av",av);
 		
 		return "movie/detail";
 	}
@@ -139,6 +141,8 @@ public class MovieController {
 		model.addAttribute("scv", scv);
 		TrailerVo tv = movieService.readTrailer(data.getNo());
 		model.addAttribute("tv",tv);
+		ActorVo av = movieService.readActor(data.getNo());		
+		model.addAttribute("av", av);
 		return "manage/movie/edit";
 	}
 	
@@ -160,6 +164,7 @@ public class MovieController {
 			int r = movieService.insert(param, request);
 			int r2 = movieService.insert2(r, request); 
 			int r3 = movieService.insert3(r, request);
+			int r4 = movieService.insertActor(r, request);
 			
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "정상적으로 등록되었습니다.", "등록실패"));
@@ -179,6 +184,7 @@ public class MovieController {
 			int r = movieService.update(param, request); // 리턴값이 업데이트 한 갯수 
 			int r2 = movieService.stillCutUpdate(param.getNo(), request);
 			int r3 = movieService.trailerUpdate(param.getNo(), request);
+			int r4 = movieService.actorUpdate(param.getNo(), request);
 			
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "정상적으로 수정되었습니다.", "수정실패"));
