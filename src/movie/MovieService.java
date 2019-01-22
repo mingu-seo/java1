@@ -28,10 +28,38 @@ public class MovieService {
 		rowPageCount[1] = pageCount;
 		return rowPageCount;
 	}
+	
+	public int[] nowCount(MovieVo vo) throws Exception {
+		int rowCount = movieDao.nowCount(vo);
+		int[] rowPageCount = new int[2];
+		int pageCount = Page.getPageCount(vo.getPageRows(), rowCount);
+		rowPageCount[0] = rowCount;
+		rowPageCount[1] = pageCount;
+		return rowPageCount;
+	}
+	
+	public int[] nextCount(MovieVo vo) throws Exception {
+		int rowCount = movieDao.nextCount(vo);
+		int[] rowPageCount = new int[2];
+		int pageCount = Page.getPageCount(vo.getPageRows(), rowCount);
+		rowPageCount[0] = rowCount;
+		rowPageCount[1] = pageCount;
+		return rowPageCount;
+	}
 
 	public ArrayList list(MovieVo vo) throws Exception {
 		ArrayList list = movieDao.list(vo);
 		return list;
+	}
+	
+	public ArrayList nowList(MovieVo vo) throws Exception {
+		ArrayList nowlist = movieDao.nowList(vo);
+		return nowlist;
+	}
+	
+	public ArrayList nextList(MovieVo vo) throws Exception {
+		ArrayList nextList = movieDao.nextList(vo);
+		return nextList;
 	}
 	
 	public int insert(MovieVo vo, HttpServletRequest request) throws Exception {

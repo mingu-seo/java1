@@ -20,6 +20,16 @@ public class MovieDao extends SqlMapClientDAOSupport {
 		return (Integer)getSqlMapClient().queryForObject("movie.count", vo);
 	}
 
+	public int nowCount(MovieVo vo) throws SQLException {
+		return (Integer)getSqlMapClient().queryForObject("movie.nowCount", vo);
+	}
+	
+	public int nextCount(MovieVo vo) throws SQLException {
+		return (Integer)getSqlMapClient().queryForObject("movie.nextCount", vo);
+	}
+	
+	
+	
 	/**
 	 * 목록 조회
 	 * @param vo
@@ -28,6 +38,14 @@ public class MovieDao extends SqlMapClientDAOSupport {
 	 */
 	public ArrayList list(MovieVo vo) throws SQLException {
 		return (ArrayList)getSqlMapClient().queryForList("movie.list", vo);
+	}
+
+	public ArrayList nowList(MovieVo vo) throws SQLException {
+		return (ArrayList)getSqlMapClient().queryForList("movie.nowList", vo);
+	}
+
+	public ArrayList nextList(MovieVo vo) throws SQLException {
+		return (ArrayList)getSqlMapClient().queryForList("movie.nextList", vo);
 	}
 
 	/**
@@ -128,7 +146,7 @@ public class MovieDao extends SqlMapClientDAOSupport {
 		ActorVo av = new ActorVo();
 	
 		mv.setTablename("movie");
-		dao.update(mv);
+		dao.nowCount(mv);
 	}
 
 

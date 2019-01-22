@@ -41,8 +41,8 @@ public class MovieController {
 		param.setTablename("movie");
 		param.setPageRows(9);
 		
-		int[] rowPageCount = movieService.count(param);
-		ArrayList<MovieVo> list = movieService.list(param);
+		int[] rowPageCount = movieService.nowCount(param);
+		ArrayList<MovieVo> list = movieService.nowList(param);
 		
 		model.addAttribute("totCount", rowPageCount[0]);
 		model.addAttribute("totPage", rowPageCount[1]);
@@ -55,8 +55,8 @@ public class MovieController {
 	@RequestMapping("/movie/next.do")
 	public String movieNextList (Model model, MovieVo param) throws Exception {
 		param.setTablename("movie");
-		int[] rowPageCount = movieService.count(param);
-		ArrayList<MovieVo> list = movieService.list(param);
+		int[] rowPageCount = movieService.nextCount(param);
+		ArrayList<MovieVo> list = movieService.nextList(param);
 		
 		model.addAttribute("totCount", rowPageCount[0]);
 		model.addAttribute("totPage", rowPageCount[1]);

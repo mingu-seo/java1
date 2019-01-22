@@ -33,10 +33,46 @@
         select count(*) from $tablename$
         <include refid="searchSql" />	
     </select>
-    
+   
+	<select id="nowCount" parameterClass="movie_vo" resultClass="Integer">
+	<![CDATA[
+        select count(*) from $tablename$
+        where releaseDate <= now() and endDate >= now()
+    ]]>
+        <include refid="searchSql" />	
+    </select>
+        
+	<select id="nextCount" parameterClass="movie_vo" resultClass="Integer">
+        select count(*) from $tablename$
+        <![CDATA[
+        where releaseDate > now()
+         ]]>
+        <include refid="searchSql" />	
+    </select>    
+        
 	<select id="list" parameterClass="movie_vo" resultClass="movie_vo">
         select *
         from $tablename$
+        <include refid="searchSql" />
+		ORDER BY releaseDate DESC LIMIT $startPageNo$, $pageRows$
+    </select>
+	
+	<select id="nowList" parameterClass="movie_vo" resultClass="movie_vo">
+        select *
+        from $tablename$
+          <![CDATA[
+        where releaseDate <= now() and endDate >= now()
+         ]]>
+        <include refid="searchSql" />
+		ORDER BY releaseDate DESC LIMIT $startPageNo$, $pageRows$
+    </select>
+	
+	<select id="nextList" parameterClass="movie_vo" resultClass="movie_vo">
+        select *
+        from $tablename$
+          <![CDATA[
+        where releaseDate > now()
+          ]]>
         <include refid="searchSql" />
 		ORDER BY releaseDate DESC LIMIT $startPageNo$, $pageRows$
     </select>

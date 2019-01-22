@@ -18,7 +18,7 @@ int totPage = (Integer)request.getAttribute("totPage"); %>
 <meta name="format-detection" content="telephone=no, address=no, email=no">
 <meta name="keywords" content="">
 <meta name="description" content="">
-<title>현재 상영작</title>
+<title>개봉 예정작</title>
 <%@ include file="/WEB-INF/view/include/headHtml.jsp" %>
 </head>
 <body>
@@ -26,7 +26,7 @@ int totPage = (Integer)request.getAttribute("totPage"); %>
     
      <div class="sub">
 		<div class="size">
-			<h3 class="sub_title">현재 상영작</h3>
+			<h3 class="sub_title">개봉 예정작</h3>
 			<div class="bbs">
 				<div class="gallery">
 					<ul>
