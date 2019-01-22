@@ -97,7 +97,8 @@ public class SiteProperty {
 	/**
 	 * 로컬 홈디렉토리경로 (실서버 변경 필요)
 	 */
-	public static final String REAL_PATH				= "E:\\Java\\workspace\\java1\\WebContent";
+//	public static final String REAL_PATH				= "E:\\Java\\workspace\\java1\\WebContent"; //아란 path
+	public static final String REAL_PATH				= "E:\\workspace\\java1\\WebContent";  //상윤 path
 //	public static final String REAL_PATH				= "D:\\jsphome\\java1\\aran\\www";
 																
 	 /* 공지사항 첨부파일 경로
