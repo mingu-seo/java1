@@ -8,3 +8,4 @@
 <script src="/js/jquery-1.12.0.min.js" type="text/javascript"></script>
 <script src="/js/function.js" type="text/javascript"></script>
 <script src="/js/function_jquery.js" type="text/javascript"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/smarteditor/js/HuskyEZCreator.js"></script>

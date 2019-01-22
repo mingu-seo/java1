@@ -115,7 +115,7 @@ function CookieVal(cookieName) {
                             <a href="/movie/index.do" >MOVIE</a>
                             <ul class="depth2">
                                 <li><a href="/movie/index.do" >현재 상영작</a></li>
-                                <li><a href="" >개봉 예정작</a></li>
+                                <li><a href="/movie/next.do" >개봉 예정작</a></li>
                             </ul>
                         </li>
                         <li>
@@ -140,7 +140,7 @@ function CookieVal(cookieName) {
                             <a href="/board/faq/index.do" >고객센터</a>
                             <ul class="depth2">
                                 <li><a href="/board/faq/index.do" >자주하는질문</a></li>
-                                <li><a href="" >Q&A</a></li>
+                                <li><a href="/board/qna/index.do" >Q&A</a></li>
                             </ul>
                         </li>
                     </ul>
