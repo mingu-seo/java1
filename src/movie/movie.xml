@@ -5,6 +5,7 @@
     <typeAlias alias="movie_vo" type="movie.MovieVo"/>
     <typeAlias alias="stillCut_vo" type="movie.StillCutVo"/>
     <typeAlias alias="trailer_vo" type="movie.TrailerVo"/>
+    <typeAlias alias="actor_vo" type="movie.ActorVo"/>
     
     <!-- 공통조건 -->
 	<sql id="searchSql">		
@@ -32,7 +33,23 @@
         select count(*) from $tablename$
         <include refid="searchSql" />	
     </select>
-    
+   
+	<select id="nowCount" parameterClass="movie_vo" resultClass="Integer">
+	<![CDATA[
+        select count(*) from $tablename$
+        where releaseDate <= now() and endDate >= now()
+    ]]>
+        <include refid="searchSql" />	
+    </select>
+        
+	<select id="nextCount" parameterClass="movie_vo" resultClass="Integer">
+        select count(*) from $tablename$
+        <![CDATA[
+        where releaseDate > now()
+         ]]>
+        <include refid="searchSql" />	
+    </select>    
+        
 	<select id="list" parameterClass="movie_vo" resultClass="movie_vo">
         select *
         from $tablename$
@@ -40,13 +57,33 @@
 		ORDER BY releaseDate DESC LIMIT $startPageNo$, $pageRows$
     </select>
 	
+	<select id="nowList" parameterClass="movie_vo" resultClass="movie_vo">
+        select *
+        from $tablename$
+          <![CDATA[
+        where releaseDate <= now() and endDate >= now()
+         ]]>
+        <include refid="searchSql" />
+		ORDER BY releaseDate DESC LIMIT $startPageNo$, $pageRows$
+    </select>
+	
+	<select id="nextList" parameterClass="movie_vo" resultClass="movie_vo">
+        select *
+        from $tablename$
+          <![CDATA[
+        where releaseDate > now()
+          ]]>
+        <include refid="searchSql" />
+		ORDER BY releaseDate DESC LIMIT $startPageNo$, $pageRows$
+    </select>
+	
 	<!-- 해당 테이블에 게시글 작성 -->
     <insert id="insert" parameterClass="movie_vo">
         INSERT INTO MOVIE(
-        	title, director, genre, rating, runtime, releaseDate,
+        	title, director, genre, rating, format, runtime, releaseDate,
         	endDate, poster, display, contents
         ) VALUES (
-        	#title#, #director#, #genre#, #rating#, #runtime#, #releaseDate#,
+        	#title#, #director#, #genre#, #rating#, #format#, #runtime#, #releaseDate#,
         	#endDate#, #poster#, #display#, #contents#
         )
         <selectKey keyProperty="no" resultClass="Integer">
@@ -67,7 +104,7 @@
         </selectKey>
     </insert>
     
-    <!-- 해당 테이블에 게시글 작성 -->
+    <!-- 해당 테이블에 트레일러 첨부 -->
     <insert id="insert3" parameterClass="trailer_vo">
         INSERT INTO TRAILER (
         	movie_no, trailer1, trailer2, trailer3, trailer4, trailer5, trailer6 
@@ -80,12 +117,28 @@
         </selectKey>
     </insert>
     
+        <!-- 해당 테이블에 출연배우 등록 -->
+    <insert id="insertActor" parameterClass="actor_vo">
+        INSERT INTO ACTOR (
+        	movie_no, actor1, actor2, actor3, actor4, actor5, actor6 
+        ) VALUES (
+        	#movie_no#, #actor1#, #actor2#, #actor3#, #actor4#, #actor5#,
+        	#actor6#
+        )
+        <selectKey keyProperty="no" resultClass="Integer">
+        	SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+    
     <update id="update" parameterClass="movie_vo">
         UPDATE $tablename$ SET
-        	title=#title#, display=#display#,
+        	title=#title#, display=#display#, genre=#genre#, format=#format#,
         <isNotEqual property="releaseDate" compareValue="">
        	    releaseDate = #releaseDate#,
-       	</isNotEqual>     	
+       	</isNotEqual>   
+       	<isNotEqual property="endDate" compareValue="">
+       	    endDate = #endDate#,
+       	</isNotEqual>   	
         <isEqual property="poster_chk" compareValue="1">
         	poster='', posterSize=0,
         </isEqual>
@@ -100,25 +153,43 @@
     
     <update id="stillCutUpdate" parameterClass="stillCut_vo">
         UPDATE STILLCUT SET
-        	movie_no = #movie_no#
+        movie_no = #movie_no#
+       	<isEqual property="stillCut1_chk" compareValue="1">
+        ,stillCut1=''
+       	</isEqual>
         <isNotNull property="stillCut1">
-       	    ,stillcut1 = #stillCut1#
+        ,stillCut1 = #stillCut1#
        	</isNotNull>     	
+       	<isEqual property="stillCut2_chk" compareValue="1">
+        ,stillCut2=''
+       	</isEqual>
         <isNotNull property="stillCut2">
-       	    ,stillcut2 = #stillCut2#
-       	</isNotNull>     	
-        <isNotNull property="stillCut3">
-       	    ,stillcut3 = #stillCut3#
+       	,stillCut2 = #stillCut2#
+       	</isNotNull>  
+       	<isEqual property="stillCut3_chk" compareValue="1">
+        ,stillCut3=''
+       	</isEqual>   	
+       	<isNotNull property="stillCut3">
+       	,stillCut3 = #stillCut3#
        	</isNotNull> 
+       <isEqual property="stillCut4_chk" compareValue="1">
+        ,stillCut4=''
+       	</isEqual>
         <isNotNull property="stillCut4">
-       	    ,stillcut4 = #stillCut4#
-       	</isNotNull>        	        	
+       	,stillCut4 = #stillCut4#
+       	</isNotNull>        	 
+      <isEqual property="stillCut5_chk" compareValue="1">
+       , stillCut5=''
+       	</isEqual>       	
         <isNotNull property="stillCut5">
-       	    ,stillcut5 = #stillCut5#
+       ,stillCut5 = #stillCut5#
        	</isNotNull>    
+       	<isEqual property="stillCut6_chk" compareValue="1">
+        ,stillCut6=''
+       	</isEqual>
         <isNotNull property="stillCut6">
-       	    ,stillcut6 = #stillCut6#
-       	</isNotNull>        	    
+       ,stillCut6 = #stillCut6#
+       	</isNotNull>        
         WHERE movie_no = #movie_no#
     </update>
     
@@ -132,6 +203,21 @@
     		trailer4 = #trailer4#,
     		trailer5 = #trailer5#,
     		trailer6 = #trailer6#
+    		 
+    	WHERE movie_no = #movie_no#
+    
+    </update>
+    
+     <update id="actorUpdate" parameterClass="actor_vo">
+    	UPDATE ACTOR SET 
+    	
+    		movie_no = #movie_no#,
+    		actor1 = #actor1#,
+    		actor2 = #actor2#,
+    		actor3 = #actor3#,
+    		actor4 = #actor4#,
+    		actor5 = #actor5#,
+    		actor6 = #actor6#
     		 
     	WHERE movie_no = #movie_no#
     
@@ -153,6 +239,12 @@
     <select id="readTrailer" parameterClass="Integer" resultClass="trailer_vo">
     SELECT *
     FROM TRAILER
+    where movie_no = #movie_no#
+    </select>
+    
+    <select id="readActor" parameterClass="Integer" resultClass="actor_vo">
+    SELECT *
+    FROM ACTOR
     where movie_no = #movie_no#
     </select>
     

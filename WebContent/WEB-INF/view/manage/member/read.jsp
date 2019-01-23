@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page import="member.*" %>
+<%@ page import="java.util.*" %>
+<%@ page import="property.SiteProperty" %>
 <%
 MemberVO param = (MemberVO)request.getAttribute("vo");
 MemberVO data = (MemberVO)request.getAttribute("data");
@@ -51,6 +53,7 @@ MemberVO data = (MemberVO)request.getAttribute("data");
 									<col width="10%" />
 									<col width="10%" />
 									<col width="10%" />
+									<col width="10%" />
 								</colgroup>
 								<tbody>
 									<tr>
@@ -92,6 +95,14 @@ MemberVO data = (MemberVO)request.getAttribute("data");
 									<tr>
 										<th scope="row"><label for="">암호변경일</label></th>
 										<td><%=data.getModdate()%></td>
+									</tr>
+									<tr>
+										<th>프로필</th>
+										<td>
+											<%if(data.getFilename()!=null && !"".equals(data.getFilename())){ %>
+												<img src="<%=SiteProperty.MEMBER_UPLOAD_PATH%><%=data.getFilename()%>"  width="100px" height="150px"></img>
+											<%} %>
+										</td>
 									</tr>
 								</tbody>
 							</table>

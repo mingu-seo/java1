@@ -12,6 +12,7 @@ public class MovieVo extends Parameter {
 	private int			runtime;				// 상영시간
 	private String		releaseDate;			// 개봉일
 	private String		endDate;				// 상영종료일
+	private String		format;					// 포맷(2d, 3d, 4d, IMAX)
 	private String		poster;					// 포스터(메인)
 	private int			display;				// 노출여부
 	private String 		contents;				// 줄거리
@@ -147,5 +148,12 @@ public class MovieVo extends Parameter {
 
 	public void setPosterSize(long posterSize) {
 		this.posterSize = posterSize;
+	}
+	public String getFormat() {
+		return format;
+	}
+
+	public void setFormat(String format) {
+		this.format = format;
 	}
 }

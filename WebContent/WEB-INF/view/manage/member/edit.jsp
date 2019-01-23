@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page import="member.*" %>
 <%@ page import="java.util.*" %>
+<%@ page import="property.SiteProperty" %>
 <%
 MemberVO param = (MemberVO)request.getAttribute("vo");
 MemberVO data = (MemberVO)request.getAttribute("data");
@@ -43,7 +44,7 @@ function goSave() {
 					<div id="bbs">
 						<div id="bread">
 							<h3>회원 기본 정보</h3>
-							<form name="frm" id="frm" action="process.do" method="post">
+							<form name="frm" id="frm" action="process.do" method="post" enctype="multipart/form-data">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="회언 관리 기본내용입니다.">
 								<colgroup>
 									<col width="15%" />
@@ -72,7 +73,7 @@ function goSave() {
 									<tr>
 										<th scope="row"><label for="">*이메일</label></th>
 										<td>
-											<input type="text" id="email" name="email" value="<%=Function.checkNull(data.getEmail())%>" title="변경할 이메일을 입력해주세요." />
+											<input type="text" id="email" name="email" value="<%=Function.checkNull(data.getEmail())%>" disabled title="변경할 이메일을 입력해주세요." />
 										</td>
 									</tr>
 									<tr>
@@ -88,11 +89,24 @@ function goSave() {
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">*포인트</label></th>
+										<th scope="row"><label for="">포인트</label></th>
 										<td>
 											<input type="text" id="point" name="point" value="<%=data.getPoint()%>" title="포인트를 입력해주세요." />
 										</td>
 									</tr>
+									<tr>
+										<th>프로필</th>
+											<td>
+												<% if (data.getFilename() != null && !"".equals(data.getFilename())) { %>
+												<p>
+													<img src="<%=SiteProperty.MEMBER_UPLOAD_PATH%><%=data.getFilename()%>"  width="100px" height="150px"></img>
+													<input type="checkbox" id="filename_chk" name="filename_chk" value="1" title="첨부파일을 삭제하시려면 체크해주세요" />
+													<label for="file_name_chk">기존파일삭제</label>
+												</p>
+												<%}%>
+													<input type="file" name="filename_tmp" id="filename_tmp" title="첨부파일"/>
+											</td>
+										</tr>
 								</tbody>
 							</table>
 							<input type="hidden" name="cmd" value="edit.do">

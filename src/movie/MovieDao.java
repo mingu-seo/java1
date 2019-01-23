@@ -20,6 +20,16 @@ public class MovieDao extends SqlMapClientDAOSupport {
 		return (Integer)getSqlMapClient().queryForObject("movie.count", vo);
 	}
 
+	public int nowCount(MovieVo vo) throws SQLException {
+		return (Integer)getSqlMapClient().queryForObject("movie.nowCount", vo);
+	}
+	
+	public int nextCount(MovieVo vo) throws SQLException {
+		return (Integer)getSqlMapClient().queryForObject("movie.nextCount", vo);
+	}
+	
+	
+	
 	/**
 	 * 목록 조회
 	 * @param vo
@@ -28,6 +38,14 @@ public class MovieDao extends SqlMapClientDAOSupport {
 	 */
 	public ArrayList list(MovieVo vo) throws SQLException {
 		return (ArrayList)getSqlMapClient().queryForList("movie.list", vo);
+	}
+
+	public ArrayList nowList(MovieVo vo) throws SQLException {
+		return (ArrayList)getSqlMapClient().queryForList("movie.nowList", vo);
+	}
+
+	public ArrayList nextList(MovieVo vo) throws SQLException {
+		return (ArrayList)getSqlMapClient().queryForList("movie.nextList", vo);
 	}
 
 	/**
@@ -61,6 +79,11 @@ public class MovieDao extends SqlMapClientDAOSupport {
 	}
 
 
+	public int insertActor(ActorVo av) throws SQLException {
+		return (Integer)getSqlMapClient().insert("movie.insertActor",av);
+	}
+	
+	
 	/**
 	 * 수정
 	 * @param vo
@@ -75,6 +98,9 @@ public class MovieDao extends SqlMapClientDAOSupport {
 	public int trailerUpdate(TrailerVo tv) throws SQLException {
 		return getSqlMapClient().update("movie.trailerUpdate", tv);
 	}
+	public int actorUpdate(ActorVo av) throws SQLException {
+		return getSqlMapClient().update("movie.actorUpdate", av);
+	}
 	
 
 	public MovieVo read(MovieVo vo) throws SQLException {
@@ -87,6 +113,11 @@ public class MovieDao extends SqlMapClientDAOSupport {
 	public TrailerVo readTrailer(int vo) throws SQLException {
 		// TODO Auto-generated method stub
 		return (TrailerVo)getSqlMapClient().queryForObject("movie.readTrailer", vo);
+	}
+	
+	public ActorVo readActor (int vo) throws SQLException {
+		// TODO Auto-generated method stub
+		return (ActorVo)getSqlMapClient().queryForObject("movie.readActor", vo);
 	}
 		/**
 	 * 삭제
@@ -112,12 +143,13 @@ public class MovieDao extends SqlMapClientDAOSupport {
 	public static void main(String[] args) throws Exception  {
 		MovieDao dao = new MovieDao();
 		MovieVo mv = new MovieVo();
-		TrailerVo tv = new TrailerVo();
+		ActorVo av = new ActorVo();
 	
-		dao.trailerUpdate(tv);
+		mv.setTablename("movie");
+		dao.nowCount(mv);
 	}
 
-	
+
 
 	
 }
