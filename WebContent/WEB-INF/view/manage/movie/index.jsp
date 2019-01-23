@@ -71,7 +71,7 @@ function goSearch() {
 				<tbody>
 				<tr>
 					<th scope="row" ><label for="">
-					<select name="dateSearch">
+					<select name="dateType">
 						<option value="releaseDate"> 개봉일 </option> 
 						
 						<option value="endDate" > 상영 종료일 </option>
@@ -79,12 +79,13 @@ function goSearch() {
 					</label>
 					</th>
 					<td>
-						<input type="date" name="dateSearchStart"/>~
-						<input type="date" name="dateSearchEnd" />
+						<input type="date" name="sdate" value="<%=param.getSdate()%>"/>~
+						<input type="date" name="edate" value="<%=param.getEdate()%>"/>
 					</td>
 					<th scope="row"> <label for=""> 장르별 검색 </label></th>
 					<td>
-					<select name="genre">
+					<select name="sgenre">
+						<option value="">전체</option>
 						<option value="액션">액션</option>
 						<option value="드라마">드라마</option>
 						<option value="스릴러">스릴러</option>
@@ -112,7 +113,7 @@ function goSearch() {
 										<option value="all" <%=Function.getSelected(param.getStype(), "all") %>>전체</option>
 										<option value="title" <%=Function.getSelected(param.getStype(), "title") %>>영화제목</option>
 										<option value="director" <%=Function.getSelected(param.getStype(), "director") %>>감독</option>
-										<option value="releaseDate" <%=Function.getSelected(param.getStype(), "releaseDate") %>>개봉일</option>
+										<option value="contents" <%=Function.getSelected(param.getStype(), "contents") %>>내용</option>
 									</select>
 									<input type="text" name="sval" value="<%=param.getSval()%>" title="검색할 내용을 입력해주세요" />
 									
@@ -121,10 +122,11 @@ function goSearch() {
 					</td>
 					<th scope="row"><label for=""> 등급별 검색</label></th>
 					<td>
-						<input type="radio" name="rating" value="0"/>전체관람가 &nbsp;
-						<input type="radio" name="rating" value="12"/>12세 관람가 &nbsp;
-						<input type="radio" name="rating" value="15"/>15세 관람가 &nbsp;
-						<input type="radio" name="rating" value="19"/>청소년 관람불가 &nbsp; 
+						<input type="radio" name="srating" value="0"/>전체&nbsp;
+						<input type="radio" name="srating" value="1" <%=Function.getChecked(param.getSrating(), 1) %>/>전체관람가 &nbsp;
+						<input type="radio" name="srating" value="12"/>12세 관람가 &nbsp;
+						<input type="radio" name="srating" value="15"/>15세 관람가 &nbsp;
+						<input type="radio" name="srating" value="19"/>청소년 관람불가 &nbsp; 
 						 &nbsp; &nbsp;	 &nbsp; &nbsp;	 &nbsp; &nbsp;
 						
 					</td>

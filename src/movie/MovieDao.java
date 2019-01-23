@@ -146,7 +146,15 @@ public class MovieDao extends SqlMapClientDAOSupport {
 		ActorVo av = new ActorVo();
 	
 		mv.setTablename("movie");
-		dao.nowCount(mv);
+		//mv.setSdisplay(1);
+//		mv.setStype("all");
+//		mv.setSval("메리");
+//		mv.setDateType("releaseDate");
+//		mv.setSdate("2019-01-09");
+//		mv.setEdate("2019-01-31");
+//		mv.setSgenre("액션");
+		mv.setSrating(19);
+		dao.list(mv);
 	}
 
 
