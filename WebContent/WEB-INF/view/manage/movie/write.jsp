@@ -181,7 +181,7 @@
 								<div class="btn">
 									<div class="btnLeft">
 										<a class="btns"
-											href="<%=param.getTargetURLParam("index", param, 0)%>"><strong>목록</strong></a>
+											href="<%=param.getTargetURLParam("index.do", param, 0)%>"><strong>목록</strong></a>
 									</div>
 									<div class="btnRight">
 										<a class="btns" href="javascript:$('#frm').submit();"><strong>저장</strong></a>

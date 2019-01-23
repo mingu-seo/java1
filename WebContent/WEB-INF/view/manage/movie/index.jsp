@@ -55,10 +55,13 @@ function goSearch() {
 				<div class="con">
 					<!-- 내용 : s -->
 					<div id="bbs">
-				<div id="bread">				
-				<table width="100%" border="1" cellspacing="0" cellpadding="0">
+				<div id="bread">
+				<form name="searchForm" id="searchForm" action="index.do" method="post">
+				<span style="float:right">
+				<input type="image" src="/manage/img/btn_search.gif" class="sbtn" alt="검색" />		<br/>	
+				</span>
 				
-
+				<table width="100%" border="1" cellspacing="0" cellpadding="0">
 				<colgroup>
 					<col class="w1" />
 					<col class="w3" />
@@ -98,7 +101,7 @@ function goSearch() {
 				<tr>
 					<th scope="row" ><label for=""> 검색어</label></th>
 					<td>
-					<form name="searchForm" id="searchForm" action="index.do" method="post">
+					
 								<div class="search">
 									<select name="sdisplay" onchange="$('#searchForm').submit();">
 										<option value="-1" <%=Function.getSelected(param.getSdisplay(), -1)%>>전체</option>
@@ -114,7 +117,7 @@ function goSearch() {
 									<input type="text" name="sval" value="<%=param.getSval()%>" title="검색할 내용을 입력해주세요" />
 									
 								</div>
-							</form>
+							
 					</td>
 					<th scope="row"><label for=""> 등급별 검색</label></th>
 					<td>
@@ -123,12 +126,14 @@ function goSearch() {
 						<input type="radio" name="rating" value="15"/>15세 관람가 &nbsp;
 						<input type="radio" name="rating" value="19"/>청소년 관람불가 &nbsp; 
 						 &nbsp; &nbsp;	 &nbsp; &nbsp;	 &nbsp; &nbsp;
-						<input type="image" src="/manage/img/btn_search.gif" class="sbtn" alt="검색" />
+						
 					</td>
 				</tr>
 				</tbody>
 				</table>
+				</form>
 				</div>
+				
 				<div id="blist">	
 
 							<p><span><strong>총 <%=totCount%>개</strong>  |  <%=param.getReqPageNo()%>/<%=totPage%>페이지</span></p>
