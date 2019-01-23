@@ -153,25 +153,43 @@
     
     <update id="stillCutUpdate" parameterClass="stillCut_vo">
         UPDATE STILLCUT SET
-        	movie_no = #movie_no#
+        movie_no = #movie_no#
+       	<isEqual property="stillCut1_chk" compareValue="1">
+        ,stillCut1=''
+       	</isEqual>
         <isNotNull property="stillCut1">
-       	    ,stillcut1 = #stillCut1#
+        ,stillCut1 = #stillCut1#
        	</isNotNull>     	
+       	<isEqual property="stillCut2_chk" compareValue="1">
+        ,stillCut2=''
+       	</isEqual>
         <isNotNull property="stillCut2">
-       	    ,stillcut2 = #stillCut2#
-       	</isNotNull>     	
-        <isNotNull property="stillCut3">
-       	    ,stillcut3 = #stillCut3#
+       	,stillCut2 = #stillCut2#
+       	</isNotNull>  
+       	<isEqual property="stillCut3_chk" compareValue="1">
+        ,stillCut3=''
+       	</isEqual>   	
+       	<isNotNull property="stillCut3">
+       	,stillCut3 = #stillCut3#
        	</isNotNull> 
+       <isEqual property="stillCut4_chk" compareValue="1">
+        ,stillCut4=''
+       	</isEqual>
         <isNotNull property="stillCut4">
-       	    ,stillcut4 = #stillCut4#
-       	</isNotNull>        	        	
+       	,stillCut4 = #stillCut4#
+       	</isNotNull>        	 
+      <isEqual property="stillCut5_chk" compareValue="1">
+       , stillCut5=''
+       	</isEqual>       	
         <isNotNull property="stillCut5">
-       	    ,stillcut5 = #stillCut5#
+       ,stillCut5 = #stillCut5#
        	</isNotNull>    
+       	<isEqual property="stillCut6_chk" compareValue="1">
+        ,stillCut6=''
+       	</isEqual>
         <isNotNull property="stillCut6">
-       	    ,stillcut6 = #stillCut6#
-       	</isNotNull>        	    
+       ,stillCut6 = #stillCut6#
+       	</isNotNull>        
         WHERE movie_no = #movie_no#
     </update>
     

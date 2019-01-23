@@ -170,32 +170,32 @@
 												<th scope="row"><label for="">스틸컷</label></th>
 												<td>
 													<input type="file" name="stillCut1_tmp" class="w50" title="스틸컷1"/>
-													<%if (scv != null && scv.getStillCut1()!=null){%>
+													<%if (scv != null && scv.getStillCut1()!=null && !("").equals(scv.getStillCut1())){%>
 													<img src="<%=property.SiteProperty.MOVIE_UPLOAD_PATH%><%=scv.getStillCut1()%>" width="20px" height="30px"/>
 													<input type="checkbox" name="stillCut1_chk" value="1"/>파일 삭제<% } %>
 													<br/>
 													<input type="file" name="stillCut2_tmp" class="w50" title="스틸컷2"/>
-													<%if (scv != null && scv.getStillCut2()!=null){%>
+													<%if (scv != null && scv.getStillCut2()!=null && !("").equals(scv.getStillCut2())){%>
 													<img src="<%=property.SiteProperty.MOVIE_UPLOAD_PATH%><%=scv.getStillCut2()%>" width="20px" height="30px"/>
 													<input type="checkbox" name="stillCut2_chk" value="1"/>파일 삭제<% } %>
 													<br/>
 													<input type="file" name="stillCut3_tmp" class="w50" title="스틸컷3"/>
-													<%if (scv != null && scv.getStillCut3()!=null){%>
+													<%if (scv != null && scv.getStillCut3()!=null && !("").equals(scv.getStillCut3())){%>
 													<img src="<%=property.SiteProperty.MOVIE_UPLOAD_PATH%><%=scv.getStillCut3()%>" width="20px" height="30px"/>
 													<input type="checkbox" name="stillCut3_chk" value="1"/>파일 삭제<% } %>
 													<br/>
 													<input type="file" name="stillCut4_tmp" class="w50" title="스틸컷4"/>
-													<%if (scv != null && scv.getStillCut4()!=null){%>
+													<%if (scv != null && scv.getStillCut4()!=null && !("").equals(scv.getStillCut4())){%>
 													<img src="<%=property.SiteProperty.MOVIE_UPLOAD_PATH%><%=scv.getStillCut4()%>" width="20px" height="30px"/>
 													<input type="checkbox" name="stillCut4_chk" value="1"/>파일 삭제<% } %>
 													<br/>
 													<input type="file" name="stillCut5_tmp" class="w50" title="스틸컷5"/>
-													<%if (scv != null && scv.getStillCut5()!=null){%>
+													<%if (scv != null && scv.getStillCut5()!=null && !("").equals(scv.getStillCut5())){%>
 													<img src="<%=property.SiteProperty.MOVIE_UPLOAD_PATH%><%=scv.getStillCut5()%>" width="20px" height="30px"/>
 													<input type="checkbox" name="stillCut5_chk" value="1"/>파일 삭제<% } %>
 													<br/>
 													<input type="file" name="stillCut6_tmp" class="w50" title="스틸컷6"/>
-													<%if (scv != null && scv.getStillCut6()!=null){%>
+													<%if (scv != null && scv.getStillCut6()!=null && !("").equals(scv.getStillCut6())){%>
 													<img src="<%=property.SiteProperty.MOVIE_UPLOAD_PATH%><%=scv.getStillCut6()%>" width="20px" height="30px"/>
 													<input type="checkbox" name="stillCut6_chk" value="1"/>파일 삭제<% } %>
 													<br/>										

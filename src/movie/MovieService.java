@@ -229,11 +229,49 @@ public class MovieService {
 		return r;
 	}
 	public int stillCutUpdate(int movie_no, HttpServletRequest request) throws Exception {
+		
+		StillCutVo data = movieDao.readStillCut(movie_no);
 		StillCutVo scv = new StillCutVo();
 		scv.setMovie_no(movie_no);
+		
+		if(Function.getIntParameter(request.getParameter("stillCut1_chk"))==1) {
+			scv.setStillCut1_chk(1);
+			Function.fileDelete(SiteProperty.REAL_PATH + SiteProperty.MOVIE_UPLOAD_PATH, data.getStillCut1());
+		}  
+		if(Function.getIntParameter(request.getParameter("stillCut2_chk"))==1) {
+			scv.setStillCut2_chk(1);
+			Function.fileDelete(SiteProperty.REAL_PATH + SiteProperty.MOVIE_UPLOAD_PATH, data.getStillCut2());
+		}
+		if(Function.getIntParameter(request.getParameter("stillCut3_chk"))==1) {
+			scv.setStillCut3_chk(1);
+			Function.fileDelete(SiteProperty.REAL_PATH + SiteProperty.MOVIE_UPLOAD_PATH, data.getStillCut3());
+		}
+		if(Function.getIntParameter(request.getParameter("stillCut4_chk"))==1){
+			scv.setStillCut4_chk(1);
+			Function.fileDelete(SiteProperty.REAL_PATH + SiteProperty.MOVIE_UPLOAD_PATH, data.getStillCut4());
+		}
+		if(Function.getIntParameter(request.getParameter("stillCut5_chk"))==1) {
+			scv.setStillCut5_chk(1);
+			Function.fileDelete(SiteProperty.REAL_PATH + SiteProperty.MOVIE_UPLOAD_PATH, data.getStillCut5());
+		}
+		if(Function.getIntParameter(request.getParameter("stillCut6_chk"))==1) {
+			scv.setStillCut6_chk(1);
+			Function.fileDelete(SiteProperty.REAL_PATH + SiteProperty.MOVIE_UPLOAD_PATH, data.getStillCut6());
+		}
+		
+		
+		
+		
+
 				
 		FileUtil fu = new FileUtil();
 		Map fileMap = fu.getFileMap(request);
+		
+		
+		
+		
+		
+		
 		MultipartFile file= (MultipartFile)fileMap.get("stillCut1_tmp");
 		if (!file.isEmpty()) {
 			fu.upload(file, SiteProperty.MOVIE_UPLOAD_PATH, SiteProperty.REAL_PATH, "stillCut");
@@ -264,6 +302,8 @@ public class MovieService {
 			fu.upload(file, SiteProperty.MOVIE_UPLOAD_PATH, SiteProperty.REAL_PATH, "stillCut");
 			scv.setStillCut6(fu.getName());
 		}
+		
+
 		
 		return movieDao.stillCutUpdate(scv);
 	}

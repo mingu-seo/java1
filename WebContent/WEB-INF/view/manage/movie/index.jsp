@@ -51,12 +51,86 @@ function goSearch() {
 			<div id="content">
 				<div class="con_tit">
 					<h2>영화관리 - [목록]</h2>
-				</div>
 				<!-- //con_tit -->
 				<div class="con">
 					<!-- 내용 : s -->
 					<div id="bbs">
-						<div id="blist">
+				<div id="bread">				
+				<table width="100%" border="1" cellspacing="0" cellpadding="0">
+				
+
+				<colgroup>
+					<col class="w1" />
+					<col class="w3" />
+					<col class="w1" />
+					<col class="w4" />
+				</colgroup>
+				<tbody>
+				<tr>
+					<th scope="row" ><label for="">
+					<select name="dateSearch">
+						<option value="releaseDate"> 개봉일 </option> 
+						
+						<option value="endDate" > 상영 종료일 </option>
+					</select>
+					</label>
+					</th>
+					<td>
+						<input type="date" name="dateSearchStart"/>~
+						<input type="date" name="dateSearchEnd" />
+					</td>
+					<th scope="row"> <label for=""> 장르별 검색 </label></th>
+					<td>
+					<select name="genre">
+						<option value="액션">액션</option>
+						<option value="드라마">드라마</option>
+						<option value="스릴러">스릴러</option>
+						<option value="멜로">멜로</option>
+						<option value="코믹">코믹</option>
+						<option value="범죄">범죄</option>
+						<option value="판타지">판타지</option>
+						<option value="SF">SF</option>
+						<option value="가족">가족</option>
+						<option value="어린이">어린이</option>
+					</select>
+					</td>		
+				</tr>
+				<tr>
+					<th scope="row" ><label for=""> 검색어</label></th>
+					<td>
+					<form name="searchForm" id="searchForm" action="index.do" method="post">
+								<div class="search">
+									<select name="sdisplay" onchange="$('#searchForm').submit();">
+										<option value="-1" <%=Function.getSelected(param.getSdisplay(), -1)%>>전체</option>
+										<option value="0" <%=Function.getSelected(param.getSdisplay(), 0)%>>숨김</option>
+										<option value="1" <%=Function.getSelected(param.getSdisplay(), 1)%>>노출</option>
+									</select>
+									<select name="stype" title="검색을 선택해주세요">
+										<option value="all" <%=Function.getSelected(param.getStype(), "all") %>>전체</option>
+										<option value="title" <%=Function.getSelected(param.getStype(), "title") %>>영화제목</option>
+										<option value="director" <%=Function.getSelected(param.getStype(), "director") %>>감독</option>
+										<option value="releaseDate" <%=Function.getSelected(param.getStype(), "releaseDate") %>>개봉일</option>
+									</select>
+									<input type="text" name="sval" value="<%=param.getSval()%>" title="검색할 내용을 입력해주세요" />
+									
+								</div>
+							</form>
+					</td>
+					<th scope="row"><label for=""> 등급별 검색</label></th>
+					<td>
+						<input type="radio" name="rating" value="0"/>전체관람가 &nbsp;
+						<input type="radio" name="rating" value="12"/>12세 관람가 &nbsp;
+						<input type="radio" name="rating" value="15"/>15세 관람가 &nbsp;
+						<input type="radio" name="rating" value="19"/>청소년 관람불가 &nbsp; 
+						 &nbsp; &nbsp;	 &nbsp; &nbsp;	 &nbsp; &nbsp;
+						<input type="image" src="/manage/img/btn_search.gif" class="sbtn" alt="검색" />
+					</td>
+				</tr>
+				</tbody>
+				</table>
+				</div>
+				<div id="blist">	
+
 							<p><span><strong>총 <%=totCount%>개</strong>  |  <%=param.getReqPageNo()%>/<%=totPage%>페이지</span></p>
 							<form name="frm" id="frm" action="process.do" method="post">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
@@ -134,23 +208,7 @@ function goSearch() {
 							<!-- 페이징 처리 -->
 							<%=Page.indexList(param.getReqPageNo(), totPage, request)%>
 							<!-- //페이징 처리 -->
-							<form name="searchForm" id="searchForm" action="index" method="post">
-								<div class="search">
-									<select name="sdisplay" onchange="$('#searchForm').submit();">
-										<option value="-1" <%=Function.getSelected(param.getSdisplay(), -1)%>>전체</option>
-										<option value="0" <%=Function.getSelected(param.getSdisplay(), 0)%>>숨김</option>
-										<option value="1" <%=Function.getSelected(param.getSdisplay(), 1)%>>노출</option>
-									</select>
-									<select name="stype" title="검색을 선택해주세요">
-										<option value="all" <%=Function.getSelected(param.getStype(), "all") %>>전체</option>
-										<option value="title" <%=Function.getSelected(param.getStype(), "title") %>>영화제목</option>
-										<option value="director" <%=Function.getSelected(param.getStype(), "director") %>>감독</option>
-										<option value="releaseDate" <%=Function.getSelected(param.getStype(), "releaseDate") %>>개봉일</option>
-									</select>
-									<input type="text" name="sval" value="<%=param.getSval()%>" title="검색할 내용을 입력해주세요" />
-									<input type="image" src="/manage/img/btn_search.gif" class="sbtn" alt="검색" />
-								</div>
-							</form>
+							
 							<!-- //search --> 
 						</div>
 						<!-- //blist -->
