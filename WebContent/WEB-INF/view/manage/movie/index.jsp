@@ -84,7 +84,7 @@ function goSearch() {
 					</td>
 					<th scope="row"> <label for=""> 장르별 검색 </label></th>
 					<td>
-					<select name="genre">
+					<select name="sgenre">
 						<option value="액션">액션</option>
 						<option value="드라마">드라마</option>
 						<option value="스릴러">스릴러</option>

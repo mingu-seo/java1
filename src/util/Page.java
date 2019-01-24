@@ -74,9 +74,9 @@ public class Page {
 
 	public static String indexList(int reqPageNo, int pageCount, HttpServletRequest req) {
 		int pagenumber = 10;								// 화면에 보여질 페이지 인덱스 수
-		int startpage;											// 화면에 보여질 시작페이지 번호
-		int endpage;												// 화면에 보여질 마지막페이지 번호
-		int curpage;												// 이동하고자 하는 페이지 번호
+		int startpage;										// 화면에 보여질 시작페이지 번호
+		int endpage;										// 화면에 보여질 마지막페이지 번호
+		int curpage;										// 이동하고자 하는 페이지 번호
 		StringBuffer strList= new StringBuffer();	// 리턴될 페이지 인덱스 리스트
 		String listUrl = getPageURL(req);				// 현재 url 구하기
 
