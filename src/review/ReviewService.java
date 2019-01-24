@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import board.notice.NoticeVO;
 import property.SiteProperty;
 import util.FileUtil;
 import util.Function;
@@ -35,6 +36,12 @@ public class ReviewService {
 	}
 
 
+	public int insert(ReviewVO vo) throws Exception {
+
+		int lastNo = (Integer)reviewDao.insert(vo);
+		
+		return lastNo;
+	}
 
 	
 	public int delete(ReviewVO vo) throws Exception {

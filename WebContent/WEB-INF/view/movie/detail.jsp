@@ -9,10 +9,20 @@ MovieVo data = (MovieVo) request.getAttribute("data");
 StillCutVo scv = (StillCutVo) request.getAttribute("scv");
 TrailerVo tv = (TrailerVo) request.getAttribute("tv"); 
 %>
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<script>
+$(function() {
+	goSave();
+});
+function goSave() {
+	if ($("#title").val() == "") {
+		alert('제목을 입력하세요.');
+		$("#title").focus();
+		return false;
+	}
+</script>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=yes"> 
@@ -143,68 +153,48 @@ TrailerVo tv = (TrailerVo) request.getAttribute("tv");
 							</li>
 						</ul>
 					</div>
+					
+					<form method="post" name="frm" id="frm" action="<%=Function.getSslCheckUrl(request.getRequestURL())%>/sprocess.do" enctype="multipart/form-data" onsubmit="return goSave();">
 					<h5 class="movie_title">리뷰</h5>
 					<div class="review_area">
 						<div class="review_write">
 							<div class="input">
 								<div class="rate">
-									<select name="">
-										<option value="5.0">5.0</option>
-										<option value="5.0">5.0</option>
-										<option value="5.0">5.0</option>
+									<select name="type"> <%=CodeUtil.getScoreTypeOption(1) %>
 									</select>
 								</div>
 								<div class="textarea">
 									<textarea name="" id=""></textarea>
 								</div>
 								<div class="btn_area">
-									<input type="button" class="btn" value="등록">
+									<input type="button" class="btn" onclick="$('#frm').submit();" value="등록">
 								</div>
 							</div>
 						</div>
+						</form>
+						
+<script>
+$(function() {
+	getList();
+});
+
+function getList() {
+	$.ajax({
+		url : "reviewlist.do",
+		dataType : "html",
+		data : {"smovie_pk" : <%=data.getNo()%>},
+		async : true,
+		success : function(data) {
+			$(".review_list").html(data);
+		},
+		error : function(msg) {
+			console.log(msg);
+		}
+	});
+}
+</script>
 						<div class="review_list">
-							<ul>
-								<li>
-									<div class="review_writer">홍길동</div>
-									<div class="review_contents">재미있었어요~!</div>
-									<div class="review_etc">
-										<div class="review_date">2019.01.01</div>
-										<div class="review_btn">
-											<input type="button" class="btn" value="삭제"/>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="review_writer">홍길동</div>
-									<div class="review_contents">재미있었어요~!</div>
-									<div class="review_etc">
-										<div class="review_date">2019.01.01</div>
-										<div class="review_btn">
-											<input type="button" class="btn" value="삭제"/>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="review_writer">홍길동</div>
-									<div class="review_contents">재미있었어요~!</div>
-									<div class="review_etc">
-										<div class="review_date">2019.01.01</div>
-										<div class="review_btn">
-											<input type="button" class="btn" value="삭제"/>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="review_writer">홍길동</div>
-									<div class="review_contents">재미있었어요~!</div>
-									<div class="review_etc">
-										<div class="review_date">2019.01.01</div>
-										<div class="review_btn">
-											<input type="button" class="btn" value="삭제"/>
-										</div>
-									</div>
-								</li>
-							</ul>
+							
 						</div>
 					</div>
 				</div>
