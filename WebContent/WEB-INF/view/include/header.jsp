@@ -101,7 +101,8 @@ function CookieVal(cookieName) {
                 		</div>
                 	</div>
                 	<div class="bottom_area">
-                		<input type="checkbox" id="reg" name="reg"/><label for="reg">이메일 저장</label>
+                		<input type="checkbox" id="reg" name="reg"/><label for="reg">이메일 저장</label>&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;
+                		<a href="/member/emailsearch.do">이메일찾기</a>&nbsp;/&nbsp;<a href="/member/pwsearch.do">비밀번호 찾기</a>
                 	</div>
                 </div>
                 </form>
@@ -126,7 +127,6 @@ function CookieVal(cookieName) {
 							<%}else{%>
 							<li><a href="" >예매하기</a></li>	<!-- memberinfo 세션 존재시 가야할 페이지(미구현) -->
 							<% } %>
-                                <li><a href="" >상영 시간표</a></li>
                             </ul>
                         </li>
                         <li>

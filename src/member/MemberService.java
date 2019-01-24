@@ -42,7 +42,7 @@ public class MemberService extends SqlMapClientDAOSupport{
 		FileUtil fu = new FileUtil();
 		Map fileMap = fu.getFileMap(request);
 		MultipartFile file= (MultipartFile)fileMap.get("filename_tmp");
-		if (!file.isEmpty()) {
+		if (file != null && !file.isEmpty()) {
 			fu.upload(file, SiteProperty.MEMBER_UPLOAD_PATH, SiteProperty.REAL_PATH, "member");
 			vo.setFilename(fu.getName());
 		}
