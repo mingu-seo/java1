@@ -78,11 +78,11 @@ public class MemberController {
 	}
 	
 	//아이디 찾기 페이지 리턴
-	@RequestMapping("/member/idsearch.do")
+	@RequestMapping("/member/emailsearch.do")
 	public String idsearch(Model model, MemberVO param) throws Exception {
 		model.addAttribute("vo", param);
 		
-		return "member/idsearch";
+		return "member/emailsearch";
 	}
 	
 	//비밀번호 찾기 페이지 리턴
