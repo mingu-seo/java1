@@ -73,6 +73,7 @@ ReplyVO3 data = (ReplyVO3)request.getAttribute("data");
 				<input type="hidden" name="gno" value="<%=data.getGno()%>" />
 				<input type="hidden" name="ono" value="<%=data.getOno()%>" />
 				<input type="hidden" name="nested" value="<%=data.getNested()%>" />
+				<input type="hidden" name="member_fk" value="<%=memberInfo.getNo()%>" />
 				<div class="btnSet"  style="text-align:right;">
 					<a class="btn" href="javascript:goSave();">저장 </a>
 				</div>
