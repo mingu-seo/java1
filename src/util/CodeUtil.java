@@ -64,6 +64,57 @@ public class CodeUtil {
 		result.append("<option value='6'"+Function.getSelected(6,arg)+">"+getQtype(6)+"</option>");
 		return result.toString();
 	}
+	//영화 평점
+	public static String getScoreType(int type) {
+		String result = "";
+		switch (type) {
+		case 1:
+			result = "0.5";
+			break;
+		case 2:
+			result = "1.0";
+			break;
+		case 3:
+			result = "1.5";
+			break;
+		case 4:
+			result = "2.0";
+			break;
+		case 5:
+			result = "2.5";
+			break;
+		case 6:
+			result = "3.0";
+			break;
+		case 7:
+			result = "3.5";
+			break;
+		case 8:
+			result = "4.0";
+			break;
+		case 9:
+			result = "4.5";
+			break;
+		case 10:
+			result = "5.0";
+			break;
+		}
+		return result;
+	}
+	public static String getScoreTypeOption(int arg){
+		StringBuffer result = new StringBuffer();
+		result.append("<option value='1'"+Function.getSelected(1,arg)+">"+getScoreType(1)+"</option>");
+		result.append("<option value='2'"+Function.getSelected(2,arg)+">"+getScoreType(2)+"</option>");
+		result.append("<option value='3'"+Function.getSelected(3,arg)+">"+getScoreType(3)+"</option>");
+		result.append("<option value='4'"+Function.getSelected(4,arg)+">"+getScoreType(4)+"</option>");
+		result.append("<option value='5'"+Function.getSelected(5,arg)+">"+getScoreType(5)+"</option>");
+		result.append("<option value='6'"+Function.getSelected(6,arg)+">"+getScoreType(6)+"</option>");
+		result.append("<option value='7'"+Function.getSelected(7,arg)+">"+getScoreType(7)+"</option>");
+		result.append("<option value='8'"+Function.getSelected(8,arg)+">"+getScoreType(8)+"</option>");
+		result.append("<option value='9'"+Function.getSelected(9,arg)+">"+getScoreType(9)+"</option>");
+		result.append("<option value='10'"+Function.getSelected(10,arg)+">"+getScoreType(10)+"</option>");
+		return result.toString();
+	}
 	/**
 	 * 관리자 등급
 	 * @param type int
