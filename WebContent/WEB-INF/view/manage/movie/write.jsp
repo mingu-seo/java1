@@ -97,7 +97,7 @@
 													name="director" class="w50" /></td>
 												<th scope="row"><label for="">등급</label></th>
 												<td>
-													<input type="radio" id="rating1" name="rating" value="0"/>전체관람가 &nbsp;
+													<input type="radio" id="rating1" name="rating" value="1"/>전체관람가 &nbsp;
 													<input type="radio" id="rating2" name="rating" value="12"/>12세 관람가 &nbsp;
 													<input type="radio" id="rating3" name="rating" value="15"/>15세 관람가 &nbsp;
 													<input type="radio" id="rating4" name="rating" value="19"/>청소년 관람불가 &nbsp;

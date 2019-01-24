@@ -21,12 +21,21 @@ public class MovieVo extends Parameter {
 	private long 		posterSize;				// 포스터 첨부파일 크기
 	//검색조건
 	private int			sdisplay;				// 노출여부 (-1:전체, 0:미노출, 1:노출)
+	private String		sgenre;					// 장르
+	private int			srating;				// 등급
+	private String		dateType;				// 날짜타입
+	private String		sdate;					// 시작일
+	private String		edate;					// 종료일
 	
 
 	
 	public MovieVo() {
 		super.setPageRows(10);
 		this.setSdisplay(-1);	// 검색기본값(전체)
+		this.setSdate("");
+		this.setEdate("");
+		this.setSgenre("");
+		this.setSrating(0);
 	}
 
 	public int getNo() {
@@ -156,4 +165,45 @@ public class MovieVo extends Parameter {
 	public void setFormat(String format) {
 		this.format = format;
 	}
+
+	public String getSgenre() {
+		return sgenre;
+	}
+
+	public void setSgenre(String sgenre) {
+		this.sgenre = sgenre;
+	}
+
+	public int getSrating() {
+		return srating;
+	}
+
+	public void setSrating(int srating) {
+		this.srating = srating;
+	}
+
+	public String getDateType() {
+		return dateType;
+	}
+
+	public void setDateType(String dateType) {
+		this.dateType = dateType;
+	}
+
+	public String getSdate() {
+		return sdate;
+	}
+
+	public void setSdate(String sdate) {
+		this.sdate = sdate;
+	}
+
+	public String getEdate() {
+		return edate;
+	}
+
+	public void setEdate(String edate) {
+		this.edate = edate;
+	}
+	
 }

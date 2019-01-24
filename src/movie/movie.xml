@@ -11,19 +11,30 @@
 	<sql id="searchSql">		
 		<!-- WHERE 절 검색 -->
 		<dynamic prepend="where">
-			<isNotEqual property="sdisplay" compareValue="-1">
+			<isNotEqual property="sdisplay" compareValue="-1" prepend="and">
 			    display = #sdisplay#
 			</isNotEqual>
 			<!-- 검색어 검색 -->
 			<isNotEqual property="sval" compareValue="">
 				<!-- 검색 타입이 all일 때 -->
 				<isEqual property="stype" compareValue="all" prepend="and">
-					( (name like '%$sval$%' ) or (contents like '%$sval$%' ) or (title like '%$sval$%' ) ) 					
+					( (title like '%$sval$%' ) or (director like '%$sval$%' ) or (contents like '%$sval$%' ) ) 					
 				</isEqual>
 				<!-- 검색 타입이 all이 아닐때 해당 stype으로 검색 -->
 				<isNotEqual property="stype" compareValue="all" prepend="and">
 					($stype$ like '%$sval$%' )
 				</isNotEqual>
+			</isNotEqual>
+			<isNotEqual property="sdate" compareValue="">
+				<isNotEqual property="edate" compareValue="" prepend="and">
+					$dateType$ between '$sdate$' and '$edate$'
+				</isNotEqual>
+			</isNotEqual>
+			<isNotEqual property="sgenre" compareValue="" prepend="and">
+				genre like '%$sgenre$%'
+			</isNotEqual>
+			<isNotEqual property="srating" compareValue="0" prepend="and">
+				rating = #srating#
 			</isNotEqual>
 		</dynamic>
 	</sql>
@@ -74,7 +85,7 @@
         where releaseDate > now()
           ]]>
         <include refid="searchSql" />
-		ORDER BY releaseDate DESC LIMIT $startPageNo$, $pageRows$
+		ORDER BY releaseDate ASC LIMIT $startPageNo$, $pageRows$
     </select>
 	
 	<!-- 해당 테이블에 게시글 작성 -->

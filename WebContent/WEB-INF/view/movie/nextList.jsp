@@ -35,10 +35,7 @@ int totPage = (Integer)request.getAttribute("totPage"); %>
 								data = list.get(i);
 								%>
 						<li>
-						
-								
-							
-							<a href="detail.do?no=<%=data.getNo()%>">
+							<a>
 							<dl>
 								<dt class="img">
 										<img src="<%=SiteProperty.MOVIE_UPLOAD_PATH%><%=data.getPoster()%>" alt=""/>
@@ -48,12 +45,12 @@ int totPage = (Integer)request.getAttribute("totPage"); %>
 									<%=data.getTitle()%>
 								</dd>
 								<dd class="btnArea">
-									<input type="button" class="btn" value="상세"/>
-									<input type="button" class="btn" value="예매"/>
+									<input type="button" class="btn" value="상세" onclick="location.href='detail.do?no=<%=data.getNo()%>'"/>
+									<%if(DateUtil.getDiff(data.getReleaseDate(), DateUtil.getToday())<=14){%><input type="button" class="btn" value="예매"/>
+									<%} %>
 								</dd>
 							</dl>
-							</a>
-						
+							</a>  
 						</li>
 							<%} %>
 					</ul>

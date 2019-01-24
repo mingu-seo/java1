@@ -52,6 +52,22 @@ public class MovieController {
 		return "movie/index";
 	}
 	
+	@RequestMapping("/api/movie/index.do")
+	public String apimovieIndex (Model model, MovieVo param) throws Exception {
+		param.setTablename("movie");
+		param.setPageRows(9);
+		
+		int[] rowPageCount = movieService.count(param);
+		ArrayList<MovieVo> list = movieService.list(param);
+		
+		model.addAttribute("totCount", rowPageCount[0]);
+		model.addAttribute("totPage", rowPageCount[1]);
+		model.addAttribute("list", list);
+		model.addAttribute("vo", param);
+		
+		return "api/movie/index";
+	}
+	
 	@RequestMapping("/movie/next.do")
 	public String movieNextList (Model model, MovieVo param) throws Exception {
 		param.setTablename("movie");
