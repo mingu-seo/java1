@@ -3,27 +3,18 @@
 <%@ page import="util.*" %>
 <%@ page import="java.util.*" %>
 <%@ page import="movie.*" %>
+<%@ page import="member.*" %>
 <% 
 MovieVo param = (MovieVo)request.getAttribute("vo");
 MovieVo data = (MovieVo) request.getAttribute("data");
 StillCutVo scv = (StillCutVo) request.getAttribute("scv");
 TrailerVo tv = (TrailerVo) request.getAttribute("tv"); 
-ActorVo av = (ActorVo) request.getAttribute("av"); 
+ActorVo av = (ActorVo) request.getAttribute("av");
+
 %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<script>
-$(function() {
-	goSave();
-});
-function goSave() {
-	if ($("#title").val() == "") {
-		alert('제목을 입력하세요.');
-		$("#title").focus();
-		return false;
-	}
-</script>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=yes"> 
@@ -186,20 +177,22 @@ function goSave() {
 						</ul>
 					</div>
 					
-					<form method="post" name="frm" id="frm" action="<%=Function.getSslCheckUrl(request.getRequestURL())%>/sprocess.do" enctype="multipart/form-data" onsubmit="return goSave();">
+					<form method="post" name="frm" id="frm" action="" >
+					<input type="hidden" name="movie_pk" value="<%=data.getNo()%>"/>
 					<h5 class="movie_title">리뷰</h5>
 					<div class="review_area">
 						<div class="review_write">
 							<div class="input">
 								<div class="rate">
-									<select name="type"> <%=CodeUtil.getScoreTypeOption(1) %>
+									<select name="score"> <%=CodeUtil.getScoreTypeOption(1) %>
 									</select>
 								</div>
+								
 								<div class="textarea">
-									<textarea name="" id=""></textarea>
+									<textarea name="contents" id="contents"></textarea>
 								</div>
 								<div class="btn_area">
-									<input type="button" class="btn" onclick="$('#frm').submit();" value="등록">
+									<input type="button" class="btn" onclick="save();" value="등록">
 								</div>
 							</div>
 						</div>
@@ -212,7 +205,7 @@ $(function() {
 
 function getList() {
 	$.ajax({
-		url : "reviewlist.do",
+		url : "reviewList.do",
 		dataType : "html",
 		data : {"smovie_pk" : <%=data.getNo()%>},
 		async : true,
@@ -223,6 +216,54 @@ function getList() {
 			console.log(msg);
 		}
 	});
+}
+
+function goDelete(no) {
+	if (confirm("삭제하시겠습니까?")) {
+		$.ajax({
+			url : "/movie/review/delete.do",
+			data : {"no" : no},
+			async : true,
+			success : function(data) {
+				var d = data.trim();
+				if (d>0) {
+					getList();
+					alert("정상적으로 삭제되었습니다.");
+				} else {
+					alert("삭제실패");
+				}
+			},
+			error : function(msg) {
+				console.log(msg);
+			}
+		});
+	}
+}
+
+function save() {
+	<%
+	if (memberInfo == null) {
+	%>
+	alert("로그인후 작성가능합니다.");
+	<% } else { %>
+	var data = $("#frm").serialize();
+	$.ajax({
+		type : "POST",
+		url :"/movie/review/insert.do",
+		async : true,
+		data : data,
+		success : function (data) {
+			var r = data.trim();
+			if (r>0) {
+				getList();
+				alert("정상적으로 등록되었습니다.");
+				$("#contents").val("");
+			} else {
+				alert("등록실패");
+			}
+		}
+	})
+	<% } %>
 }
 </script>
 						<div class="review_list">

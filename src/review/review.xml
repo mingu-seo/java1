@@ -26,24 +26,24 @@
 	
 	<!-- 해당 테이블의 총 게시글 수 -->
 	<select id="count" parameterClass="review_vo" resultClass="Integer">
-        select count(*) from $tablename$
+        select count(*) from review
         <include refid="searchSql" />	
     </select>
     
 	<select id="list" parameterClass="review_vo" resultClass="review_vo">
         select *,
         	(select name from member where member.no=review.member_pk) as member_name
-        from $tablename$
+        from review
         <include refid="searchSql" />
 		ORDER BY cre_date DESC LIMIT $startPageNo$, $pageRows$
     </select>
 	
 	<!-- 해당 테이블에 게시글 작성 -->
     <insert id="insert" parameterClass="review_vo">
-        INSERT INTO $tablename$ (
+        INSERT INTO review (
         	member_pk, movie_pk, contents, score, cre_date
         ) VALUES (
-        	#member_pk#, #movie_pk#, #contents#, #score#, #cre_date#
+        	#member_pk#, #movie_pk#, #contents#, #score#, now()
         )
         <selectKey keyProperty="no" resultClass="Integer">
         	SELECT LAST_INSERT_ID()
@@ -52,7 +52,7 @@
     
     <select id="getRowNum" parameterClass="review_vo" resultClass="Integer">
         select rownum from (
-        	select @rownum:=@rownum+1 as rownum, no, movie_pk from $tablename$, (select @rownum:=0) as r
+        	select @rownum:=@rownum+1 as rownum, no, movie_pk from review, (select @rownum:=0) as r
         	<include refid="searchSql" />
         	ORDER BY cre_date DESC
         ) as r2
@@ -62,7 +62,7 @@
     <select id="getNextRowNum" parameterClass="review_vo" resultClass="review_vo">
         select ifnull(rownum,0), ifnull(no,0) as next_no
         from (
-        	select @rownum:=@rownum+1 as rownum, no, movie_pk from $tablename$, (select @rownum:=0) as r
+        	select @rownum:=@rownum+1 as rownum, no, movie_pk from review, (select @rownum:=0) as r
         	<include refid="searchSql" />
         	ORDER BY cre_date DESC
         ) as r2
@@ -74,7 +74,7 @@
     <select id="getPrevRowNum" parameterClass="review_vo" resultClass="review_vo">
     	select ifnull(rownum,0), ifnull(no,0) as prev_no
         from (
-        	select @rownum:=@rownum+1 as rownum, no, movie_pk from $tablename$, (select @rownum:=0) as r
+        	select @rownum:=@rownum+1 as rownum, no, movie_pk from review, (select @rownum:=0) as r
         	<include refid="searchSql" />
         	ORDER BY cre_date DESC
         ) as r2
@@ -84,12 +84,12 @@
     </select>
     
     <delete id="delete" parameterClass="review_vo">
-        DELETE FROM $tablename$ WHERE no=#no#
+        DELETE FROM review WHERE no=#no#
     </delete>
     
     <select id="mainList" parameterClass="review_vo" resultClass="review_vo">
         select *
-        from $tablename$
+        from review
         <include refid="searchSql" />
 		ORDER BY cre_date DESC LIMIT 0, $number$
     </select>
