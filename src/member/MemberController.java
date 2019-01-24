@@ -79,7 +79,7 @@ public class MemberController {
 	
 	//아이디 찾기 페이지 리턴
 	@RequestMapping("/member/emailsearch.do")
-	public String idsearch(Model model, MemberVO param) throws Exception {
+	public String emailsearch(Model model, MemberVO param) throws Exception {
 		model.addAttribute("vo", param);
 		
 		return "member/emailsearch";
