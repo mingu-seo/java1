@@ -101,7 +101,6 @@ function goSearch() {
 										<td <%=targetUrl%> class="movie_pk"><%=data.getMovie_pk()%></td>
 										<td <%=targetUrl%> class="member_pk"><%=data.getMember_pk()%></td>
 										<td <%=targetUrl%>><%=DateUtil.getDateFormat(data.getCre_date())%></td>
-										<td <%=targetUrl%>><%=DateUtil.getDateFormat(data.getView_date())%></td>
 										<td <%=targetUrl%>><%=data.getScore()%></td>
 										<td class="last"><input type="button" value="삭제" onclick="goDelete(<%=data.getNo()%>);"/></td>
 									</tr>
