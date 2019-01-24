@@ -6,6 +6,10 @@
     <sql id="searchSql">		
 		<!-- WHERE 절 검색 -->
 		<dynamic prepend="where">
+		
+			<isNotEqual property="smovie_pk" compareValue="0" prepend="and">
+				movie_pk=#smovie_pk#
+			</isNotEqual>
 			<!-- 검색어 검색 -->
 			<isNotEqual property="sval" compareValue="">
 				<!-- 검색 타입이 all일 때 -->
@@ -27,14 +31,24 @@
     </select>
     
 	<select id="list" parameterClass="review_vo" resultClass="review_vo">
-        select *
+        select *,
+        	(select name from member where member.no=review.member_pk) as member_name
         from $tablename$
         <include refid="searchSql" />
 		ORDER BY cre_date DESC LIMIT $startPageNo$, $pageRows$
     </select>
 	
 	<!-- 해당 테이블에 게시글 작성 -->
-    
+    <insert id="insert" parameterClass="review_vo">
+        INSERT INTO $tablename$ (
+        	member_pk, movie_pk, contents, score, cre_date
+        ) VALUES (
+        	#member_pk#, #movie_pk#, #contents#, #score#, #cre_date#
+        )
+        <selectKey keyProperty="no" resultClass="Integer">
+        	SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
     
     <select id="getRowNum" parameterClass="review_vo" resultClass="Integer">
         select rownum from (

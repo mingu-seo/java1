@@ -14,7 +14,10 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 @RunWith(SpringJUnit4ClassRunner.class)
+
 @ContextConfiguration(locations= {"classpath:config/context-*.xml"})   // classpath -> 클래스파일이 위치한 경로. 
+
+
 @WebAppConfiguration
 public class TestNotice {
 
@@ -23,7 +26,11 @@ public class TestNotice {
     private MockMvc mockMvc;  // 목업의 그 목. 가상. 
     // 어디서든 쓸 수 있게 전역변수로 선언해준 것. 
     
-    @Before   // before-test-after 순으로 실행됨. 
+
+
+
+    @Before	//junit의 실행순서는 before, test, after순으로 실행된다.
+
     public void setUp() {
         mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
         //test 하기 전에 before에서 기본적인 설정을 해줌. 지금은 초기값을 넣어준 것. 

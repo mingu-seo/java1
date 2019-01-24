@@ -246,7 +246,8 @@
 
 .bbs .movie .review_area .review_list {width:100%; display:block;height:auto;}
 .bbs .movie .review_area .review_list ul li{width:45%; min-height:200px;padding:10px;float:left; border-bottom:1px solid #c3d69b; }
-.bbs .movie .review_area .review_list .review_writer{font-size:14px;}
+.bbs .movie .review_area .review_list .review_writer{font-size:14px;float:left;width:70%;}
+.bbs .movie .review_area .review_list .review_score{font-size:25px;float:left;text-align:right;width:30%;font-weight:800;color:#c3d69b;}
 .bbs .movie .review_area .review_list .review_contents{font-size:16px;min-height:200px;padding-top:5px;}
 .bbs .movie .review_area .review_list .review_etc{width:100%;}
 .bbs .movie .review_area .review_list .review_date{font-size:14px;bottom:0;float:left;}

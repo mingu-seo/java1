@@ -11,11 +11,12 @@ public class ReviewVO extends Parameter {
 	private String 		member_pk;					// 제목
 	private String		contents;				// 내용
 	private Timestamp	cre_date;				// 작성일
-	private Timestamp	view_date;				// 작성일
 	private int			score;					// 점수
 	
 	private int 		prev_no;				// 이전글 no
 	private int 		next_no;				// 다음글 no
+	private int			smovie_pk;
+	private String 		member_name;
 	
 	//검색조건
 	
@@ -63,14 +64,6 @@ public class ReviewVO extends Parameter {
 		this.cre_date = cre_date;
 	}
 
-	public Timestamp getView_date() {
-		return view_date;
-	}
-
-	public void setView_date(Timestamp view_date) {
-		this.view_date = view_date;
-	}
-
 	public int getScore() {
 		return score;
 	}
@@ -93,6 +86,22 @@ public class ReviewVO extends Parameter {
 
 	public void setNext_no(int next_no) {
 		this.next_no = next_no;
+	}
+
+	public int getSmovie_pk() {
+		return smovie_pk;
+	}
+
+	public void setSmovie_pk(int smovie_pk) {
+		this.smovie_pk = smovie_pk;
+	}
+
+	public String getMember_name() {
+		return member_name;
+	}
+
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
 	}
 
 

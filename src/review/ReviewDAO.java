@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Repository;
 
+import board.notice.NoticeVO;
 import db.SqlMapClientDAOSupport;
 
 @Repository
@@ -31,6 +32,9 @@ public class ReviewDAO extends SqlMapClientDAOSupport {
 	}
 
 
+	public int insert(ReviewVO vo) throws SQLException {
+		return (Integer)getSqlMapClient().insert("review.insert",vo);
+	}
 
 	/**
 	 * 삭제
