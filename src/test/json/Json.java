@@ -53,7 +53,8 @@ public class Json {
 		String rst="";
 
 		// URL 주소
-		String sUrl = "http://nanna.withsky.co.kr:8080/movie.jsp";
+		//String sUrl = "http://nanna.withsky.co.kr:8080/movie.jsp";
+		String sUrl = "http://localhost/api/movie/index.do";
 
 		try {
 			// Get방식으로 전송 하기
@@ -75,7 +76,9 @@ public class Json {
 
 			// Top레벨 단계인 response 키를 가지고 데이터를 파싱합니다.
 			JSONArray dataList = (JSONArray) obj.get("movie");
+			String totCount = (String) obj.get("totCount");
 			
+			System.out.println("총 갯수 : "+totCount);
 			for (int i=0; i<dataList.size(); i++) {
 				JSONObject data = (JSONObject) dataList.get(i);
 				System.out.print(data.get("no")+"\t");

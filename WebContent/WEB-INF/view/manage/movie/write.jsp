@@ -79,15 +79,16 @@
 												</td>
 												<th scope="row"><label for=""> 장르</label></th>
 												<td>
-													<input type="checkbox" name="genre" value="action"/>액션 &nbsp;
-													<input type="checkbox" name="genre" value="thriller"/>스릴러 &nbsp;
-													<input type="checkbox" name="genre" value="melo"/>멜로 &nbsp;
-													<input type="checkbox" name="genre" value="comic"/>코믹 &nbsp;
-													<input type="checkbox" name="genre" value="crime"/>범죄 &nbsp;
-													<input type="checkbox" name="genre" value="fantasy"/>판타지 &nbsp;
-													<input type="checkbox" name="genre" value="sf"/>SF &nbsp;
-													<input type="checkbox" name="genre" value="family"/>가족 &nbsp;
-													<input type="checkbox" name="genre" value="child"/>어린이 &nbsp;
+													<input type="checkbox" name="genre" value="액션"/>액션 &nbsp;
+													<input type="checkbox" name="genre" value="드라마"/>드라마 &nbsp;
+													<input type="checkbox" name="genre" value="스릴러"/>스릴러 &nbsp;
+													<input type="checkbox" name="genre" value="멜로"/>멜로 &nbsp;
+													<input type="checkbox" name="genre" value="멜로"/>코믹 &nbsp;
+													<input type="checkbox" name="genre" value="범죄"/>범죄 &nbsp;
+													<input type="checkbox" name="genre" value="판타지"/>판타지 &nbsp;
+													<input type="checkbox" name="genre" value="SF"/>SF &nbsp;
+													<input type="checkbox" name="genre" value="가족"/>가족 &nbsp;
+													<input type="checkbox" name="genre" value="어린이"/>어린이 &nbsp;
 												</td>
 											</tr>	
 											<tr>
@@ -103,8 +104,28 @@
 												</td>
 											</tr>		
 											<tr>
-												<th scope="row"><label for="">개봉일</label></th>
-												<td><input type="date" id="releaseDate"
+											<th scope="row"><label for="">출연배우</label></th>
+											<td>
+												<input type="text" name="actor1"></input>
+												<input type="text" name="actor2"></input>
+												<input type="text" name="actor3"></input><br/>
+												<input type="text" name="actor4"></input>
+												<input type="text" name="actor5"></input>
+												<input type="text" name="actor6"></input>
+											</td>
+											<th scope="row"><label for="">포맷</label></th>
+											<td>
+												<input type="checkbox" name="format" value="2D"/>2D
+												<input type="checkbox" name="format" value="3D"/>3D
+												<input type="checkbox" name="format" value="4D"/>4D
+												<input type="checkbox" name="format" value="IMAX"/>IMAX
+											</td>
+											</tr>
+											<tr>
+												<th scope="row"><label for="">상영시간/개봉일</label></th>
+												<td>
+												<input type="text" name="runtime"/>분 &nbsp;&nbsp;
+												<input type="date" id="releaseDate"
 													name="releaseDate" class="w50" title="개봉일" /></td>
 												<th scope="row"><label for="">상영종료일</label></th>
 												<td><input type="date" id="endDate"
@@ -160,7 +181,7 @@
 								<div class="btn">
 									<div class="btnLeft">
 										<a class="btns"
-											href="<%=param.getTargetURLParam("index", param, 0)%>"><strong>목록</strong></a>
+											href="<%=param.getTargetURLParam("index.do", param, 0)%>"><strong>목록</strong></a>
 									</div>
 									<div class="btnRight">
 										<a class="btns" href="javascript:$('#frm').submit();"><strong>저장</strong></a>

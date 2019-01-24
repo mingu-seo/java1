@@ -18,7 +18,7 @@ int totPage = (Integer)request.getAttribute("totPage"); %>
 <meta name="format-detection" content="telephone=no, address=no, email=no">
 <meta name="keywords" content="">
 <meta name="description" content="">
-<title>MOVIE</title>
+<title>현재 상영작</title>
 <%@ include file="/WEB-INF/view/include/headHtml.jsp" %>
 </head>
 <body>
@@ -61,7 +61,7 @@ int totPage = (Integer)request.getAttribute("totPage"); %>
 				</div>
 			
 				<div class="pagenate clear">
-					<li><a href='javascript:;' class='current'>1</a></li>
+					<%=Page.userindexList(param.getReqPageNo(), totPage, request)%>
 				</div>
 			</div>
 		</div>

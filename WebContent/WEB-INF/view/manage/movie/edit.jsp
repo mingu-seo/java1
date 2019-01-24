@@ -7,6 +7,7 @@
 	MovieVo data = (MovieVo) request.getAttribute("data");
 	StillCutVo scv = (StillCutVo) request.getAttribute("scv");
 	TrailerVo tv = (TrailerVo) request.getAttribute("tv");
+	ActorVo av = (ActorVo) request.getAttribute("av");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
@@ -76,24 +77,26 @@
 													value="<%=data.getTitle()%>" title="영화 제목을 입력해주세요" /></td>
 												<th scope="row"><label for=""> 장르</label></th>
 												<td>
-													<input type="checkbox" name="genre" value="action"
-													<%if (data.getGenre() == "action") {out.print("checked");}%> />액션
-													<input type="checkbox" name="genre" value="thriller"
-													  <%if (data.getGenre() == "thriller") {out.print("checked");}%> />스릴러
-													<input type="checkbox" name="genre" value="melo"
-													<%if (data.getGenre() == "melo") {out.print("checked");}%> />멜로
-													<input type="checkbox" name="genre" value="comic" 
-													<%if (data.getGenre() == "comic") {out.print("checked");}%> />코믹
-													<input type="checkbox" name="genre" value="crime"
-													<%if (data.getGenre() == "crime") {out.print("checked");}%> />범죄
-													<input type="checkbox" name="genre" value="fantasy"
-													<%if (data.getGenre() == "fantasy") {out.print("checked");}%> />판타지
-													<input type="checkbox" name="genre" value="sf"
-													<%if (data.getGenre() == "sf") {out.print("checked");}%> />SF
-													<input type="checkbox" name="genre" value="family"
-													<%if (data.getGenre() == "family") {out.print("checked");}%> />가족
-													<input type="checkbox" name="genre" value="child"
-													<%if (data.getGenre() == "child") {out.print("checked");}%> />어린이
+													<input type="checkbox" name="genre" value="액션"
+													<%=Function.getGenreChecked(data.getGenre(), "액션")%> />액션
+													<input type="checkbox" name="genre" value="드라마"
+													  <%=Function.getGenreChecked(data.getGenre(), "드라마")%> />드라마
+													<input type="checkbox" name="genre" value="스릴러"
+													  <%=Function.getGenreChecked(data.getGenre(), "스릴러")%> />스릴러
+													<input type="checkbox" name="genre" value="멜로"
+													 <%=Function.getGenreChecked(data.getGenre(), "멜로")%> />멜로
+													<input type="checkbox" name="genre" value="코믹" 
+													 <%=Function.getGenreChecked(data.getGenre(), "코믹")%> />코믹
+													<input type="checkbox" name="genre" value="범죄"
+													 <%=Function.getGenreChecked(data.getGenre(), "범죄")%> />범죄
+													<input type="checkbox" name="genre" value="판타지"
+													<%=Function.getGenreChecked(data.getGenre(), "판타지")%>/>판타지
+													<input type="checkbox" name="genre" value="SF"
+													<%=Function.getGenreChecked(data.getGenre(), "SF")%> />SF
+													<input type="checkbox" name="genre" value="가족"
+													<%=Function.getGenreChecked(data.getGenre(), "가족")%>/>가족
+													<input type="checkbox" name="genre" value="어린이"
+													<%=Function.getGenreChecked(data.getGenre(), "어린이")%> />어린이
 												</td>
 											</tr>
 											<tr>
@@ -109,8 +112,38 @@
 												</td>
 											</tr>
 											<tr>
-												<th scope="row"><label for="">개봉일</label></th>
+											<th scope="row"><label for="">출연배우</label></th>
+											<td>
+												<input type="text" name="actor1"
+												value="<%if(av!=null && av.getActor1()!=null) { %><%=av.getActor1()%><%} else {out.print("");} %>"></input>
+												<input type="text" name="actor2"
+												value="<%if(av!=null && av.getActor2()!=null) { %><%=av.getActor2()%><%} else {out.print("");} %>"></input>
+												<input type="text" name="actor3"
+												value="<%if(av!=null && av.getActor3()!=null) { %><%=av.getActor3()%><%} else {out.print("");} %>"></input><br/>
+												<input type="text" name="actor4"
+												value="<%if(av!=null && av.getActor4()!=null) { %><%=av.getActor4()%><%} else {out.print("");} %>"></input>
+												<input type="text" name="actor5"
+												value="<%if(av!=null && av.getActor5()!=null) { %><%=av.getActor5()%><%} else {out.print("");} %>"></input>
+												<input type="text" name="actor6"
+												value="<%if(av!=null && av.getActor6()!=null) { %><%=av.getActor6()%><%} else {out.print("");} %>"></input>
+											</td>
+											
+											<th scope="row"><label for="">포맷</label></th>
+											<td>
+												<input type="checkbox" name="format" value="2D"
+												<%=Function.getFormatChecked(data.getFormat(), "2D")%> />2D
+												<input type="checkbox" name="format" value="3D"
+												<%=Function.getFormatChecked(data.getFormat(), "3D")%> />3D
+												<input type="checkbox" name="format" value="4D"
+												<%=Function.getFormatChecked(data.getFormat(), "4D")%> />4D
+												<input type="checkbox" name="format" value="IMAX"
+												<%=Function.getFormatChecked(data.getFormat(), "IMAX")%> />IMAX
+											</td>
+											</tr>
+											<tr>
+												<th scope="row"><label for="">상영시간/개봉일</label></th>
 												<td>
+													<input type="text" name="runtime" value="<%=data.getRuntime()%>"/>분 &nbsp;&nbsp;
 													<input type="date" id="releaseDate" name="releaseDate" value="<%=data.getReleaseDate()%>" title="개봉일" />
 												</td>
 												<th scope="row"><label for="">상영종료일</label></th>
@@ -137,32 +170,32 @@
 												<th scope="row"><label for="">스틸컷</label></th>
 												<td>
 													<input type="file" name="stillCut1_tmp" class="w50" title="스틸컷1"/>
-													<%if (scv != null && scv.getStillCut1()!=null){%>
+													<%if (scv != null && scv.getStillCut1()!=null && !("").equals(scv.getStillCut1())){%>
 													<img src="<%=property.SiteProperty.MOVIE_UPLOAD_PATH%><%=scv.getStillCut1()%>" width="20px" height="30px"/>
 													<input type="checkbox" name="stillCut1_chk" value="1"/>파일 삭제<% } %>
 													<br/>
 													<input type="file" name="stillCut2_tmp" class="w50" title="스틸컷2"/>
-													<%if (scv != null && scv.getStillCut2()!=null){%>
+													<%if (scv != null && scv.getStillCut2()!=null && !("").equals(scv.getStillCut2())){%>
 													<img src="<%=property.SiteProperty.MOVIE_UPLOAD_PATH%><%=scv.getStillCut2()%>" width="20px" height="30px"/>
 													<input type="checkbox" name="stillCut2_chk" value="1"/>파일 삭제<% } %>
 													<br/>
 													<input type="file" name="stillCut3_tmp" class="w50" title="스틸컷3"/>
-													<%if (scv != null && scv.getStillCut3()!=null){%>
+													<%if (scv != null && scv.getStillCut3()!=null && !("").equals(scv.getStillCut3())){%>
 													<img src="<%=property.SiteProperty.MOVIE_UPLOAD_PATH%><%=scv.getStillCut3()%>" width="20px" height="30px"/>
 													<input type="checkbox" name="stillCut3_chk" value="1"/>파일 삭제<% } %>
 													<br/>
 													<input type="file" name="stillCut4_tmp" class="w50" title="스틸컷4"/>
-													<%if (scv != null && scv.getStillCut4()!=null){%>
+													<%if (scv != null && scv.getStillCut4()!=null && !("").equals(scv.getStillCut4())){%>
 													<img src="<%=property.SiteProperty.MOVIE_UPLOAD_PATH%><%=scv.getStillCut4()%>" width="20px" height="30px"/>
 													<input type="checkbox" name="stillCut4_chk" value="1"/>파일 삭제<% } %>
 													<br/>
 													<input type="file" name="stillCut5_tmp" class="w50" title="스틸컷5"/>
-													<%if (scv != null && scv.getStillCut5()!=null){%>
+													<%if (scv != null && scv.getStillCut5()!=null && !("").equals(scv.getStillCut5())){%>
 													<img src="<%=property.SiteProperty.MOVIE_UPLOAD_PATH%><%=scv.getStillCut5()%>" width="20px" height="30px"/>
 													<input type="checkbox" name="stillCut5_chk" value="1"/>파일 삭제<% } %>
 													<br/>
 													<input type="file" name="stillCut6_tmp" class="w50" title="스틸컷6"/>
-													<%if (scv != null && scv.getStillCut6()!=null){%>
+													<%if (scv != null && scv.getStillCut6()!=null && !("").equals(scv.getStillCut6())){%>
 													<img src="<%=property.SiteProperty.MOVIE_UPLOAD_PATH%><%=scv.getStillCut6()%>" width="20px" height="30px"/>
 													<input type="checkbox" name="stillCut6_chk" value="1"/>파일 삭제<% } %>
 													<br/>										
