@@ -126,7 +126,6 @@ function CookieVal(cookieName) {
 							<%}else{%>
 							<li><a href="" >예매하기</a></li>	<!-- memberinfo 세션 존재시 가야할 페이지(미구현) -->
 							<% } %>
-                                <li><a href="" >상영 시간표</a></li>
                             </ul>
                         </li>
                         <li>
