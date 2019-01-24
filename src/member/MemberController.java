@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import mail.SendMail;
 import property.SiteProperty;
 import util.Function;
 
@@ -26,7 +25,6 @@ public class MemberController {
 		if (memberService.loginCheck(vo)) {
 			
 			MemberVO memberInfo = memberService.getLoginSessionInfo(vo);
-			memberInfo.setIp(vo.getIp());
 			session.setAttribute("memberInfo", memberInfo);	// 세션 저장
 			String redirectUrl = SiteProperty.MOVIE_INDEX_PAGE; // 시작페이지
 			
