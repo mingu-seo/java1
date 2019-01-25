@@ -105,6 +105,7 @@ ReplyVO3 data = (ReplyVO3)request.getAttribute("data");
 							<input type="hidden" name="gno" value="<%=data.getGno()%>" />
 							<input type="hidden" name="ono" value="<%=data.getOno()%>" />
 							<input type="hidden" name="nested" value="<%=data.getNested()%>" />
+							<input type="hidden" name="admin_fk" value="<%=request.getAttribute("admin_no")%>" />
 							</form>
 							<div class="btn">
 								<div class="btnLeft">

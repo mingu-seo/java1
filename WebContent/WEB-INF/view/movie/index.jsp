@@ -44,6 +44,7 @@ int totPage = (Integer)request.getAttribute("totPage"); %>
 										<img src="<%=SiteProperty.MOVIE_UPLOAD_PATH%><%=data.getPoster()%>" alt=""/>
 								</dt>
 								<dd class="date">평점 4.5</dd>
+								
 								<dd class="title">
 									<%=data.getTitle()%>
 								</dd>

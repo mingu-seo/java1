@@ -54,7 +54,7 @@ function goSave() {
 					</fieldset>
 					<div class="btnSet clear">
 						<div>
-							<a href="idsearch.do" class="btn" >아이디 찾기</a> 
+							<a href="emailsearch.do" class="btn" >아이디 찾기</a> 
 						</div>
 					</div>
 				</div>

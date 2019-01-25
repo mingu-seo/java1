@@ -1,18 +1,17 @@
 package review;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-
-import manage.admin.AdminVO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import util.FileUtil;
+import board.event.EventVO;
+import manage.admin.AdminVO;
+import member.MemberVO;
 import util.Function;
 
 @Controller
@@ -34,8 +33,9 @@ public class ReviewController {
 		
 		return "manage/movie/review/index";
 	}
+	
 	//리뷰 사용자
-	@RequestMapping("/movie/view.do")
+	@RequestMapping("/movie/reviewList.do")
 	public String indexv(Model model, ReviewVO param) throws Exception {
 		param.setTablename("review");
 		int[] rowPageCount = reviewService.count(param);
@@ -46,12 +46,29 @@ public class ReviewController {
 		model.addAttribute("list", list);
 		model.addAttribute("vo", param);
 		
-		return "movie/view";
+		return "movie/reviewList";
 	}
 	
+	@RequestMapping("/movie/review/insert.do")
+	public String insert(Model model, ReviewVO param, HttpServletRequest request) throws Exception {
+		MemberVO memberInfo = (MemberVO)request.getSession().getAttribute("memberInfo");
+		param.setMember_pk(memberInfo.getNo()+"");
+		model.addAttribute("vo", param);
+		
+		int r = reviewService.insert(param);
+		model.addAttribute("value", r);
+		
+		return "include/return";
+	}
 	
+	@RequestMapping("/movie/review/delete.do")
+	public String delete(Model model, ReviewVO param) throws Exception {
+		model.addAttribute("vo", param);
+		int d = reviewService.delete(param);
+		model.addAttribute("value" , d);
+		return "include/return";
+	}
 	
-
 	
 	/**
 	 * 등록, 수정, 삭제 cmd값으로 구분해서 처리
@@ -61,6 +78,7 @@ public class ReviewController {
 	 * @return
 	 * @throws Exception
 	 */
+	
 	@RequestMapping("/manage/movie/review/process.do")
 	public String process(Model model, ReviewVO param, HttpServletRequest request) throws Exception {
 		model.addAttribute("vo", param);
@@ -76,8 +94,14 @@ public class ReviewController {
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "정상적으로 삭제되었습니다.", "삭제실패"));
 			model.addAttribute("url", param.getTargetURLParam("index.do", param, 0));
-		}
-		
+		} 
+	
 		return "include/alert";
 	}
+	
+	
+	
+	
+	
+	
 }

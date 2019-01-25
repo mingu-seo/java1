@@ -14,6 +14,7 @@ public class ReplyVO3 extends Parameter {
 	private String password;
 	private String name;
 	private String admin_writer;
+	private String member_writer;
 	private String email;
 	private String title;
 	private String contents;
@@ -98,6 +99,12 @@ public class ReplyVO3 extends Parameter {
 	}
 	public void setAdmin_writer(String admin_writer) {
 		this.admin_writer = admin_writer;
+	}
+	public String getMember_writer() {
+		return member_writer;
+	}
+	public void setMember_writer(String member_writer) {
+		this.member_writer = member_writer;
 	}
 	public String getEmail() {
 		return email;
