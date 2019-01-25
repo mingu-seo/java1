@@ -29,7 +29,7 @@ MemberVO memberInfo = (MemberVO)session.getAttribute("memberInfo");
 		<div class="review_etc">
 		    <div class="review_date"><%=data.getCre_date() %></div>
 			<div class="review_btn">
-			<% if (memberInfo.getNo() == Integer.parseInt(data.getMember_pk()))  {
+			<% if (memberInfo != null && memberInfo.getNo() == Integer.parseInt(data.getMember_pk()))  {
 			%>
 				<input type="button" class="btn" value="삭제" onclick="goDelete(<%=data.getNo()%>);"/>
 			<%} %>	 
