@@ -15,22 +15,22 @@
 
 //로그인, 이메일 체크
 function loginCheck1(){
-	if ( $("#email1").value.length < 1 ) {
+	if ( $("#email1").val().length < 1 ) {
 		alert("이메일을 입력해주세요.");
 		$("#email1").focus();
 		return false;
 	}
-	if ( $("#pw1").value.length < 1 ) {
+	if ( $("#pw1").val().length < 1 ) {
 		alert("비밀번호를 입력해주세요.");
 		$("#pw1").focus();
 		return false;
 	}
 	var f = document.board1;
-	if (f.reg1.checked==true) {
+	if (f.reg1.checked) {
 	   document.cookie = "cookie_useremail=" + f.email1.value + ";path=/;expires=Sat, 31 Dec 2050 23:59:59 GMT;";
 	} else {
 	   var now = new Date();	
-	   document.cookie = "cookie_useremail=" + f.email1.value + ";path=/;expires="+now.getTime();
+	   document.cookie = "cookie_useremail=null;path=/;expires="+now;
 	}
 	return true;
 }
