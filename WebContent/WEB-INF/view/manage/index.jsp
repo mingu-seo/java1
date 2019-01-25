@@ -7,22 +7,22 @@
 <%@ include file="/WEB-INF/view/manage/include/headHtml.jsp" %>
 <script>
 function loginCheck(){
-	if ( getObject("id").value.length < 1 ) {
+	if ( $("#id").val().length < 1 ) {
 		alert("아이디를 입력해주세요.");
-		getObject("id").focus();
+		$("#id").val().focus();
 		return false;
 	}
-	if ( getObject("password").value.length < 1 ) {
+	if ( $("#password").val().length < 1 ) {
 		alert("비밀번호를 입력해주세요.");
-		getObject("password").focus();
+		$("#password").val().focus();
 		return false;
 	}
 	var f = document.board;
-	if (f.reg.checked==true) {
+	if (f.reg.checked) {
 	   document.cookie = "cookie_userid=" + f.id.value + ";path=/;expires=Sat, 31 Dec 2050 23:59:59 GMT;";
 	} else {
 	   var now = new Date();	
-	   document.cookie = "cookie_userid=" + f.id.value + ";path=/;expires="+now.getTime();
+	   document.cookie = "cookie_userid=null;path=/;expires="+now;
 	}
 	return true;
 }

@@ -24,7 +24,7 @@ public class MainController {
 		return "manage/index";
 	}
 	
-	@RequestMapping("/manage/login")
+	@RequestMapping("/manage/login.do")
 	public String login(Model model, @RequestParam(value="login_url", required=false) String login_url, @RequestParam(value="login_param", required=false) String login_param, AdminVO vo, HttpSession session) throws Exception {
 		if (adminService.loginCheck(vo)) {
 			
@@ -56,7 +56,7 @@ public class MainController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/manage/logout")
+	@RequestMapping("/manage/logout.do")
 	public String logout(Model model) {
 		//loginInfoProvider.get().remove();
 		
