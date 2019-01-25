@@ -56,7 +56,7 @@ function goSearch() {
 					<!-- 내용 : s -->
 					<div id="bbs">
 				<div id="bread">
-				<form name="searchForm" id="searchForm" action="index.do" method="post">
+				<form name="searchForm" id="searchForm" action="index.do" method="get">
 				<span style="float:right">
 				<input type="image" src="/manage/img/btn_search.gif" class="sbtn" alt="검색" />		<br/>	
 				</span>
@@ -213,7 +213,7 @@ function goSearch() {
 							</div>
 							<!--//btn-->
 							<!-- 페이징 처리 -->
-							<%=Page.indexList(param.getReqPageNo(), totPage, request)%>
+							<%=Page.indexList(param.getReqPageNo(), 11, request)%>
 							<!-- //페이징 처리 -->
 							
 							<!-- //search --> 

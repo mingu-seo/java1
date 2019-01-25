@@ -29,13 +29,9 @@ public class TestNotice {
     
     @Test
     public void testSampleList() throws Exception {
-    	RequestBuilder req = MockMvcRequestBuilders.get("/board/notice/index.do")
-    			.param("reqPageNo", "1");
+    	RequestBuilder req = MockMvcRequestBuilders.fileUpload("/board/notice/index.do").fi
+    			.param("reqPageNo", "1").param("stype", "all").param("sval", "노출");
         mockMvc.perform(req);
         
-        
-        req = MockMvcRequestBuilders.get("/manage/board/notice/index.do")
-        		.param("reqPageNo", "1");
-        mockMvc.perform(req);
     }
 }

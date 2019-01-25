@@ -41,7 +41,7 @@
 	
 	<!-- 해당 테이블의 총 게시글 수 -->
 	<select id="count" parameterClass="movie_vo" resultClass="Integer">
-        select count(*) from $tablename$
+        select count(*) fro $tablename$
         <include refid="searchSql" />	
     </select>
    
