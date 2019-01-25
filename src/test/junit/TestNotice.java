@@ -27,11 +27,11 @@ public class TestNotice {
         mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
     }
     
-    @Test
-    public void testSampleList() throws Exception {
-    	RequestBuilder req = MockMvcRequestBuilders.fileUpload("/board/notice/index.do").fi
-    			.param("reqPageNo", "1").param("stype", "all").param("sval", "노출");
-        mockMvc.perform(req);
-        
-    }
+//    @Test
+//    public void testSampleList() throws Exception {
+//    	RequestBuilder req = MockMvcRequestBuilders.fileUpload("/board/notice/index.do").fi
+//    			.param("reqPageNo", "1").param("stype", "all").param("sval", "노출");
+//        mockMvc.perform(req);
+//        
+//    }
 }
