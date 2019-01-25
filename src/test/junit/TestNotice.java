@@ -14,7 +14,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations= {"classpath:config/context-*.xml"})	//context파일 경로를 잡아주어야한다.
+@ContextConfiguration(locations= {"classpath:config/context-*.xml"})
 @WebAppConfiguration
 public class TestNotice {
 
@@ -22,20 +22,16 @@ public class TestNotice {
     private WebApplicationContext ctx;
     private MockMvc mockMvc;
     
-    @Before	//junit의 실행순서는 before, test, after순으로 실행된다.
+    @Before
     public void setUp() {
         mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
     }
     
-    @Test
-    public void testSampleList() throws Exception {
-    	RequestBuilder req = MockMvcRequestBuilders.get("/board/notice/index.do")
-    			.param("reqPageNo", "1");
-        mockMvc.perform(req);
-        
-        
-        req = MockMvcRequestBuilders.get("/manage/board/notice/index.do")
-        		.param("reqPageNo", "1");
-        mockMvc.perform(req);
-    }
+//    @Test
+//    public void testSampleList() throws Exception {
+//    	RequestBuilder req = MockMvcRequestBuilders.fileUpload("/board/notice/index.do").fi
+//    			.param("reqPageNo", "1").param("stype", "all").param("sval", "노출");
+//        mockMvc.perform(req);
+//        
+//    }
 }

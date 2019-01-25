@@ -9,9 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import board.notice.NoticeService;
-import board.notice.NoticeVO;
 import manage.admin.AdminVO;
+import member.MemberVO;
 import util.Function;
 
 @Controller
@@ -46,7 +45,15 @@ public class ReplyController3 {
 		
 		return "board/qna/index";
 	}
-	
+	@RequestMapping("/board/qna/view.do")
+	public String view(Model model, ReplyVO3 param) throws Exception {
+		param.setTablename("reply");
+		ReplyVO3 data = replyDao.read(param, true);
+		model.addAttribute("data", data);
+		model.addAttribute("param", param);
+		
+		return "board/qna/view";
+	}
 	@RequestMapping("/manage/board/qna3/edit.do")
 	public String edit(Model model, ReplyVO3 param, HttpServletRequest request) throws Exception {
 		AdminVO adminInfo = (AdminVO)request.getSession().getAttribute("adminInfo");
@@ -127,14 +134,20 @@ public class ReplyController3 {
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "정상적으로 삭제되었습니다.", "삭제실패"));
 			model.addAttribute("url", param.getTargetURLParam("index.do", param, 0));
+		} else if ("groupDelete".equals(param.getCmd())) {
+			int r = replyDao.groupDelete(param, request);
+			model.addAttribute("code", "alertMessageUrl");
+			model.addAttribute("message", Function.message(r, "총 "+r+"건이 삭제되었습니다.", "삭제실패"));
+			model.addAttribute("url", param.getTargetURLParam("index.do", param, 0));
 		}
-		
 		return "include/alert";
 	}
 	@RequestMapping("/board/qna/sprocess.do")
 	public String sprocess(Model model, ReplyVO3 param, HttpServletRequest request) throws Exception {
 		model.addAttribute("vo", param);
 		param.setTablename("reply");
+		//MemberVO memberInfo = (MemberVO)request.getSession().getAttribute("memberInfo");
+		//param.setMember_fk(memberInfo.getNo());
 		System.out.println(param.getCmd());
 		if ("write".equals(param.getCmd())) {
 			int r = replyDao.insert(param);

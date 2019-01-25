@@ -18,13 +18,13 @@ ReplyVO3 param = (ReplyVO3)request.getAttribute("vo");
 <title>MOVIE</title>
 <%@ include file="/WEB-INF/view/include/headHtml.jsp" %>
 <script>
-	var oEditors; // 에디터 객체 담을 곳
-	jQuery(window).load(function(){
-		oEditors = setEditor("contents"); // 에디터 셋팅
-		initCal({id:"cre_date",type:"day",today:"y",timeYN:"y"});
-	});
-	
+var oEditors; // 에디터 객체 담을 곳
+jQuery(window).load(function(){
+	oEditors = setEditor("contents"); // 에디터 셋팅
+	initCal({id:"cre_date",type:"day",today:"y",timeYN:"y"});
+});
 	function goSave() {
+		
 		if ($("#title").val() == "") {
 			alert('제목을 입력하세요.');
 			$("#title").focus();
@@ -55,13 +55,13 @@ ReplyVO3 param = (ReplyVO3)request.getAttribute("vo");
 				<table class="write">
 					<tbody>
 					<tr>
-						<th>제목</th>
+						<th>질문</th>
 						<td>
 							<input type="text" name="title" id="title" value=""/>
 						</td>
 					</tr>
 					<tr>
-						<th>내용</th>
+						<th>내용></th>
 						<td>
 							<textarea name="contents" id="contents"></textarea>
 						</td>
@@ -69,6 +69,7 @@ ReplyVO3 param = (ReplyVO3)request.getAttribute("vo");
 					</tbody>
 				</table>
 				<input type="hidden" name="cmd" value="write" />
+				<input type="hidden" name="member_fk" value="<%=memberInfo.getNo()%>" />
 				<div class="btnSet"  style="text-align:right;">
 					<a class="btn" href="javascript:goSave();">저장 </a>
 				</div>

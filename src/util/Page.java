@@ -91,7 +91,7 @@ public class Page {
 		    endpage = pageCount;
 		}
 		strList.append("<div class='page'>");
-		// 첫번째 페이지 인덱스 화면이 아닌경우
+		// 요청한 페이지 번호가 초기화면에 없는경우
 		if ( reqPageNo > pagenumber) {
 			curpage = startpage - 1;    // 시작페이지 번호보다 1 적은 페이지로 이동
 			strList.append("<a href='"+listUrl+"reqPageNo="+curpage+"' class='next'><img src='/img/list_prev.gif' alt='' />이전</a> ");

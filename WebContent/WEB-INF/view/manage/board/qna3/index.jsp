@@ -108,7 +108,12 @@ function goSearch() {
 											<%=data.getTitle()%>
 										</td>
 										<td <%=targetUrl%>><%=DateUtil.getDateFormat(data.getRegistdate())%></td>
-										<td <%=targetUrl%>> <%=data.getAdmin_writer()%></td>
+										<td <%=targetUrl%>> 
+										<% if (data.getAdmin_fk() > 0) { %>
+											<%=data.getAdmin_writer() %>
+										<% } else { %>
+											<%=data.getMember_writer() %>
+										<% } %></td>
 										<td class="last"><input type="button" value="답변" onclick="location.href='reply.do?no=<%=list.get(i).getNo()%>';"/></td>
 										<td class="last"><input type="button" value="삭제" onclick="goDelete(<%=data.getNo()%>);"/></td>
 									</tr>

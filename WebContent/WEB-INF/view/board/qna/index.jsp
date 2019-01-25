@@ -76,9 +76,15 @@ function goSearch() {
 											<% if (data.getNested() > 0) { %>
 											<img src="/img/ico_re.png"/>
 											<% } %>
-											<%=data.getTitle()%>
+											<a href="view.do?no=<%=data.getNo()%>"><%=data.getTitle()%></a>
 										</td>
-							<td class="writer"> <%=data.getName()%></td>
+							<td class="writer">
+							<% if (data.getAdmin_fk() > 0) { %>
+								<%=data.getAdmin_writer() %>
+							<% } else { %>
+								<%=data.getMember_writer() %>
+							<% } %>
+							</td>
 							<td class="date"><%=DateUtil.getDateFormat(data.getRegistdate())%></td>
 							<td class="last"><input type="button" value="답변" onclick="location.href='sreply.do?no=<%=list.get(i).getNo()%>';"/></td>
 						</tr>
