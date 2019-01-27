@@ -12,7 +12,7 @@ Integer totcount = (Integer)request.getAttribute("totCount");
 			"title" : "<%=java.net.URLEncoder.encode(list.get(i).getTitle(), "UTF-8")%>",
 			"image" : "http://nanna.withsky.co.kr:8080/upload/movie/<%=list.get(i).getPoster()%>",
 			"date" : "<%=list.get(i).getReleaseDate()%>"
-		}<% if (i<list.size()-1) out.print(",");%>
+		}<% if (i<list.size()-1) out.print(",");%><br/>
 		<% } %>
 	],
 "totCount":"<%=totcount %>"

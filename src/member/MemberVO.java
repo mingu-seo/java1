@@ -20,7 +20,6 @@ public class MemberVO extends Parameter {
 	private String filename;  //이미지 파일 네임
 	private String filename_chk;
 	
-	private String ip;				// 접속 아이피
 	private int prev_no;			// 이전글 no
 	private int next_no;			// 다음글 no
 	private String prev_title;		// 이전글 제목
@@ -143,12 +142,6 @@ public class MemberVO extends Parameter {
 	}
 	public void setFilename_chk(String filename_chk) {
 		this.filename_chk = filename_chk;
-	}
-	public String getIp() {
-		return ip;
-	}
-	public void setIp(String ip) {
-		this.ip = ip;
 	}
 	public int getPrev_no() {
 		return prev_no;
