@@ -98,16 +98,14 @@ public class SiteProperty {
 	 * 로컬 홈디렉토리경로 (실서버 변경 필요)
 	 */
 //	public static final String REAL_PATH				= "E:\\Java\\workspace\\java1\\WebContent"; //아란 path
-	public static final String REAL_PATH				= "E:\\workspace\\java1\\WebContent";  //상윤 path
+//	public static final String REAL_PATH				= "E:\\workspace\\java1\\WebContent";  //상윤 path
+	public static final String REAL_PATH				= "D:\\workspace\\java1\\WebContent";  //나영 path
 //	public static final String REAL_PATH				= "D:\\jsphome\\java1\\aran\\www";
 																
 	 /* 공지사항 첨부파일 경로
-=======
 //	public static final String REAL_PATH				= "D:\\jsphome\\java1\\tssu\\www";
->>>>>>> branch 'master' of https://github.com/mingu-seo/java1.git
 	/**
 	 * 공지사항 첨부파일 경로
->>>>>>> branch 'master' of https://github.com/mingu-seo/java1.git
 	 */
 	public static final String NOTICE_UPLOAD_PATH		= "/upload/notice/";
 	public static final String REPLY_UPLOAD_PATH		= "/upload/reply/";
