@@ -29,4 +29,9 @@ public class Ticket1Service extends SqlMapClientDAOSupport{
 		return list;
 	}
 
+	public ArrayList<Ticket1VO> aranMovieDate(int no) throws SQLException {
+		ArrayList movieDate = ticket1Dao.aranMovieDate(no);
+		return movieDate;
+	}
+
 }

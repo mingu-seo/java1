@@ -52,5 +52,4 @@
 	<sqlMap resource="review/review.xml"/>	
 	<sqlMap resource="ticket1/ticket1.xml"/>	
 	
-	
 </sqlMapConfig>

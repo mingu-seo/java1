@@ -19,6 +19,7 @@ public class Ticket1VO extends Parameter{
 	private int screen_time;
 	private int pay_state;
 	private int res_state;
+	private String today;
 	
 	
 	private int prev_no;			// 이전글 no
@@ -162,5 +163,14 @@ public class Ticket1VO extends Parameter{
 	}
 	public void setNext_title(String next_title) {
 		this.next_title = next_title;
+		
 	}
-}
+	
+	public String getToday() {
+		return today;
+	}
+	public void setToday(String today) {
+		this.today = today;
+	}
+	
+	}

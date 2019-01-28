@@ -32,7 +32,18 @@
 		</div>
 	</div>
 <script>
-function showDialogue() {
+function showDialogue(movie_no) {
+	
+	$.ajax({
+		url: "/ticket/ticket_form.do",
+		data : {"no": movie_no},
+		success : function(data) {
+			$("#ticket_dialogue").html(data);
+		}
+	})
+	
+	
+	
 	var maskHeight = $(document).height(); 
 	var maskWidth = $(window).width();
 
@@ -58,6 +69,7 @@ function hideDialogue() {
 }
 </script>
 <div id="ticket_dialogue" class="dialogue_wr popupContent">
+<<<<<<< HEAD
 	<div class="dialogue_top">
 		<span class="title">영화 예매</span>
 		<p class="close" id="dialogue_close" onclick="hideDialogue();"></p>
@@ -164,5 +176,6 @@ function hideDialogue() {
 			<!-- //btnSet -->
 		</div>
 	</div>
+
 </div>
 <div id="mask"></div>

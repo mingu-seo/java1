@@ -82,7 +82,7 @@ ActorVo av = (ActorVo) request.getAttribute("av");
 									</div>
 								</dt>
 								<dt class="reser_btn">
-									<input type="button" class="btn" value="예매" onclick="showDialogue();"/>
+									<input type="button" class="btn" value="예매" onclick="showDialogue('<%=data.getNo()%>');"/>
 								</dt>
 							</dl>
 						</div>
@@ -196,7 +196,7 @@ ActorVo av = (ActorVo) request.getAttribute("av");
 								</div>
 							</div>
 						</div>
-					</div>
+					
 					</form>
 						
 <script>
@@ -274,7 +274,6 @@ function save() {
 				</div>
 			</div>
 		</div>
-	</div>
     
     <%@ include file="/WEB-INF/view/include/footer.jsp" %>
 
