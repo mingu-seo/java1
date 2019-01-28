@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+
+
 	<div id="footer">
 		<div class="size">
 			<div class="inner">					
@@ -76,7 +78,7 @@ function hideDialogue() {
 						</td>
 						<td>
 							<div class="title">
-							랄프2 : 인터넷 속으로
+							dd
 							</div>
 							<div class="contents">
 							어쩌고 저쩌고, 이러전 저런 기타 등등.....
