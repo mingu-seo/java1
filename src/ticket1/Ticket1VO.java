@@ -176,5 +176,7 @@ public class Ticket1VO extends Parameter{
 	}
 	public void setNext_title(String next_title) {
 		this.next_title = next_title;
+		
 	}
-}
+	
+	}

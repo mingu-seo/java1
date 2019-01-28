@@ -72,7 +72,7 @@
         select *
         from $tablename$
           <![CDATA[
-        where releaseDate <= now() and endDate >= now()
+        where releaseDate <= substring(now(),1,10) and endDate >= substring(now(),1,10)
          ]]>
         <include refid="searchSql" />
 		ORDER BY releaseDate DESC LIMIT $startPageNo$, $pageRows$

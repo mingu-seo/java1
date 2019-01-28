@@ -42,4 +42,23 @@
    	]]>    
     </select>
      
+    <select id="aranMovieDate" parameterClass="Integer" resultClass="ticket1VO">
+ 		select today 
+		from Calendar as c, movie as m
+		where m.no = #no#
+		 <![CDATA[
+		and c.today >= m.releaseDate
+		]]>
+		 <![CDATA[
+		and c.today <= m.endDate
+		]]>
+		 <![CDATA[
+		and c.today >= substring(now(),1,10) 
+		]]>  
+		 <![CDATA[
+		and c.today < date_add(substring(now(),1,10), interval 14 day)
+		]]>
+	
+		ORDER BY c.today ASC 
+     </select>
 </sqlMap>

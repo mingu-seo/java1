@@ -16,7 +16,7 @@
 
 
 /* 게시판 */
-.board_write {border-top:2px solid #c3d69b; border-bottom:1px solid #999;}
+.board_write {border-top:2px solid #351f66; border-bottom:1px solid #999;}
 .board_write thead th{text-align:center;}
 .board_write th{padding:10px; background:#f4f4f5; color:#000000; border-bottom:1px solid #ebebeb; border-right:1px solid #ebebeb; font-size:15px;}
 .board_write th br{display:none;}
@@ -45,7 +45,7 @@
 .btnSet {position:relative; margin:20px 0; text-align:center; overflow:hidden;}
 .btnSet .right {position:absolute; top:0; right:0;}
 .btnSet .left {position:absolute; top:0; left:0;}
-.btn {font-size:14px; text-decoration:none !important; white-space:nowrap; display:inline-block; vertical-align:baseline; position:relative; cursor:pointer; padding:4px 20px; min-width:64px; border:2px solid #c3d69b; color:#fff !important; margin:0 2px; text-align:center; font-weight:bold; border-radius:5px; background-color:#c3d69b;}
+.btn {font-size:14px; text-decoration:none !important; white-space:nowrap; display:inline-block; vertical-align:baseline; position:relative; cursor:pointer; padding:4px 20px; min-width:64px; border:2px solid #351f66; color:#fff !important; margin:0 2px; text-align:center; font-weight:bold; border-radius:5px; background-color:#351f66;}
 .btnSet .btn:hover{background:#313234; color:#fff !important;  text-decoration:none !important;}
 .btn.point{border:3px solid #579408 !important; color:#579408 !important;}
 .btn.point:hover{background:#579408 !important;}
@@ -70,8 +70,8 @@
 .member .login_form li{padding:5px 0; width:100%;}
 .member .login_form input[type=text], .member .login_form input[type=password]{height:40px; width:70%;}
 .member .login_form .login_btn{position:absolute; width:25%; height:90px;  right:0; top:25px;}
-.member .login_form .login_btn input[type=submit]{background: #c3d69b;color:#fff;width:100%;height:100%;border:none;font-size: 18px;font-weight: 500;border-radius: 5px;}
-.member .box .btn{width: 48%;padding:10px 0 !important;margin:0;background:#c3d69b !important;border:none;color:#fff !important;font-weight: 400;}
+.member .login_form .login_btn input[type=submit]{background: #351f66;color:#fff;width:100%;height:100%;border:none;font-size: 18px;font-weight: 500;border-radius: 5px;}
+.member .box .btn{width: 48%;padding:10px 0 !important;margin:0;background:#351f66 !important;border:none;color:#fff !important;font-weight: 400;}
 .member .login_form dl{}
 .member .login_form dt{padding:5px 0; float:left; width:15%; line-height:40px; vertical-align:middle; font-weight:bold;}
 .member .login_form dd{padding:5px 0; float:left; width:85%;}
@@ -92,7 +92,7 @@
 
 /* list */
 .bbs .list{border-collapse:collapse; border-spacing:0; box-sizing:border-box;}  /* tr에 shadow_down 클래스 사용하는 경우 border-collapse:separate; 으로 변경*/
-.bbs .list thead{border-top:2px solid #c3d69b; border-bottom:1px solid #c3d69b;}
+.bbs .list thead{border-top:2px solid #351f66; border-bottom:1px solid #351f66;}
 .bbs .list thead th{padding:15px 20px; font-size:13px; height:20px; line-height:14px; color:#333;}
 .bbs .list td{text-align:center; padding:8px 10px; border-bottom:1px solid #d9d9d9;}
 .bbs .list tbody tr:hover{background:#f6f6f6;} /*마우스오버 배경칼라지정*/
@@ -127,8 +127,8 @@
 
 /* view */
 .bbs .view{}
-.bbs .view{width:100%; border-top:2px solid #c3d69b;}
-.bbs .view .title > dl{width:100%; padding:20px; border-bottom:1px solid #c3d69b; background:#fafafa;}
+.bbs .view{width:100%; border-top:2px solid #351f66;}
+.bbs .view .title > dl{width:100%; padding:20px; border-bottom:1px solid #351f66; background:#fafafa;}
 .bbs .view .title > dl > dt{font-size:18px; color:#000; font-weight:bold;}
 .bbs .view .title > dl > dd{display:inline-block; font-size:14px; color:#999; margin-top:5px; }
 .bbs .view .title > dl > dd.name:after{content:"|"; display:inline-block; margin:0 10px; font-size:14px; color:#e4e4e4;}
@@ -144,7 +144,7 @@
 .bbs .view .file dd{float:left; text-decoration:underline !important; color:#00aeef; }
 
 .bbs .write{border-collapse:collapse; border-spacing:0; box-sizing:border-box;}  /* tr에 shadow_down 클래스 사용하는 경우 border-collapse:separate; 으로 변경*/
-.bbs .write {border-top:2px solid #c3d69b; border-bottom:1px solid #c3d69b;}
+.bbs .write {border-top:2px solid #351f66; border-bottom:1px solid #351f66;}
 .bbs .write tbody tr th{padding:15px 20px; font-size:13px; height:20px; line-height:14px; color:#333;}
 .bbs .write input[type=text] {width:100%;}
 .bbs .write textarea {width:92%;}
@@ -164,7 +164,7 @@
 .bbs .postSection .postList li .postObj .txt .title {font-size:18px; color:#333; height:25px; line-height:25px; overflow:hidden; display:block; -webkit-line-clamp:1; white-space:nowrap; text-overflow:ellipsis;  word-break:keep-all; max-width:100%; margin-bottom:10px;}
 .bbs .postSection .postList li .postObj .txt .detail {width:100%; margin-right:10px;}
 .bbs .postSection .postList li .postObj .txt .detail table {border-collapse:collapse; border-spacing:0; box-sizing:border-box;}
-.bbs .postSection .postList li .postObj .txt .detail table tr {height:50px;border-top:1px solid #c3d69b; border-bottom:1px solid #c3d69b;}
+.bbs .postSection .postList li .postObj .txt .detail table tr {height:50px;border-top:1px solid #351f66; border-bottom:1px solid #351f66;}
 .bbs .postSection .postList li .postObj .txt .detail table tr th {width:100px;font-size:14px;}
 .bbs .postSection .postList li .postObj .txt .btn_area {display:block; position:absolute; height:100px; width:100%; text-align:right; top:250px; right:0px; bottom:0;}
 .bbs .postSection .postList li .postObj .wdate { box-sizing:border-box; position:absolute; bottom:0; left:32%; color:#999; font-size:15px; overflow:hidden;}
@@ -187,14 +187,14 @@
 .pagenate li a.board.prev {margin-right:30px; background:#efefef url('/img/ico_prev.png') no-repeat center center;}
 .pagenate li a.board.next {margin-left:30px; background:#efefef url('/img/ico_next.png') no-repeat center center;}
 .pagenate li a.board.last {background:#f3f3f3 url('/img/ico_last.png') no-repeat center center;}
-.pagenate li a.current {color:#fff; background-color:#c3d69b; font-weight:bold;  border:1px solid #c3d69b;}
+.pagenate li a.current {color:#fff; background-color:#351f66; font-weight:bold;  border:1px solid #351f66;}
 
 /* 마이페이지 탭 */
 .mypage_tab {width:100%; position:relative; padding:10px 0; padding-bottom:10px;}
 .mypage_tab_bottom {clear:both; height:10px;}
 .mypage_tab ul li {float:left; width:33%; position:relative;}
 .mypage_tab ul li:last-child {width:34%;}
-.mypage_tab ul li a {display:block; height:48px; line-height:46px; text-align:center; color:#000000; font-size:18px; box-sizing:border-box; border:1px solid #c3d69b; transition:all .3s; -webkit-transition:all .3s; font-weight:500;}
+.mypage_tab ul li a {display:block; height:48px; line-height:46px; text-align:center; color:#000000; font-size:18px; box-sizing:border-box; border:1px solid #351f66; transition:all .3s; -webkit-transition:all .3s; font-weight:500;}
 
 /* 영화 */
 .bbs .gallery {width:100%; border-top:2px solid #333; border-bottom:1px solid #999;  padding:20px 0; position:relative;}
@@ -245,9 +245,9 @@
  .bbs .movie .review_area .review_write .btn_area .btn{width:100% !important;height:100% !important;}
 
 .bbs .movie .review_area .review_list {width:100%; display:block;height:auto;}
-.bbs .movie .review_area .review_list ul li{width:45%; min-height:200px;padding:10px;float:left; border-bottom:1px solid #c3d69b; }
+.bbs .movie .review_area .review_list ul li{width:45%; min-height:200px;padding:10px;float:left; border-bottom:1px solid #351f66; }
 .bbs .movie .review_area .review_list .review_writer{font-size:14px;float:left;width:70%;}
-.bbs .movie .review_area .review_list .review_score{font-size:25px;float:left;text-align:right;width:30%;font-weight:800;color:#c3d69b;}
+.bbs .movie .review_area .review_list .review_score{font-size:25px;float:left;text-align:right;width:30%;font-weight:800;color:#351f66;}
 .bbs .movie .review_area .review_list .review_contents{font-size:16px;min-height:200px;padding-top:5px;}
 .bbs .movie .review_area .review_list .review_etc{width:100%;}
 .bbs .movie .review_area .review_list .review_date{font-size:14px;bottom:0;float:left;}
@@ -273,7 +273,7 @@
 .dialogueList{position:relative;}
 .dialogueList .title {font-size:30px; padding-left:12px;}
 .dialogueList .contents{font-size:20px; font-weight:500; min-height:40px; text-align:left; padding-left:12px;}
-.dialogueList table th{background:#c3d69b; color:#fff; height:32px; font-size:16px; border:#c4c4c4 1px solid; }
+.dialogueList table th{background:#351f66; color:#fff; height:32px; font-size:16px; border:#c4c4c4 1px solid; }
 .dialogueList table td{text-align:center; padding:8px 5px; border:#c4c4c4 1px solid; font-size:12px; text-align:left; vertical-align:top;}
 .dialogueList table td span.date{font-size:12px;}
 .dialogueList table td span{display:block;}
@@ -284,12 +284,12 @@
 .dialogueList label {margin-right:10px;}
 .dialogueList label {margin-left:3px;}
 .dialogueList input[type=text] {width:100px;}
-.dialogueList .btn {.btn {font-size:14px; text-decoration:none !important; white-space:nowrap; display:inline-block; vertical-align:baseline; position:relative; cursor:pointer; padding:4px 20px; min-width:64px; border:2px solid #c3d69b; color:#fff !important; margin:0 2px; text-align:center; font-weight:bold; border-radius:5px; background-color:#c3d69b;}}
+.dialogueList .btn {.btn {font-size:14px; text-decoration:none !important; white-space:nowrap; display:inline-block; vertical-align:baseline; position:relative; cursor:pointer; padding:4px 20px; min-width:64px; border:2px solid #351f66; color:#fff !important; margin:0 2px; text-align:center; font-weight:bold; border-radius:5px; background-color:#351f66;}}
 
 .dialogue_wr{width:600px; height:610px; position:absolute; left:50%; top:50%; margin-left:-300px; margin-top:-165px;display:none;z-index:9100;}
 .dialogue_wr .box{width:600px; height:600px; margin:auto; border:1px solid #fff;  padding:20px; box-sizing:border-box; background:#fff !important;}
 .dialogue_wr .box p{font-size:14px !important; color:#000;}
-.dialogue_top{background:#c3d69b;}
+.dialogue_top{background:#351f66;}
 .dialogue_top .close{float:right; display:block; width:40px; height:40px; background:url(/img/ico_close.png) no-repeat; background-size:100%; cursor:pointer;}
 .dialogue_top .title{font-size:24px; color:#fff;padding-left:10px;}
 #mask {

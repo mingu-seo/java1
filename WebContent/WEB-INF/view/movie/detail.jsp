@@ -82,7 +82,7 @@ ActorVo av = (ActorVo) request.getAttribute("av");
 									</div>
 								</dt>
 								<dt class="reser_btn">
-									<input type="button" class="btn" value="예매" onclick="showDialogue();"/>
+									<input type="button" class="btn" value="예매" onclick="showDialogue('<%=data.getNo()%>');"/>
 								</dt>
 							</dl>
 						</div>
@@ -208,7 +208,7 @@ function getList() {
 	$.ajax({
 		url : "reviewList.do",
 		dataType : "html",
-		data : {"smovie_pk" : <%=data.getNo()%>},
+		data : {"smovie_pk" : <%=data.getNo()%>},  
 		async : true,
 		success : function(data) {
 			$(".review_list").html(data);
