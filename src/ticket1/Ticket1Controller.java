@@ -7,11 +7,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import movie.MovieService;
+import movie.MovieVo;
+
 @Controller
 public class Ticket1Controller {
 
 	@Autowired
 	private Ticket1Service ticket1Service;
+	
+	@Autowired
+	private MovieService movieService;
 	
 	
 	@RequestMapping("/manage/ticket1/index.do")
@@ -25,5 +31,15 @@ public class Ticket1Controller {
 		model.addAttribute("vo", param);
 		
 		return "manage/ticket1/index";
+	}
+	
+	@RequestMapping("/ticket/ticket_form.do")
+	public String ticket_form(Model model, MovieVo param) throws Exception {
+
+		param.setTablename("movie");
+		MovieVo data = movieService.read(param, false);
+		model.addAttribute("data", data);
+		
+		return "ticket/ticket_form";
 	}
 }
