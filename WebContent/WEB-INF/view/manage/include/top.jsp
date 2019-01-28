@@ -71,7 +71,7 @@ $(window).load(function(){
   			<ul class="menu">
   				<li><a href="<%=request.getContextPath()%>/manage/member/index.do" class="parent"><span>회원관리</span></a></li>
 				<li><a href="<%=request.getContextPath()%>/manage/movie/index.do" class="parent"><span>영화관리</span></a></li>
-				<li><a href="<%=request.getContextPath()%>/manage/" class="parent"><span>예매관리</span></a></li>
+				<li><a href="<%=request.getContextPath()%>/manage/ticket1/index.do" class="parent"><span>예매관리</span></a></li>
 				<li><a href="<%=request.getContextPath()%>/manage/board/notice/index.do" class="parent"><span>고객지원</span></a>
 					<div class="standard_left">
 					<ul>

@@ -23,7 +23,6 @@ public class MemberDAO extends SqlMapClientDAOSupport {
 	 * @return ArrayList<MemberVO>
 	 * @throws SQLException
 	 */
-	
 	public ArrayList list(MemberVO param) throws SQLException {
 		return (ArrayList)getSqlMapClient().queryForList("member.list", param);
 	}
