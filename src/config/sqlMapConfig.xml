@@ -50,6 +50,6 @@
 	<sqlMap resource="board/reply2/reply2.xml"/>	
 	<sqlMap resource="board/reply3/reply3.xml"/>	
 	<sqlMap resource="review/review.xml"/>	
-
+	<sqlMap resource="ticket1/ticket1.xml"/>	
 	
 </sqlMapConfig>

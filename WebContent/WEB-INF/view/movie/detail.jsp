@@ -196,7 +196,7 @@ ActorVo av = (ActorVo) request.getAttribute("av");
 								</div>
 							</div>
 						</div>
-					</div>
+					
 					</form>
 						
 <script>
@@ -274,7 +274,6 @@ function save() {
 				</div>
 			</div>
 		</div>
-	</div>
     
     <%@ include file="/WEB-INF/view/include/footer.jsp" %>
 

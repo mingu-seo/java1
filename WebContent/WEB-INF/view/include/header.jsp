@@ -123,9 +123,7 @@ function CookieVal(cookieName) {
                         <li>
                             <a href="" >TICKET</a>
                             <ul class="depth2">
-							<li><a href="login.do" >예매하기1</a></li>
-							<li><a href="login.do" >예매하기2</a></li>
-							<li><a href="login.do" >예매하기3</a></li>
+							<li><a href="/ticket/index.do" >예매하기</a></li>
                             </ul>
                         </li>
                         <li>

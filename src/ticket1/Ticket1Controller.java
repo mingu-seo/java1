@@ -42,4 +42,16 @@ public class Ticket1Controller {
 		
 		return "ticket/ticket_form";
 	}
+
+	@RequestMapping("/ticket/index.do")
+	public String indexv(Model model, Ticket1VO param) throws Exception {
+		param.setTablename("ticket");
+		int[] rowPageCount = ticket1Service.count(param);
+		
+		model.addAttribute("totCount", rowPageCount[0]);
+		model.addAttribute("totPage", rowPageCount[1]);
+		model.addAttribute("vo", param);
+		
+		return "ticket/index";
+	}
 }
