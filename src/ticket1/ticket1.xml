@@ -33,5 +33,13 @@
         <include refid="searchSql" />
 		ORDER BY no DESC LIMIT $startPageNo$, $pageRows$	
     </select>
+    
+    <select id="date" resultClass="ticket1VO">
+    <![CDATA[
+    	select today, name as yoil from calendar
+    	where today >= substring(now(), 1, 10)
+    	and today < date_add(substring(now(),1,10), interval 14 day)
+   	]]>    
+    </select>
      
 </sqlMap>

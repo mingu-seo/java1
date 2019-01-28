@@ -7,8 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import board.notice.NoticeVO;
-import manage.admin.AdminVO;
 
 @Controller
 public class Ticket1Controller {
@@ -29,13 +27,18 @@ public class Ticket1Controller {
 		
 		return "manage/ticket1/index";
 	}
+	
+	//나영=예매페이지에날짜뿌리는중
 	@RequestMapping("/ticket/index.do")
-	public String indexv(Model model, Ticket1VO param) throws Exception {
+	public String ticketDate(Model model, Ticket1VO param) throws Exception {
 		param.setTablename("ticket");
+		param.setTablename("calender");
 		int[] rowPageCount = ticket1Service.count(param);
+		ArrayList<Ticket1VO> date = ticket1Service.date(param);
 		
 		model.addAttribute("totCount", rowPageCount[0]);
 		model.addAttribute("totPage", rowPageCount[1]);
+		model.addAttribute("date", date);
 		model.addAttribute("vo", param);
 		
 		return "ticket/index";

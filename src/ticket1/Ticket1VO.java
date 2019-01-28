@@ -19,6 +19,8 @@ public class Ticket1VO extends Parameter{
 	private int screen_time;
 	private int pay_state;
 	private int res_state;
+	private String today;
+	private int yoil;
 	
 	
 	private int prev_no;			// 이전글 no
@@ -138,6 +140,18 @@ public class Ticket1VO extends Parameter{
 	}
 	public void setRes_state(int res_state) {
 		this.res_state = res_state;
+	}
+	public String getToday() {
+		return today;
+	}
+	public void setToday(String today) {
+		this.today = today;
+	}
+	public int getYoil() {
+		return yoil;
+	}
+	public void setYoil(int yoil) {
+		this.yoil = yoil;
 	}
 	public int getPrev_no() {
 		return prev_no;
