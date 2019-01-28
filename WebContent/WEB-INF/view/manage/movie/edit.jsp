@@ -105,7 +105,7 @@
 													value="<%=data.getDirector()%>" /></td>
 												<th scope="row"><label for="">등급</label></th>
 												<td>
-													<input type="radio" id="rating1" name="rating" value="0" <%if (data.getRating() == 0) { out.print("checked"); }%>/>전체관람가
+													<input type="radio" id="rating1" name="rating" value="1" <%if (data.getRating() == 1) { out.print("checked"); }%>/>전체관람가
 													<input type="radio" id="rating2" name="rating" value="12" <%if (data.getRating() == 12) { out.print("checked"); }%> />12세 관람가 
 													<input type="radio" id="rating3" name="rating" value="15" <%if (data.getRating() == 15) { out.print("checked"); }%> />15세 관람가 
 													<input type="radio" id="rating4" name="rating" value="19" <%if (data.getRating() == 19) { out.print("checked"); }%> />청소년 관람불가

@@ -44,19 +44,38 @@ public class TestMovie {
     }
 
     @Test
-    public void testSampleList() throws Exception {
-    	// 사용자 영화(현재 상영작) 목록
+    public void testSampleList() throws Exception {  // index
     	RequestBuilder req = MockMvcRequestBuilders.get("/movie/index.do")
     			.param("reqPageNo", "1");
+        mockMvc.perform(req);
+        
+    	req = MockMvcRequestBuilders.get("/manage/movie/index.do").session(session)
+        		.param("reqPageNo", "1");
         mockMvc.perform(req);
     }
     
     @Test
-    public void testSampleList2() throws Exception {
-        // 관리자 영화(현재 상영작) 목록
-        RequestBuilder req = MockMvcRequestBuilders.get("/manage/movie/index.do")
-    			.session(session)
-        		.param("reqPageNo", "1");
+    public void testSampleList2() throws Exception { // detail
+    	RequestBuilder req = MockMvcRequestBuilders.get("/movie/detail.do")
+    			.param("no", "19");
         mockMvc.perform(req);
+        
+   
     }
+    
+    
+        
+   
+    
+    
+    @Test
+    public void testSampleList4() throws Exception { // detail
+    	RequestBuilder req = MockMvcRequestBuilders.get("/manage/movie/process.do").session(session)
+    			.param("cmd","edit").param("no", "20").param("title","내안에그놈");
+        mockMvc.perform(req);
+        
+   
+    }
+    
+   
 }

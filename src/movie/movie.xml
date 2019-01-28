@@ -85,7 +85,7 @@
         where releaseDate > now()
           ]]>
         <include refid="searchSql" />
-		ORDER BY releaseDate DESC LIMIT $startPageNo$, $pageRows$
+		ORDER BY releaseDate ASC LIMIT $startPageNo$, $pageRows$
     </select>
 	
 	<!-- 해당 테이블에 게시글 작성 -->
@@ -303,7 +303,19 @@
     </select>
     
     <delete id="delete" parameterClass="movie_vo">
-        DELETE FROM $tablename$ WHERE no=#no#
+        DELETE FROM MOVIE WHERE no=#no#
+    </delete>
+    
+        <delete id="stillCutDelete" parameterClass="Integer">
+        DELETE FROM STILLCUT WHERE movie_no=#movie_no#
+    </delete>
+    
+        <delete id="trailerDelete" parameterClass="Integer">
+        DELETE FROM TRAILER WHERE movie_no=#movie_no#
+    </delete>
+    
+            <delete id="actorDelete" parameterClass="Integer">
+        DELETE FROM ACTOR WHERE movie_no=#movie_no#
     </delete>
     
        

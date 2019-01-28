@@ -47,9 +47,10 @@
 	<sqlMap resource="member/member.xml"/>	
 	<sqlMap resource="movie/movie.xml"/>	
 	<sqlMap resource="board/reply1/reply1.xml"/>	
-
 	<sqlMap resource="board/reply2/reply2.xml"/>	
 	<sqlMap resource="board/reply3/reply3.xml"/>	
 	<sqlMap resource="review/review.xml"/>	
+	<sqlMap resource="ticket1/ticket1.xml"/>	
+	<sqlMap resource="ticket2/ticket2.xml"/>	
 	
 </sqlMapConfig>

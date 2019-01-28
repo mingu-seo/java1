@@ -40,7 +40,7 @@ public class SqlConfigiBatis {
      * instance 생성
      * @return SqlConfigiBatis
      */
-    public static SqlConfigiBatis getInstance() {
+    public static SqlConfigiBatis getInstance() {  // 싱글톤 사용
         try {
         	if (instance == null) {
         		instance = new SqlConfigiBatis();

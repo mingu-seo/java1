@@ -12,12 +12,12 @@ $(function() {
 	});
 	$("#login_click").click(function() {
 		$(".login_info").toggle();
-		$("#loginEmail").focus();
+		useremail_chk();
 	});
 	$(".login_info > .top_area > img").click(function() {
 		$(".login_info").hide();
 	});
-	useremail_chk();
+	
 });
 
 //로그인, 이메일 체크
@@ -27,17 +27,17 @@ function loginCheck(){
 		$("#loginEmail").focus();
 		return false;
 	}
-	if ( getObject("loginPw").value.length < 1 ) {
+	if ( $("#loginPw").val().length < 1 ) {
 		alert("비밀번호를 입력해주세요.");
-		getObject("loginPw").focus();
+		$("#loginPw").focus();
 		return false;
 	}
 	var f = document.loginFrm;
-	if (f.reg.checked==true) {
-	   document.cookie = "cookie_useremail=" + f.loginEmail.value + ";path=/;expires=Sat, 31 Dec 2050 23:59:59 GMT;";
+	if (f.reg.checked) {
+	   document.cookie = "cookie_useremail=" + $("#loginEmail").val() + ";path=/;expires=Sat, 31 Dec 2050 23:59:59 GMT;";
 	} else {
 	   var now = new Date();	
-	   document.cookie = "cookie_useremail=" + f.loginEmail.value + ";path=/;expires="+now.getTime();
+	   document.cookie = "cookie_useremail=null;path=/;expires="+now;
 	}
 	return true;
 }
@@ -53,6 +53,7 @@ function useremail_chk() {
 		f.loginPw.focus();
 		f.loginEmail.value=useremail;
 		f.reg.checked=true;
+		$("#loginPw").focus();
 	}
 }
 
