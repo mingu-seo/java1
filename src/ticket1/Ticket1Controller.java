@@ -7,6 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import board.notice.NoticeVO;
+import manage.admin.AdminVO;
+
 @Controller
 public class Ticket1Controller {
 
@@ -25,5 +28,16 @@ public class Ticket1Controller {
 		model.addAttribute("vo", param);
 		
 		return "manage/ticket1/index";
+	}
+	@RequestMapping("/ticket/index.do")
+	public String indexv(Model model, Ticket1VO param) throws Exception {
+		param.setTablename("ticket");
+		int[] rowPageCount = ticket1Service.count(param);
+		
+		model.addAttribute("totCount", rowPageCount[0]);
+		model.addAttribute("totPage", rowPageCount[1]);
+		model.addAttribute("vo", param);
+		
+		return "ticket/index";
 	}
 }
