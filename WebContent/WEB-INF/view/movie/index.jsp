@@ -35,9 +35,6 @@ int totPage = (Integer)request.getAttribute("totPage"); %>
 								data = list.get(i);
 								%>
 						<li>
-						
-								
-							
 							<a href="#;">
 							<dl>
 								<dt class="img">

@@ -85,6 +85,7 @@ function goSearch() {
 					<th scope="row"> <label for=""> 장르별 검색 </label></th>
 					<td>
 					<select name="sgenre">
+
 						<option value="">전체</option>
 						<option value="액션">액션</option>
 						<option value="드라마">드라마</option>
@@ -106,8 +107,8 @@ function goSearch() {
 								<div class="search">
 									<select name="sdisplay" onchange="$('#searchForm').submit();">
 										<option value="-1" <%=Function.getSelected(param.getSdisplay(), -1)%>>전체</option>
-										<option value="0" <%=Function.getSelected(param.getSdisplay(), 0)%>>숨김</option>
-										<option value="1" <%=Function.getSelected(param.getSdisplay(), 1)%>>노출</option>
+										<option value="0" <%=Function.getSelected(param.getSdisplay(), 0)%>>노출</option>
+										<option value="1" <%=Function.getSelected(param.getSdisplay(), 1)%>>숨김</option>
 									</select>
 									<select name="stype" title="검색을 선택해주세요">
 										<option value="all" <%=Function.getSelected(param.getStype(), "all") %>>전체</option>
@@ -124,9 +125,9 @@ function goSearch() {
 					<td>
 						<input type="radio" name="srating" value="0"/>전체&nbsp;
 						<input type="radio" name="srating" value="1" <%=Function.getChecked(param.getSrating(), 1) %>/>전체관람가 &nbsp;
-						<input type="radio" name="srating" value="12"/>12세 관람가 &nbsp;
-						<input type="radio" name="srating" value="15"/>15세 관람가 &nbsp;
-						<input type="radio" name="srating" value="19"/>청소년 관람불가 &nbsp; 
+						<input type="radio" name="srating" value="12" <%=Function.getChecked(param.getSrating(), 12) %> />12세 관람가 &nbsp;
+						<input type="radio" name="srating" value="15" <%=Function.getChecked(param.getSrating(), 15) %> />15세 관람가 &nbsp;
+						<input type="radio" name="srating" value="19" <%=Function.getChecked(param.getSrating(), 19) %> />청소년 관람불가 &nbsp; 
 						 &nbsp; &nbsp;	 &nbsp; &nbsp;	 &nbsp; &nbsp;
 						
 					</td>
@@ -186,7 +187,7 @@ function goSearch() {
 										<td <%=targetUrl%>><%=totCount - ((param.getReqPageNo()-1)*param.getPageRows()) - i%></td>
 										<td <%=targetUrl%> class="title"><%=data.getTitle()%></td>
 										<td <%=targetUrl%>><%=data.getDirector()%></td>
-										<td <%=targetUrl%>><% if(data.getRating()==0){out.print("전체관람가");} else{ %> <%=data.getRating()%> <%} %></td>
+										<td <%=targetUrl%>><% if(data.getRating()==1){out.print("전체관람가");} else{ %> <%=data.getRating()%> <%} %></td>
 										<td <%=targetUrl%>><%=data.getReleaseDate()%></td>
 										<td <%=targetUrl%>><%=data.getEndDate()%></td>
 										<td <%=targetUrl%>><img src="<%=SiteProperty.MOVIE_UPLOAD_PATH%><%=data.getPoster()%>" width="100px" height="150px"></img></td>

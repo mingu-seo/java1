@@ -128,6 +128,18 @@ public class MovieDao extends SqlMapClientDAOSupport {
 		return getSqlMapClient().delete("movie.delete", vo);
 	}
 
+	public int stillCutDelete(int movie_no) throws SQLException {
+		return getSqlMapClient().delete("movie.stillCutDelete",movie_no);
+	}
+	
+	public int trailerDelete(int movie_no) throws SQLException {
+		return getSqlMapClient().delete("movie.trailerDelete",movie_no);
+	}
+	
+	public int actorDelete(int movie_no) throws SQLException {
+		return getSqlMapClient().delete("movie.actorDelete",movie_no);
+	}
+	
 
 	/**
 	 * 메인목록 조회
