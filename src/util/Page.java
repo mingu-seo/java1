@@ -91,7 +91,7 @@ public class Page {
 		    endpage = pageCount;
 		}
 		strList.append("<div class='page'>");
-		// 첫번째 페이지 인덱스 화면이 아닌경우
+		// 요청한 페이지 번호가 초기화면에 없는경우
 		if ( reqPageNo > pagenumber) {
 			curpage = startpage - 1;    // 시작페이지 번호보다 1 적은 페이지로 이동
 			strList.append("<a href='"+listUrl+"reqPageNo="+curpage+"' class='next'><img src='/img/list_prev.gif' alt='' />이전</a> ");
@@ -303,8 +303,8 @@ public class Page {
 	 */
 	public static String getPageURL(HttpServletRequest request) {
 		 
-		//String originalURL = request.getRequestURI(); 
-		String originalURL = (String)request.getAttribute("javax.servlet.forward.request_uri"); 
+		//String originalURL = request.getRequestURI();  //이렇게 호출하면 페이징처리 하는 부분 호출한 곳에서마다 달라짐.
+		String originalURL = (String)request.getAttribute("javax.servlet.forward.request_uri"); //지정해줘야함
 		
 		Enumeration param = request.getParameterNames();	// request
 		String paramName = "";								// 파라미터 네임값

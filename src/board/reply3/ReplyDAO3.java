@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Repository;
 
+import board.faq.FaqVO;
+import board.notice.NoticeVO;
 import db.SqlMapClientDAOSupport;
 import util.Function;
 import util.Page;
@@ -153,6 +155,20 @@ public class ReplyDAO3 extends SqlMapClientDAOSupport {
 		return r;
 	}
 
+	public int groupDelete(ReplyVO3 vo, HttpServletRequest request) throws Exception {
+		String[] nos = request.getParameterValues("no");
+		int delCount = 0;
+		if (nos.length > 0) {
+			for (int i=0; i<nos.length; i++) {
+				vo.setNo(Function.getIntParameter(nos[i]));
+				int r = getSqlMapClient().delete("reply3.delete", vo);
+				if (r > 0) {
+					delCount++;
+				}
+			}
+		}
+		return delCount;
+	}
 
 	/**
 	 * 비밀번호 확인

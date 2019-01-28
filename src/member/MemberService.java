@@ -103,7 +103,6 @@ public class MemberService extends SqlMapClientDAOSupport{
 	
 	public MemberVO getLoginSessionInfo(MemberVO param) throws SQLException {
 		MemberVO vo = memberDao.getLoginSessionInfo(param);
-		vo.setIp(param.getIp());	// 아이피 추가
 		return vo;
 	}
 	

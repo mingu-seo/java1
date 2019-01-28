@@ -96,13 +96,7 @@ public class MovieService {
 	public int insert2(int movie_no, HttpServletRequest request) throws Exception {
 
 		StillCutVo scv = new StillCutVo();
-		scv.setMovie_no(movie_no);
-		scv.setStillCut1(request.getParameter("stillcut1"));
-		scv.setStillCut2(request.getParameter("stillcut2"));
-		scv.setStillCut3(request.getParameter("stillcut3"));
-		scv.setStillCut4(request.getParameter("stillcut4"));
-		scv.setStillCut5(request.getParameter("stillcut5"));
-		scv.setStillCut6(request.getParameter("stillcut6"));
+	    scv.setMovie_no(movie_no);
 		
 		FileUtil fu = new FileUtil();
 		Map fileMap = fu.getFileMap(request);
@@ -134,7 +128,7 @@ public class MovieService {
 		MultipartFile file6= (MultipartFile)fileMap.get("stillCut6_tmp");
 		if (!file6.isEmpty()) {
 			fu.upload(file6, SiteProperty.MOVIE_UPLOAD_PATH, SiteProperty.REAL_PATH, "stillCut");
-			scv.setStillCut1(fu.getName());
+			scv.setStillCut6(fu.getName());
 		}
 		int r = movieDao.insert2(scv);
 		return r;	
@@ -210,9 +204,7 @@ public class MovieService {
 				formatVal += formatArr[i];
 			}
 		}
-	
 		
-		int r = (Integer)movieDao.update(vo);
 		FileUtil fu = new FileUtil();
 		Map fileMap = fu.getFileMap(request);
 		MultipartFile file= (MultipartFile)fileMap.get("poster_tmp");
@@ -221,11 +213,9 @@ public class MovieService {
 			vo.setPoster(fu.getName());
 			
 		}
-		if(r > 0){
-			if("1".equals(vo.getPoster_chk()) || !"".equals(Function.checkNull(vo.getPoster()))){
-				Function.fileDelete(vo.getUploadPath(), data.getPoster());
-			}
-		}
+	
+			
+		int r = (Integer)movieDao.update(vo);
 		return r;
 	}
 	public int stillCutUpdate(int movie_no, HttpServletRequest request) throws Exception {
@@ -259,10 +249,6 @@ public class MovieService {
 			Function.fileDelete(SiteProperty.REAL_PATH + SiteProperty.MOVIE_UPLOAD_PATH, data.getStillCut6());
 		}
 		
-		
-		
-		
-
 				
 		FileUtil fu = new FileUtil();
 		Map fileMap = fu.getFileMap(request);
@@ -351,18 +337,61 @@ public int actorUpdate (int movie_no, HttpServletRequest request) throws Excepti
 		return r;
 	}
 	
+	
+
 	public int groupDelete(MovieVo vo, HttpServletRequest request) throws Exception {
 		String[] nos = request.getParameterValues("no");
 		int delCount = 0;
+		
 		if (nos.length > 0) {
 			for (int i=0; i<nos.length; i++) {
 				MovieVo nvo = new MovieVo();
+				nvo.setTablename("movie");
 				nvo.setNo(Function.getIntParameter(nos[i]));
-				MovieVo data = movieDao.read(vo);
-				int r = movieDao.delete(vo);
+				MovieVo data = movieDao.read(nvo);   // 데이터를 가져오고 나서 파일을 삭제할 때. 
+				StillCutVo scv = movieDao.readStillCut(nvo.getNo());
+				int r = movieDao.delete(nvo);
+				if (r>0) {
+					movieDao.stillCutDelete(nvo.getNo());
+					movieDao.trailerDelete(nvo.getNo());
+					movieDao.actorDelete(nvo.getNo());
+					
+					// movie에 있는 포스터이미지 삭제
+					if (data.getPoster() != null && !"".equals(data.getPoster())) {
+						Function.fileDelete(SiteProperty.REAL_PATH + SiteProperty.MOVIE_UPLOAD_PATH, data.getPoster());
+					}
+					
+					if(scv.getStillCut1()!=null && !"".equals(scv.getStillCut1())) {
+						Function.fileDelete(SiteProperty.REAL_PATH + SiteProperty.MOVIE_UPLOAD_PATH, scv.getStillCut1());
+					}
+					
+					if(scv.getStillCut2()!=null && !"".equals(scv.getStillCut1())) {
+						Function.fileDelete(SiteProperty.REAL_PATH + SiteProperty.MOVIE_UPLOAD_PATH, scv.getStillCut2());
+					}
+					
+					if(scv.getStillCut3()!=null && !"".equals(scv.getStillCut1())) {
+						Function.fileDelete(SiteProperty.REAL_PATH + SiteProperty.MOVIE_UPLOAD_PATH, scv.getStillCut3());
+					}
+					
+					if(scv.getStillCut4()!=null && !"".equals(scv.getStillCut1())) {
+						Function.fileDelete(SiteProperty.REAL_PATH + SiteProperty.MOVIE_UPLOAD_PATH, scv.getStillCut4());
+					}
+					
+					if(scv.getStillCut5()!=null && !"".equals(scv.getStillCut1())) {
+						Function.fileDelete(SiteProperty.REAL_PATH + SiteProperty.MOVIE_UPLOAD_PATH, scv.getStillCut5());
+					}
+					
+					if(scv.getStillCut6()!=null && !"".equals(scv.getStillCut1())) {
+						Function.fileDelete(SiteProperty.REAL_PATH + SiteProperty.MOVIE_UPLOAD_PATH, scv.getStillCut6());
+					}
+					
+				}
+
 				
 			}
 		}
+
+		
 		return delCount;
 	}
 

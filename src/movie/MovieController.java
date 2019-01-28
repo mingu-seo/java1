@@ -173,6 +173,7 @@ public class MovieController {
 			model.addAttribute("url", param.getTargetURLParam("index.do", param, 0));
 		} else if ("groupDelete".equals(param.getCmd())) {
 			int r = movieService.groupDelete(param, request);
+			
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "총 "+r+"건이 삭제되었습니다.", "삭제실패"));
 			model.addAttribute("url", param.getTargetURLParam("index.do", param, 0));

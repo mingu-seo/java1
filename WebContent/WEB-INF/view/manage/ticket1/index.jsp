@@ -1,11 +1,12 @@
 <%@ page contentType="text/html; charset=utf-8" %>
-<%@ page import="board.reply3.*" %>
-<%@ page import="property.SiteProperty" %>
+<%@ page import="java.util.*" %>
+<%@ page import="ticket1.*" %>
+<%@ page import="movie.*" %>
 <%@ page import="util.*" %>
 <%@ page import="java.util.*" %>
 <%
-ReplyVO3 param = (ReplyVO3)request.getAttribute("vo");
-ArrayList<ReplyVO3> list = (ArrayList)request.getAttribute("list");
+Ticket1VO param = (Ticket1VO)request.getAttribute("vo");
+ArrayList<Ticket1VO> TicketList = (ArrayList)request.getAttribute("list");
 int totCount = (Integer)request.getAttribute("totCount");
 int totPage = (Integer)request.getAttribute("totPage");
 %>
@@ -14,6 +15,8 @@ int totPage = (Integer)request.getAttribute("totPage");
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/manage/include/headHtml.jsp" %>
+<script type="text/javascript" src="/js/function_jquery.js"></script>
+
 <script>
 function groupDelete() {	
 	if ( isSeleted(document.frm.no) ){
@@ -24,17 +27,6 @@ function groupDelete() {
 		alert("삭제할 항목을 하나 이상 선택해 주세요.");
 	}
 }
-
-function goDelete(v) {	
-	if (confirm ('삭제하시겠습니까?')) {
-		document.location.href = "process.do?no="+v+"&cmd=delete";
-	}
-}
-
-function goSearch() {
-	$("#searchForm").submit();
-}
-
 </script>
 </head>
 <body> 
@@ -50,7 +42,7 @@ function goSearch() {
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>Q&A - [목록]</h2>
+					<h2>예매관리 - [목록]</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -62,60 +54,55 @@ function goSearch() {
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
 								<colgroup>
 									<col class="w3" />
-									<col class="w6" />
+									<col class="w5" />
+									<col class="w5" />
+									<col class="w7" />
+									<col class="w3" />
 									<col class="" />
-									<col class="w5" />
-									<col class="w5" />
-									<col class="w5" />
-									<col class="w5" />
-									<col class="w5" />
+									<col class="" />
+									<col class="w7" />
+									<col class="" />
+									<col class="" />
 								</colgroup>
 								<thead>
 									<tr>
 										<th scope="col" class="first"><input type="checkbox" name="allChk" id="allChk" onClick="check(this, document.frm.no)"/></th>
 										<th scope="col">번호</th>
-										<th scope="col">제목</th> 
-										<th scope="col">작성일</th> 
-										<th scope="col">작성자</th> 
-										<th scope="col">답변</th> 
-										<th scope="col" class="last">삭제</th>
+										<th scope="col">영화</th>
+										<th scope="col">영화포멧</th>
+										<th scope="col">예매일</th>
+										<th scope="col">예매취소일</th>
+										<th scope="col">예매 상태</th>
+										<th scope="col">상영일</th>
+										<th scope="col">상영시간</th>
+										<th scope="col">결제수단</th>
+										<th scope="col">결제상태</th>
 									</tr>
 								</thead>
 								<tbody>
-								<% if (totCount == 0) { %>
+								<% if (TicketList.size() == 0) { %>
 									<tr>
-										<td class="first" colspan="8">등록된 글이 없습니다.</td>
+										<td class="first" colspan="10">등록된 예매내역이 없습니다.</td>
 									</tr>
 								<%
 									 } else {
 										String targetUrl = "";
-										String topClass = "";
-										ReplyVO3 data;
-										for (int i=0; i<list.size(); i++) {
-											data = list.get(i);
-											targetUrl = "style='cursor:pointer;' onclick=\"location.href='"+param.getTargetURLParam("edit.do", param, data.getNo())+"'\"";
+										for (int i=0; i<TicketList.size(); i++) {
+											Ticket1VO data = TicketList.get(i);
+											targetUrl = "style='cursor:pointer;' onclick=\"location.href='"+param.getTargetURLParam("read.do", param, data.getNo())+"'\"";
 								%>
-									<tr <%=topClass%>>
+									<tr>
 										<td class="first"><input type="checkbox" name="no" id="no" value="<%=data.getNo()%>"/></td>
-										<td <%=targetUrl%>><%=totCount - ((param.getReqPageNo()-1)*param.getPageRows()) - i%></td>
-										<td <%=targetUrl%> class="title">
-											<% for (int j=0; j<data.getNested(); j++) { %>
-											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-											<% } %>
-											<% if (data.getNested() > 0) { %>
-											<img src="/img/ico_re.png"/>
-											<% } %>
-											<%=data.getTitle()%>
-										</td>
-										<td <%=targetUrl%>><%=DateUtil.getDateFormat(data.getRegistdate())%></td>
-										<td <%=targetUrl%>> 
-										<% if (data.getAdmin_fk() > 0) { %>
-											<%=data.getAdmin_writer() %>
-										<% } else { %>
-											<%=data.getMember_writer() %>
-										<% } %></td>
-										<td class="last"><input type="button" value="답변" onclick="location.href='reply.do?no=<%=list.get(i).getNo()%>';"/></td>
-										<td class="last"><input type="button" value="삭제" onclick="goDelete(<%=data.getNo()%>);"/></td>
+										<td <%=targetUrl%>><%=data.getNo()%></td>
+										<td <%=targetUrl%>><%=data.getMovie_pk()%></td>
+										<td <%=targetUrl%>><%=data.getFormat()%></td>
+										<td <%=targetUrl%>><%=data.getRes_date()%></td>
+										<td <%=targetUrl%>><%=data.getCancle_date()%></td>
+										<td <%=targetUrl%>><%=data.getRes_state()%></td>
+										<td <%=targetUrl%>><%=data.getScreen_date()%></td>
+										<td <%=targetUrl%>><%=data.getScreen_time()%></td>
+										<td <%=targetUrl%>><%=data.getPay()%></td>
+										<td <%=targetUrl%>><%=data.getPay_state()%></td>
 									</tr>
 								<%
 										}
@@ -123,28 +110,28 @@ function goSearch() {
 								%>
 								</tbody>
 							</table>
-								<input type="hidden" name="cmd" id="cmd" value="groupDelete"/>
-								<input type="hidden" name="stype" id="stype" value="<%=param.getStype()%>"/>
-								<input type="hidden" name="sval" id="sval" value="<%=param.getSval()%>"/>
+							<input type="hidden" name="cmd" id="cmd" value="groupDelete.do"/>
+							<input type="hidden" name="stype" id="stype" value="<%=param.getStype()%>"/>
+							<input type="hidden" name="sval" id="sval" value="<%=param.getSval()%>"/>
 							</form>
 							<div class="btn">
 								<div class="btnLeft">
 									<a class="btns" href="#" onclick="groupDelete();"><strong>삭제</strong> </a>
 								</div>
 								<div class="btnRight">
-									<a class="wbtn" href="write.do"><strong>등록</strong> </a>
+									<a class="wbtn" href="write.do"><strong>회원등록</strong> </a>
 								</div>
 							</div>
 							<!--//btn-->
 							<!-- 페이징 처리 -->
 							<%=Page.indexList(param.getReqPageNo(), totPage, request)%>
 							<!-- //페이징 처리 -->
-							<form name="searchForm" id="searchForm" action="index.do"  method="post">
+							<form name="searchForm" id="searchForm" action="index.do" method="post">
 								<div class="search">
 									<select name="stype" title="검색을 선택해주세요">
 										<option value="all" <%=Function.getSelected(param.getStype(), "all") %>>전체</option>
-										<option value="title" <%=Function.getSelected(param.getStype(), "title") %>>제목</option>
-										<option value="contents" <%=Function.getSelected(param.getStype(), "contents") %>>내용</option>
+										<option value="name" <%=Function.getSelected(param.getStype(), "name") %>>이름</option>
+										<option value="email" <%=Function.getSelected(param.getStype(), "name") %>>이메일</option>
 									</select>
 									<input type="text" name="sval" value="<%=param.getSval()%>" title="검색할 내용을 입력해주세요" />
 									<input type="image" src="/manage/img/btn_search.gif" class="sbtn" alt="검색" />
