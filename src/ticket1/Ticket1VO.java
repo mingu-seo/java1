@@ -20,7 +20,17 @@ public class Ticket1VO extends Parameter{
 	private int pay_state;
 	private int res_state;
 	
+	private String movie_title;
+	private String movie_format;
+	private String member_name;
 	
+	//검색조건
+	private String		dateType;	//날짜 타입
+	private String sdate;			//시작일
+	private String edate;			//종료일
+	private int spay_state;			//결제상태
+	private int sres_state;			//예매상태
+	private int spay;				//결제수단
 	private int prev_no;			// 이전글 no
 	private int next_no;			// 다음글 no
 	private String prev_title;		// 이전글 제목
@@ -28,9 +38,11 @@ public class Ticket1VO extends Parameter{
 	
 	public Ticket1VO() {
 		super.setPageRows(10);
-	}
-	public Ticket1VO(int pageRows) {
-		super.setPageRows(pageRows);
+		this.setSdate("");
+		this.setEdate("");
+		this.setSres_state(0);
+		this.setSpay_state(0);
+		this.setSpay(0);
 	}
 	
 	
@@ -59,6 +71,8 @@ public class Ticket1VO extends Parameter{
 		}
 		return strList.toString();
 	}
+	
+	
 	
 	
 	public int getNo() {
@@ -138,6 +152,63 @@ public class Ticket1VO extends Parameter{
 	}
 	public void setRes_state(int res_state) {
 		this.res_state = res_state;
+	}
+	public String getMovie_title() {
+		return movie_title;
+	}
+	public void setMovie_title(String movie_title) {
+		this.movie_title = movie_title;
+	}
+	public String getMovie_format() {
+		return movie_format;
+	}
+	public void setMovie_format(String movie_format) {
+		this.movie_format = movie_format;
+	}
+	public String getMember_name() {
+		return member_name;
+	}
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
+		
+	}
+	
+	public String getDateType() {
+		return dateType;
+	}
+	public void setDateType(String dateType) {
+		this.dateType = dateType;
+	}
+	public String getSdate() {
+		return sdate;
+	}
+	public void setSdate(String sdate) {
+		this.sdate = sdate;
+	}
+	public String getEdate() {
+		return edate;
+	}
+	public void setEdate(String edate) {
+		this.edate = edate;
+	}
+	
+	public int getSpay_state() {
+		return spay_state;
+	}
+	public void setSpay_state(int spay_state) {
+		this.spay_state = spay_state;
+	}
+	public int getSres_state() {
+		return sres_state;
+	}
+	public void setSres_state(int sres_state) {
+		this.sres_state = sres_state;
+	}
+	public int getSpay() {
+		return spay;
+	}
+	public void setSpay(int spay) {
+		this.spay = spay;
 	}
 	public int getPrev_no() {
 		return prev_no;

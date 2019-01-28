@@ -12,7 +12,7 @@
 		    no > 0
 			<isNotEqual property="sval" compareValue="" prepend="and">
 				<isEqual property="stype" compareValue="all" prepend="and">
-					( (name like '%$sval$%' ) or (email like '%$sval$%' ) ) 					
+					( (member.name like '%$sval$%' ) or (movie.title like '%$sval$%' ) ) 					
 				</isEqual>
 				<isNotEqual property="stype" compareValue="all" prepend="and">
 					($stype$ like '%$sval$%' )

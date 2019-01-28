@@ -10,22 +10,32 @@
 		<dynamic prepend="where">
 			<isNotEqual property="sval" compareValue="" prepend="and">
 				<isEqual property="stype" compareValue="all" prepend="and">
-					( (price like '%$sval$%' ) or (res_date like '%$sval$%' ) ) 					
+					( (member.name like '%$sval$%' ) or (movie.title like '%$sval$%' ) ) 					
 				</isEqual>
-				<isNotEqual property="stype" compareValue="all" prepend="and">
-					($stype$ like '%$sval$%' )
+			</isNotEqual>
+			<isNotEqual property="sdate" compareValue="">
+				<isNotEqual property="edate" compareValue="" prepend="and">
+					$dateType$ between '$sdate$' and '$edate$'
 				</isNotEqual>
+			</isNotEqual>
+			<isNotEqual property="sres_state" compareValue="0" prepend="and">
+				res_state = #sres_state#
+			</isNotEqual>
+			<isNotEqual property="spay_state" compareValue="0" prepend="and">
+				pay_state = #spay_state#
+			</isNotEqual>
+			<isNotEqual property="spay" compareValue="0" prepend="and">
+				pay = #spay#
 			</isNotEqual>
 		</dynamic>
 	</sql>
-	
 	<select id="count" parameterClass="ticket1VO" resultClass="Integer">
         select count(*) from ticket1
         <include refid="searchSql" />	
     </select>
 	
     <select id="list" parameterClass="ticket1VO" resultClass="ticket1VO">
-        select * <!-- ,
+        select *  <!-- ,
         (select title from movie where movie.no=tiket1.movie_fk) as title,
         (select format from movie where movie.no=tiket1.movie_fk) as format
          -->
