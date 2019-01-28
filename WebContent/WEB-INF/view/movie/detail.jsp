@@ -82,7 +82,7 @@ ActorVo av = (ActorVo) request.getAttribute("av");
 									</div>
 								</dt>
 								<dt class="reser_btn">
-									<input type="button" class="btn" value="예매"/>
+									<input type="button" class="btn" value="예매" onclick="showDialogue();"/>
 								</dt>
 							</dl>
 						</div>
@@ -196,7 +196,8 @@ ActorVo av = (ActorVo) request.getAttribute("av");
 								</div>
 							</div>
 						</div>
-						</form>
+					</div>
+					</form>
 						
 <script>
 $(function() {
@@ -276,6 +277,7 @@ function save() {
 	</div>
     
     <%@ include file="/WEB-INF/view/include/footer.jsp" %>
+
 <script>
 $(function(){
 	var swiper = new Swiper('.swiper-container', {
