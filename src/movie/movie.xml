@@ -241,6 +241,14 @@
         where no = #no#
     </select>
     
+    <select id="scrDate" parameterClass="movie_vo" resultClass="movie_vo">
+    	<![CDATA[
+        SELECT today, name as yoil from calendar
+		where today >= substring(now(), 1, 10)
+		and today < date_add(substring(now(), 1, 10), interval 14 day)        	
+        ]]>
+    </select>
+    
     <select id="readStillCut" parameterClass="Integer" resultClass="stillCut_vo">
     SELECT *
     FROM STILLCUT

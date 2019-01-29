@@ -167,7 +167,7 @@ int totPage = (Integer)request.getAttribute("totPage");
 										String targetUrl = "";
 										for (int i=0; i<TicketList.size(); i++) {
 											Ticket1VO data = TicketList.get(i);
-											targetUrl = "style='cursor:pointer;' onclick=\"location.href='"+param.getTargetURLParam("edit.do", param, data.getNo())+"'\"";
+											targetUrl = "style='cursor:pointer;' onclick=\"location.href='"+param.getTargetURLParam("read.do", param, data.getNo())+"'\"";
 								%>
 									<tr>
 										<td class="first"><input type="checkbox" name="no" id="no" value="<%=data.getNo()%>"/></td>

@@ -2,12 +2,20 @@ package ticket1;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import db.SqlMapClientDAOSupport;
+import member.MemberVO;
 import movie.MovieVo;
+import property.SiteProperty;
+import util.FileUtil;
+import util.Function;
 import util.Page;
 
 @Service
@@ -40,8 +48,13 @@ public class Ticket1Service extends SqlMapClientDAOSupport{
 		return movieDate;
 	}
 
-	public Ticket1VO read(Ticket1VO vo, boolean userCon) throws Exception {
-		Ticket1VO data = ticket1Dao.read(vo.getNo());
-		return data;
+	public Ticket1VO read(int no) throws Exception {
+		Ticket1VO vo = ticket1Dao.read(no);
+		return vo;
 	}
+	
+//	public int update(Ticket1VO vo) throws SQLException {
+//		int cnt = ticket1Dao.update(vo);
+//		return cnt;
+//	}
 }

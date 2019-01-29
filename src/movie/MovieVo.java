@@ -19,6 +19,8 @@ public class MovieVo extends Parameter {
 	private String		registDate;				// 영화 DB 등록일 
 	private String		poster_chk;				// 삭제할 때 받아올 파일이름값 
 	private long 		posterSize;				// 포스터 첨부파일 크기
+	private String 		today;					
+	private String 		yoil;
 	//검색조건
 	private int			sdisplay;				// 노출여부 (-1:전체, 0:미노출, 1:노출)
 	private String		sgenre;					// 장르
@@ -158,6 +160,23 @@ public class MovieVo extends Parameter {
 	public void setPosterSize(long posterSize) {
 		this.posterSize = posterSize;
 	}
+	
+	public String getToday() {
+		return today;
+	}
+
+	public void setToday(String today) {
+		this.today = today;
+	}
+
+	public String getYoil() {
+		return yoil;
+	}
+
+	public void setYoil(String yoil) {
+		this.yoil = yoil;
+	}
+
 	public String getFormat() {
 		return format;
 	}

@@ -54,9 +54,10 @@
 		ORDER BY no DESC LIMIT $startPageNo$, $pageRows$	
     </select>
     
-    <select id="read" parameterClass="ticket1VO" resultClass="ticket1VO">
-        SELECT 
-        	*
+    <select id="read" parameterClass="Integer" resultClass="ticket1VO">
+        SELECT *, 
+        (select title from movie where movie.no=ticket1.movie_pk) as movie_title,
+        (select name from member where member.no=ticket1.member_pk) as member_name
         FROM ticket1
         where no = #no#
     </select>

@@ -152,7 +152,6 @@ public class MovieService {
 	}
 	
 	public int insertActor(int movie_no, HttpServletRequest request) throws Exception {
-		
 		ActorVo av = new ActorVo();
 		av.setMovie_no(movie_no);
 		av.setActor1(request.getParameter("actor1"));
@@ -166,8 +165,14 @@ public class MovieService {
 		return r;
 		
 	}
+	
 	public MovieVo read(MovieVo vo, boolean userCon) throws Exception {
 		MovieVo data = movieDao.read(vo);
+		return data;
+	}
+	
+	public ArrayList read(MovieVo vo) throws Exception {
+		ArrayList data = movieDao.scrDate(vo);
 		return data;
 	}
 	
@@ -187,8 +192,6 @@ public class MovieService {
 
 	public int update(MovieVo vo, HttpServletRequest request) throws Exception {
 		MovieVo data = movieDao.read(vo);
-		
-		
 		String[] genreArr = request.getParameterValues("genre");
 		String genreVal = "";
 		for (int i=0; i<genreArr.length; i++) {
