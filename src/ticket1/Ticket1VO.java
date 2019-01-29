@@ -19,6 +19,8 @@ public class Ticket1VO extends Parameter{
 	private int screen_time;
 	private int pay_state;
 	private int res_state;
+	private String today;
+	private int yoil;
 	
 	private String movie_title;
 	private String movie_format;
@@ -210,6 +212,18 @@ public class Ticket1VO extends Parameter{
 	public void setSpay(int spay) {
 		this.spay = spay;
 	}
+	public String getToday() {
+		return today;
+	}
+	public void setToday(String today) {
+		this.today = today;
+	}
+	public int getYoil() {
+		return yoil;
+	}
+	public void setYoil(int yoil) {
+		this.yoil = yoil;
+	}
 	public int getPrev_no() {
 		return prev_no;
 	}
@@ -233,5 +247,7 @@ public class Ticket1VO extends Parameter{
 	}
 	public void setNext_title(String next_title) {
 		this.next_title = next_title;
+		
 	}
-}
+	
+	}

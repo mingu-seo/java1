@@ -45,4 +45,5 @@
 	<mvc:view-controller path="/mypage/reserve/index.do"/>
 	<mvc:view-controller path="/movie/index.do"/>
 	<mvc:view-controller path="/movie/view.do"/>
+	<mvc:view-controller path="/ticket/index.do"/>
 </beans>

@@ -29,6 +29,16 @@ public class Ticket1Service extends SqlMapClientDAOSupport{
 		ArrayList list = ticket1Dao.list(param);
 		return list;
 	}
+	public ArrayList date(Ticket1VO param) throws SQLException {
+		ArrayList date = ticket1Dao.date(param);
+		return date;
+	}
+	
+
+	public ArrayList<Ticket1VO> aranMovieDate(int no) throws SQLException {
+		ArrayList movieDate = ticket1Dao.aranMovieDate(no);
+		return movieDate;
+	}
 
 	public Ticket1VO read(Ticket1VO vo, boolean userCon) throws Exception {
 		Ticket1VO data = ticket1Dao.read(vo.getNo());
