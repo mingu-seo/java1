@@ -113,7 +113,39 @@ function goSave() {
 											</select>
 										</td>
 									</tr>
-									
+									<tr>
+										<th>결제상태</th>
+										<td>
+											<select>
+												<option value="1" <%if(data.getPay_state()==1){out.print("selected");} %>>결제완료</option>
+												<option value="2" <%if(data.getPay_state()==2){out.print("selected");} %>>결제 미완료</option>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<th>예매상태</th>
+										<td>
+											<select>
+												<option value="1" <%if(data.getRes_state()==1){out.print("selected");} %>>예매 완료</option>
+												<option value="2" <%if(data.getRes_state()==2){out.print("selected");} %>>예매 취소</option>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<th>티켓수</th>
+										<td>
+											<select>
+												<option value="1" <%if(data.getTk_count()==1){out.print("selected");} %>>1</option>
+												<option value="2" <%if(data.getTk_count()==1){out.print("selected");} %>>2</option>
+												<option value="3" <%if(data.getTk_count()==1){out.print("selected");} %>>3</option>
+												<option value="4" <%if(data.getTk_count()==1){out.print("selected");} %>>4</option>
+												<option value="5" <%if(data.getTk_count()==1){out.print("selected");} %>>5</option>
+												<option value="6" <%if(data.getTk_count()==1){out.print("selected");} %>>6</option>
+												<option value="7" <%if(data.getTk_count()==1){out.print("selected");} %>>7</option>
+												<option value="8" <%if(data.getTk_count()==1){out.print("selected");} %>>8</option>
+											</select>
+										</td>
+									</tr>
 								</tbody>
 							</table>
 							<input type="hidden" name="cmd" value="edit.do">

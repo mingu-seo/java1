@@ -49,7 +49,6 @@
     </select>
 	
     <select id="list" parameterClass="ticket1VO" resultClass="ticket1VO">
-       select * from ticket1
         select * ,
         (select title from movie where movie.no=ticket1.movie_pk) as movie_title,
         (select name from member where member.no=ticket1.member_pk) as member_name
