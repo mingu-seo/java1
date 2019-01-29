@@ -60,7 +60,7 @@
          ]]>
         <include refid="searchSql" />	
     </select>    
-        
+    
 	<select id="list" parameterClass="movie_vo" resultClass="movie_vo">
         select *
         from $tablename$
@@ -325,5 +325,24 @@
         <include refid="searchSql" />
 		ORDER BY releaseDate DESC LIMIT 0, $number$
     </select>
+    
+    <!--예매페이지에서 영화리스트(나영)-->
+    <select id="tkmoviecount" parameterClass="movie_vo" resultClass="Integer">
+         <![CDATA[
+        select count(*) from movie
+        where releasedate <= #tkdate#
+        and enddate >= #tkdate#
+         ]]>
+    </select>
+    
+    	<select id="tkmovielist" parameterClass="movie_vo" resultClass="movie_vo">
+        select *
+        from movie
+          <![CDATA[
+        where releasedate <= #tkdate#
+        and enddate >= #tkdate#
+         ]]>
+    </select>
+	
     
 </sqlMap>

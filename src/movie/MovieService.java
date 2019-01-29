@@ -401,6 +401,19 @@ public int actorUpdate (int movie_no, HttpServletRequest request) throws Excepti
 		return null;
 	}
 
+	//나영=예매페이지에영화리스트
+	public ArrayList tkmovielist(MovieVo vo) throws Exception {
+		ArrayList list = movieDao.tkmovielist(vo);
+		return list;
+	}
+		public int[] tkmoviecount(MovieVo vo) throws Exception {
+		int rowCount = movieDao.tkmoviecount(vo);
+		int[] rowPageCount = new int[2];
+		int pageCount = Page.getPageCount(vo.getPageRows(), rowCount);
+		rowPageCount[0] = rowCount;
+		rowPageCount[1] = pageCount;
+		return rowPageCount;
+	}
 
 
 }

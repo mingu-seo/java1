@@ -15,6 +15,9 @@
 				<isNotEqual property="stype" compareValue="all" prepend="and">
 					($stype$ like '%$sval$%' )
 				</isNotEqual>
+				<isNotEqual property="smovie_pk" compareValue="0" prepend="and">
+					movie_pk=#smovie_pk#
+				</isNotEqual>
 			</isNotEqual>
 		</dynamic>
 	</sql>
@@ -25,11 +28,7 @@
     </select>
 	
     <select id="list" parameterClass="ticket1VO" resultClass="ticket1VO">
-        select * <!-- ,
-        (select title from movie where movie.no=tiket1.movie_fk) as title,
-        (select format from movie where movie.no=tiket1.movie_fk) as format
-         -->
-        from ticket1
+       select * from ticket1
         <include refid="searchSql" />
 		ORDER BY no DESC LIMIT $startPageNo$, $pageRows$	
     </select>
