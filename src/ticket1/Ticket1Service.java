@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import db.SqlMapClientDAOSupport;
+import movie.MovieVo;
 import util.Page;
 
 @Service
@@ -29,4 +30,8 @@ public class Ticket1Service extends SqlMapClientDAOSupport{
 		return list;
 	}
 
+	public Ticket1VO read(Ticket1VO vo, boolean userCon) throws Exception {
+		Ticket1VO data = ticket1Dao.read(vo.getNo());
+		return data;
+	}
 }

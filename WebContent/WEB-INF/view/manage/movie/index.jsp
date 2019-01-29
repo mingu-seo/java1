@@ -31,10 +31,6 @@ function goDelete(v) {
 	}
 }
 
-function goSearch() {
-	$("#searchForm").submit();
-}
-
 </script>
 </head>
 <body> 

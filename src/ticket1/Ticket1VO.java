@@ -9,7 +9,7 @@ public class Ticket1VO extends Parameter{
 	private int no;
 	private int movie_pk;
 	private int member_pk;
-	private Timestamp cancle_date;
+	private Timestamp cancel_date;
 	private Timestamp res_date;
 	private String price;
 	private int pay;
@@ -93,11 +93,11 @@ public class Ticket1VO extends Parameter{
 	public void setMember_pk(int member_pk) {
 		this.member_pk = member_pk;
 	}
-	public Timestamp getCancle_date() {
-		return cancle_date;
+	public Timestamp getCancel_date() {
+		return cancel_date;
 	}
-	public void setCancle_date(Timestamp cancle_date) {
-		this.cancle_date = cancle_date;
+	public void setCancel_date(Timestamp cancel_date) {
+		this.cancel_date = cancel_date;
 	}
 	public Timestamp getRes_date() {
 		return res_date;
