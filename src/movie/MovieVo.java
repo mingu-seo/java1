@@ -1,5 +1,6 @@
 package movie;
 
+import util.DateUtil;
 import util.Parameter;
 
 public class MovieVo extends Parameter {
@@ -28,6 +29,7 @@ public class MovieVo extends Parameter {
 	private String		dateType;				// 날짜타입
 	private String		sdate;					// 시작일
 	private String		edate;					// 종료일
+	private String		tkdate;					// 예매가능영화조회날짜
 	
 
 	
@@ -38,6 +40,7 @@ public class MovieVo extends Parameter {
 		this.setEdate("");
 		this.setSgenre("");
 		this.setSrating(0);
+		this.setTkdate(DateUtil.getToday());
 	}
 
 	public int getNo() {
@@ -223,6 +226,14 @@ public class MovieVo extends Parameter {
 
 	public void setEdate(String edate) {
 		this.edate = edate;
+	}
+	
+	public String getTkdate() {
+		return tkdate;
+	}
+	
+	public void setTkdate(String tkdate) {
+		this.tkdate = tkdate;
 	}
 	
 }

@@ -75,23 +75,6 @@ public class Ticket1Controller {
 	}
 	
 	
-	//나영=예매페이지에날짜뿌리는중
-	@RequestMapping("/ticket/index.do")
-	public String ticketDate(Model model, Ticket1VO param) throws Exception {
-		param.setTablename("ticket");
-		param.setTablename("calender");
-		int[] rowPageCount = ticket1Service.count(param);
-		ArrayList<Ticket1VO> date = ticket1Service.date(param);
-		
-		model.addAttribute("totCount", rowPageCount[0]);
-		model.addAttribute("totPage", rowPageCount[1]);
-		model.addAttribute("date", date);
-		model.addAttribute("vo", param);
-		
-		return "ticket/index";
-	}
-	
-	
 	@RequestMapping("/ticket/ticket_form.do")
 	public String ticket_form(Model model, MovieVo param) throws Exception {
 	
@@ -103,4 +86,8 @@ public class Ticket1Controller {
 	
 		return "ticket/ticket_form";
 	}
+	
+	
+	
+		
 }

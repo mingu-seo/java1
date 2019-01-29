@@ -23,6 +23,9 @@
 					(movie_pk in (select no from movie where title like '%$sval$%'))
 					</isEqual>
 				</isNotEqual>
+				<isNotEqual property="smovie_pk" compareValue="0" prepend="and">
+					movie_pk=#smovie_pk#
+				</isNotEqual>
 			</isNotEqual>
 			<isNotEqual property="sdate" compareValue="">
 				<isNotEqual property="edate" compareValue="" prepend="and">
@@ -46,6 +49,7 @@
     </select>
 	
     <select id="list" parameterClass="ticket1VO" resultClass="ticket1VO">
+       select * from ticket1
         select * ,
         (select title from movie where movie.no=ticket1.movie_pk) as movie_title,
         (select name from member where member.no=ticket1.member_pk) as member_name

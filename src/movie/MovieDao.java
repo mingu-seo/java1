@@ -175,7 +175,13 @@ public class MovieDao extends SqlMapClientDAOSupport {
 		dao.list(mv);
 	}
 
-
+	//나영=예매페이지에영화리스트뿌리는중
+	public int tkmoviecount(MovieVo vo) throws SQLException {
+		return (Integer)getSqlMapClient().queryForObject("movie.tkmoviecount", vo);
+	}
+	public ArrayList tkmovielist(MovieVo vo) throws SQLException {
+		return (ArrayList)getSqlMapClient().queryForList("movie.tkmovielist", vo);
+	}
 
 	
 }
