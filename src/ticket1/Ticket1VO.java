@@ -21,7 +21,16 @@ public class Ticket1VO extends Parameter{
 	private int res_state;
 	private String today;
 	private int yoil;
+	private int usePoint;
 	
+	public int getUsePoint() {
+		return usePoint;
+	}
+
+
+	public void setUsePoint(int usePoint) {
+		this.usePoint = usePoint;
+	}
 	private String movie_title;
 	private String movie_format;
 	private String member_name;

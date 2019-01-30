@@ -92,4 +92,17 @@
 	
 		ORDER BY c.today ASC 
      </select>
+     
+     <insert id="book" parameterClass="ticket1VO">
+       INSERT INTO ticket1 (
+        	movie_pk, member_pk, res_date, price, pay, tk_count, format, usePoint, screen_date, screen_time, pay_state, res_state
+        ) VALUES (
+			#movie_pk#, #member_pk#, now(), #price#, #pay#, #tk_count#, #format#, #usePoint#, #screen_date#, #screen_time#, #pay_state#, 1	
+        )
+        <selectKey keyProperty="no" resultClass="Integer">
+        	SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+     
+     
 </sqlMap>

@@ -9,8 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import member.MemberVO;
 import movie.MovieService;
 import movie.MovieVo;
+import review.ReviewVO;
+import util.Function;
 
 @Controller
 public class Ticket1Controller {
@@ -86,6 +89,25 @@ public class Ticket1Controller {
 	
 		return "ticket/ticket_form";
 	}
+	
+	@RequestMapping("/ticket/book.do")
+	public String book(Model model, Ticket1VO param, MovieVo mparam) throws Exception {
+		
+		int r = ticket1Service.book(param);
+		
+		model.addAttribute("book", r);
+		
+		model.addAttribute("code", "alertMessageUrl");
+		model.addAttribute("message", Function.message(r, "정상적으로 등록되었습니다.", "등록실패"));
+		model.addAttribute("url", "index.do");
+		
+		if(param.getPay()==2) {
+			param.setPay_state(1);
+		}
+		
+		return "ticket/ticketPayProcessing";
+	}
+
 	
 	
 	

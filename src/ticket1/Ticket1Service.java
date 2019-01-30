@@ -52,7 +52,13 @@ public class Ticket1Service extends SqlMapClientDAOSupport{
 		Ticket1VO vo = ticket1Dao.read(no);
 		return vo;
 	}
-	
+
+	public int book(Ticket1VO param) throws SQLException {
+		
+		int lastNo = (Integer)ticket1Dao.book(param);
+		return lastNo;
+	}
+ 	
 //	public int update(Ticket1VO vo) throws SQLException {
 //		int cnt = ticket1Dao.update(vo);
 //		return cnt;
