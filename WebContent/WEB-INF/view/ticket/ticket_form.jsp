@@ -48,16 +48,13 @@ ArrayList<Ticket1VO> movieDate = (ArrayList)request.getAttribute("movieDate");
 					<tr>
 						<th>일자</th>
 						<td>
-						
-						
 							<select name="">
-								<% Ticket1VO date;
+						<% Ticket1VO date;
 							for(int i=0; i<movieDate.size();i++) {
 								date = movieDate.get(i);
 								%>
-								
 								<option value="<%=date.getToday()%>"><%=date.getToday()%></option>
-								<%} %>
+						<%	} %>
 							</select>
 						</td>
 					</tr>
@@ -87,7 +84,7 @@ ArrayList<Ticket1VO> movieDate = (ArrayList)request.getAttribute("movieDate");
 					<tr>
 						<th>포맷</th>
 						<td>
-							<input type="radio" name="format" value="1"><label>2D</label>
+							<input type="radio" name="format" value="1" checked><label>2D</label>
 							<input type="radio" name="format" value="2"><label>3D</label>
 							<input type="radio" name="format" value="3"><label>4D</label>
 							<input type="radio" name="format" value="4"><label>IMAX</label>
@@ -96,7 +93,7 @@ ArrayList<Ticket1VO> movieDate = (ArrayList)request.getAttribute("movieDate");
 					<tr>
 						<th>보유포인트</th>
 						<td>
-							<input type="text" name="" id=""  value=""/> 점
+							<input type="text" name="" id=""  value="" onkeyup="isOnlyNumber(this);"/> 점
 							<input type="button" class="btn" value="확인">
 						</td>
 					</tr>
@@ -122,6 +119,7 @@ ArrayList<Ticket1VO> movieDate = (ArrayList)request.getAttribute("movieDate");
 					</tr>
 					</tbody>
 				</table>
+			<input type="hidden" name="price" id="price" value=""/>
 			</form>	
 			</div>
 			<!-- //wr_box -->
