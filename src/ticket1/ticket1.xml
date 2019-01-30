@@ -23,9 +23,6 @@
 					(movie_pk in (select no from movie where title like '%$sval$%'))
 					</isEqual>
 				</isNotEqual>
-				<isNotEqual property="smovie_pk" compareValue="0" prepend="and">
-					movie_pk=#smovie_pk#
-				</isNotEqual>
 			</isNotEqual>
 			<isNotEqual property="sdate" compareValue="">
 				<isNotEqual property="edate" compareValue="" prepend="and">
