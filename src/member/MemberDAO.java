@@ -166,10 +166,10 @@ public class MemberDAO extends SqlMapClientDAOSupport {
 
 	
 	public static void main(String[] args) throws Exception {
-		MemberVO param = new MemberVO();
-		MemberDAO data = new MemberDAO();
+//		long time = System.currentTimeMillis();
+//		System.out.println(time/60);
+			
 		
-		data.loginCheck(param);
 		
 	}
 }

@@ -32,6 +32,7 @@ public class MemberService extends SqlMapClientDAOSupport{
 		rowPageCount[1] = pageCount;
 		return rowPageCount;
 	}
+	
 
 	public ArrayList list(MemberVO param) throws SQLException {
 		ArrayList list = memberDao.list(param);

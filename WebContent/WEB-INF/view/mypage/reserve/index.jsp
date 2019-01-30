@@ -65,42 +65,6 @@
 								</div>
 							</div>
 						</li>
-						<li>
-							<div class="postObj">
-								<div class="reserveNum">
-									예매번호 0013-1111-2222-3333
-								</div>
-								<div class="imgs">
-									<img src="/img/poster1.jpg"/>
-								</div>
-								<div class="txt">
-									<div class="title">랄프2 : 인터넷 세상속으로</div>
-									<div class="detail">
-										<table>
-											<tr>
-												<th>관람극장</th>
-												<td>MOVIE 일산</td>
-												<th>관림일시</th>
-												<td>2019.01.14(월) 11:00</td>
-											</tr>
-											<tr>
-												<th>관림인원</th>
-												<td>PRIME석 일반1</td>
-												<th>매수</th>
-												<td>1매</td>
-											</tr>
-											<tr>
-												<th>예매일자</th>
-												<td>2019.01.01</td>
-												<th>총 결제금액</th>
-												<td>20,000원</td>
-											</tr>
-										</table>
-									</div>
-									<div class="btn_area"><a href="javascript:;" class="btn" onclick="">예매취소</a></div>
-								</div>
-							</div>
-						</li>
 					</ul>
 				</div>
 				
