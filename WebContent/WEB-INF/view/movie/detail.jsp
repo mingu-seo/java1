@@ -208,7 +208,7 @@ function getList() {
 	$.ajax({
 		url : "reviewList.do",
 		dataType : "html",
-		data : {"smovie_pk" : <%=data.getNo()%>},
+		data : {"smovie_pk" : <%=data.getNo()%>},  
 		async : true,
 		success : function(data) {
 			$(".review_list").html(data);

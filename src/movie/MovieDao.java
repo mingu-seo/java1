@@ -106,6 +106,12 @@ public class MovieDao extends SqlMapClientDAOSupport {
 	public MovieVo read(MovieVo vo) throws SQLException {
 		return (MovieVo)getSqlMapClient().queryForObject("movie.read", vo);
 	}
+	
+	//screen_date 가져오기
+	public ArrayList scrDate(MovieVo vo) throws SQLException {
+		return (ArrayList)getSqlMapClient().queryForList("movie.scrDate", vo);
+	}
+	
 	public StillCutVo readStillCut(int vo) throws SQLException {
 		// TODO Auto-generated method stub
 		return (StillCutVo)getSqlMapClient().queryForObject("movie.readStillCut", vo);
@@ -169,7 +175,13 @@ public class MovieDao extends SqlMapClientDAOSupport {
 		dao.list(mv);
 	}
 
-
+	//나영=예매페이지에영화리스트뿌리는중
+	public int tkmoviecount(MovieVo vo) throws SQLException {
+		return (Integer)getSqlMapClient().queryForObject("movie.tkmoviecount", vo);
+	}
+	public ArrayList tkmovielist(MovieVo vo) throws SQLException {
+		return (ArrayList)getSqlMapClient().queryForList("movie.tkmovielist", vo);
+	}
 
 	
 }

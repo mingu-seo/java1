@@ -8,30 +8,102 @@
 	<sql id="searchSql">		
 		<!-- WHERE 절 검색 -->
 		<dynamic prepend="where">
-			<isNotEqual property="sval" compareValue="" prepend="and">
+			<!-- 검색어 검색 -->
+			<isNotEqual property="sval" compareValue="">
+				<!-- 검색 타입이 all일 때 -->
 				<isEqual property="stype" compareValue="all" prepend="and">
-					( (price like '%$sval$%' ) or (res_date like '%$sval$%' ) ) 					
+					( (member_pk in (select no from member where name like '%$sval$%')) or (movie_pk in (select no from movie where title like '%$sval$%') ) ) 					
 				</isEqual>
-				<isNotEqual property="stype" compareValue="all" prepend="and">
-					($stype$ like '%$sval$%' )
+				<!-- 검색 타입이 all이 아닐때 -->
+				<isNotEqual property="stype" compareValue="all"> 
+					<isEqual property="stype" compareValue="member_name" prepend="and">
+					(member_pk in (select no from member where name like '%$sval$%'))
+					</isEqual>
+					<isEqual property="stype" compareValue="movie_title" prepend="and">
+					(movie_pk in (select no from movie where title like '%$sval$%'))
+					</isEqual>
 				</isNotEqual>
+			</isNotEqual>
+			<isNotEqual property="sdate" compareValue="">
+				<isNotEqual property="edate" compareValue="" prepend="and">
+					$dateType$ between '$sdate$ 00:00:00' and '$edate$ 23:59:59'
+				</isNotEqual>
+			</isNotEqual>
+			<isNotEqual property="sres_state" compareValue="0" prepend="and">
+				res_state = #sres_state#
+			</isNotEqual>
+			<isNotEqual property="spay_state" compareValue="0" prepend="and">
+				pay_state = #spay_state#
+			</isNotEqual>
+			<isNotEqual property="spay" compareValue="0" prepend="and">
+				pay = #spay#
 			</isNotEqual>
 		</dynamic>
 	</sql>
-	
 	<select id="count" parameterClass="ticket1VO" resultClass="Integer">
         select count(*) from ticket1
         <include refid="searchSql" />	
     </select>
 	
     <select id="list" parameterClass="ticket1VO" resultClass="ticket1VO">
-        select * <!-- ,
-        (select title from movie where movie.no=tiket1.movie_fk) as title,
-        (select format from movie where movie.no=tiket1.movie_fk) as format
-         -->
+        select * ,
+        (select title from movie where movie.no=ticket1.movie_pk) as movie_title,
+        (select name from member where member.no=ticket1.member_pk) as member_name
         from ticket1
         <include refid="searchSql" />
 		ORDER BY no DESC LIMIT $startPageNo$, $pageRows$	
     </select>
+    
+    <select id="read" parameterClass="Integer" resultClass="ticket1VO">
+        SELECT *, 
+        (select title from movie where movie.no=ticket1.movie_pk) as movie_title,
+        (select name from member where member.no=ticket1.member_pk) as member_name
+        FROM ticket1
+        where no = #no#
+    </select>
+    
+    <update id="update" parameterClass="ticket1VO">
+    	update ticket1 set
+    	format=#format#, screen_date=#screen_date#, screen_time=#screen_time#, 
+    	pay_state=#pay_state#, res_state=#res_state#, tk_count=#tk_count#, price=#price#
+    	<isEqual property="res_state" compareValue="2">
+    	, cancel_date=now()
+    	</isEqual>
+    	<isEqual property="res_state" compareValue="1">
+    	, cancel_date=null
+    	</isEqual>
+    	where no = #no#
+    </update>
+    
+    <delete id="delete" parameterClass="Integer">
+        delete from ticket1 where no=#no#
+    </delete>
+    
+    <select id="date" resultClass="ticket1VO">
+    <![CDATA[
+    	select today, name as yoil from calendar
+    	where today >= substring(now(), 1, 10)
+    	and today < date_add(substring(now(),1,10), interval 14 day)
+   	]]>    
+    </select>
      
+    <select id="aranMovieDate" parameterClass="Integer" resultClass="ticket1VO">
+ 		select today 
+		from Calendar as c, movie as m
+		where m.no = #no#
+		 <![CDATA[
+		and c.today >= m.releaseDate
+		]]>
+		 <![CDATA[
+		and c.today <= m.endDate
+		]]>
+		 <![CDATA[
+		and c.today >= substring(now(),1,10) 
+		]]>  
+		 <![CDATA[
+		and c.today < date_add(substring(now(),1,10), interval 14 day)
+		]]>
+	
+		ORDER BY c.today ASC 
+     </select>
 </sqlMap>

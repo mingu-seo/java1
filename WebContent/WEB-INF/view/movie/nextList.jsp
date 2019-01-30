@@ -46,7 +46,7 @@ int totPage = (Integer)request.getAttribute("totPage"); %>
 								</dd>
 								<dd class="btnArea">
 									<input type="button" class="btn" value="상세" onclick="location.href='detail.do?no=<%=data.getNo()%>'"/>
-									<%if(DateUtil.getDiff(data.getReleaseDate(), DateUtil.getToday())<=14){%><input type="button" class="btn" value="예매"/>
+									<%if(DateUtil.getDiff(data.getReleaseDate(), DateUtil.getToday())<=14){%><input type="button" class="btn" value="예매" onclick="showDialogue('<%=data.getNo()%>');"/>
 									<%} %>
 								</dd>
 							</dl>

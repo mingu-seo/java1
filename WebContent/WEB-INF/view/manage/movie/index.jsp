@@ -31,10 +31,6 @@ function goDelete(v) {
 	}
 }
 
-function goSearch() {
-	$("#searchForm").submit();
-}
-
 </script>
 </head>
 <body> 
@@ -192,7 +188,6 @@ function goSearch() {
 										<td <%=targetUrl%>><%=data.getEndDate()%></td>
 										<td <%=targetUrl%>><img src="<%=SiteProperty.MOVIE_UPLOAD_PATH%><%=data.getPoster()%>" width="100px" height="150px"></img></td>
 										<td <%=targetUrl%>><% if(data.getDisplay()==0){out.print("노출");} else {out.print("숨김");}%></td>
-										
 									</tr>
 								<%
 										}

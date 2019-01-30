@@ -93,7 +93,7 @@ html, body {
 .head_top .size .login_info .middle_area .input_area {text-align:center; padding-right:10px; width:200px; float:left; height:70px;}
 .head_top .size .login_info .middle_area .input_area input[type=text]{margin-bottom:6px;}
 .head_top .size .login_info .middle_area .login_btn input[type=submit]{
-	background: #c3d69b;
+	background: #351f66;
     color: #fff;
     width: 100%;
     height: 100%;
@@ -123,11 +123,11 @@ html, body {
  _:-ms-input-placeholder, :root .head_bot .depth1 > li > a {font-size:16px; font-weight:600;}
 
 .head_bot .depth1 > li:first-child > a {border-left:1px solid #dadada; }
-.head_bot .depth1 > li > a.on, .head_bot .depth1 > li > a:hover, .head_bot .depth1 > li > a.active {background:#c3d69b; color:#fff; }
+.head_bot .depth1 > li > a.on, .head_bot .depth1 > li > a:hover, .head_bot .depth1 > li > a.active {background:#351f66; color:#fff; }
 .head_bot .depth2 { display:none; position:absolute; width:100%; left:0;box-shadow:2px 2px 2px rgba(0,0,0,.2);background:rgba(255,255,255,.95); padding-bottom:20px; z-index:10;}
 .head_bot .depth2 > li > a { display:block; text-align:center; height:45px; line-height:45px; color:#2f3134; font-size:16px; transition:all .2s; -webkit-transition:all .2s; letter-spacing:-.5px;}
  _:-ms-input-placeholder, :root .head_bot .depth2 > li > a {font-size:15px; letter-spacing:-.5px;}
-.head_bot .depth2 > li > a:hover, .head_bot .depth2 > li > a.active {background:#c3d69b; color:#fff; font-weight:500; }
+.head_bot .depth2 > li > a:hover, .head_bot .depth2 > li > a.active {background:#351f66; color:#fff; font-weight:500; }
 
 
 

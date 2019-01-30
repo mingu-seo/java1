@@ -65,6 +65,10 @@ public class MemberDAO extends SqlMapClientDAOSupport {
 		return (MemberVO)getSqlMapClient().queryForObject("member.read", no);
 	}
 	
+	public MemberVO scrDate(int no) throws SQLException {
+		return (MemberVO)getSqlMapClient().queryForObject("member.srcDate", no);
+	}
+	
 	
 	public int loginCheck(MemberVO param) throws SQLException {
 		return (Integer) getSqlMapClient().queryForObject("member.loginCheck", param);

@@ -1,19 +1,16 @@
 package movie;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-
-import manage.admin.AdminVO;
-import property.SiteProperty;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import util.FileUtil;
+import ticket1.Ticket1Service;
+import ticket1.Ticket1VO;
 import util.Function;
 
 @Controller
@@ -21,6 +18,9 @@ public class MovieController {
 
 	@Autowired
 	MovieService movieService;
+	
+	@Autowired
+	private Ticket1Service ticket1Service;
 	
 	@RequestMapping("/manage/movie/index.do")
 	public String index(Model model, MovieVo param) throws Exception {
@@ -187,4 +187,27 @@ public class MovieController {
 		
 		return "include/alert";
 	}
+	//나영=예매페이지에날짜뿌리는중
+		@RequestMapping("/ticket/index.do")
+		public String ticketDate(Model model, Ticket1VO param, MovieVo vo) throws Exception {
+			ArrayList<Ticket1VO> date = ticket1Service.date(param);
+			model.addAttribute("date", date);
+			
+			ArrayList<MovieVo> list = movieService.tkmovielist(vo);
+			int[] tkmovieCount = movieService.tkmoviecount(vo);
+			
+			
+			model.addAttribute("totCount", tkmovieCount[0]);
+			model.addAttribute("totPage", tkmovieCount[1]);
+			model.addAttribute("param", param);
+			model.addAttribute("vo", vo);
+			model.addAttribute("list", list);
+			
+			
+			
+			
+			return "ticket/index";
+		}
+	
+	
 }

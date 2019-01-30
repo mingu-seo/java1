@@ -152,7 +152,6 @@ public class MovieService {
 	}
 	
 	public int insertActor(int movie_no, HttpServletRequest request) throws Exception {
-		
 		ActorVo av = new ActorVo();
 		av.setMovie_no(movie_no);
 		av.setActor1(request.getParameter("actor1"));
@@ -166,8 +165,14 @@ public class MovieService {
 		return r;
 		
 	}
+	
 	public MovieVo read(MovieVo vo, boolean userCon) throws Exception {
 		MovieVo data = movieDao.read(vo);
+		return data;
+	}
+	
+	public ArrayList read(MovieVo vo) throws Exception {
+		ArrayList data = movieDao.scrDate(vo);
 		return data;
 	}
 	
@@ -187,8 +192,6 @@ public class MovieService {
 
 	public int update(MovieVo vo, HttpServletRequest request) throws Exception {
 		MovieVo data = movieDao.read(vo);
-		
-		
 		String[] genreArr = request.getParameterValues("genre");
 		String genreVal = "";
 		for (int i=0; i<genreArr.length; i++) {
@@ -401,6 +404,19 @@ public int actorUpdate (int movie_no, HttpServletRequest request) throws Excepti
 		return null;
 	}
 
+	//나영=예매페이지에영화리스트
+	public ArrayList tkmovielist(MovieVo vo) throws Exception {
+		ArrayList list = movieDao.tkmovielist(vo);
+		return list;
+	}
+		public int[] tkmoviecount(MovieVo vo) throws Exception {
+		int rowCount = movieDao.tkmoviecount(vo);
+		int[] rowPageCount = new int[2];
+		int pageCount = Page.getPageCount(vo.getPageRows(), rowCount);
+		rowPageCount[0] = rowCount;
+		rowPageCount[1] = pageCount;
+		return rowPageCount;
+	}
 
 
 }

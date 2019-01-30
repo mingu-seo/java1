@@ -3,7 +3,12 @@
 <%@ page import="util.*" %>
 <%@ page import="java.util.*" %>
 <%@ page import="movie.*" %>
-
+<%@ page import="ticket1.*" %>
+<%
+ArrayList<Ticket1VO> date = (ArrayList)request.getAttribute("date");
+ArrayList<MovieVo> list = (ArrayList)request.getAttribute("list");
+MovieVo movie = (MovieVo) request.getAttribute("vo");
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -23,199 +28,78 @@
 		<div class="size">
 			<h3 class="sub_title">예매</h3>
 			<div class="dateList">
-				<div class="dateArea">
-					<span class="month">1</span>
-					<span class="date">/23</span>
+			<% Ticket1VO data;
+				for(int i=0; i<date.size();i++) {
+					data = date.get(i);
+			%> 
+				<div class="dateArea <%=data.getToday().equals(movie.getTkdate()) ? "active":""%>" onclick="location.href='index.do?tkdate=<%=data.getToday()%>'">
+					<span class="month">
+					<% if (i==0 || data.getToday().substring(8,10).equals("01")) { %>
+						<% if (data.getToday().substring(5,6).equals("0")) { %>
+						<%=data.getToday().substring(6,7) %>
+						<%} else {%>
+						<%=data.getToday().substring(5,7)%>
+						<% } %>/
+					<%} %>
+					</span>
+					<span class="date <%if(data.getYoil()==7){ %>sat<%} else if (data.getYoil()==1){%> sun<%}%>">
+					<% if (data.getToday().substring(8,9).equals("0")) {%>
+						<%=data.getToday().substring(9,10) %>
+						<% }else{ %>
+						<%=data.getToday().substring(8,10) %>
+						<%} %>
+					</span>
 				</div>
-				<div class="dateArea">
-					<span class="date">24</span>
-				</div>
-				<div class="dateArea">
-					<span class="date">25</span>
-				</div>
-				<div class="dateArea">
-					<span class="date sat">26</span>
-				</div>
-				<div class="dateArea">
-					<span class="date sun">27</span>
-				</div>
-				<div class="dateArea">
-					<span class="date">28</span>
-				</div>
-				<div class="dateArea">
-					<span class="date">29</span>
-				</div>
-				<div class="dateArea">
-					<span class="date">30</span>
-				</div>
-				<div class="dateArea">
-					<span class="date">31</span>
-				</div>
-				<div class="dateArea">
-					<span class="month">2</span>
-					<span class="date">/01</span>
-				</div>
-				<div class="dateArea">
-					<span class="date sat">02</span>
-				</div>
-				<div class="dateArea">
-					<span class="date sun">03</span>
-				</div>
-				<div class="dateArea">
-					<span class="date">04</span>
-				</div>
-				<div class="dateArea">
-					<span class="date">05</span>
-				</div>
+			<%} %>
 			</div>
-			<div class="bbs">
+			
+			<div class="bbs"> 
 				<div class="ticket">
 					<ul>
+					<% MovieVo moviedata;
+							for(int i=0; i<list.size(); i++) {
+								moviedata = list.get(i);
+								%>
 						<li>
 							<a href="javascript:showDialogue();">
 							<dl>
 								<dt class="img">
-										<img src="/img/poster1.jpg" alt=""/>
+										<img src="<%=SiteProperty.MOVIE_UPLOAD_PATH%><%=moviedata.getPoster()%>" alt=""/>
 								</dt>
 								<dd class="title">
-									랄프2 : 인터넷 속으로
+								<%=moviedata.getTitle() %>
+									<%if(moviedata.getRating()==19) {%>
+									<img src="/img/19.png" width="30"> 
+									<%}else if(moviedata.getRating()==15) {  %>
+									<img src="/img/15.png" width="30">
+									<%}else if(moviedata.getRating()==12) {  %>
+									<img src="/img/12.png" width="30">
+									<%}else { %>
+									<img src="/img/all.png" width="30"> <%} %>
+								</dd>
+								<dd class="txt_l">
+								감독 : <%=moviedata.getDirector() %>
+								</dd>
+								<dd class="txt_l">
+								장르 : <%=moviedata.getGenre() %>
 								</dd>
 								<dd class="contents">
-									어쩌고 저쩌고, 이러전 저런 기타 등등.....
+								<%=Function.strCut(moviedata.getContents(), "", 70, 0, true, true)%>
 								</dd>
 							</dl>
 							</a>
 						</li>
-							<li>
-							<a href="javascript:showDialogue();">
-							<dl>
-								<dt class="img">
-										<img src="/img/poster2.jpg" alt=""/>
-								</dt>
-								<dd class="title">
-									말모이
-								</dd>
-								<dd class="contents">
-									어쩌고 저쩌고, 이러전 저런 기타 등등.....
-								</dd>
-							</dl>
-							</a>
-						</li>
-						<li>
-							<a href="javascript:showDialogue();">
-							<dl>
-								<dt class="img">
-										<img src="/img/poster3.jpg" alt=""/>
-								</dt>
-								<dd class="title">
-									내안의 그놈
-								</dd>
-								<dd class="contents">
-									어쩌고 저쩌고, 이러전 저런 기타 등등.....
-								</dd>
-							</dl>
-							</a>
-						</li>
-						<li>
-							<a href="javascript:showDialogue();">
-							<dl>
-								<dt class="img">
-										<img src="/img/poster1.jpg" alt=""/>
-								</dt>
-								<dd class="title">
-									랄프2 : 인터넷 속으로
-								</dd>
-								<dd class="contents">
-									어쩌고 저쩌고, 이러전 저런 기타 등등.....
-								</dd>
-							</dl>
-							</a>
-						</li>
-							<li>
-							<a href="javascript:showDialogue();">
-							<dl>
-								<dt class="img">
-										<img src="/img/poster2.jpg" alt=""/>
-								</dt>
-								<dd class="title">
-									말모이
-								</dd>
-								<dd class="contents">
-									어쩌고 저쩌고, 이러전 저런 기타 등등.....
-								</dd>
-							</dl>
-							</a>
-						</li>
-						<li>
-							<a href="javascript:showDialogue();">
-							<dl>
-								<dt class="img">
-										<img src="/img/poster3.jpg" alt=""/>
-								</dt>
-								<dd class="title">
-									내안의 그놈
-								</dd>
-								<dd class="contents">
-									어쩌고 저쩌고, 이러전 저런 기타 등등.....
-								</dd>
-							</dl>
-							</a>
-						</li>
-						<li>
-							<a href="javascript:showDialogue();">
-							<dl>
-								<dt class="img">
-										<img src="/img/poster1.jpg" alt=""/>
-								</dt>
-								<dd class="title">
-									랄프2 : 인터넷 속으로
-								</dd>
-								<dd class="contents">
-									어쩌고 저쩌고, 이러전 저런 기타 등등.....
-								</dd>
-							</dl>
-							</a>
-						</li>
-							<li>
-							<a href="javascript:showDialogue();">
-							<dl>
-								<dt class="img">
-										<img src="/img/poster2.jpg" alt=""/>
-								</dt>
-								<dd class="title">
-									말모이
-								</dd>
-								<dd class="contents">
-									어쩌고 저쩌고, 이러전 저런 기타 등등.....
-								</dd>
-							</dl>
-							</a>
-						</li>
-						<li>
-							<a href="javascript:showDialogue();">
-							<dl>
-								<dt class="img">
-										<img src="/img/poster3.jpg" alt=""/>
-								</dt>
-								<dd class="title">
-									내안의 그놈
-								</dd>
-								<dd class="contents">
-									어쩌고 저쩌고, 이러전 저런 기타 등등.....
-								</dd>
-							</dl>
-							</a>
-						</li>
+						<%} %>
 					</ul>
 				</div>
 			
 				<div class="pagenate clear">
-					<li><a href='javascript:;' class='current'>1</a></li>
 				</div>
 			</div>
+
 		</div>
+		
 	</div>
-    
     <%@ include file="/WEB-INF/view/include/footer.jsp" %>
      
 </body>

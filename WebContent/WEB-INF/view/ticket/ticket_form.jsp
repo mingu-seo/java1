@@ -4,9 +4,11 @@
 <%@ page import="java.util.*" %>
 <%@ page import="movie.*" %>
 <%@ page import="member.*" %>
+<%@ page import="ticket1.*" %>
 <% 
 MovieVo param = (MovieVo)request.getAttribute("vo");
 MovieVo data = (MovieVo) request.getAttribute("data");
+ArrayList<Ticket1VO> movieDate = (ArrayList)request.getAttribute("movieDate");
 %>
 <div class="dialogue_top">
 		<span class="title">영화 예매</span>
@@ -29,9 +31,17 @@ MovieVo data = (MovieVo) request.getAttribute("data");
 						<td>
 							<div class="title">
 							<%=data.getTitle() %>
+							<%if(data.getRating()==19) {%>
+							<img src="/img/19.png" width="30"> 
+							<%}else if(data.getRating()==15) {  %>
+							<img src="/img/15.png" width="30">
+							<%}else if(data.getRating()==12) {  %>
+							<img src="/img/12.png" width="30">
+							<%}else { %>
+							<img src="/img/all.png" width="30"> <%} %>
 							</div>
-							<div class="contents">
-							어쩌고 저쩌고, 이러전 저런 기타 등등.....
+							<div class="info_detail">
+							<strong>장르</strong>&nbsp; <%=data.getGenre()%>
 							</div>
 						</td>
 					</tr>
@@ -39,47 +49,51 @@ MovieVo data = (MovieVo) request.getAttribute("data");
 						<th>일자</th>
 						<td>
 							<select name="">
-								<option value="2018-02-01">2018-02-01</option>
-								<option value="2018-02-02">2018-02-02</option>
-								<option value="2018-02-03">2018-02-03</option>
-								<option value="2018-02-04">2018-02-04</option>
+						<% Ticket1VO date;
+							for(int i=0; i<movieDate.size();i++) {
+								date = movieDate.get(i);
+								%>
+								<option value="<%=date.getToday()%>"><%=date.getToday()%></option>
+						<%	} %>
 							</select>
 						</td>
 					</tr>
 					<tr>
 						<th>시간</th>
 						<td>
-							<select name="" id="">
-								<option value="">10:30</option>
-								<option value="">11:00</option>
-								<option value="">11:30</option>
-								<option value="">12:00</option>
+							<select name="screen_time" id="">
+								<option value="1">09:00</option>
+								<option value="2">12:00</option>
+								<option value="3">15:00</option>
+								<option value="4">18:00</option>
+								<option value="5">21:00</option>
 							</select>
 						</td>
 					</tr>
 					<tr>
 						<th>인원</th>
 						<td>
-							<select name="" id="">
-								<option value="">1</option>
-								<option value="">2</option>
-								<option value="">3</option>
+							<select name="tk_count" id="tk_count">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
 							</select>
 						</td>
 					</tr>
 					<tr>
 						<th>포맷</th>
 						<td>
-							<input type="radio" value=""><label>2D</label>
-							<input type="radio" value=""><label>IMAX</label>
-							<input type="radio" value=""><label>3D</label>
-							<input type="radio" value=""><label>4D</label>
+							<input type="radio" name="format" value="1" checked><label>2D</label>
+							<input type="radio" name="format" value="2"><label>3D</label>
+							<input type="radio" name="format" value="3"><label>4D</label>
+							<input type="radio" name="format" value="4"><label>IMAX</label>
 						</td>
 					</tr>
 					<tr>
 						<th>보유포인트</th>
 						<td>
-							<input type="text" name="" id=""  value=""/> 점
+							<input type="text" name="" id=""  value="" onkeyup="isOnlyNumber(this);"/> 점
 							<input type="button" class="btn" value="확인">
 						</td>
 					</tr>
@@ -93,18 +107,19 @@ MovieVo data = (MovieVo) request.getAttribute("data");
 					<tr>
 						<th>결제수단</th>
 						<td>
-							<input type="radio" value=""><label>무통장입금</label>
-							<input type="radio" value=""><label>신용카드</label>
+							<input type="radio" name="pay" value="1"><label>무통장입금</label>
+							<input type="radio" name="pay" value="2"><label>신용카드</label>
 						</td>
 					</tr>
 					<tr>
 						<th>결제금액</th>
 						<td>
-							<span class="totalPrice">20,000원</span>
+							<span class="totalPrice"> 원</span>
 						</td>
 					</tr>
 					</tbody>
 				</table>
+			<input type="hidden" name="price" id="price" value=""/>
 			</form>	
 			</div>
 			<!-- //wr_box -->

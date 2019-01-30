@@ -808,5 +808,25 @@ public class CodeUtil {
 	    }
 	    return result;
 	}
+	 
+	 public static String getFormatName(int type){
+		    String result = null;
+		    
+		    switch ( type ){
+		    	case 1 :
+		    	    result = "2D";
+		    break;
+				case 2 :
+				    result = "3D";
+				    break;
+				case 3 :
+				    result = "4D";
+				    break;
+				case 4 :
+				    result = "IMAX";
+				    break;
+		    }
+		    return result;
+		}
 	 	
 }

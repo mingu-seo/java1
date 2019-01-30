@@ -60,7 +60,7 @@
          ]]>
         <include refid="searchSql" />	
     </select>    
-        
+    
 	<select id="list" parameterClass="movie_vo" resultClass="movie_vo">
         select *
         from $tablename$
@@ -72,7 +72,7 @@
         select *
         from $tablename$
           <![CDATA[
-        where releaseDate <= now() and endDate >= now()
+        where releaseDate <= substring(now(),1,10) and endDate >= substring(now(),1,10)
          ]]>
         <include refid="searchSql" />
 		ORDER BY releaseDate DESC LIMIT $startPageNo$, $pageRows$
@@ -241,6 +241,14 @@
         where no = #no#
     </select>
     
+    <select id="scrDate" parameterClass="movie_vo" resultClass="movie_vo">
+    	<![CDATA[
+        SELECT today, name as yoil from calendar
+		where today >= substring(now(), 1, 10)
+		and today < date_add(substring(now(), 1, 10), interval 14 day)        	
+        ]]>
+    </select>
+    
     <select id="readStillCut" parameterClass="Integer" resultClass="stillCut_vo">
     SELECT *
     FROM STILLCUT
@@ -325,5 +333,24 @@
         <include refid="searchSql" />
 		ORDER BY releaseDate DESC LIMIT 0, $number$
     </select>
+    
+    <!--예매페이지에서 영화리스트(나영)-->
+    <select id="tkmoviecount" parameterClass="movie_vo" resultClass="Integer">
+         <![CDATA[
+        select count(*) from movie
+        where releasedate <= #tkdate#
+        and enddate >= #tkdate#
+         ]]>
+    </select>
+    
+    	<select id="tkmovielist" parameterClass="movie_vo" resultClass="movie_vo">
+        select *
+        from movie
+          <![CDATA[
+        where releasedate <= #tkdate#
+        and enddate >= #tkdate#
+         ]]>
+    </select>
+	
     
 </sqlMap>

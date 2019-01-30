@@ -31,16 +31,24 @@
 	</div>
 <script>
 function showDialogue(movie_no) {
-	
+<% if (memberInfo == null) { %>
+	alert("회원가입후 예매해 주세요");
+
+<% } else { %>
 	$.ajax({
 		url: "/ticket/ticket_form.do",
 		data : {"no": movie_no},
 		success : function(data) {
 			$("#ticket_dialogue").html(data);
+			cal();
+			$("#tk_count").change(function() {
+				cal();
+			});
+			$("input[name='format']").click(function(){
+				cal();
+			})
 		}
 	})
-	
-	
 	
 	var maskHeight = $(document).height(); 
 	var maskWidth = $(window).width();
@@ -59,14 +67,37 @@ function showDialogue(movie_no) {
 		'margin-top': -t_dialog.outerHeight() / 2 + 'px'
 	});
 	t_dialog.show();
+<% } %>	
 }
 
 function hideDialogue() {
 	$("#ticket_dialogue").hide();
 	$("#mask").hide();
 }
+
+function cal() {
+	var tkcount = $("#tk_count").val();
+	var format = $("input[name='format']:checked").val();
+	//console.log(tkcount);
+	//console.log(format);
+	
+	var formatPrice = 0;
+	if (format == "1") {
+		formatPrice = 10000;
+	} else if (format == "2") {
+		formatPrice = 12000;
+	} else if (format == "3") {
+		formatPrice = 14000;
+	} else if (format == "4") {
+		formatPrice = 16000;
+	}
+	
+	var totalPrice = formatPrice * tkcount;
+	console.log(totalPrice);
+	$(".totalPrice").html(numberWithCommas(totalPrice)+"원");
+	$("#price").val(totalPrice);
+}
 </script>
 <div id="ticket_dialogue" class="dialogue_wr popupContent">
-	
 </div>
 <div id="mask"></div>

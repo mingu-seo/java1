@@ -47,7 +47,7 @@ int totPage = (Integer)request.getAttribute("totPage"); %>
 								</dd>
 								<dd class="btnArea">
 									<input type="button" class="btn" value="상세" onclick="location.href='detail.do?no=<%=data.getNo()%>';"/>
-									<input type="button" class="btn" value="예매" onclick="showDialogue();"/>
+									<input type="button" class="btn" value="예매" onclick="showDialogue('<%=data.getNo()%>');"/>
 								</dd>
 							</dl>
 							</a>
