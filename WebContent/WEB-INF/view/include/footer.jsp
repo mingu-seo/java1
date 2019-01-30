@@ -31,7 +31,10 @@
 	</div>
 <script>
 function showDialogue(movie_no) {
-	
+<% if (memberInfo == null) { %>
+	alert("회원가입후 예매해 주세요");
+
+<% } else { %>
 	$.ajax({
 		url: "/ticket/ticket_form.do",
 		data : {"no": movie_no},
@@ -46,8 +49,6 @@ function showDialogue(movie_no) {
 			})
 		}
 	})
-	
-	
 	
 	var maskHeight = $(document).height(); 
 	var maskWidth = $(window).width();
@@ -66,6 +67,7 @@ function showDialogue(movie_no) {
 		'margin-top': -t_dialog.outerHeight() / 2 + 'px'
 	});
 	t_dialog.show();
+<% } %>	
 }
 
 function hideDialogue() {
