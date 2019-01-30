@@ -97,6 +97,5 @@ function cal() {
 }
 </script>
 <div id="ticket_dialogue" class="dialogue_wr popupContent">
-	
 </div>
 <div id="mask"></div>
