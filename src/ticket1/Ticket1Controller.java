@@ -89,12 +89,17 @@ public class Ticket1Controller {
 	}
 	
 	
-	@RequestMapping("/manage/ticket/process.do")
+	@RequestMapping("/manage/ticket1/process.do")
 	public String ticketProcess(Model model, Ticket1VO param, HttpServletRequest request) throws Exception {
 		if ("edit.do".equals(param.getCmd())) {
 			int r = ticket1Service.update(param);
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "정상적으로 수정되었습니다.", "수정실패"));
+			model.addAttribute("url", param.getTargetURLParam("index.do", param, 0));
+		}else if ("delete.do".equals(param.getCmd())) {
+			int r = ticket1Service.delete(param.getNo());
+			model.addAttribute("code", "alertMessageUrl");
+			model.addAttribute("message", Function.message(r, "정상적으로 삭제되었습니다.", "삭제실패"));
 			model.addAttribute("url", param.getTargetURLParam("index.do", param, 0));
 		}
 		return "include/alert";

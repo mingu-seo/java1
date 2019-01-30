@@ -57,4 +57,10 @@ public class Ticket1Service extends SqlMapClientDAOSupport{
 		int cnt = ticket1Dao.update(vo);
 		return cnt;
 	}
+	
+	public int delete(int no) throws SQLException {
+		int cnt = ticket1Dao.delete(no);
+		return cnt;
+	}
+	
 }

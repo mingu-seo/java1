@@ -65,6 +65,23 @@
         where no = #no#
     </select>
     
+    <update id="update" parameterClass="ticket1VO">
+    	update ticket1 set
+    	format=#format#, screen_date=#screen_date#, screen_time=#screen_time#, 
+    	pay_state=#pay_state#, res_state=#res_state#, tk_count=#tk_count#, price=#price#
+    	<isEqual property="res_state" compareValue="2">
+    	, cancel_date=now()
+    	</isEqual>
+    	<isEqual property="res_state" compareValue="1">
+    	, cancel_date=null
+    	</isEqual>
+    	where no = #no#
+    </update>
+    
+    <delete id="delete" parameterClass="Integer">
+        delete from ticket1 where no=#no#
+    </delete>
+    
     <select id="date" resultClass="ticket1VO">
     <![CDATA[
     	select today, name as yoil from calendar

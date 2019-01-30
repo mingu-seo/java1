@@ -15,7 +15,7 @@ Ticket1VO data = (Ticket1VO)request.getAttribute("data");
 	function goDelete() {
 		var del = confirm ('삭제하시겠습니까?');
 		if (del){
-			document.location.href = "process?no=<%=data.getNo()%>&cmd=delete";
+			document.location.href = "process.do?no=<%=data.getNo()%>&cmd=delete.do";
 		} else {
 			return false;
 		}
@@ -62,11 +62,11 @@ Ticket1VO data = (Ticket1VO)request.getAttribute("data");
 									</tr>
 										
 									<tr>
-										<th scope="row"><label for="">영화 제목</label></th>
+										<th scope="row">영화 제목</th>
 										<td><%=data.getMovie_title()%></td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">포멧</label></th>
+										<th scope="row">포멧</th>
 										<td>
 										<%
 										if(data.getFormat()==1){
@@ -82,11 +82,11 @@ Ticket1VO data = (Ticket1VO)request.getAttribute("data");
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">상영일</label></th>
+										<th scope="row">상영일</th>
 										<td><%=data.getScreen_date()%></td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">상영시간</label></th>
+										<th scope="row">상영시간</th>
 										<td>
 										<%if(data.getScreen_time()==1){
 											out.print("09:00");
@@ -103,7 +103,7 @@ Ticket1VO data = (Ticket1VO)request.getAttribute("data");
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">결제상태</label></th>
+										<th scope="row">결제상태</th>
 										<td>
 										<%if(data.getPay_state()==1){
 											out.print("결제완료");
@@ -118,7 +118,7 @@ Ticket1VO data = (Ticket1VO)request.getAttribute("data");
 										<td><%=data.getRes_date()%></td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">예매상태</label></th>
+										<th scope="row">예매상태</th>
 										<td>
 										<%if(data.getRes_state()==1){
 											out.print("예매완료");
@@ -129,7 +129,7 @@ Ticket1VO data = (Ticket1VO)request.getAttribute("data");
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">예매취소일</label></th>
+										<th scope="row">예매취소일</th>
 										<td>
 										<%if(data.getCancel_date()!=null){
 											out.print(data.getCancel_date());
@@ -143,7 +143,7 @@ Ticket1VO data = (Ticket1VO)request.getAttribute("data");
 									</tr>
 									<tr>
 										<th>금액</th>
-										<td><%=data.getPrice()%></td>
+										<td><%=Function.getNumberFormat(Integer.parseInt(data.getPrice()))%>원</td>
 									</tr>
 								</tbody>
 							</table>

@@ -18,10 +18,40 @@ ArrayList<MovieVo> list = (ArrayList)request.getAttribute("scrDate");
 <script>
 
 function goSave() {
-	// 비밀번호 유효성체크
-	if(!validPassword($("#pw"))) return false;
 	
 	$("#frm").submit();
+}
+
+$(function(){
+	$("#tk_count").change(function() {
+		cal();
+	});
+	$("#format").change(function(){
+		cal();
+	});
+})
+
+
+
+function cal() {
+	var tkcount = $("#tk_count").val();
+	var format = $("#format").val();
+	
+	var formatPrice = 0;
+	if (format == "1") {
+		formatPrice = 10000;
+	} else if (format == "2") {
+		formatPrice = 12000;
+	} else if (format == "3") {
+		formatPrice = 14000;
+	} else if (format == "4") {
+		formatPrice = 16000;
+	}
+	
+	var totalPrice = formatPrice * tkcount;
+	$(".totalPrice").html(numberWithCommas(totalPrice)+"원");
+	$("#price").val(totalPrice);
+	
 }
 
 </script>
@@ -73,7 +103,7 @@ function goSave() {
 									<tr>
 										<th scope="row">포멧</th>
 										<td>
-											<select name="format">
+											<select id="format" name="format">
 											<%
 											String format = mparam.getFormat();
 											
@@ -81,7 +111,7 @@ function goSave() {
 												
 											
 											for(int i=0; i<formatArr.length; i++){
-												out.println("<option value='"+formatArr[i]+"' "+Function.getSelected(formatArr[i], CodeUtil.getFormatName(data.getFormat()))+"> "+formatArr[i]+"</option>");
+												out.println("<option value='"+(i+1)+"' "+Function.getSelected(formatArr[i], CodeUtil.getFormatName(data.getFormat()))+"> "+formatArr[i]+"</option>");
 											}
 											%>
 											</select>
@@ -90,7 +120,7 @@ function goSave() {
 									<tr>
 										<th scope="row">상영일</th>
 										<td>
-											<select>
+											<select id="screen_date" name="screen_date">
 											<%
 											for (int i =0; i<list.size(); i++) {
 											%>
@@ -116,7 +146,7 @@ function goSave() {
 									<tr>
 										<th>결제상태</th>
 										<td>
-											<select>
+											<select id="pay_state" name="pay_state">
 												<option value="1" <%if(data.getPay_state()==1){out.print("selected");} %>>결제완료</option>
 												<option value="2" <%if(data.getPay_state()==2){out.print("selected");} %>>결제 미완료</option>
 											</select>
@@ -125,7 +155,7 @@ function goSave() {
 									<tr>
 										<th>예매상태</th>
 										<td>
-											<select>
+											<select id="res_state" name="res_state">
 												<option value="1" <%if(data.getRes_state()==1){out.print("selected");} %>>예매 완료</option>
 												<option value="2" <%if(data.getRes_state()==2){out.print("selected");} %>>예매 취소</option>
 											</select>
@@ -134,22 +164,18 @@ function goSave() {
 									<tr>
 										<th>티켓수</th>
 										<td>
-											<select>
+											<select id="tk_count" name="tk_count">
 												<option value="1" <%if(data.getTk_count()==1){out.print("selected");} %>>1</option>
 												<option value="2" <%if(data.getTk_count()==2){out.print("selected");} %>>2</option>
 												<option value="3" <%if(data.getTk_count()==3){out.print("selected");} %>>3</option>
 												<option value="4" <%if(data.getTk_count()==4){out.print("selected");} %>>4</option>
-												<option value="5" <%if(data.getTk_count()==5){out.print("selected");} %>>5</option>
-												<option value="6" <%if(data.getTk_count()==6){out.print("selected");} %>>6</option>
-												<option value="7" <%if(data.getTk_count()==7){out.print("selected");} %>>7</option>
-												<option value="8" <%if(data.getTk_count()==8){out.print("selected");} %>>8</option>
 											</select>
 										</td>
 									</tr>
 									<tr>
 										<th>금액</th>
 										<td>
-											<input type="text" id="price" name="price" value="<%=data.getPrice() %>"/>
+											<span class="totalPrice"><%=data.getPrice()%> 원</span>
 										</td>
 									</tr>
 								</tbody>
@@ -158,6 +184,7 @@ function goSave() {
 							<input type="hidden" name="stype" id="stype" value="<%=param.getStype()%>"/>
 							<input type="hidden" name="sval" id="sval" value="<%=param.getSval()%>"/>
 							<input type="hidden" name="no" id="no" value="<%=param.getNo()%>"/>
+							<input type="hidden" name="price" id="price" value="<%=data.getPrice()%>"/>
 							</form>
 							<div class="btn">
 								<div class="btnLeft">

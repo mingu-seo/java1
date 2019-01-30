@@ -28,6 +28,10 @@ public class Ticket1DAO extends SqlMapClientDAOSupport{
 		return getSqlMapClient().update("ticket1.update", vo);
 	}
 	
+	public int delete(int no) throws SQLException {
+		return getSqlMapClient().delete("ticket1.delete", no);
+	}
+	
 	public ArrayList date(Ticket1VO param) throws SQLException {
 		return (ArrayList)getSqlMapClient().queryForList("ticket1.date", param);
 	}
