@@ -59,19 +59,19 @@ function goSave() {
 								</colgroup>
 								<tbody>
 									<tr>
-										<th scope="row"><label for="">회원명</label></th>
+										<th scope="row">회원명</th>
 										<td>
 											<%=data.getMember_name()%>
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">영화제목</label></th>
+										<th scope="row">영화제목</th>
 										<td>
 											<%=data.getMovie_title()%>
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">포멧</label></th>
+										<th scope="row">포멧</th>
 										<td>
 											<select name="format">
 											<%
@@ -88,7 +88,7 @@ function goSave() {
 										</td>
 									</tr>
 									<tr>
-										<th scope="row"><label for="">상영일</label></th>
+										<th scope="row">상영일</th>
 										<td>
 											<select>
 											<%
@@ -136,14 +136,20 @@ function goSave() {
 										<td>
 											<select>
 												<option value="1" <%if(data.getTk_count()==1){out.print("selected");} %>>1</option>
-												<option value="2" <%if(data.getTk_count()==1){out.print("selected");} %>>2</option>
-												<option value="3" <%if(data.getTk_count()==1){out.print("selected");} %>>3</option>
-												<option value="4" <%if(data.getTk_count()==1){out.print("selected");} %>>4</option>
-												<option value="5" <%if(data.getTk_count()==1){out.print("selected");} %>>5</option>
-												<option value="6" <%if(data.getTk_count()==1){out.print("selected");} %>>6</option>
-												<option value="7" <%if(data.getTk_count()==1){out.print("selected");} %>>7</option>
-												<option value="8" <%if(data.getTk_count()==1){out.print("selected");} %>>8</option>
+												<option value="2" <%if(data.getTk_count()==2){out.print("selected");} %>>2</option>
+												<option value="3" <%if(data.getTk_count()==3){out.print("selected");} %>>3</option>
+												<option value="4" <%if(data.getTk_count()==4){out.print("selected");} %>>4</option>
+												<option value="5" <%if(data.getTk_count()==5){out.print("selected");} %>>5</option>
+												<option value="6" <%if(data.getTk_count()==6){out.print("selected");} %>>6</option>
+												<option value="7" <%if(data.getTk_count()==7){out.print("selected");} %>>7</option>
+												<option value="8" <%if(data.getTk_count()==8){out.print("selected");} %>>8</option>
 											</select>
+										</td>
+									</tr>
+									<tr>
+										<th>금액</th>
+										<td>
+											<input type="text" id="price" name="price" value="<%=data.getPrice() %>"/>
 										</td>
 									</tr>
 								</tbody>

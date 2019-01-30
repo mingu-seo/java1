@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import movie.MovieService;
 import movie.MovieVo;
+import util.Function;
 
 @Controller
 public class Ticket1Controller {
@@ -88,6 +89,16 @@ public class Ticket1Controller {
 	}
 	
 	
+	@RequestMapping("/manage/ticket/process.do")
+	public String ticketProcess(Model model, Ticket1VO param, HttpServletRequest request) throws Exception {
+		if ("edit.do".equals(param.getCmd())) {
+			int r = ticket1Service.update(param);
+			model.addAttribute("code", "alertMessageUrl");
+			model.addAttribute("message", Function.message(r, "정상적으로 수정되었습니다.", "수정실패"));
+			model.addAttribute("url", param.getTargetURLParam("index.do", param, 0));
+		}
+		return "include/alert";
+	}
 	
 		
 }

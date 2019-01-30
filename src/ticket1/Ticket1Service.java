@@ -53,8 +53,8 @@ public class Ticket1Service extends SqlMapClientDAOSupport{
 		return vo;
 	}
 	
-//	public int update(Ticket1VO vo) throws SQLException {
-//		int cnt = ticket1Dao.update(vo);
-//		return cnt;
-//	}
+	public int update(Ticket1VO vo) throws SQLException {
+		int cnt = ticket1Dao.update(vo);
+		return cnt;
+	}
 }
