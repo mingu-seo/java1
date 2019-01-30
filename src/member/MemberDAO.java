@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Repository;
 
 import db.SqlMapClientDAOSupport;
-
+import ticket1.Ticket1VO;
 @Repository
 public class MemberDAO extends SqlMapClientDAOSupport {
 
@@ -16,6 +16,9 @@ public class MemberDAO extends SqlMapClientDAOSupport {
 		return (Integer)getSqlMapClient().queryForObject("member.count", param);
 	}
 	
+	public int mypageCount(Ticket1VO param) throws SQLException{
+		return (Integer)getSqlMapClient().queryForObject("ticket1.mypageCount", param);
+	}
 
 	/**
 	 * 관리자 목록 조회

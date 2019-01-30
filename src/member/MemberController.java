@@ -74,14 +74,16 @@ public class MemberController {
 	
 	//마이페이지 리턴
 	@RequestMapping("/mypage/index.do")
-	public String mypage(Model model, MemberVO param, Ticket1VO vo) throws Exception {
-		MemberVO memberInfo = memberService.getLoginSessionInfo(param);
-		int[] rowPageCount = ticket1Service.mypageCount(memberInfo.getNo());
-		ArrayList<Ticket1VO> list = ticket1Service.mypageTicketList(memberInfo.getNo());
+	public String mypage(Model model, MemberVO param, Ticket1VO vo, HttpSession session) throws Exception {
+		
+		MemberVO memberInfo = (MemberVO)session.getAttribute("memberInfo");
+		vo.setMember_pk(memberInfo.getNo());
+		int[] rowPageCount = ticket1Service.mypageCount(vo);
+		ArrayList<Ticket1VO> list = ticket1Service.mypageTicketList(vo);
 		model.addAttribute("totCount", rowPageCount[0]);
 		model.addAttribute("totPage", rowPageCount[1]);
-		model.addAttribute("param", param);
-		model.addAttribute("vo", vo);
+		model.addAttribute("list", list);
+
 		
 		return "mypage/reserve/index";
 	}

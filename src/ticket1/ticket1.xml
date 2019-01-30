@@ -44,6 +44,11 @@
         select count(*) from ticket1
         <include refid="searchSql" />	
     </select>
+    
+	<select id="mypageCount" parameterClass="ticket1VO" resultClass="Integer">
+        select count(*) from ticket1
+        where member_pk = #member_pk#
+    </select>
 	
     <select id="list" parameterClass="ticket1VO" resultClass="ticket1VO">
         select * ,
@@ -51,6 +56,14 @@
         (select name from member where member.no=ticket1.member_pk) as member_name
         from ticket1
         <include refid="searchSql" />
+		ORDER BY no DESC LIMIT $startPageNo$, $pageRows$	
+    </select>
+    
+    <select id="mypageTicketList" parameterClass="ticket1VO" resultClass="ticket1VO">
+        select t1.* , mv.title as movie_title
+        from ticket1 t1, movie mv
+        where t1.movie_pk = mv.no
+        and member_pk = #member_pk#
 		ORDER BY no DESC LIMIT $startPageNo$, $pageRows$	
     </select>
     

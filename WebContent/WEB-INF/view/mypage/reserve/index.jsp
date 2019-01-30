@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-
+<%@ page import="java.util.*" %>
+<%@ page import="ticket1.*" %>
+<%ArrayList<Ticket1VO> list = (ArrayList)request.getAttribute("list"); %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -31,6 +33,7 @@
 					<ul class="postList clear">
 						<li>
 							<div class="postObj">
+								<%for(int i=0; i<list.size(); i++){ %>
 								<div class="reserveNum">
 									예매번호 0013-1111-2222-3333
 								</div>
@@ -38,31 +41,32 @@
 									<img src="/img/poster1.jpg"/>
 								</div>
 								<div class="txt">
-									<div class="title">랄프2 : 인터넷 세상속으로</div>
+									<div class="title"><%=list.get(i).getMovie_title() %></div>
 									<div class="detail">
 										<table>
 											<tr>
 												<th>관람극장</th>
 												<td>MOVIE 일산</td>
 												<th>관림일시</th>
-												<td>2019.01.14(월) 11:00</td>
+												<td><%=list.get(i).getScreen_date() %></td>
 											</tr>
 											<tr>
 												<th>관림인원</th>
 												<td>PRIME석 일반1</td>
 												<th>매수</th>
-												<td>1매</td>
+												<td><%=list.get(i).getTk_count() %></td>
 											</tr>
 											<tr>
 												<th>예매일자</th>
-												<td>2019.01.01</td>
+												<td><%=list.get(i).getRes_date() %></td>
 												<th>총 결제금액</th>
-												<td>20,000원</td>
+												<td><%=list.get(i).getPrice() %></td>
 											</tr>
 										</table>
 									</div>
 									<div class="btn_area"><a href="javascript:;" class="btn" onclick="">예매취소</a></div>
 								</div>
+								<%} %>
 							</div>
 						</li>
 					</ul>
