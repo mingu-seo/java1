@@ -32,7 +32,7 @@ MovieVo movie = (MovieVo) request.getAttribute("vo");
 				for(int i=0; i<date.size();i++) {
 					data = date.get(i);
 			%> 
-				<div class="dateArea" onclick="location.href='index.do?tkdate=<%=data.getToday()%>'">
+				<div class="dateArea <%=data.getToday().equals(movie.getTkdate()) ? "active":""%>" onclick="location.href='index.do?tkdate=<%=data.getToday()%>'">
 					<span class="month">
 					<% if (i==0 || data.getToday().substring(8,10).equals("01")) { %>
 						<% if (data.getToday().substring(5,6).equals("0")) { %>
