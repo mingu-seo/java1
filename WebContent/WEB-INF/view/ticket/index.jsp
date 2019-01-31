@@ -3,7 +3,7 @@
 <%@ page import="util.*" %>
 <%@ page import="java.util.*" %>
 <%@ page import="movie.*" %>
-<%@ page import="ticket1.*" %>
+<%@ page import="ticket1.*" %>   
 <%
 ArrayList<Ticket1VO> date = (ArrayList)request.getAttribute("date");
 ArrayList<MovieVo> list = (ArrayList)request.getAttribute("list");
@@ -23,7 +23,6 @@ MovieVo movie = (MovieVo) request.getAttribute("vo");
 </head>
 <body>
     <%@ include file="/WEB-INF/view/include/header.jsp" %>
-    
      <div class="sub">
 		<div class="size">
 			<h3 class="sub_title">예매</h3>
@@ -52,14 +51,24 @@ MovieVo movie = (MovieVo) request.getAttribute("vo");
 				</div>
 			<%} %>
 			</div>
-			
 			<div class="bbs"> 
 				<div class="ticket">
+				<div>
+				<form name="orderForm" id="orderForm" action="index.do"  method="post">
+					<div class="search">
+						<select name="ordertype" onchange="$('#orderForm').submit();">
+							<option value="title" <%=Function.getSelected(movie.getOrdertype(), "title") %>>제목순</option>
+							<option value="releasedate" <%=Function.getSelected(movie.getOrdertype(), "releasedate") %>>개봉일순</option>
+							<option value="enddate" <%=Function.getSelected(movie.getOrdertype(), "enddate") %>>상영종료일순</option>
+						</select>
+					</div>
+				</form>
+				</div>
 					<ul>
 					<% MovieVo moviedata;
 							for(int i=0; i<list.size(); i++) {
 								moviedata = list.get(i);
-								%>
+					%>
 						<li>
 							<a href="javascript:showDialogue();">
 							<dl>

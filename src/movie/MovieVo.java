@@ -41,6 +41,7 @@ public class MovieVo extends Parameter {
 		this.setSgenre("");
 		this.setSrating(0);
 		this.setTkdate(DateUtil.getToday());
+		this.setOrdertype("releasedate");
 	}
 
 	public int getNo() {
