@@ -24,9 +24,13 @@ public class Ticket1DAO extends SqlMapClientDAOSupport{
 		return (Ticket1VO)getSqlMapClient().queryForObject("ticket1.read", no);
 	}
 	
-//	public int update(Ticket1VO vo) throws SQLException {
-//		return getSqlMapClient().update("ticket1.update", vo);
-//	}
+	public int update(Ticket1VO vo) throws SQLException {
+		return getSqlMapClient().update("ticket1.update", vo);
+	}
+	
+	public int delete(int no) throws SQLException {
+		return getSqlMapClient().delete("ticket1.delete", no);
+	}
 	
 	public ArrayList date(Ticket1VO param) throws SQLException {
 		return (ArrayList)getSqlMapClient().queryForList("ticket1.date", param);
@@ -34,13 +38,28 @@ public class Ticket1DAO extends SqlMapClientDAOSupport{
 
 
 	public int book(Ticket1VO vo) throws SQLException {
-		return (Integer)getSqlMapClient().insert("ticket1.book", vo);
+		return (Integer) getSqlMapClient().insert("ticket1.book", vo);
 	}
 	
 	
 	
 	public ArrayList aranMovieDate(int no) throws SQLException {
 		return (ArrayList)getSqlMapClient().queryForList("ticket1.aranMovieDate", no);
+	}
+
+
+	public int minusPoint(PointVo pv) throws SQLException {
+		return (Integer)getSqlMapClient().insert("ticket1.minusPoint", pv);
+	}
+
+
+	public static void main(String[] args) throws SQLException {
+		Ticket1DAO td = new Ticket1DAO();
+		Ticket1VO tv = new Ticket1VO();
+		PointVo pv = new PointVo();
+	pv.setPoint_no(10);
+	td.minusPoint(pv);
+		
 	}
 
 

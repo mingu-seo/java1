@@ -18,15 +18,7 @@ int totPage = (Integer)request.getAttribute("totPage");
 <script type="text/javascript" src="/js/function_jquery.js"></script>
 
 <script>
-	function groupDelete() {	
-		if ( isSeleted(document.frm.no) ){
-			if (confirm ('삭제하시겠습니까?')) {
-				document.frm.submit();
-			}
-		} else {
-			alert("삭제할 항목을 하나 이상 선택해 주세요.");
-		}
-		
+	
 	function goSearch() {
 		$("#searchForm").submit();
 	}
@@ -128,22 +120,20 @@ int totPage = (Integer)request.getAttribute("totPage");
 							<form name="frm" id="frm" action="process.do" method="post">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
 								<colgroup>
-									<col class="w1" />
+									<col class="w2" />
+									<col class="w3" />
+									<col class="w7" />
 									<col class="w3" />
 									<col class="w5" />
 									<col class="w7" />
 									<col class="w5" />
-									<col class="w7" />
-									<col class="w7" />
-									<col class="w10" />
-									<col class="w10" />
+									<col class="w5" />
 									<col class="w3" />
 									<col class="w3" />
 									<col class="w3" />
 								</colgroup>
 								<thead>
 									<tr>
-										<th scope="col" class="first"><input type="checkbox" name="allChk" id="allChk" onClick="check(this, document.frm.no)"/></th>
 										<th scope="col">번호</th>
 										<th scope="col">회원명</th>
 										<th scope="col">영화 제목</th>
@@ -160,7 +150,7 @@ int totPage = (Integer)request.getAttribute("totPage");
 								<tbody>
 								<% if (TicketList.size() == 0) { %>
 									<tr>
-										<td class="first" colspan="12">등록된 예매내역이 없습니다.</td>
+										<td class="first" colspan="11">등록된 예매내역이 없습니다.</td>
 									</tr>
 								<%
 									 } else {
@@ -170,7 +160,6 @@ int totPage = (Integer)request.getAttribute("totPage");
 											targetUrl = "style='cursor:pointer;' onclick=\"location.href='"+param.getTargetURLParam("read.do", param, data.getNo())+"'\"";
 								%>
 									<tr>
-										<td class="first"><input type="checkbox" name="no" id="no" value="<%=data.getNo()%>"/></td>
 										<td <%=targetUrl%>><%=data.getNo()%></td>
 										<td <%=targetUrl%>><%=data.getMember_name()%></td>
 										<td <%=targetUrl%>><%=data.getMovie_title()%></td>
@@ -181,12 +170,51 @@ int totPage = (Integer)request.getAttribute("totPage");
 										<%}else if(data.getFormat()==4){out.print("IMAX");}%>
 										</td>
 										<td <%=targetUrl%>><%=data.getScreen_date()%></td>
-										<td <%=targetUrl%>><%=data.getScreen_time()%></td>
+										<td <%=targetUrl%>>
+										<%if(data.getScreen_time()==1){
+											out.print("09:00");
+										}else if(data.getScreen_time()==2){
+											out.print("12:00");
+										}else if(data.getScreen_time()==3){
+											out.print("15:00");
+										}else if(data.getScreen_time()==4){
+											out.print("18:00");
+										}else if(data.getScreen_time()==5){
+											out.print("21:00");
+										}
+										%>
+										</td>
 										<td <%=targetUrl%>><%=data.getRes_date()%></td>
-										<td <%=targetUrl%>><%=data.getCancel_date()%></td>
-										<td <%=targetUrl%>><%=data.getRes_state()%></td>
-										<td <%=targetUrl%>><%=data.getPay()%></td>
-										<td <%=targetUrl%>><%=data.getPay_state()%></td>
+										<td <%=targetUrl%>>
+										<%if(data.getCancel_date()!=null){
+											out.print(data.getCancel_date());
+										}%>
+										
+										</td>
+										<td <%=targetUrl%>>
+										<%if(data.getRes_state()==1){
+											out.print("예매완료");
+										}else if(data.getRes_state()==2){
+											out.print("예매취소");
+										}
+										%>
+										</td>
+										<td <%=targetUrl%>>
+										<%if(data.getPay()==1){
+											out.print("무통장입금");
+										}else if(data.getPay()==2){
+											out.print("카드결제");
+										}
+										%>
+										</td>
+										<td <%=targetUrl%>>
+										<%if(data.getPay_state()==1){
+											out.print("결제완료");
+										}else if(data.getPay_state()==2){
+											out.print("결제 미완료");
+										}
+										%>
+										</td>
 									</tr>
 								<%
 										}
@@ -198,15 +226,6 @@ int totPage = (Integer)request.getAttribute("totPage");
 							<input type="hidden" name="stype" id="stype" value="<%=param.getStype()%>"/>
 							<input type="hidden" name="sval" id="sval" value="<%=param.getSval()%>"/>
 							</form>
-							<div class="btn">
-								<div class="btnLeft">
-									<a class="btns" href="#" onclick="groupDelete();"><strong>삭제</strong> </a>
-								</div>
-								<div class="btnRight">
-									<a class="wbtn" href="write.do"><strong>예매등록</strong> </a>
-								</div>
-							</div>
-							<!--//btn-->
 							<!-- 페이징 처리 -->
 							<%=Page.indexList(param.getReqPageNo(), totPage, request)%>
 							<!-- //페이징 처리 -->

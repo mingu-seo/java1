@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import member.MemberVO;
 import movie.MovieService;
 import movie.MovieVo;
+
 import review.ReviewVO;
+
 import util.Function;
 
 @Controller
@@ -91,15 +93,19 @@ public class Ticket1Controller {
 	}
 	
 	@RequestMapping("/ticket/book.do")
-	public String book(Model model, Ticket1VO param, MovieVo mparam) throws Exception {
+	public String book(Model model, Ticket1VO param, MovieVo mparam, HttpServletRequest request) throws Exception {
 		
 		int r = ticket1Service.book(param);
-		
 		model.addAttribute("book", r);
-		
+		if(param.getUsePoint()>0) {
+			ticket1Service.minusPoint(param.getMember_pk(), request);
+		}
+	//	model.addAttribute("point", point);
 		model.addAttribute("code", "alertMessageUrl");
 		model.addAttribute("message", Function.message(r, "정상적으로 등록되었습니다.", "등록실패"));
 		model.addAttribute("url", "index.do");
+		
+		// r = 호출한 것에 대한 리턴값 
 		
 		if(param.getPay()==2) {
 			param.setPay_state(1);
@@ -110,6 +116,21 @@ public class Ticket1Controller {
 
 	
 	
+	@RequestMapping("/manage/ticket1/process.do")
+	public String ticketProcess(Model model, Ticket1VO param, HttpServletRequest request) throws Exception {
+		if ("edit.do".equals(param.getCmd())) {
+			int r = ticket1Service.update(param);
+			model.addAttribute("code", "alertMessageUrl");
+			model.addAttribute("message", Function.message(r, "정상적으로 수정되었습니다.", "수정실패"));
+			model.addAttribute("url", param.getTargetURLParam("index.do", param, 0));
+		}else if ("delete.do".equals(param.getCmd())) {
+			int r = ticket1Service.delete(param.getNo());
+			model.addAttribute("code", "alertMessageUrl");
+			model.addAttribute("message", Function.message(r, "정상적으로 삭제되었습니다.", "삭제실패"));
+			model.addAttribute("url", param.getTargetURLParam("index.do", param, 0));
+		}
+		return "include/alert";
+	}
 	
 		
 }

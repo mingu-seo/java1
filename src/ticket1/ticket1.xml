@@ -3,6 +3,7 @@
 <sqlMap namespace="ticket1">
     
     <typeAlias alias="ticket1VO" type="ticket1.Ticket1VO"/>
+    <typeAlias alias="pointVo" type="ticket1.PointVo" />
     
     <!-- 공통조건 -->
 	<sql id="searchSql">		
@@ -22,9 +23,6 @@
 					<isEqual property="stype" compareValue="movie_title" prepend="and">
 					(movie_pk in (select no from movie where title like '%$sval$%'))
 					</isEqual>
-				</isNotEqual>
-				<isNotEqual property="smovie_pk" compareValue="0" prepend="and">
-					movie_pk=#smovie_pk#
 				</isNotEqual>
 			</isNotEqual>
 			<isNotEqual property="sdate" compareValue="">
@@ -65,6 +63,23 @@
         where no = #no#
     </select>
     
+    <update id="update" parameterClass="ticket1VO">
+    	update ticket1 set
+    	format=#format#, screen_date=#screen_date#, screen_time=#screen_time#, 
+    	pay_state=#pay_state#, res_state=#res_state#, tk_count=#tk_count#, price=#price#
+    	<isEqual property="res_state" compareValue="2">
+    	, cancel_date=now()
+    	</isEqual>
+    	<isEqual property="res_state" compareValue="1">
+    	, cancel_date=null
+    	</isEqual>
+    	where no = #no#
+    </update>
+    
+    <delete id="delete" parameterClass="Integer">
+        delete from ticket1 where no=#no#
+    </delete>
+    
     <select id="date" resultClass="ticket1VO">
     <![CDATA[
     	select today, name as yoil from calendar
@@ -102,7 +117,19 @@
         <selectKey keyProperty="no" resultClass="Integer">
         	SELECT LAST_INSERT_ID()
         </selectKey>
-    </insert>
+       </insert>
+   
+   <insert id="minusPoint" parameterClass="pointVO">
+   	INSERT INTO POINT (
+   	member_pk, usePoint, memo, pointRegistDate
+   	) VALUES (
+   	#member_pk#, #usePoint#, #memo#, now()
+   	)
+   	<selectKey keyProperty="point_no" resultClass="Integer">
+   		SELECT LAST_INSERT_ID()
+   	</selectKey>
+   </insert>
+   
      
      
 </sqlMap>

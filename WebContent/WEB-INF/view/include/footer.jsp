@@ -32,7 +32,7 @@
 <script>
 function showDialogue(movie_no) {
 <% if (memberInfo == null) { %>
-	alert("회원가입후 예매해 주세요");
+	alert("로그인 후 예매해 주세요");
 
 <% } else { %>
 	$.ajax({
