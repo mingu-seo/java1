@@ -11,9 +11,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import db.SqlMapClientDAOSupport;
-import board.reply1.Reply1VO;
 import mail.SendMail;
 import property.SiteProperty;
+import ticket1.Ticket1DAO;
+import ticket1.Ticket1VO;
 import util.FileUtil;
 import util.Function;
 import util.Page;
@@ -32,7 +33,7 @@ public class MemberService extends SqlMapClientDAOSupport{
 		rowPageCount[1] = pageCount;
 		return rowPageCount;
 	}
-
+	
 	public ArrayList list(MemberVO param) throws SQLException {
 		ArrayList list = memberDao.list(param);
 		return list;

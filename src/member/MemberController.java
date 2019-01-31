@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import property.SiteProperty;
+import ticket1.Ticket1Service;
+import ticket1.Ticket1VO;
 import util.Function;
 
 @Controller
@@ -19,6 +21,9 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private Ticket1Service ticket1Service;
 	
 	@RequestMapping("/login.do")
 	public String login(Model model, @RequestParam(value="login_url", required=false) String login_url, @RequestParam(value="login_param", required=false) String login_param, MemberVO vo, HttpSession session) throws Exception {
@@ -69,8 +74,16 @@ public class MemberController {
 	
 	//마이페이지 리턴
 	@RequestMapping("/mypage/index.do")
-	public String mypage(Model model, MemberVO param) throws Exception {
-		model.addAttribute("vo", param);
+	public String mypage(Model model, MemberVO param, Ticket1VO vo, HttpSession session) throws Exception {
+		
+		MemberVO memberInfo = (MemberVO)session.getAttribute("memberInfo");
+		vo.setMember_pk(memberInfo.getNo());
+		int[] rowPageCount = ticket1Service.mypageCount(vo);
+		ArrayList<Ticket1VO> list = ticket1Service.mypageTicketList(vo);
+		model.addAttribute("totCount", rowPageCount[0]);
+		model.addAttribute("totPage", rowPageCount[1]);
+		model.addAttribute("list", list);
+
 		
 		return "mypage/reserve/index";
 	}

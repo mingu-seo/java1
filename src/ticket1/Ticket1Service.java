@@ -33,6 +33,16 @@ public class Ticket1Service extends SqlMapClientDAOSupport{
 		return rowPageCount;
 	}
 	
+	public int[] mypageCount(Ticket1VO vo) throws SQLException{
+		int rowCount = ticket1Dao.mypageCount(vo);
+		int[] rowPageCount = new int[2];
+		int pageCount = Page.getPageCount(vo.getPageRows(), rowCount);
+		rowPageCount[0] = rowCount;
+		rowPageCount[1] = pageCount;
+		return rowPageCount;
+	}
+	
+	
 	public ArrayList list(Ticket1VO param) throws SQLException {
 		ArrayList list = ticket1Dao.list(param);
 		return list;
@@ -40,6 +50,11 @@ public class Ticket1Service extends SqlMapClientDAOSupport{
 	public ArrayList date(Ticket1VO param) throws SQLException {
 		ArrayList date = ticket1Dao.date(param);
 		return date;
+	}
+	
+	public ArrayList mypageTicketList(Ticket1VO param) throws SQLException {
+		ArrayList mypageTicketList = ticket1Dao.mypageTicketList(param);
+		return mypageTicketList;
 	}
 	
 
