@@ -67,6 +67,7 @@ function showDialogue(movie_no) {
 		'margin-top': -t_dialog.outerHeight() / 2 + 'px'
 	});
 	t_dialog.show();
+	
 <% } %>	
 }
 
@@ -96,6 +97,12 @@ function cal() {
 	console.log(totalPrice);
 	$(".totalPrice").html(numberWithCommas(totalPrice)+"원");
 	$("#price").val(totalPrice);
+}
+
+function save() {
+	if (confirm("예매하시겠습니까?")) {
+		$("#popupFrm").submit();
+	}
 }
 </script>
 <div id="ticket_dialogue" class="dialogue_wr popupContent">

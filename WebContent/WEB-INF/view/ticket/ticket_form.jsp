@@ -9,6 +9,7 @@
 MovieVo param = (MovieVo)request.getAttribute("vo");
 MovieVo data = (MovieVo) request.getAttribute("data");
 ArrayList<Ticket1VO> movieDate = (ArrayList)request.getAttribute("movieDate");
+member.MemberVO memberInfo = (member.MemberVO)session.getAttribute("memberInfo"); //로그인 세션 가져오기
 %>
 <div class="dialogue_top">
 		<span class="title">영화 예매</span>
@@ -93,7 +94,7 @@ ArrayList<Ticket1VO> movieDate = (ArrayList)request.getAttribute("movieDate");
 					<tr>
 						<th>보유포인트</th>
 						<td>
-							<input type="text" name="" id=""  value="" onkeyup="isOnlyNumber(this);"/> 점
+							<input type="text" name="point" id="myPoint"  value="<%=memberInfo.getPoint()%>" onkeyup="isOnlyNumber(this);"/> 점
 							<input type="button" class="btn" value="확인">
 						</td>
 					</tr>
