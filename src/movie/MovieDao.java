@@ -182,6 +182,10 @@ public class MovieDao extends SqlMapClientDAOSupport {
 	public ArrayList tkmovielist(MovieVo vo) throws SQLException {
 		return (ArrayList)getSqlMapClient().queryForList("movie.tkmovielist", vo);
 	}
+	//나영=메인박스오피스에쓰는예매율
+	public ArrayList ticketcount(MovieVo vo) throws SQLException {
+		return (ArrayList)getSqlMapClient().queryForList("movie.ticketcount", vo);
+	}
 
 	
 }

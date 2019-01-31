@@ -356,5 +356,18 @@
 		</isNotEqual>
     </select>
 	
+	<!-- 나영=박스오피스에쓸예매율 -->
+	<select id="ticketcount" resultClass="movie_vo">
+    <![CDATA[
+    	select no, title, poster,
+    	(select count(*) from ticket1 where ticket1.movie_pk=movie.no) as ticketcount
+    	from movie
+    	where
+    	releaseDate >= date_add(now(), interval -30 day)
+    	and enddate <= date_add(now(), interval 30 day)
+    	order by ticketcount desc
+    	limit 0,10
+   	]]>    
+    </select>
     
 </sqlMap>

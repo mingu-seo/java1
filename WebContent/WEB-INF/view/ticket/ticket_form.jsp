@@ -114,7 +114,7 @@ member.MemberVO memberInfo = (member.MemberVO)session.getAttribute("memberInfo")
 						<th>결제수단</th>
 						<td>
 							<input type="radio" name="pay" value="1" checked><label>무통장입금</label>
-							<input type="radio" name="pay" value="2"><label>신용카드</label>
+							<input type="radio" name="pay" value="2"><label>신용카드(미완성-pg사용예정)</label>
 						</td>
 					</tr>
 					<tr>

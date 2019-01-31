@@ -162,6 +162,7 @@ public class Parameter {
 	 * set 정렬값
 	 * @param orderby String
 	 */
+	//예매율정렬값
 	public void setOrderby(String orderby) {
 		this.orderby = orderby;
 	}
