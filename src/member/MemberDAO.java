@@ -169,8 +169,9 @@ public class MemberDAO extends SqlMapClientDAOSupport {
 
 	
 	public static void main(String[] args) throws Exception {
-//		long time = System.currentTimeMillis();
-//		System.out.println(time/60);
+		long time = System.currentTimeMillis();
+		String num = Long.toString(time);
+		System.out.println(num);
 			
 		
 		
