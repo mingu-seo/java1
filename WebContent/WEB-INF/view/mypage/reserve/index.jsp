@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ page import="java.util.*" %>
 <%@ page import="ticket1.*" %>
+<%@ page import="util.*" %>
+<%@ page import="property.SiteProperty" %>
 <%ArrayList<Ticket1VO> list = (ArrayList)request.getAttribute("list"); %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -32,13 +34,14 @@
 				<div class="postSection">
 					<ul class="postList clear">
 						<li>
+						<%if(list.size()==0||list==null)out.print("예매내역이 존재하지 않습니다.");%>
+						<%for(int i=0; i<list.size(); i++){ %>
 							<div class="postObj">
-								<%for(int i=0; i<list.size(); i++){ %>
 								<div class="reserveNum">
 									예매번호 0013-1111-2222-3333
 								</div>
 								<div class="imgs">
-									<img src="/img/poster1.jpg"/>
+									<img src="<%=SiteProperty.MOVIE_UPLOAD_PATH%><%=list.get(i).getMovie_poster()%>"/>
 								</div>
 								<div class="txt">
 									<div class="title"><%=list.get(i).getMovie_title() %></div>
@@ -46,28 +49,40 @@
 										<table>
 											<tr>
 												<th>관람극장</th>
-												<td>MOVIE 일산</td>
+												<td>GIGABOX 일산점</td>
 												<th>관림일시</th>
-												<td><%=list.get(i).getScreen_date() %></td>
+												<td><%=list.get(i).getScreen_date() %>&emsp;
+												<%if(list.get(i).getScreen_time()==1){
+												out.print("09:00");	
+												}else if(list.get(i).getScreen_time()==2){
+													out.print("12:00");	
+												}else if(list.get(i).getScreen_time()==3){
+													out.print("15:00");	
+												}else if(list.get(i).getScreen_time()==4){
+													out.print("18:00");	
+												}else if(list.get(i).getScreen_time()==5){
+													out.print("21:00");	
+												}	
+												%>
+												</td>
 											</tr>
 											<tr>
-												<th>관림인원</th>
-												<td>PRIME석 일반1</td>
 												<th>매수</th>
 												<td><%=list.get(i).getTk_count() %></td>
-											</tr>
-											<tr>
 												<th>예매일자</th>
 												<td><%=list.get(i).getRes_date() %></td>
+											</tr>
+											<tr>
 												<th>총 결제금액</th>
-												<td><%=list.get(i).getPrice() %></td>
+												<td><%=Function.getNumberFormat(Integer.parseInt(list.get(i).getPrice())) %>원</td>
 											</tr>
 										</table>
 									</div>
 									<div class="btn_area"><a href="javascript:;" class="btn" onclick="">예매취소</a></div>
 								</div>
-								<%} %>
 							</div>
+							<%} %>
+							
 						</li>
 					</ul>
 				</div>

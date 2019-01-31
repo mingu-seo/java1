@@ -60,7 +60,7 @@
     </select>
     
     <select id="mypageTicketList" parameterClass="ticket1VO" resultClass="ticket1VO">
-        select t1.* , mv.title as movie_title
+        select t1.* , mv.title as movie_title, mv.poster as movie_poster
         from ticket1 t1, movie mv
         where t1.movie_pk = mv.no
         and member_pk = #member_pk#
