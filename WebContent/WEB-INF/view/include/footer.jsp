@@ -32,7 +32,7 @@
 <script>
 function showDialogue(movie_no) {
 <% if (memberInfo == null) { %>
-	alert("로그인후 예매해 주세요");
+	alert("로그인 후 예매해 주세요");
 
 <% } else { %>
 	$.ajax({
@@ -74,12 +74,31 @@ function hideDialogue() {
 	$("#ticket_dialogue").hide();
 	$("#mask").hide();
 }
-
+function save(){
+	
+	if(confirm("예매 하시겠습니까?")){
+		$("#popupFrm").submit();
+	} 
+	
+}
 function cal() {
 	var tkcount = $("#tk_count").val();
 	var format = $("input[name='format']:checked").val();
+	var mypoint = $("#mypoint").val();
+	mypoint=Number(mypoint);
+	var usePoint = $("#usePoint").val();
+	usePoint = Number(usePoint);
+	
+	if(usePoint>mypoint) {
+		alert("사용 가능한 포인트는 최대 " + mypoint + "입니다.");
+		
+		usePoint = 0;
+	}
 	//console.log(tkcount);
 	//console.log(format);
+	
+	console.log(usePoint);
+	console.log(mypoint);
 	
 	var formatPrice = 0;
 	if (format == "1") {
@@ -92,7 +111,7 @@ function cal() {
 		formatPrice = 16000;
 	}
 	
-	var totalPrice = formatPrice * tkcount;
+	var totalPrice = formatPrice * tkcount - usePoint;
 	console.log(totalPrice);
 	$(".totalPrice").html(numberWithCommas(totalPrice)+"원");
 	$("#price").val(totalPrice);
