@@ -60,14 +60,14 @@ $(function(){
         <div class="movie">
         	<div class="poster">
         		<div class="tit"><h4>BOXOFFICE</h4></div>
-        		<img src="/img/poster1.jpg">
+        		<img id="poster_img" src="/img/poster1.jpg" style="cursor:pointer;">
         	</div>
         	<div class="bxoffice">
         		<ul> <% MovieVo rank;
         					for(int i=0; i<tklist.size(); i++) {
 								rank = tklist.get(i);
 					%>
-        			<li><span class="rank"><%=i+1 %></span><a href="/movie/detail.do?no=<%=rank.getNo()%>"><%=rank.getTitle() %></a></li>
+        			<li class="ranking_li" data-poster="<%=rank.getPoster()%>" data-no="<%=rank.getNo()%>"><span class="rank"><%=i+1 %></span><a href="/movie/detail.do?no=<%=rank.getNo()%>"><%=rank.getTitle() %></a></li>
         		<%} %>
         		</ul>
         	</div>
@@ -78,7 +78,21 @@ $(function(){
         	</div>
         </div>
     </div>
-    
+<script>
+$(function() {
+	
+	$("#poster_img").attr("src", "<%=property.SiteProperty.MOVIE_UPLOAD_PATH%>"+$(".ranking_li").eq(0).data("poster"));
+	$("#poster_img").attr("onclick", "location.href='/movie/detail.do?no="+$(".ranking_li").eq(0).data("no")+"';");
+	
+	$(".ranking_li").mouseover(function() {
+		var idx = $(".ranking_li").index(this);
+		var img = $(".ranking_li").eq(idx).data("poster");
+		var no = $(".ranking_li").eq(idx).data("no");
+		$("#poster_img").attr("src", "<%=property.SiteProperty.MOVIE_UPLOAD_PATH%>"+img);
+		$("#poster_img").attr("onclick", "location.href='/movie/detail.do?no="+no+"';");
+	});
+});
+</script>    
     <%@ include file="/WEB-INF/view/include/footer.jsp" %>
      
 </body>
