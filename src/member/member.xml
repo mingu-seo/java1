@@ -4,7 +4,7 @@
     
     <typeAlias alias="member_vo" type="member.MemberVO"/>
     <typeAlias alias="member_param" type="member.MemberVO"/>
-    
+    <typeAlias alias="ticket_vo" type="ticket1.Ticket1VO"/>
     <!-- 공통조건 -->
 	<sql id="searchSql">		
 		<!-- WHERE 절 검색 -->
@@ -23,6 +23,12 @@
 	
 	<select id="count" parameterClass="member_param" resultClass="Integer">
         select count(*) from member
+        <include refid="searchSql" />	
+    </select>
+    
+	<select id="mypageCount" parameterClass="ticket_vo" resultClass="Integer">
+        select count(*) from ticket1
+        where no=#no#
         <include refid="searchSql" />	
     </select>
 	

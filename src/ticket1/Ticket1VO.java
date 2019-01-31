@@ -7,27 +7,38 @@ import member.MemberVO;
 
 public class Ticket1VO extends Parameter{
 	private int no;
-	private int movie_pk;
-	private int member_pk;
-	private Timestamp cancel_date;
-	private Timestamp res_date;
-	private String price;
-	private int pay;
-	private int tk_count;
-	private int format;
-	private String screen_date;
-	private int screen_time;
-	private int pay_state;
-	private int res_state;
+	private int movie_pk;			//영화 pk
+	private int member_pk;			//회원번호 pk
+	private Timestamp cancel_date;	//취소일
+	private Timestamp res_date;		//예매일
+	private String price;			//금액
+	private int pay;				//결제
+	private int tk_count;			//티켓수
+	private int format;				//영화포멧
+	private String screen_date;		//상영일
+	private int screen_time;		//상영시간
+	private int pay_state;			//결제상태
+	private int res_state;			//예매상태
+	private String res_num;			//예매번호
 	private String today;
 	private int yoil;
+	private int usePoint;
 	
+	private String movie_poster;	//영화포스터
+	public int getUsePoint() {
+		return usePoint;
+	}
+
+
+	public void setUsePoint(int usePoint) {
+		this.usePoint = usePoint;
+	}
 	private String movie_title;
 	private String movie_format;
 	private String member_name;
 	
 	//검색조건
-	private String		dateType;	//날짜 타입
+	private String dateType;		//날짜 타입
 	private String sdate;			//시작일
 	private String edate;			//종료일
 	private int spay_state;			//결제상태
@@ -155,11 +166,23 @@ public class Ticket1VO extends Parameter{
 	public void setRes_state(int res_state) {
 		this.res_state = res_state;
 	}
+	public String getRes_num() {
+		return res_num;
+	}
+	public void setRes_num(String res_num) {
+		this.res_num = res_num;
+	}
 	public String getMovie_title() {
 		return movie_title;
 	}
 	public void setMovie_title(String movie_title) {
 		this.movie_title = movie_title;
+	}
+	public String getMovie_poster() {
+		return movie_poster;
+	}
+	public void setMovie_poster(String movie_poster) {
+		this.movie_poster = movie_poster;
 	}
 	public String getMovie_format() {
 		return movie_format;

@@ -30,6 +30,8 @@ public class MovieVo extends Parameter {
 	private String		sdate;					// 시작일
 	private String		edate;					// 종료일
 	private String		tkdate;					// 예매가능영화조회날짜
+	private int    	    ticketcount;			// 예매수
+	
 	
 
 	
@@ -41,6 +43,7 @@ public class MovieVo extends Parameter {
 		this.setSgenre("");
 		this.setSrating(0);
 		this.setTkdate(DateUtil.getToday());
+		this.setOrdertype("releasedate");
 	}
 
 	public int getNo() {
@@ -234,6 +237,13 @@ public class MovieVo extends Parameter {
 	
 	public void setTkdate(String tkdate) {
 		this.tkdate = tkdate;
+	}
+	public int getTicketcount() {
+		return ticketcount;
+	}
+	
+	public void setTicketcount(int ticketcount) {
+		this.ticketcount = ticketcount;
 	}
 	
 }

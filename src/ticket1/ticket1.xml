@@ -3,6 +3,7 @@
 <sqlMap namespace="ticket1">
     
     <typeAlias alias="ticket1VO" type="ticket1.Ticket1VO"/>
+    <typeAlias alias="pointVo" type="ticket1.PointVo" />
     
     <!-- 공통조건 -->
 	<sql id="searchSql">		
@@ -44,6 +45,11 @@
         select count(*) from ticket1
         <include refid="searchSql" />	
     </select>
+    
+	<select id="mypageCount" parameterClass="ticket1VO" resultClass="Integer">
+        select count(*) from ticket1
+        where member_pk = #member_pk#
+    </select>
 	
     <select id="list" parameterClass="ticket1VO" resultClass="ticket1VO">
         select * ,
@@ -51,6 +57,14 @@
         (select name from member where member.no=ticket1.member_pk) as member_name
         from ticket1
         <include refid="searchSql" />
+		ORDER BY no DESC LIMIT $startPageNo$, $pageRows$	
+    </select>
+    
+    <select id="mypageTicketList" parameterClass="ticket1VO" resultClass="ticket1VO">
+        select t1.* , mv.title as movie_title, mv.poster as movie_poster
+        from ticket1 t1, movie mv
+        where t1.movie_pk = mv.no
+        and member_pk = #member_pk#
 		ORDER BY no DESC LIMIT $startPageNo$, $pageRows$	
     </select>
     
@@ -106,4 +120,31 @@
 	
 		ORDER BY c.today ASC 
      </select>
+     
+     <insert id="book" parameterClass="ticket1VO">
+       INSERT INTO ticket1 (
+        	movie_pk, member_pk, res_date, price, pay, tk_count, format, usePoint, screen_date, screen_time, pay_state, res_state, res_num
+        ) VALUES (
+			#movie_pk#, #member_pk#, now(), #price#, #pay#, #tk_count#, #format#, #usePoint#, #screen_date#, #screen_time#, #pay_state#, 1, #res_num#	
+        )
+        <selectKey keyProperty="no" resultClass="Integer">
+        	SELECT LAST_INSERT_ID()
+        </selectKey>
+       </insert>
+   
+   <insert id="minusPoint" parameterClass="pointVO">
+   	INSERT INTO POINT (
+   	member_pk, usePoint, memo, pointRegistDate
+   	) VALUES (
+   	#member_pk#, #usePoint#, #memo#, now()
+   	)
+   	<selectKey keyProperty="point_no" resultClass="Integer">
+   		SELECT LAST_INSERT_ID()
+   	</selectKey>
+   </insert>
+   
+   
+  
+     
+     
 </sqlMap>

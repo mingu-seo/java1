@@ -418,5 +418,10 @@ public int actorUpdate (int movie_no, HttpServletRequest request) throws Excepti
 		return rowPageCount;
 	}
 
+	//나영=메인박스오피스에예매율
+	public ArrayList ticketcount(MovieVo vo) throws Exception {
+		ArrayList list = movieDao.ticketcount(vo);
+		return list;
+	}
 
 }

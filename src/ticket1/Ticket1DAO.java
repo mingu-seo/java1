@@ -15,9 +15,16 @@ public class Ticket1DAO extends SqlMapClientDAOSupport{
 		return (Integer)getSqlMapClient().queryForObject("ticket1.count", param);
 	}
 	
+	public int mypageCount(Ticket1VO param) throws SQLException {
+		return (Integer)getSqlMapClient().queryForObject("ticket1.mypageCount", param);
+	}
 	
 	public ArrayList list(Ticket1VO param) throws SQLException {
 		return (ArrayList)getSqlMapClient().queryForList("ticket1.list", param);
+	}
+	
+	public ArrayList mypageTicketList(Ticket1VO param) throws SQLException {
+		return (ArrayList)getSqlMapClient().queryForList("ticket1.mypageTicketList", param);
 	}
 	
 	public Ticket1VO read(int no) throws SQLException {
@@ -37,7 +44,9 @@ public class Ticket1DAO extends SqlMapClientDAOSupport{
 	}
 
 
-	
+	public int book(Ticket1VO vo) throws SQLException {
+		return (Integer) getSqlMapClient().insert("ticket1.book", vo);
+	}
 	
 	
 	
@@ -46,10 +55,23 @@ public class Ticket1DAO extends SqlMapClientDAOSupport{
 	}
 
 
-	public static void main(String args[]) throws SQLException {
-		Ticket1DAO td = new Ticket1DAO();
-		td.aranMovieDate(0);
+	public int minusPoint(PointVo pv) throws SQLException {
+		return (Integer)getSqlMapClient().insert("ticket1.minusPoint", pv);
 	}
+
+
+	public static void main(String[] args) throws SQLException {
+		Ticket1DAO td = new Ticket1DAO();
+		Ticket1VO tv = new Ticket1VO();
+		PointVo pv = new PointVo();
+	pv.setPoint_no(10);
+	td.minusPoint(pv);
+		
+	}
+
+
+	
+	
 
 
 
