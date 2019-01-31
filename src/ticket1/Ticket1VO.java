@@ -22,9 +22,18 @@ public class Ticket1VO extends Parameter{
 	private String res_num;			//예매번호
 	private String today;
 	private int yoil;
+	private int usePoint;
 	
-	private String movie_title;		//영화제목
 	private String movie_poster;	//영화포스터
+	public int getUsePoint() {
+		return usePoint;
+	}
+
+
+	public void setUsePoint(int usePoint) {
+		this.usePoint = usePoint;
+	}
+	private String movie_title;
 	private String movie_format;
 	private String member_name;
 	

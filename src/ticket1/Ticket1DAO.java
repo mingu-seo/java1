@@ -44,7 +44,9 @@ public class Ticket1DAO extends SqlMapClientDAOSupport{
 	}
 
 
-	
+	public int book(Ticket1VO vo) throws SQLException {
+		return (Integer) getSqlMapClient().insert("ticket1.book", vo);
+	}
 	
 	
 	
@@ -53,10 +55,23 @@ public class Ticket1DAO extends SqlMapClientDAOSupport{
 	}
 
 
-	public static void main(String args[]) throws SQLException {
-		Ticket1DAO td = new Ticket1DAO();
-		td.aranMovieDate(0);
+	public int minusPoint(PointVo pv) throws SQLException {
+		return (Integer)getSqlMapClient().insert("ticket1.minusPoint", pv);
 	}
+
+
+	public static void main(String[] args) throws SQLException {
+		Ticket1DAO td = new Ticket1DAO();
+		Ticket1VO tv = new Ticket1VO();
+		PointVo pv = new PointVo();
+	pv.setPoint_no(10);
+	td.minusPoint(pv);
+		
+	}
+
+
+	
+	
 
 
 
