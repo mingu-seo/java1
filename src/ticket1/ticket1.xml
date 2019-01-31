@@ -62,7 +62,7 @@
     </select>
     
     <select id="mypageTicketList" parameterClass="ticket1VO" resultClass="ticket1VO">
-        select t1.* , mv.title as movie_title
+        select t1.* , mv.title as movie_title, mv.poster as movie_poster
         from ticket1 t1, movie mv
         where t1.movie_pk = mv.no
         and member_pk = #member_pk#
@@ -124,9 +124,9 @@
      
      <insert id="book" parameterClass="ticket1VO">
        INSERT INTO ticket1 (
-        	movie_pk, member_pk, res_date, price, pay, tk_count, format, usePoint, screen_date, screen_time, pay_state, res_state
+        	movie_pk, member_pk, res_date, price, pay, tk_count, format, usePoint, screen_date, screen_time, pay_state, res_state, res_num
         ) VALUES (
-			#movie_pk#, #member_pk#, now(), #price#, #pay#, #tk_count#, #format#, #usePoint#, #screen_date#, #screen_time#, #pay_state#, 1	
+			#movie_pk#, #member_pk#, now(), #price#, #pay#, #tk_count#, #format#, #usePoint#, #screen_date#, #screen_time#, #pay_state#, 1, #res_num#	
         )
         <selectKey keyProperty="no" resultClass="Integer">
         	SELECT LAST_INSERT_ID()

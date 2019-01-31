@@ -71,7 +71,8 @@ public class Ticket1Service extends SqlMapClientDAOSupport{
 
 
 	public int book(Ticket1VO param) throws SQLException {
-		
+		long num = System.currentTimeMillis();
+		param.setRes_num(Long.toString(num));
 		int lastNo = (Integer)ticket1Dao.book(param);
 		return lastNo;
 	}

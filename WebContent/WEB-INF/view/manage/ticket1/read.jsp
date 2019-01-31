@@ -60,7 +60,10 @@ Ticket1VO data = (Ticket1VO)request.getAttribute("data");
 										<th>회원명</th>
 										<td><%=data.getMember_name()%></td>
 									</tr>
-										
+									<tr>
+										<th>예매번호</th>
+										<td><%=data.getRes_num()%></td>
+									</tr>
 									<tr>
 										<th scope="row">영화 제목</th>
 										<td><%=data.getMovie_title()%></td>
