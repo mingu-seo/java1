@@ -38,7 +38,7 @@
 						<%for(int i=0; i<list.size(); i++){ %>
 							<div class="postObj">
 								<div class="reserveNum">
-									예매번호 0013-1111-2222-3333
+									예매번호&ensp;-&ensp;<%=list.get(i).getRes_num()%>
 								</div>
 								<div class="imgs">
 									<img src="<%=SiteProperty.MOVIE_UPLOAD_PATH%><%=list.get(i).getMovie_poster()%>"/>
@@ -70,15 +70,25 @@
 												<th>매수</th>
 												<td><%=list.get(i).getTk_count() %></td>
 												<th>예매일자</th>
-												<td><%=list.get(i).getRes_date() %></td>
+												<td><%=DateUtil.getDateTimeFormat(list.get(i).getRes_date()) %></td>
 											</tr>
 											<tr>
 												<th>총 결제금액</th>
 												<td><%=Function.getNumberFormat(Integer.parseInt(list.get(i).getPrice())) %>원</td>
+												<th>예매 상태</th>
+												<td>
+												<%if(list.get(i).getRes_state()==1){ 
+													out.print("예매완료");
+												}else if(list.get(i).getRes_state()==2){ 
+													out.print("예매취소");
+												}%>
+												</td>
 											</tr>
 										</table>
 									</div>
+									<%if(list.get(i).getRes_state()!=2){ %>
 									<div class="btn_area"><a href="javascript:;" class="btn" onclick="">예매취소</a></div>
+									<% }%>
 								</div>
 							</div>
 							<%} %>
