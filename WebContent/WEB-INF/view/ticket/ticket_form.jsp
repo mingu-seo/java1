@@ -129,6 +129,8 @@ member.MemberVO memberInfo = (member.MemberVO)session.getAttribute("memberInfo")
 			<input type="hidden" name="member_pk" id="member_pk" value="<%=memberInfo.getNo()%>" />
 			<input type="hidden" name="movie_pk" id="movie_pk" value="<%=data.getNo() %>"/>
 			<input type="hidden" name="pay_state"  value="2"/>
+			
+			
 			</form>	
 			</div>
 			<!-- //wr_box -->
