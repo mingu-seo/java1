@@ -78,7 +78,9 @@ public class MemberController {
 	public String point(Model model, MemberVO param, PointVo pv, HttpSession session) throws Exception {
 		MemberVO memberInfo = (MemberVO)session.getAttribute("memberInfo");
 		pv.setMember_pk(memberInfo.getNo());
+		int point = memberService.getPoint(memberInfo.getNo());
 		ArrayList<PointVo> list = memberService.myPointList(pv);
+		model.addAttribute("point", point);
 		model.addAttribute("list", list);
 		
 		

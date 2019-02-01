@@ -47,6 +47,15 @@
     order by pointRegistDate desc
     </select>
      
+     <select id="getPoint" parameterClass="Integer" resultClass="Integer">
+     
+     select point from member 
+     where no = #no#
+     
+     </select>
+     
+     
+     
     <insert id="insert" parameterClass="member_vo" >
         insert into member
         	(name, birth, email, pw, gender, hp, credate, moddate, filename)

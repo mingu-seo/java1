@@ -96,6 +96,9 @@ public class Ticket1Controller {
 		if(param.getUsePoint()>0) {
 			ticket1Service.minusPoint(param.getMember_pk(), request);
 		}
+		if(param.getPay()==2) {
+			ticket1Service.plusPoint(param.getMember_pk(), request);
+		}
 	//	model.addAttribute("point", point);
 		model.addAttribute("code", "alertMessageUrl");
 		model.addAttribute("message", Function.message(r, "정상적으로 예매되었습니다.", "등록실패"));
@@ -107,11 +110,9 @@ public class Ticket1Controller {
 			param.setPay_state(1);
 		}
 		
-		return "ticket/ticketPayProcessing";
+		return "include/alert";
 	}
-<<<<<<< HEAD
-=======
-	
+
 	@RequestMapping("/ticket/cancel.do")
 	public String ticketCancel(Model model, Ticket1VO tvo, PointVo pvo ) throws Exception{
 		tvo.setRes_state(2);
@@ -121,7 +122,7 @@ public class Ticket1Controller {
 	}
 
 	
->>>>>>> branch 'master' of https://github.com/mingu-seo/java1.git
+
 	
 	@RequestMapping("/manage/ticket1/process.do")
 	public String ticketProcess(Model model, Ticket1VO param, HttpServletRequest request) throws Exception {
