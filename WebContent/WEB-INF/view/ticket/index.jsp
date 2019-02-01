@@ -70,7 +70,7 @@ MovieVo movie = (MovieVo) request.getAttribute("vo");
 								moviedata = list.get(i);
 					%>
 						<li>
-							<a href="javascript:showDialogue();">
+							<a href="javascript:showDialogue(<%=moviedata.getNo()%>);">
 							<dl>
 								<dt class="img">
 										<img src="<%=SiteProperty.MOVIE_UPLOAD_PATH%><%=moviedata.getPoster()%>" alt=""/>
@@ -100,9 +100,6 @@ MovieVo movie = (MovieVo) request.getAttribute("vo");
 						</li>
 						<%} %>
 					</ul>
-				</div>
-			
-				<div class="pagenate clear">
 				</div>
 			</div>
 

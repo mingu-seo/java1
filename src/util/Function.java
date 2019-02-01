@@ -1323,6 +1323,6 @@ public class Function {
 	public static void main(String[] args)throws Exception{
 //		System.out.println(strCut("MONTBLANCＩTABLE_MONTBLANCBENCH_COCOROCHAIR", "", 30, 0, true, true));
 //		System.out.println(strCut("한글은 어떻게 나올까 이렇게 저렇게", "", 30, 0, true, true));
-		System.out.println(randomNumber("movie"));
+		System.out.println(getNumberFormat(10000));
 	}
 }

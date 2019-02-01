@@ -10,7 +10,7 @@
 MovieVo param = (MovieVo)request.getAttribute("vo");
 MovieVo data = (MovieVo) request.getAttribute("data");
 ArrayList<Ticket1VO> movieDate = (ArrayList)request.getAttribute("movieDate");
-member.MemberVO memberInfo = (member.MemberVO)session.getAttribute("memberInfo"); //로그인 세션 가져오기 
+member.MemberVO memberInfo = (member.MemberVO)session.getAttribute("memberInfo"); //로그인 세션 가져오기
 %>
 
 
@@ -99,8 +99,13 @@ member.MemberVO memberInfo = (member.MemberVO)session.getAttribute("memberInfo")
 					<tr>
 						<th>보유포인트</th>
 						<td>
+<<<<<<< HEAD
+							<input type="text" name="point" id="myPoint"  value="<%=memberInfo.getPoint()%>" onkeyup="isOnlyNumber(this);"/> 점
+							<input type="button" class="btn" value="확인">
+=======
 							<input type="text" name="mypoint" id="mypoint"  value="<%=memberInfo.getPoint() %>" readonly/> 점
 							
+>>>>>>> branch 'master' of https://github.com/mingu-seo/java1.git
 						</td>
 					</tr>
 					<tr>
@@ -114,7 +119,7 @@ member.MemberVO memberInfo = (member.MemberVO)session.getAttribute("memberInfo")
 						<th>결제수단</th>
 						<td>
 							<input type="radio" name="pay" value="1" checked><label>무통장입금</label>
-							<input type="radio" name="pay" value="2"><label>신용카드</label>
+							<input type="radio" name="pay" value="2"><label>신용카드(미완성-pg사용예정)</label>
 						</td>
 					</tr>
 					<tr>
