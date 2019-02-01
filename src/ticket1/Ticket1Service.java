@@ -113,6 +113,11 @@ public class Ticket1Service extends SqlMapClientDAOSupport{
 		return cnt;
 	}
 	
+	public int resStateUpdate(Ticket1VO vo) throws SQLException {
+		int cnt = ticket1Dao.resStateUpdate(vo);
+		return cnt;
+	}
+	
 	public int delete(int no) throws SQLException {
 		int cnt = ticket1Dao.delete(no);
 		return cnt;

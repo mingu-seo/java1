@@ -89,6 +89,12 @@
     	where no = #no#
     </update>
     
+    <update id="resStateUpdate" parameterClass="ticket1VO">
+    	update ticket1 set
+    	res_state=#res_state#, cancel_date=now()
+    	where no = #no#
+    </update>
+    
     <delete id="delete" parameterClass="Integer">
         delete from ticket1 where no=#no#
     </delete>
