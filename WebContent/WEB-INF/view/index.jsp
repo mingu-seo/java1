@@ -1,4 +1,11 @@
+<%@ page import="movie.*" %>
+<%@ page import="ticket1.*" %>   
+<%@ page import="util.*" %>
+<%@ page import="java.util.*" %>
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<% 
+ArrayList<MovieVo> tklist = (ArrayList)request.getAttribute("tklist");
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -53,20 +60,15 @@ $(function(){
         <div class="movie">
         	<div class="poster">
         		<div class="tit"><h4>BOXOFFICE</h4></div>
-        		<img src="/img/poster1.jpg">
+        		<img id="poster_img" src="/img/poster1.jpg" style="cursor:pointer;">
         	</div>
         	<div class="bxoffice">
-        		<ul>
-        			<li><span class="rank">1</span><a href="">주먹왕 랄프2 : 인터넷 속으로</a></li>
-        			<li><span class="rank">2</span><a href="">극장판 공룡메카드: 타이니소어의 섬</a></li>
-        			<li><span class="rank">3</span><a href="">말모이</a></li>
-        			<li><span class="rank">4</span><a href="">아쿠아맨</a></li>
-        			<li><span class="rank">5</span><a href="">범블비</a></li>
-        			<li><span class="rank">6</span><a href="">주먹왕 랄프2 : 인터넷 속으로</a></li>
-        			<li><span class="rank">7</span><a href="">극장판 공룡메카드: 타이니소어의 섬</a></li>
-        			<li><span class="rank">8</span><a href="">말모이</a></li>
-        			<li><span class="rank">9</span><a href="">아쿠아맨</a></li>
-        			<li><span class="rank">10</span><a href="">범블비</a></li>
+        		<ul> <% MovieVo rank;
+        					for(int i=0; i<tklist.size(); i++) {
+								rank = tklist.get(i);
+					%>
+        			<li class="ranking_li" data-poster="<%=rank.getPoster()%>" data-no="<%=rank.getNo()%>"><span class="rank"><%=i+1 %></span><a href="/movie/detail.do?no=<%=rank.getNo()%>"><%=rank.getTitle() %></a></li>
+        		<%} %>
         		</ul>
         	</div>
         	<div class="youtube">
@@ -76,7 +78,21 @@ $(function(){
         	</div>
         </div>
     </div>
-    
+<script>
+$(function() {
+	
+	$("#poster_img").attr("src", "<%=property.SiteProperty.MOVIE_UPLOAD_PATH%>"+$(".ranking_li").eq(0).data("poster"));
+	$("#poster_img").attr("onclick", "location.href='/movie/detail.do?no="+$(".ranking_li").eq(0).data("no")+"';");
+	
+	$(".ranking_li").mouseover(function() {
+		var idx = $(".ranking_li").index(this);
+		var img = $(".ranking_li").eq(idx).data("poster");
+		var no = $(".ranking_li").eq(idx).data("no");
+		$("#poster_img").attr("src", "<%=property.SiteProperty.MOVIE_UPLOAD_PATH%>"+img);
+		$("#poster_img").attr("onclick", "location.href='/movie/detail.do?no="+no+"';");
+	});
+});
+</script>    
     <%@ include file="/WEB-INF/view/include/footer.jsp" %>
      
 </body>

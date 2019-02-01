@@ -202,12 +202,21 @@ public class MovieController {
 			model.addAttribute("param", param);
 			model.addAttribute("vo", vo);
 			model.addAttribute("list", list);
-			
-			
-			
+		
 			
 			return "ticket/index";
 		}
 	
+	//나영=메인박스오피스에쓸예매율
+		@RequestMapping("/index.do")
+		public String ticketcount(Model model, MovieVo vo) throws Exception {
+			
+			ArrayList<MovieVo> tklist = movieService.ticketcount(vo);
+			
+			model.addAttribute("tklist", tklist);
+		
+			
+			return "index";
+		}
 	
 }
