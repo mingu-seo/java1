@@ -18,6 +18,7 @@ import ticket1.Ticket1VO;
 import util.FileUtil;
 import util.Function;
 import util.Page;
+import ticket1.PointVo;
 
 @Service
 public class MemberService extends SqlMapClientDAOSupport{
@@ -178,6 +179,20 @@ public class MemberService extends SqlMapClientDAOSupport{
 			r += memberDao.delete(nos);
 		}
 		return r;
+	}
+	
+
+	
+	public ArrayList myPointList(PointVo pv) throws SQLException {
+		ArrayList myPointList = memberDao.myPointList(pv);
+		return myPointList;
+		
+	}
+
+	public int getPoint(int vo) throws SQLException {
+		int getPoint = memberDao.getPoint(vo);
+		return getPoint;
+		
 	}
 	
 }

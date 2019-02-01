@@ -1,5 +1,6 @@
 package ticket1;
 
+import util.Function;
 import util.Parameter;
 import java.sql.Timestamp;
 
@@ -25,7 +26,12 @@ public class Ticket1VO extends Parameter{
 	private int usePoint;
 	
 	private String movie_poster;	//영화포스터
-	
+
+
+	public void setUsePoint(String usePoint) {
+		
+		this.usePoint = (usePoint == null || "".equals(usePoint)) ? 0 : Function.getIntParameter(usePoint);
+	}
 	private String movie_title;
 	private String movie_format;
 	private String member_name;
@@ -49,6 +55,7 @@ public class Ticket1VO extends Parameter{
 		this.setSres_state(0);
 		this.setSpay_state(0);
 		this.setSpay(0);
+		this.setUsePoint("0");
 	}
 	
 	

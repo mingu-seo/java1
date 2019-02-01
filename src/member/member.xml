@@ -5,6 +5,8 @@
     <typeAlias alias="member_vo" type="member.MemberVO"/>
     <typeAlias alias="member_param" type="member.MemberVO"/>
     <typeAlias alias="ticket_vo" type="ticket1.Ticket1VO"/>
+    <typeAlias alias="point_vo" type="ticket1.PointVo" />
+    
     <!-- 공통조건 -->
 	<sql id="searchSql">		
 		<!-- WHERE 절 검색 -->
@@ -37,6 +39,22 @@
         <include refid="searchSql" />
 		ORDER BY no DESC LIMIT $startPageNo$, $pageRows$	
     </select>
+    
+    <select id="myPointList" parameterClass="point_vo" resultClass="point_vo" >
+    
+    select * from point 
+    where member_pk=#member_pk# 
+    order by pointRegistDate desc
+    </select>
+     
+     <select id="getPoint" parameterClass="Integer" resultClass="Integer">
+     
+     select point from member 
+     where no = #no#
+     
+     </select>
+     
+     
      
     <insert id="insert" parameterClass="member_vo" >
         insert into member

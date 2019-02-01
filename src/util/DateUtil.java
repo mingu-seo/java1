@@ -606,7 +606,7 @@ public class DateUtil {
 	public static void main(String[] args) {
 		String day = "2013-06-01";
 		System.out.println(getToday());
-		System.out.println(getDiff("2019-01-31", getToday()));
+		System.out.println(getDiff("2019-03-03", "2019-02-28"));
 	}
 
 }

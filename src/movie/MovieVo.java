@@ -30,10 +30,9 @@ public class MovieVo extends Parameter {
 	private String		sdate;					// 시작일
 	private String		edate;					// 종료일
 	private String		tkdate;					// 예매가능영화조회날짜
-	private int    	    ticketcount;			// 예매수
-	
-	
-
+	private int    	    ticketcount;			// 박스오피스-예매수
+	private String      youtube;				// 박스오피스-트레일러
+	private String		avgscore;
 	
 	public MovieVo() {
 		super.setPageRows(10);
@@ -45,6 +44,20 @@ public class MovieVo extends Parameter {
 		this.setTkdate(DateUtil.getToday());
 		this.setOrdertype("releasedate");
 	}
+	
+	
+
+	public String getAvgscore() {
+		return avgscore;
+	}
+
+
+
+	public void setAvgscore(String avgscore) {
+		this.avgscore = avgscore;
+	}
+
+
 
 	public int getNo() {
 		return no;
@@ -245,5 +258,13 @@ public class MovieVo extends Parameter {
 	public void setTicketcount(int ticketcount) {
 		this.ticketcount = ticketcount;
 	}
+	public String getYoutube() {
+		return youtube;
+	}
+	
+	public void setYoutube(String youtube) {
+		this.youtube = youtube;
+	}
+	
 	
 }
