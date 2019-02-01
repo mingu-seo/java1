@@ -99,13 +99,10 @@ member.MemberVO memberInfo = (member.MemberVO)session.getAttribute("memberInfo")
 					<tr>
 						<th>보유포인트</th>
 						<td>
-<<<<<<< HEAD
 							<input type="text" name="point" id="myPoint"  value="<%=memberInfo.getPoint()%>" onkeyup="isOnlyNumber(this);"/> 점
 							<input type="button" class="btn" value="확인">
-=======
 							<input type="text" name="mypoint" id="mypoint"  value="<%=memberInfo.getPoint() %>" readonly/> 점
 							
->>>>>>> branch 'master' of https://github.com/mingu-seo/java1.git
 						</td>
 					</tr>
 					<tr>

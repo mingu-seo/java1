@@ -149,8 +149,7 @@
    		SELECT LAST_INSERT_ID()
    	</selectKey>
    </insert>
-   
-<<<<<<< HEAD
+
     <update id="minusMemberPoint" parameterClass="pointVO">
 	update member set
 	point=point+#usePoint#
@@ -162,10 +161,8 @@
 	point=point+#usePoint#
 	where no=#member_pk#
     </update>
-=======
    
   
->>>>>>> branch 'master' of https://github.com/mingu-seo/java1.git
      
      
 </sqlMap>

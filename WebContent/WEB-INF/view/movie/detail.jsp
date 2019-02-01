@@ -192,7 +192,7 @@ ActorVo av = (ActorVo) request.getAttribute("av");
 									<textarea name="contents" id="contents"></textarea>
 								</div>
 								<div class="btn_area">
-									<input type="button" class="btn" onclick="save();" value="등록">
+									<input type="button" class="btn" onclick="reviewsave();" value="등록">
 								</div>
 							</div>
 						</div>
@@ -241,7 +241,7 @@ function goDelete(no) {
 	}
 }
 
-function save() {
+function reviewsave() {
 	<%
 	if (memberInfo == null) {
 	%>

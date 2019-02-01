@@ -18,14 +18,16 @@
 		<dataSource type="DBCP">
 			<property name="JDBC.Driver" value="com.mysql.jdbc.Driver"/>
 
-			<!--  web연결시 DB
-			<property name="JDBC.ConnectionURL" value="jdbc:mysql://localhost:3306/java1_tssu?useUnicode=true&amp;characterEncoding=utf8"/>			
-			<property name="JDBC.Username" value="tssu"/>
-			<property name="JDBC.Password" value="tssu1234!@#$"/>
-			-->
+			<!--   web연결시 DB
 			<property name="JDBC.ConnectionURL" value="jdbc:mysql://192.168.0.121:3306/movie?useUnicode=true&amp;characterEncoding=utf8"/>			
 			<property name="JDBC.Username" value="root"/>
 			<property name="JDBC.Password" value="12345"/>
+			-->
+			
+			 
+			<property name="JDBC.ConnectionURL" value="jdbc:mysql://tssu.withsky.co.kr:3306/java1_tssu?useUnicode=true&amp;characterEncoding=utf8"/>			
+			<property name="JDBC.Username" value="tssu"/>
+			<property name="JDBC.Password" value="tssu1234!@#$"/>
 			 
 			
 		<!-- 	<property name="JDBC.ConnectionURL" value="jdbc:mysql://localhost:3306/movie?useUnicode=true&amp;characterEncoding=utf8"/>			

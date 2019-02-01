@@ -103,7 +103,7 @@ function goSave() {
 					<div id="bbs">
 						<div id="bread">
 							<h3>회원 기본 정보</h3>
-							<form name="frm" id="frm" action="process.do" method="post">
+							<form name="frm" id="frm" action="process.do" method="post" enctype="multipart/form-data">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 								<colgroup>
 									<col width="15%" />

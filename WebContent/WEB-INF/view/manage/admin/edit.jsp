@@ -11,16 +11,11 @@ AdminVO data = (AdminVO)request.getAttribute("data");
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/manage/include/headHtml.jsp" %>
 <script>
-var oEditors; // 에디터 객체 담을 곳
-$(window).load(function() {
-	oEditors = setEditor("memo"); // 에디터 셋팅
-});
 
 function goSave() {
 	// 비밀번호 유효성체크
 	if(!validPassword($("#password"))) return false;
 	
-	oEditors.getById["memo"].exec("UPDATE_CONTENTS_FIELD", []);	// 에디터의 내용이 textarea에 적용됩니다.
 	$("#frm").submit();
 }
 
@@ -77,11 +72,6 @@ function goSave() {
 											<input type="password" id="password" name="password" value="" title="관리자 이메일을 입력해주세요." />
 										</td>
 									</tr>
-									<tr>
-										<td colspan="4">
-											<textarea id="memo" name="memo" title="내용을 입력해주세요" style="width:100%" ><%=data.getMemo()%></textarea>
-										</td>
-									</tr>
 								</tbody>
 							</table>
 							<input type="hidden" name="cmd" value="edit">
@@ -91,7 +81,7 @@ function goSave() {
 							</form>
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="<%=param.getTargetURLParam("index", param, 0)%>"><strong>목록</strong></a>
+									<a class="btns" href="<%=param.getTargetURLParam("index.do", param, 0)%>"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
 									<a class="btns" href="#" onclick="goSave();"><strong>저장</strong></a>

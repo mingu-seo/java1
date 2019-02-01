@@ -222,14 +222,6 @@ public class MemberController {
 		return "manage/member/write";
 	}
 	
-	@RequestMapping("/member/write.do")
-	public String memberwrite(Model model, MemberVO param) throws Exception {
-		model.addAttribute("vo", param);
-		
-		return "member/write";
-	}
-	
-	
 	
 	@RequestMapping("/manage/member/edit.do")
 	public String edit(Model model, MemberVO param) throws Exception {
