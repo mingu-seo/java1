@@ -5,7 +5,7 @@
 			<div class="inner">					
 				<div class="address">
 					<div class="f_logo">
-						<a href="#;"><img class="footer_logo" src="/img/logo.png"></a>
+						<a href="#;"><img class="footer_logo" src="/img/logofooter.png"></a>
 					</div>
 					<ul>
 						<li>
