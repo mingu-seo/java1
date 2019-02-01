@@ -171,8 +171,8 @@ public class MovieDao extends SqlMapClientDAOSupport {
 //		mv.setSdate("2019-01-09");
 //		mv.setEdate("2019-01-31");
 //		mv.setSgenre("액션");
-		mv.setSrating(19);
-		dao.list(mv);
+//		mv.setSrating(19);
+		dao.nowList(mv);
 	}
 
 	//나영=예매페이지에영화리스트뿌리는중
