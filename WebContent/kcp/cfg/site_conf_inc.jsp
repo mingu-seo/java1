@@ -16,7 +16,11 @@
     /* = * g_conf_log_dir 변수 설정                                                 = */
     /* =   log 디렉토리 설정                                                        = */
     /* ============================================================================== */    
+<<<<<<< HEAD
+    String g_conf_log_dir   = "E:\\workspace\\java1\\log";             // LOG 디렉토리 절대경로 입력
+=======
      String g_conf_log_dir   = "E:\\Java\\workspace\\java1\\log";               // LOG 디렉토리 절대경로 입력
+>>>>>>> branch 'master' of https://github.com/mingu-seo/java1.git
     
     /* ============================================================================== */
     /* = ※ 주의 ※                                                                 = */
