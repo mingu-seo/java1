@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ include file="/kcp/cfg/site_conf_inc.jsp" %>
 	<div id="footer">
 		<div class="size">
 			<div class="inner">					
@@ -122,6 +123,38 @@ function save() {
 	if (confirm("예매하시겠습니까?")) {
 		$("#popupFrm").submit();
 	}
+}
+
+function m_Completepayment( FormOrJson, closeEvent ) 
+{
+    var frm = document.popupFrm; 
+ 
+    GetField( frm, FormOrJson ); 
+
+    
+    if( frm.res_cd.value == "0000" )
+    {
+        frm.submit(); 
+    }
+    else
+    {
+        alert( "[" + frm.res_cd.value + "] " + frm.res_msg.value );
+        closeEvent();
+    }
+}
+
+function jsf__pay( form )
+{
+    try
+    {
+    	if (confirm("예매하시겠습니까?")) {
+        KCP_Pay_Execute( form ); 
+    	}
+    }
+    catch (e)
+    {
+        /* IE 에서 결제 정상종료시 throw로 스크립트 종료 */ 
+    }
 }
 </script>
 <div id="ticket_dialogue" class="dialogue_wr popupContent">

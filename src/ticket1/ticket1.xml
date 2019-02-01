@@ -95,9 +95,9 @@
     	where no = #no#
     </update>
     
-    <update id="resStateUpdate" parameterClass="ticket1VO">
+    <update id="stateChange" parameterClass="Integer">
     	update ticket1 set
-    	res_state=#res_state#, cancel_date=now()
+    	res_state=2, cancel_date=now(), pay_state=3
     	where no = #no#
     </update>
     
@@ -143,6 +143,12 @@
         	SELECT LAST_INSERT_ID()
         </selectKey>
        </insert>
+   
+   <update id="plusPoint" parameterClass="pointVO">
+   	update member set
+    	point = point+#usePoint#
+    where no = #member_pk#
+   </update>
    
    <insert id="minusPoint" parameterClass="pointVO">
    	INSERT INTO POINT (

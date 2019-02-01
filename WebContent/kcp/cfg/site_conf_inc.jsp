@@ -16,11 +16,11 @@
     /* = * g_conf_log_dir º¯¼ö ¼³Á¤                                                 = */
     /* =   log µð·ºÅä¸® ¼³Á¤                                                        = */
     /* ============================================================================== */    
-    String g_conf_log_dir   = "D:\\workspace\\java1\\log";             // LOG µð·ºÅä¸® Àý´ë°æ·Î ÀÔ·Â
     
     
-    
-    // String g_conf_log_dir   = "E:\\Java\\workspace\\java1\\log";       //상윤's
+    String g_conf_log_dir   = "D:\\workspace\\java1\\log";             // 나영
+    // String g_conf_log_dir   = "E:\\Java\\workspace\\java1\\log";       //상윤
+    // String g_conf_log_dir   = "E:\\workspace\\java1\\log";             //아란
     
     /* ============================================================================== */
     /* = ¡Ø ÁÖÀÇ ¡Ø                                                                 = */

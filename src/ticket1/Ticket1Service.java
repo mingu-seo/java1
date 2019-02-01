@@ -116,10 +116,18 @@ public class Ticket1Service extends SqlMapClientDAOSupport{
 		return cnt;
 	}
 	
-	public int resStateUpdate(Ticket1VO vo) throws SQLException {
-		int cnt = ticket1Dao.resStateUpdate(vo);
+	// 예매 취소 처리
+	public void cancel(int ticket_no, PointVo pvo) throws SQLException {
+		ticket1Dao.stateChange(ticket_no);
+		ticket1Dao.plusPoint(pvo);
+	}
+	
+	/*
+	public int plusPoint(Ticket1VO vo) throws SQLException{
+		int cnt = ticket1Dao.plusPoint(vo);
 		return cnt;
 	}
+	*/
 	
 	public int delete(int no) throws SQLException {
 		int cnt = ticket1Dao.delete(no);
