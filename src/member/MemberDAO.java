@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Repository;
 
 import db.SqlMapClientDAOSupport;
+import ticket1.PointVo;
 import ticket1.Ticket1VO;
 @Repository
 public class MemberDAO extends SqlMapClientDAOSupport {
@@ -30,6 +31,14 @@ public class MemberDAO extends SqlMapClientDAOSupport {
 		return (ArrayList)getSqlMapClient().queryForList("member.list", param);
 	}
 
+	
+
+
+	public ArrayList myPointList(PointVo pv) throws SQLException {
+		return (ArrayList)getSqlMapClient().queryForList("member.myPointList",pv);
+	}
+
+	
 	/**
 	 * 관리자 등록
 	 * @param vo
@@ -169,11 +178,23 @@ public class MemberDAO extends SqlMapClientDAOSupport {
 
 	
 	public static void main(String[] args) throws Exception {
-		long time = System.currentTimeMillis();
-		String num = Long.toString(time);
-		System.out.println(num);
+		MemberVO mv = new MemberVO();
+		MemberDAO dao = new MemberDAO();
+		PointVo pv = new PointVo();
+		
+		pv.setMember_pk(10);
+		
+		
+		
+		dao.myPointList(pv);
+		
+		
 			
 		
 		
 	}
+
+
+
+
 }

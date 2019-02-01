@@ -109,6 +109,8 @@ public class Ticket1Controller {
 		
 		return "ticket/ticketPayProcessing";
 	}
+<<<<<<< HEAD
+=======
 	
 	@RequestMapping("/ticket/cancel.do")
 	public String ticketCancel(Model model, Ticket1VO tvo, PointVo pvo ) throws Exception{
@@ -119,6 +121,7 @@ public class Ticket1Controller {
 	}
 
 	
+>>>>>>> branch 'master' of https://github.com/mingu-seo/java1.git
 	
 	@RequestMapping("/manage/ticket1/process.do")
 	public String ticketProcess(Model model, Ticket1VO param, HttpServletRequest request) throws Exception {

@@ -4,7 +4,8 @@
     
     <typeAlias alias="ticket1VO" type="ticket1.Ticket1VO"/>
     <typeAlias alias="pointVo" type="ticket1.PointVo" />
-    
+    <typeAlias alias="memberVo" type="member.MemberVo" />
+     
     <!-- 공통조건 -->
 	<sql id="searchSql">		
 		<!-- WHERE 절 검색 -->
@@ -149,8 +150,22 @@
    	</selectKey>
    </insert>
    
+<<<<<<< HEAD
+    <update id="minusMemberPoint" parameterClass="pointVO">
+	update member set
+	point=point+#usePoint#
+	where no=#member_pk#
+    </update>
+    
+    <update id="plusMemberPoint" parameterClass="pointVO">
+	update member set
+	point=point+#usePoint#
+	where no=#member_pk#
+    </update>
+=======
    
   
+>>>>>>> branch 'master' of https://github.com/mingu-seo/java1.git
      
      
 </sqlMap>

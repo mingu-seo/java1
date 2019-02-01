@@ -511,7 +511,7 @@ public class DateUtil {
 			 day = Integer.parseInt(st.nextToken());
 		}
 		sd.setYear(year);
-		sd.setMonth(month);
+		sd.setMonth(month-1);
 		sd.setDate(day);
 		if	(st2.hasMoreTokens()) {
 			 year = Integer.parseInt(st2.nextToken());
@@ -519,7 +519,7 @@ public class DateUtil {
 			 day = Integer.parseInt(st2.nextToken());
 		}
 		ed.setYear(year);
-		ed.setMonth(month);
+		ed.setMonth(month-1);
 		ed.setDate(day);
 		long temp = (sd.getTime() - ed.getTime()) / (1000L*60L*60L*24L);
 		int diff = (int)temp;
@@ -606,7 +606,7 @@ public class DateUtil {
 	public static void main(String[] args) {
 		String day = "2013-06-01";
 		System.out.println(getToday());
-		System.out.println(getDiff("2019-01-31", getToday()));
+		System.out.println(getDiff("2019-03-03", "2019-02-28"));
 	}
 
 }

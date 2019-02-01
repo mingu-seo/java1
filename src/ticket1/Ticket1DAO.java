@@ -62,8 +62,21 @@ public class Ticket1DAO extends SqlMapClientDAOSupport{
 	public int minusPoint(PointVo pv) throws SQLException {
 		return (Integer)getSqlMapClient().insert("ticket1.minusPoint", pv);
 	}
+	
+	public int plusPoint(PointVo pv) throws SQLException {
+		return (Integer)getSqlMapClient().insert("ticket1.plusPoint", pv);
+	}
 
+	public int minusMemberPoint(PointVo pv) throws SQLException {
+		return (Integer)getSqlMapClient().update("ticket1.minusMemberPoint", pv);
+	}
 
+	public int plusMemberPoint(PointVo pv) throws SQLException {
+		return (Integer)getSqlMapClient().update("ticket1.plusMemberPoint", pv);
+	}
+
+	
+	
 	public static void main(String[] args) throws SQLException {
 		Ticket1DAO td = new Ticket1DAO();
 		Ticket1VO tv = new Ticket1VO();
