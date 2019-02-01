@@ -1,4 +1,6 @@
 eclipse.preferences.version=1
 encoding//WebContent/WEB-INF/view/movie/reviewList.jsp=UTF-8
 encoding//WebContent/WEB-INF/view/ticket/ticket_form.jsp=UTF-8
+encoding//WebContent/kcp=ISO-8859-1
+encoding//WebContent/kcp/cfg/site_conf_inc.jsp=UTF-8
 encoding/<project>=UTF-8

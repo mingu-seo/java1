@@ -185,6 +185,7 @@ function cal() {
 							<input type="hidden" name="sval" id="sval" value="<%=param.getSval()%>"/>
 							<input type="hidden" name="no" id="no" value="<%=param.getNo()%>"/>
 							<input type="hidden" name="price" id="price" value="<%=data.getPrice()%>"/>
+							<input type="hidden" name="title" id="title" value="<%=data.getMovie_title()%>"/>
 							</form>
 							<div class="btn">
 								<div class="btnLeft">

@@ -5,7 +5,9 @@
 <%@ page import="property.SiteProperty" %>
 <%
 
-ArrayList<PointVo> pv = (ArrayList)request.getAttribute("list");%>
+ArrayList<PointVo> pv = (ArrayList)request.getAttribute("list");
+int point = (Integer)request.getAttribute("point");
+%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -24,7 +26,7 @@ ArrayList<PointVo> pv = (ArrayList)request.getAttribute("list");%>
     <div class="sub">
 		<div class="size">
 		
-			<h3 class="sub_title">포인트 (사용 가능 : <%=memberInfo.getPoint() %>)</h3>
+			<h3 class="sub_title">포인트 (사용 가능 : <%=point%>)</h3>
 			
 			<div class="mypage_tab">
 				<ul>
@@ -33,9 +35,9 @@ ArrayList<PointVo> pv = (ArrayList)request.getAttribute("list");%>
 					<li><a href="/member/edit.do">내 정보</a></li>
 				</ul>
 			</div>
-			
+			<div class="mypage_tab_bottom"></div>
 			<div class="bbs">
-			<br/>
+			
 				<table class="list">
 				
 					<colgroup>

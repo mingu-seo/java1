@@ -188,5 +188,11 @@ public class MemberService extends SqlMapClientDAOSupport{
 		return myPointList;
 		
 	}
+
+	public int getPoint(int vo) throws SQLException {
+		int getPoint = memberDao.getPoint(vo);
+		return getPoint;
+		
+	}
 	
 }

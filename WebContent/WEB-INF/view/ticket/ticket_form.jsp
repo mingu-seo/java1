@@ -101,8 +101,10 @@ member.MemberVO memberInfo = (member.MemberVO)session.getAttribute("memberInfo")
 						<td>
 							<input type="text" name="point" id="myPoint"  value="<%=memberInfo.getPoint()%>" onkeyup="isOnlyNumber(this);"/> 점
 							<input type="button" class="btn" value="확인">
+
+
 							<input type="text" name="mypoint" id="mypoint"  value="<%=memberInfo.getPoint() %>" readonly/> 점
-							
+
 						</td>
 					</tr>
 					<tr>
@@ -130,7 +132,7 @@ member.MemberVO memberInfo = (member.MemberVO)session.getAttribute("memberInfo")
 			<input type="hidden" name="price" id="price" value=""/>
 			<input type="hidden" name="member_pk" id="member_pk" value="<%=memberInfo.getNo()%>" />
 			<input type="hidden" name="movie_pk" id="movie_pk" value="<%=data.getNo() %>"/>
-			
+			<input type="hidden" name="title" value="<%=data.getTitle()%>"/>
 			<input type="hidden" name="pay_state"  value="2"/>
 			
 			

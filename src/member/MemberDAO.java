@@ -32,7 +32,9 @@ public class MemberDAO extends SqlMapClientDAOSupport {
 	}
 
 	
-
+	public int getPoint(int vo) throws SQLException {
+		return (Integer) getSqlMapClient().queryForObject("member.getPoint", vo);
+	}
 
 	public ArrayList myPointList(PointVo pv) throws SQLException {
 		return (ArrayList)getSqlMapClient().queryForList("member.myPointList",pv);
@@ -186,8 +188,8 @@ public class MemberDAO extends SqlMapClientDAOSupport {
 		
 		
 		
-		dao.myPointList(pv);
-		
+		int r = dao.getPoint(3);
+		System.out.println(r);
 		
 			
 		

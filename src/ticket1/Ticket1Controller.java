@@ -96,6 +96,9 @@ public class Ticket1Controller {
 		if(param.getUsePoint()>0) {
 			ticket1Service.minusPoint(param.getMember_pk(), request);
 		}
+		if(param.getPay()==2) {
+			ticket1Service.plusPoint(param.getMember_pk(), request);
+		}
 	//	model.addAttribute("point", point);
 		model.addAttribute("code", "alertMessageUrl");
 		model.addAttribute("message", Function.message(r, "정상적으로 예매되었습니다.", "등록실패"));
@@ -107,9 +110,10 @@ public class Ticket1Controller {
 			param.setPay_state(1);
 		}
 		
-		return "ticket/ticketPayProcessing";
+		return "include/alert";
 	}
 	
+
 	@RequestMapping("/ticket/cancel.do")
 	public String ticketCancel(Model model, Ticket1VO tvo, PointVo pvo ) throws Exception{
 		tvo.setRes_state(2);
@@ -118,12 +122,17 @@ public class Ticket1Controller {
 		return "";
 	}
 
-	
-	
 	@RequestMapping("/manage/ticket1/process.do")
 	public String ticketProcess(Model model, Ticket1VO param, HttpServletRequest request) throws Exception {
 		if ("edit.do".equals(param.getCmd())) {
+			Ticket1VO r2 = ticket1Service.read(param.getNo());
+			if(r2.getPay_state()==2 && param.getPay_state()==1) {
+				ticket1Service.plusPoint(r2.getMember_pk(), request);
+			}
+
 			int r = ticket1Service.update(param);
+			
+			
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "정상적으로 수정되었습니다.", "수정실패"));
 			model.addAttribute("url", param.getTargetURLParam("index.do", param, 0));

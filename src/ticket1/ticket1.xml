@@ -77,6 +77,11 @@
         where no = #no#
     </select>
     
+  
+    
+    
+  
+    
     <update id="update" parameterClass="ticket1VO">
     	update ticket1 set
     	format=#format#, screen_date=#screen_date#, screen_time=#screen_time#, 
@@ -149,6 +154,19 @@
    		SELECT LAST_INSERT_ID()
    	</selectKey>
    </insert>
+   
+   <insert id="plusPoint" parameterClass="pointVO" >
+   INSERT INTO POINT(
+   member_pk, usePoint, memo, pointRegistDate
+   ) VALUES (
+   #member_pk#, #usePoint#, #memo#, now()
+   )
+   <selectKey keyProperty="point_no" resultClass="Integer" >
+   	SELECT LAST_INSERT_ID()
+   </selectKey>
+
+   </insert>
+   
 
     <update id="minusMemberPoint" parameterClass="pointVO">
 	update member set
@@ -161,8 +179,4 @@
 	point=point+#usePoint#
 	where no=#member_pk#
     </update>
-   
-  
-     
-     
 </sqlMap>
