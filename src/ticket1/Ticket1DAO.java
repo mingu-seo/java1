@@ -35,6 +35,10 @@ public class Ticket1DAO extends SqlMapClientDAOSupport{
 		return getSqlMapClient().update("ticket1.update", vo);
 	}
 	
+	public int resStateUpdate(Ticket1VO vo) throws SQLException {
+		return getSqlMapClient().update("ticket1.resStateUpdate", vo);
+	}
+	
 	public int delete(int no) throws SQLException {
 		return getSqlMapClient().delete("ticket1.delete", no);
 	}
