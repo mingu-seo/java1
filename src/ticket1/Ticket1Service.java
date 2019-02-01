@@ -85,7 +85,7 @@ public class Ticket1Service extends SqlMapClientDAOSupport{
 	public int minusPoint(int member_pk, HttpServletRequest request) throws SQLException {
 		PointVo pv = new PointVo();
 		pv.setMember_pk(member_pk);
-		pv.setMemo(request.getParameter("title")+ " 예매시 포인트 사용");
+		pv.setMemo("<" + request.getParameter("title") + ">" + " 예매 시 포인트 사용");
 		pv.setUsePoint((-1)*Function.getIntParameter((request.getParameter("usePoint"))));
 		
 		int r = ticket1Dao.minusPoint(pv);
@@ -97,7 +97,7 @@ public class Ticket1Service extends SqlMapClientDAOSupport{
 	public int plusPoint(int member_pk, HttpServletRequest request) throws SQLException {
 		PointVo pv = new PointVo();
 		pv.setMember_pk(member_pk);
-		pv.setMemo("매표 포인트 적립");
+		pv.setMemo("<" + request.getParameter("title") + ">"+ " 예매 포인트 적립");
 		pv.setUsePoint(Function.getIntParameter((request.getParameter("price")))*10/100);
 		
 		int r = ticket1Dao.plusPoint(pv);
