@@ -67,13 +67,14 @@ $(function(){
         					for(int i=0; i<tklist.size(); i++) {
 								rank = tklist.get(i);
 					%>
-        			<li class="ranking_li" data-poster="<%=rank.getPoster()%>" data-no="<%=rank.getNo()%>"><span class="rank"><%=i+1 %></span><a href="/movie/detail.do?no=<%=rank.getNo()%>"><%=rank.getTitle() %></a></li>
+        			<li class="ranking_li" data-poster="<%=rank.getPoster()%>" data-no="<%=rank.getNo()%>" data-youtube="<%=rank.getYoutube() %>">
+        			<span class="rank"><%=i+1 %></span><a href="/movie/detail.do?no=<%=rank.getNo()%>"><%=rank.getTitle() %></a></li>
         		<%} %>
         		</ul>
         	</div>
         	<div class="youtube">
         		<div class="video_container">
-					<iframe src="https://www.youtube.com/embed/dVXbK4Mz_NY" frameborder="0"  wmode="Opaque" width="100%" height="315"></iframe>
+					<iframe id="youtube" src="https://www.youtube.com/embed/dVXbK4Mz_NY" frameborder="0"  wmode="Opaque" width="100%" height="315"></iframe>
 				</div>
         	</div>
         </div>
@@ -83,12 +84,15 @@ $(function() {
 	
 	$("#poster_img").attr("src", "<%=property.SiteProperty.MOVIE_UPLOAD_PATH%>"+$(".ranking_li").eq(0).data("poster"));
 	$("#poster_img").attr("onclick", "location.href='/movie/detail.do?no="+$(".ranking_li").eq(0).data("no")+"';");
+	$("#youtube").attr("src", $(".ranking_li").eq(0).data("youtube"));
 	
 	$(".ranking_li").mouseover(function() {
 		var idx = $(".ranking_li").index(this);
 		var img = $(".ranking_li").eq(idx).data("poster");
+		var you = $(".ranking_li").eq(idx).data("youtube");
 		var no = $(".ranking_li").eq(idx).data("no");
 		$("#poster_img").attr("src", "<%=property.SiteProperty.MOVIE_UPLOAD_PATH%>"+img);
+		$("#youtube").attr("src", you);
 		$("#poster_img").attr("onclick", "location.href='/movie/detail.do?no="+no+"';");
 	});
 });

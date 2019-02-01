@@ -69,9 +69,10 @@
     </select>
 	
 	<select id="nowList" parameterClass="movie_vo" resultClass="movie_vo">
-        select *
-        from $tablename$
           <![CDATA[
+        select *,
+         ROUND(IFNULL((select avg(score) from review where review.movie_pk=movie.no),0),2) as avgscore
+        from $tablename$
         where releaseDate <= substring(now(),1,10) and endDate >= substring(now(),1,10)
          ]]>
 	      <include refid="searchSql" />
@@ -359,7 +360,8 @@
 	<!-- 나영=박스오피스에쓸예매율 -->
 	<select id="ticketcount" resultClass="movie_vo">
     <![CDATA[
-    	select no, title, poster,
+    	select no, title, poster, 
+        (select trailer1 from trailer where trailer.movie_no=movie.no) as youtube,
     	(select count(*) from ticket1 where ticket1.movie_pk=movie.no) as ticketcount
     	from movie
     	where

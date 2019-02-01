@@ -69,34 +69,19 @@ public class CodeUtil {
 		String result = "";
 		switch (type) {
 		case 1:
-			result = "5.0";
+			result = "1";
 			break;
 		case 2:
-			result = "4.5";
+			result = "2";
 			break;
 		case 3:
-			result = "4.0";
+			result = "3";
 			break;
 		case 4:
-			result = "3.5";
+			result = "4";
 			break;
 		case 5:
-			result = "3.0";
-			break;
-		case 6:
-			result = "2.5";
-			break;
-		case 7:
-			result = "2.0";
-			break;
-		case 8:
-			result = "1.5";
-			break;
-		case 9:
-			result = "1.0";
-			break;
-		case 10:
-			result = "0.5";
+			result = "5";
 			break;
 		}
 		return result;
@@ -108,11 +93,6 @@ public class CodeUtil {
 		result.append("<option value='3'"+Function.getSelected(3,arg)+">"+getScoreType(3)+"</option>");
 		result.append("<option value='4'"+Function.getSelected(4,arg)+">"+getScoreType(4)+"</option>");
 		result.append("<option value='5'"+Function.getSelected(5,arg)+">"+getScoreType(5)+"</option>");
-		result.append("<option value='6'"+Function.getSelected(6,arg)+">"+getScoreType(6)+"</option>");
-		result.append("<option value='7'"+Function.getSelected(7,arg)+">"+getScoreType(7)+"</option>");
-		result.append("<option value='8'"+Function.getSelected(8,arg)+">"+getScoreType(8)+"</option>");
-		result.append("<option value='9'"+Function.getSelected(9,arg)+">"+getScoreType(9)+"</option>");
-		result.append("<option value='10'"+Function.getSelected(10,arg)+">"+getScoreType(10)+"</option>");
 		return result.toString();
 	}
 	/**
