@@ -155,6 +155,7 @@
 
             ordr_data_set_no = c_PayPlus.mf_add_set( "ordr_data" );
 
+            c_PayPlus.mf_set_us( ordr_data_set_no, "ordr_mony", "1" );
             c_PayPlus.mf_set_us( ordr_data_set_no, "ordr_mony", "1004" );
 
             

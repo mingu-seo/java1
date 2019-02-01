@@ -185,7 +185,4 @@
 	point=point+#usePoint#
 	where no=#member_pk#
     </update>
-
-     
-     
 </sqlMap>

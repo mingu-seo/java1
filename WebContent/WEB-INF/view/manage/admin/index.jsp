@@ -76,7 +76,7 @@ function groupDelete() {
 									 } else {
 										String targetUrl = "";
 										for (int i=0; i<list.size(); i++) {
-											targetUrl = "style='cursor:pointer;' onclick=\"location.href='"+param.getTargetURLParam("read", param, list.get(i).getNo())+"'\"";
+											targetUrl = "style='cursor:pointer;' onclick=\"location.href='"+param.getTargetURLParam("read.do", param, list.get(i).getNo())+"'\"";
 								%>
 									<tr>
 										<td class="first"><input type="checkbox" name="no" id="no" value="<%=list.get(i).getNo()%>"/></td>
@@ -101,7 +101,7 @@ function groupDelete() {
 									<a class="btns" href="#" onclick="groupDelete();"><strong>삭제</strong> </a>
 								</div>
 								<div class="btnRight">
-									<a class="wbtn" href="write"><strong>글쓰기</strong> </a>
+									<a class="wbtn" href="write.do"><strong>관리자등록</strong> </a>
 								</div>
 							</div>
 							<!--//btn-->
@@ -114,7 +114,6 @@ function groupDelete() {
 										<option value="all" <%=Function.getSelected(param.getStype(), "all") %>>전체</option>
 										<option value="id" <%=Function.getSelected(param.getStype(), "id") %>>아이디</option>
 										<option value="name" <%=Function.getSelected(param.getStype(), "name") %>>이름</option>
-										<option value="memo" <%=Function.getSelected(param.getStype(), "memo") %>>메모</option>
 									</select>
 									<input type="text" name="sval" value="<%=param.getSval()%>" title="검색할 내용을 입력해주세요" />
 									<input type="image" src="/manage/img/btn_search.gif" class="sbtn" alt="검색" />

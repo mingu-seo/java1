@@ -38,7 +38,7 @@ int totPage = (Integer)request.getAttribute("totPage"); %>
 							<a href="#;">
 							<dl>
 								<dt class="img">
-										<img src="<%=SiteProperty.MOVIE_UPLOAD_PATH%><%=data.getPoster()%>" alt=""/>
+										<img src="<%=SiteProperty.MOVIE_UPLOAD_PATH%><%=data.getPoster()%>" onclick="location.href='detail.do?no=<%=data.getNo()%>';" alt=""/>
 								</dt>
 								<dd class="date">평점 <%=data.getAvgscore() %></dd>
 								

@@ -99,6 +99,8 @@ member.MemberVO memberInfo = (member.MemberVO)session.getAttribute("memberInfo")
 					<tr>
 						<th>보유포인트</th>
 						<td>
+							<input type="text" name="point" id="myPoint"  value="<%=memberInfo.getPoint()%>" onkeyup="isOnlyNumber(this);"/> 점
+							<input type="button" class="btn" value="확인">
 
 
 							<input type="text" name="mypoint" id="mypoint"  value="<%=memberInfo.getPoint() %>" readonly/> 점

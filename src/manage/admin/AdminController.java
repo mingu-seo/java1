@@ -18,7 +18,7 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 	
-	@RequestMapping("/manage/admin/index")
+	@RequestMapping("/manage/admin/index.do")
 	public String index(Model model, AdminVO param) throws Exception {
 		int[] rowPageCount = adminService.count(param);
 		ArrayList<AdminVO> list = adminService.list(param);
@@ -40,7 +40,7 @@ public class AdminController {
 		return "manage/admin/read";
 	}
 	
-	@RequestMapping("/manage/admin/edit")
+	@RequestMapping("/manage/admin/edit.do")
 	public String edit(Model model, AdminVO param) throws Exception {
 		AdminVO data = adminService.read(param.getNo());
 		model.addAttribute("data", data);
@@ -49,7 +49,7 @@ public class AdminController {
 		return "manage/admin/edit";
 	}
 	
-	@RequestMapping("/manage/admin/write")
+	@RequestMapping("/manage/admin/write.do")
 	public String write(Model model, AdminVO param) throws Exception {
 		model.addAttribute("vo", param);
 		
@@ -64,7 +64,7 @@ public class AdminController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("/manage/admin/idcheck")
+	@RequestMapping("/manage/admin/idcheck.do")
 	public String idcheck(Model model, AdminVO param) throws Exception {
 		model.addAttribute("vo", param);
 		int value = adminService.idcheck(param);
@@ -82,30 +82,30 @@ public class AdminController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("/manage/admin/process")
+	@RequestMapping("/manage/admin/process.do")
 	public String process(Model model, AdminVO param, HttpServletRequest request) throws Exception {
 		model.addAttribute("vo", param);
 		
-		if ("write".equals(param.getCmd())) {
+		if ("write.do".equals(param.getCmd())) {
 			int r = adminService.insert(param);
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "정상적으로 등록되었습니다.", "등록실패"));
-			model.addAttribute("url", "index");
+			model.addAttribute("url", "index.do");
 		} else if ("edit".equals(param.getCmd())) {
 			int r = adminService.update(param);
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "정상적으로 수정되었습니다.", "수정실패"));
-			model.addAttribute("url", param.getTargetURLParam("index", param, 0));
+			model.addAttribute("url", param.getTargetURLParam("index.do", param, 0));
 		} else if ("groupDelete".equals(param.getCmd())) {
 			int r = adminService.groupDelete(request);
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "총 "+r+"건이 삭제되었습니다.", "삭제실패"));
-			model.addAttribute("url", param.getTargetURLParam("index", param, 0));
+			model.addAttribute("url", param.getTargetURLParam("index.do", param, 0));
 		} else if ("delete".equals(param.getCmd())) {
 			int r = adminService.delete(param.getNo());
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "정상적으로 삭제되었습니다.", "삭제실패"));
-			model.addAttribute("url", param.getTargetURLParam("index", param, 0));
+			model.addAttribute("url", param.getTargetURLParam("index.do", param, 0));
 		}
 		
 		return "include/alert";
