@@ -19,7 +19,9 @@
 %>
     <%@ page import="com.kcp.*" %>
     <%@ page import="java.net.URLEncoder"%>
+    <!-- 
     <%@ include file="../cfg/site_conf_inc.jsp"%>
+     -->
 <%
     /* = -------------------------------------------------------------------------- = */
     /* =   환경 설정 파일 Include END                                               = */

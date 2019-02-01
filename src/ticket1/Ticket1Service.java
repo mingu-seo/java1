@@ -94,7 +94,7 @@ public class Ticket1Service extends SqlMapClientDAOSupport{
 		return r;
 	}
 	
-	public int plusPoint(int member_pk, HttpServletRequest request) throws SQLException {
+	public int memberPlusPoint(int member_pk, HttpServletRequest request) throws SQLException {
 		PointVo pv = new PointVo();
 		pv.setMember_pk(member_pk);
 		pv.setMemo("<" + request.getParameter("title") + ">"+ " 예매 포인트 적립");
