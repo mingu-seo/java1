@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Repository;
 
 import db.SqlMapClientDAOSupport;
-import member.MemberVO;
 
 @Repository
 public class Ticket1DAO extends SqlMapClientDAOSupport{
@@ -35,8 +34,12 @@ public class Ticket1DAO extends SqlMapClientDAOSupport{
 		return getSqlMapClient().update("ticket1.update", vo);
 	}
 	
-	public int resStateUpdate(Ticket1VO vo) throws SQLException {
-		return getSqlMapClient().update("ticket1.resStateUpdate", vo);
+	public int stateChange(int ticket_no) throws SQLException {
+		return getSqlMapClient().update("ticket1.stateChange", ticket_no);
+	}
+	
+	public int plusPoint(PointVo vo) throws SQLException {
+		return getSqlMapClient().update("ticket1.plusPoint", vo);
 	}
 	
 	public int delete(int no) throws SQLException {

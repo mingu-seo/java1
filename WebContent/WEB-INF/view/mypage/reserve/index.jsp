@@ -7,8 +7,13 @@
 <!DOCTYPE html>
 <html lang="ko">
 <script>
-function calcel(){
-	
+function goCancel(tno) {
+	var cancel = confirm ('취소하시겠습니까?');
+	if (cancel){
+		document.location.href = "/ticket/cancel.do?no="+tno;
+	} else {
+		return false;
+	}
 }
 
 </script>
@@ -89,6 +94,7 @@ function calcel(){
 												<td><%=Function.getNumberFormat(Integer.parseInt(data.getPrice())) %>원</td>
 												<th>예매 상태</th>
 												<td>
+												
 												<%if(data.getRes_state()==1){ 
 													out.print("예매완료");
 												}else if(data.getRes_state()==2){ 
@@ -99,12 +105,11 @@ function calcel(){
 										</table>
 									</div>
 									<%if(data.getRes_state()==1 && DateUtil.getDiff(data.getScreen_date(), DateUtil.getToday())>=1){ %>
-									<div class="btn_area"><a href="/ticket/cancel.do" class="btn" onclick="">예매취소</a></div>
+									<div class="btn_area"><a href="#" class="btn" onclick="goCancel(<%=data.getNo()%>)">예매취소</a></div>
 									<% }%>
 								</div>
 							</div>
 							<%} %>
-							
 						</li>
 					</ul>
 				</div>

@@ -25,14 +25,7 @@ public class Ticket1VO extends Parameter{
 	private int usePoint;
 	
 	private String movie_poster;	//영화포스터
-	public int getUsePoint() {
-		return usePoint;
-	}
-
-
-	public void setUsePoint(int usePoint) {
-		this.usePoint = usePoint;
-	}
+	
 	private String movie_title;
 	private String movie_format;
 	private String member_name;
@@ -246,6 +239,12 @@ public class Ticket1VO extends Parameter{
 	}
 	public void setYoil(int yoil) {
 		this.yoil = yoil;
+	}
+	public int getUsePoint() {
+		return usePoint;
+	}
+	public void setUsePoint(int usePoint) {
+		this.usePoint = usePoint;
 	}
 	public int getPrev_no() {
 		return prev_no;

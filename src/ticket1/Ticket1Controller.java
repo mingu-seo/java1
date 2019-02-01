@@ -102,23 +102,22 @@ public class Ticket1Controller {
 		model.addAttribute("url", "index.do");
 		
 		// r = 호출한 것에 대한 리턴값 
-		
 		if(param.getPay()==2) {
 			param.setPay_state(1);
 		}
-		
 		return "ticket/ticketPayProcessing";
 	}
 	
+	
 	@RequestMapping("/ticket/cancel.do")
-	public String ticketCancel(Model model, Ticket1VO tvo, PointVo pvo ) throws Exception{
-		tvo.setRes_state(2);
-		ticket1Service.resStateUpdate(tvo);
-		
-		return "";
+	public String ticketCancel(Model model, Ticket1VO tvo, PointVo pvo) throws Exception{
+		Ticket1VO vo = ticket1Service.read(tvo.getNo());
+		pvo.setUsePoint(vo.getUsePoint());
+		pvo.setMember_pk(vo.getMember_pk());
+		ticket1Service.cancel(tvo.getNo(), pvo);
+		return "redirect:/mypage/index.do";
 	}
 
-	
 	
 	@RequestMapping("/manage/ticket1/process.do")
 	public String ticketProcess(Model model, Ticket1VO param, HttpServletRequest request) throws Exception {

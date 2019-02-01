@@ -26,6 +26,15 @@
 			<bean class="interceptor.AdminLoginInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
+	<mvc:interceptors>
+	
+		<mvc:interceptor>
+			<mvc:mapping path="/mypage/index.do" />
+			<mvc:mapping path="/board/qna/swrite.do" />
+			<mvc:mapping path="/board/qna/sreply.do" />
+			<bean class="interceptor.MemberLogiInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 	
  	<mvc:default-servlet-handler/>
  	
