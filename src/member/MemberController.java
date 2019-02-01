@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import property.SiteProperty;
+import ticket1.PointVo;
 import ticket1.Ticket1Service;
 import ticket1.Ticket1VO;
 import util.Function;
@@ -72,6 +73,20 @@ public class MemberController {
 		return "member/join";
 	}
 	
+	//포인트 페이지 리턴
+	@RequestMapping("/member/point.do")
+	public String point(Model model, MemberVO param, PointVo pv, HttpSession session) throws Exception {
+		MemberVO memberInfo = (MemberVO)session.getAttribute("memberInfo");
+		pv.setMember_pk(memberInfo.getNo());
+		ArrayList<PointVo> list = memberService.myPointList(pv);
+		model.addAttribute("list", list);
+		
+		
+		return "member/point";
+	}
+	
+	
+	
 	//마이페이지 리턴
 	@RequestMapping("/mypage/index.do")
 	public String mypage(Model model, MemberVO param, Ticket1VO vo, HttpSession session) throws Exception {
@@ -87,6 +102,8 @@ public class MemberController {
 		
 		return "mypage/reserve/index";
 	}
+	
+	
 	
 	//아이디 찾기 페이지 리턴
 	@RequestMapping("/member/emailsearch.do")

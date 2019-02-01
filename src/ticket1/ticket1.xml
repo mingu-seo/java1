@@ -145,12 +145,16 @@
    </insert>
    
     <update id="minusMemberPoint" parameterClass="pointVO">
-    
 	update member set
-	point=point-#usePoint#
+	point=point+#usePoint#
 	where no=#member_pk#
     </update>
     
+    <update id="plusMemberPoint" parameterClass="pointVO">
+	update member set
+	point=point+#usePoint#
+	where no=#member_pk#
+    </update>
      
      
 </sqlMap>

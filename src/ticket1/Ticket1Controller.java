@@ -113,8 +113,6 @@ public class Ticket1Controller {
 		
 		return "ticket/ticketPayProcessing";
 	}
-
-	
 	
 	@RequestMapping("/manage/ticket1/process.do")
 	public String ticketProcess(Model model, Ticket1VO param, HttpServletRequest request) throws Exception {
