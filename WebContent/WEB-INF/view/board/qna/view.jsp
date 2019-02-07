@@ -32,7 +32,6 @@ ReplyVO3 param = (ReplyVO3)request.getAttribute("data");
 						</dl>
 					</div>
 					<div class="cont"><%=param.getContents()%> </div>
-				
 					<div class="btnSet clear">
 						<div class="fl_l"><a href="index.do?" class="btn">목록으로</a></div>
 					</div>
