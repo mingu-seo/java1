@@ -1,0 +1,5 @@
+[190201 11:49:05.289][T000000Bn0GCpHcF]TX_START - site_cd=[T0000]+tx_cd=[00100000]+ordr_idxx=[TEST201902011548989306875]+log_level=[3]+opt=[0]
+[190201 11:49:05.306][T000000Bn0GCpHcF]PG_SERVER_CONN__SUCC
+[190201 11:49:05.308][T000000Bn0GCpHcF]PG_SERVER_REQ_MSG_SEND__SUCC
+[190201 11:49:05.467][T000000Bn0GCpHcF]PG_SERVER_RES_MSG_RECV__SUCC
+[190201 11:49:05.470][T000000Bn0GCpHcF]TX_ENDED-{res_cd=0000, acqu_name=신한카드, acqu_cd=CCLG, card_no=3562970000008075, amount=1004, van_cd=VNKC, card_bin_type_02=0, card_bin_type_01=0, van_apptime=20190201114906, bizx_numb=0041991860, pay_method=PACA, ca_order_id=TEST201902011548989306875, app_no=20076823, noinf=N, quota=00, mcht_taxno=1138521083, app_time=20190201114906, tno=19282924225480, join_cd=0000, card_mny=1004, order_no=TEST201902011548989306875, coupon_mny=0, res_msg=정상처리, escw_yn=N, trace_no=T000000Bn0GCpHcF, res_en_msg=processing completed, use_point=0, res_tax_flag=TG03, mall_taxno=1138521083, card_cd=CCLG, pg_txid=0201114906MP01AGCFDCW50000000010040020076823, res_free_mny=0, partcanc_yn=Y, res_tax_mny=912, card_name=신한카드, res_vat_mny=92}

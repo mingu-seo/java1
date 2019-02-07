@@ -286,7 +286,7 @@
 .dialogueList input[type=text] {width:100px;}
 .dialogueList .btn {.btn {font-size:14px; text-decoration:none !important; white-space:nowrap; display:inline-block; vertical-align:baseline; position:relative; cursor:pointer; padding:4px 20px; min-width:64px; border:2px solid #351f66; color:#fff !important; margin:0 2px; text-align:center; font-weight:bold; border-radius:5px; background-color:#351f66;}}
 
-.dialogue_wr{width:600px; height:610px; position:absolute; left:50%; top:50%; margin-left:-300px; margin-top:-165px;display:none;z-index:9100;}
+.dialogue_wr{width:600px; height:610px; position:absolute; left:50%; top:50%; margin-left:-300px; margin-top:-165px;display:none;z-index:500;}
 .dialogue_wr .box{width:600px; height:600px; margin:auto; border:1px solid #fff;  padding:20px; box-sizing:border-box; background:#fff !important;}
 .dialogue_wr .box p{font-size:14px !important; color:#000;}
 .dialogue_top{background:#351f66;}
@@ -294,7 +294,7 @@
 .dialogue_top .title{font-size:24px; color:#fff;padding-left:10px;}
 #mask {
     position:absolute; 
-    z-index:9000; 
+    z-index:400; 
     background-color:#000; 
     display:none; 
     left:0; 

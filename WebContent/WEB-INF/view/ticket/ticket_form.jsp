@@ -5,7 +5,7 @@
 <%@ page import="movie.*" %>
 <%@ page import="member.*" %>
 <%@ page import="ticket1.*" %>
-
+<%@ include file="/kcp/cfg/site_conf_inc.jsp" %>
 <% 
 MovieVo param = (MovieVo)request.getAttribute("vo");
 MovieVo data = (MovieVo) request.getAttribute("data");
@@ -99,19 +99,14 @@ member.MemberVO memberInfo = (member.MemberVO)session.getAttribute("memberInfo")
 					<tr>
 						<th>보유포인트</th>
 						<td>
-<<<<<<< HEAD
-							<input type="text" name="point" id="myPoint"  value="<%=memberInfo.getPoint()%>" onkeyup="isOnlyNumber(this);"/> 점
+							<input type="text" name="point" id="mypoint"  value="<%=memberInfo.getPoint()%>" onkeyup="isOnlyNumber(this);"/> 점
 							<input type="button" class="btn" value="확인">
-=======
-							<input type="text" name="mypoint" id="mypoint"  value="<%=memberInfo.getPoint() %>" readonly/> 점
-							
->>>>>>> branch 'master' of https://github.com/mingu-seo/java1.git
 						</td>
 					</tr>
 					<tr>
 						<th>사용포인트</th>
 						<td>
-							<input type="text" name="usePoint" id="usePoint"  value="" onkeyup="isOnlyNumber(this); cal();"/> 점
+							<input type="text" name="usePoint" id="usePoint"  value="0" onkeyup="isOnlyNumber(this); cal();"/> 점
 							
 						</td>
 					</tr>
@@ -130,15 +125,45 @@ member.MemberVO memberInfo = (member.MemberVO)session.getAttribute("memberInfo")
 					</tr>
 					</tbody>
 				</table>
+			<input type="hidden" name="movie_title" id="movie_title" value="<%=data.getTitle()%>"/>
 			<input type="hidden" name="price" id="price" value=""/>
 			<input type="hidden" name="member_pk" id="member_pk" value="<%=memberInfo.getNo()%>" />
 			<input type="hidden" name="movie_pk" id="movie_pk" value="<%=data.getNo() %>"/>
 			<input type="hidden" name="pay_state"  value="2"/>
+			
+			<!-- KCP 폼 -->
+			<input type="hidden" name="pay_method" value="100000000000"/>
+			<input type="hidden" name="ordr_idxx" value=""/>
+			<input type="hidden" name="good_name" id="good_name" value=""/>
+			<input type="hidden" name="good_mny" id="good_mny" value=""/>
+			<input type="hidden" name="buyr_name" id="buyr_name" value="<%=memberInfo.getName()%>"/>
+			<input type="hidden" name="buyr_mail" id="buyr_mail" value="<%=memberInfo.getEmail()%>"/>
+			<input type="hidden" name="buyr_tel1" id="buyr_tel1" value="<%=memberInfo.getHp()%>"/>
+			<input type="hidden" name="buyr_tel2" id="buyr_tel2" value="<%=memberInfo.getHp()%>"/>
+			<input type="hidden" name="req_tx"          value="pay" />
+		    <input type="hidden" name="site_cd"         value="<%= g_conf_site_cd   %>" />
+		    <input type="hidden" name="site_name"       value="<%= g_conf_site_name %>" />
+		    <input type="hidden" name="quotaopt"        value="12"/>
+		    <input type="hidden" name="currency"        value="WON"/>
+		    <input type="hidden" name="module_type"     value="<%= module_type %>"/>
+		    <input type="hidden" name="res_cd"          value=""/>
+		    <input type="hidden" name="res_msg"         value=""/>
+		    <input type="hidden" name="enc_info"        value=""/>
+		    <input type="hidden" name="enc_data"        value=""/>
+		    <input type="hidden" name="ret_pay_method"  value=""/>
+		    <input type="hidden" name="tran_cd"         value=""/>
+		    <input type="hidden" name="use_pay_method"  value=""/>
+			<input type="hidden" name="ordr_chk"        value=""/>
+		    <input type="hidden" name="cash_yn"         value=""/>
+		    <input type="hidden" name="cash_tr_code"    value=""/>
+		    <input type="hidden" name="cash_id_info"    value=""/>
+			<input type="hidden" name="good_expr" value="0">
+			<!-- KCP 폼 -->
 			</form>	
 			</div>
 			<!-- //wr_box -->
 			<div class="btnSet">
-				<a href="javascript:;" class="btn" onclick="save()">예매</a>
+				<a href="javascript:;" class="btn" onclick="jsf__pay();">예매</a>
 			</div>
 			<!-- //btnSet -->
 		</div>
