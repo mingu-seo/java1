@@ -59,19 +59,14 @@ AdminVO data = (AdminVO)request.getAttribute("data");
 										<th scope="row"><label for="">아이디</label></th>
 										<td colspan="3"><%=data.getId()%></td>
 									</tr>
-									<tr>
-										<td colspan="4">
-											<%=data.getMemo()%>
-										</td>
-									</tr>
 								</tbody>
 							</table>
 							<div class="btn">
 								<div class="btnLeft">
-									<a class="btns" href="<%=param.getTargetURLParam("index", param, 0)%>"><strong>목록</strong></a>
+									<a class="btns" href="<%=param.getTargetURLParam("index.do", param, 0)%>"><strong>목록</strong></a>
 								</div>
 								<div class="btnRight">
-									<a class="btns" href="<%=param.getTargetURLParam("edit", param, data.getNo())%>"><strong>수정</strong></a>
+									<a class="btns" href="<%=param.getTargetURLParam("edit.do", param, data.getNo())%>"><strong>수정</strong></a>
 									<a class="btns" href="#" onClick="goDelete();"><strong>삭제</strong></a>
 								</div>
 							</div>

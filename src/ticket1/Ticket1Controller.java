@@ -96,34 +96,39 @@ public class Ticket1Controller {
 		if(param.getUsePoint()>0) {
 			ticket1Service.minusPoint(param.getMember_pk(), request);
 		}
+		if(param.getPay()==2) {
+			ticket1Service.memberPlusPoint(param.getMember_pk(), request);
+		}
 	//	model.addAttribute("point", point);
 		model.addAttribute("code", "alertMessageUrl");
 		model.addAttribute("message", Function.message(r, "정상적으로 예매되었습니다.", "등록실패"));
 		model.addAttribute("url", "index.do");
 		
 		// r = 호출한 것에 대한 리턴값 
-		
 		if(param.getPay()==2) {
 			param.setPay_state(1);
 		}
-		
-		return "ticket/ticketPayProcessing";
+		return "include/alert";
 	}
-	
 	@RequestMapping("/ticket/cancel.do")
-	public String ticketCancel(Model model, Ticket1VO tvo, PointVo pvo ) throws Exception{
-		tvo.setRes_state(2);
-		ticket1Service.resStateUpdate(tvo);
-		
-		return "";
+	public String ticketCancel(Model model, Ticket1VO tvo, PointVo pvo) throws Exception{
+		Ticket1VO vo = ticket1Service.read(tvo.getNo());
+		pvo.setUsePoint(vo.getUsePoint());
+		pvo.setMember_pk(vo.getMember_pk());
+		ticket1Service.cancel(tvo.getNo(), pvo);
+		return "redirect:/mypage/index.do";
 	}
-
-	
-	
 	@RequestMapping("/manage/ticket1/process.do")
 	public String ticketProcess(Model model, Ticket1VO param, HttpServletRequest request) throws Exception {
 		if ("edit.do".equals(param.getCmd())) {
+			Ticket1VO r2 = ticket1Service.read(param.getNo());
+			if(r2.getPay_state()==2 && param.getPay_state()==1) {
+				ticket1Service.memberPlusPoint(r2.getMember_pk(), request);
+			}
+
 			int r = ticket1Service.update(param);
+			
+			
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", Function.message(r, "정상적으로 수정되었습니다.", "수정실패"));
 			model.addAttribute("url", param.getTargetURLParam("index.do", param, 0));

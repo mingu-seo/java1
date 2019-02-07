@@ -497,7 +497,6 @@
         <input type="hidden" name="cash_tr_code"    value="<%= cash_tr_code     %>">    <!-- 현금 영수증 발행 구분 -->
         <input type="hidden" name="cash_id_info"    value="<%= cash_id_info     %>">    <!-- 현금 영수증 등록 번호 -->
         <input type="hidden" name="cash_no"         value="<%= cash_no          %>">    <!-- 현금 영수증 거래 번호 -->        
-        
     </form>
     </body>
 </html>

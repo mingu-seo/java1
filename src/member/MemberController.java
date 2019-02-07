@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import property.SiteProperty;
+import ticket1.PointVo;
 import ticket1.Ticket1Service;
 import ticket1.Ticket1VO;
 import util.Function;
@@ -49,6 +50,7 @@ public class MemberController {
 		}
 	}
 	
+	
 	/**
 	 * 로그아웃 처리
 	 * @param model
@@ -64,6 +66,7 @@ public class MemberController {
 		return "include/alert";		
 	}
 	
+	
 	//회원가입 페이지 리턴
 	@RequestMapping("/member/join.do")
 	public String join(Model model, MemberVO param) throws Exception {
@@ -71,6 +74,22 @@ public class MemberController {
 		
 		return "member/join";
 	}
+	
+	//포인트 페이지 리턴
+	@RequestMapping("/member/point.do")
+	public String point(Model model, MemberVO param, PointVo pv, HttpSession session) throws Exception {
+		MemberVO memberInfo = (MemberVO)session.getAttribute("memberInfo");
+		pv.setMember_pk(memberInfo.getNo());
+		int point = memberService.getPoint(memberInfo.getNo());
+		ArrayList<PointVo> list = memberService.myPointList(pv);
+		model.addAttribute("point", point);
+		model.addAttribute("list", list);
+		
+		
+		return "member/point";
+	}
+	
+	
 	
 	//마이페이지 리턴
 	@RequestMapping("/mypage/index.do")
@@ -88,6 +107,7 @@ public class MemberController {
 		return "mypage/reserve/index";
 	}
 	
+	
 	//아이디 찾기 페이지 리턴
 	@RequestMapping("/member/emailsearch.do")
 	public String emailsearch(Model model, MemberVO param) throws Exception {
@@ -95,6 +115,7 @@ public class MemberController {
 		
 		return "member/emailsearch";
 	}
+	
 	
 	//비밀번호 찾기 페이지 리턴
 	@RequestMapping("/member/pwsearch.do")
@@ -104,6 +125,7 @@ public class MemberController {
 		return "member/pwsearch";
 	}
 	
+	
 	//회원탈퇴 페이지 리턴
 	@RequestMapping("/member/secession.do")
 	public String secession(Model model, MemberVO param) throws Exception {
@@ -111,6 +133,7 @@ public class MemberController {
 		
 		return "member/secession";
 	}
+	
 	
 	/**
 	 * 회원 탈퇴 기능
@@ -134,6 +157,7 @@ public class MemberController {
 		return "include/alert";
 	}
 	
+	
 	//비밀번호 찾아 이메일 보내기
 	@RequestMapping("/member/searchpw.do")
 	public String searchpw(Model model, MemberVO param) throws Exception{
@@ -151,6 +175,7 @@ public class MemberController {
 		
 		return "include/alert";	
 	}
+	
 	
 	//회원정보 수정 페이지
 	@RequestMapping("/member/edit.do")
@@ -176,6 +201,7 @@ public class MemberController {
 		return "manage/member/index";
 	}
 	
+	
 	@RequestMapping("/manage/member/read.do")
 	public String read(Model model, MemberVO param) throws Exception {
 		MemberVO data = memberService.read(param.getNo());
@@ -186,7 +212,6 @@ public class MemberController {
 	}
 	
 
-	
 	//회원 개인정보 페이지 리턴
 	@RequestMapping("/member/read.do")
 	public String memberRead(Model model, MemberVO param) throws Exception {
@@ -204,14 +229,6 @@ public class MemberController {
 		
 		return "manage/member/write";
 	}
-	
-	@RequestMapping("/member/write.do")
-	public String memberwrite(Model model, MemberVO param) throws Exception {
-		model.addAttribute("vo", param);
-		
-		return "member/write";
-	}
-	
 	
 	
 	@RequestMapping("/manage/member/edit.do")

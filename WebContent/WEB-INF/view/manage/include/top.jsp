@@ -71,23 +71,13 @@ $(window).load(function(){
   			<ul class="menu">
   				<li><a href="<%=request.getContextPath()%>/manage/member/index.do" class="parent"><span>회원관리</span></a></li>
 				<li><a href="<%=request.getContextPath()%>/manage/movie/index.do" class="parent"><span>영화관리</span></a></li>
-				<li><a href="<%=request.getContextPath()%>/manage/ticket1/index.do" class="parent"><span>예매관리</span></a>
-
-					<div>
-					<ul>
-						<li><a href="<%=request.getContextPath()%>/manage/ticket1/index.do"><span>예매관리</span></a></li>
-					</ul>			
-					</div>
-
-				</li>			
+				<li><a href="<%=request.getContextPath()%>/manage/ticket1/index.do" class="parent"><span>예매관리</span></a></li>			
 				<li><a href="<%=request.getContextPath()%>/manage/board/notice/index.do" class="parent"><span>고객지원</span></a>
 					<div class="standard_left">
 					<ul>
 						<li><a href="<%=request.getContextPath()%>/manage/board/notice/index.do"><span>공지사항</span></a></li>
 
-						<li><a href="<%=request.getContextPath()%>/manage/board/qna1/index.do"><span>Q&A(상윤)</span></a></li>
-						<li><a href="<%=request.getContextPath()%>/manage/board/qna2/index.do"><span>Q&A(아란)</span></a></li>
-						<li><a href="<%=request.getContextPath()%>/manage/board/qna3/index.do"><span>Q&A(나영)</span></a></li>
+						<li><a href="<%=request.getContextPath()%>/manage/board/qna3/index.do"><span>Q&A</span></a></li>
 
 						<li><a href="<%=request.getContextPath()%>/manage/movie/review/index.do"><span>영화후기</span></a></li>
 						<li><a href="<%=request.getContextPath()%>/manage/board/event/index.do"><span>이벤트</span></a></li>
@@ -97,14 +87,7 @@ $(window).load(function(){
 					</ul>
 					</div>
 				</li>
-				<li><a href="<%=request.getContextPath()%>/manage/admin/index" class="parent"><span>관리자관리</span></a>
-					<div>
-					<ul>
-						<li><a href="<%=request.getContextPath()%>/manage/admin/index"><span>관리자관리</span></a></li>
-						<li><a href="<%=request.getContextPath()%>/manage/admin/loginHistory"><span>관리자접속기록</span></a></li>
-					</ul>
-					</div>
-				</li>
+				<li><a href="<%=request.getContextPath()%>/manage/admin/index.do" class="parent"><span>관리자관리</span></a></li>
 			</ul>
 		</div>
 		<!--//gnb-->

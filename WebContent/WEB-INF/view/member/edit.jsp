@@ -67,6 +67,14 @@ function goSave() {
     <div class="sub">
 		<div class="size">
 			<h3 class="sub_title">회원정보 수정</h3>
+			<div class="mypage_tab">
+				<ul>
+					<li><a href="/mypage/index.do">예매확인/취소</a></li>
+					<li><a href="/member/point.do">포인트</a></li>
+					<li><a href="/member/edit.do">내 정보</a></li>
+				</ul>
+			</div>
+			<div class="mypage_tab_bottom"></div>
 			<form name="frm" id="frm" action="process.do" method="post" enctype="multipart/form-data">
 			<table class="board_write">
 				<caption>회원정보 수정</caption>
@@ -74,7 +82,9 @@ function goSave() {
 					<col width="20%" />
 					<col width="*" />
 				</colgroup>
+				
 				<tbody>
+			
 					<tr>
 						<th>이메일</th>
 						<td>
@@ -134,7 +144,6 @@ function goSave() {
 			</div>
 		</div>
     </div>
-
     <%@ include file="/WEB-INF/view/include/footer.jsp" %>
 
 </body>

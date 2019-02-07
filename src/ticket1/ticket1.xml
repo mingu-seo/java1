@@ -4,7 +4,8 @@
     
     <typeAlias alias="ticket1VO" type="ticket1.Ticket1VO"/>
     <typeAlias alias="pointVo" type="ticket1.PointVo" />
-    
+    <typeAlias alias="memberVo" type="member.MemberVo" />
+     
     <!-- 공통조건 -->
 	<sql id="searchSql">		
 		<!-- WHERE 절 검색 -->
@@ -76,6 +77,11 @@
         where no = #no#
     </select>
     
+  
+    
+    
+  
+    
     <update id="update" parameterClass="ticket1VO">
     	update ticket1 set
     	format=#format#, screen_date=#screen_date#, screen_time=#screen_time#, 
@@ -89,9 +95,9 @@
     	where no = #no#
     </update>
     
-    <update id="resStateUpdate" parameterClass="ticket1VO">
+    <update id="stateChange" parameterClass="Integer">
     	update ticket1 set
-    	res_state=#res_state#, cancel_date=now()
+    	res_state=2, cancel_date=now(), pay_state=3
     	where no = #no#
     </update>
     
@@ -138,6 +144,12 @@
         </selectKey>
        </insert>
    
+   <update id="plusPoint" parameterClass="pointVO">
+   	update member set
+    	point = point+#usePoint#
+    where no = #member_pk#
+   </update>
+   
    <insert id="minusPoint" parameterClass="pointVO">
    	INSERT INTO POINT (
    	member_pk, usePoint, memo, pointRegistDate
@@ -149,8 +161,28 @@
    	</selectKey>
    </insert>
    
+   <insert id="memberplusPoint" parameterClass="pointVO" >
+   INSERT INTO POINT(
+   member_pk, usePoint, memo, pointRegistDate
+   ) VALUES (
+   #member_pk#, #usePoint#, #memo#, now()
+   )
+   <selectKey keyProperty="point_no" resultClass="Integer" >
+   	SELECT LAST_INSERT_ID()
+   </selectKey>
+
+   </insert>
    
-  
-     
-     
+
+    <update id="minusMemberPoint" parameterClass="pointVO">
+	update member set
+	point=point+#usePoint#
+	where no=#member_pk#
+    </update>
+    
+    <update id="plusMemberPoint" parameterClass="pointVO">
+	update member set
+	point=point+#usePoint#
+	where no=#member_pk#
+    </update>
 </sqlMap>
