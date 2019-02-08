@@ -17,6 +17,7 @@ public class ReviewVO extends Parameter {
 	private int 		next_no;				// 다음글 no
 	private int			smovie_pk;
 	private String 		member_name;
+	private String 		movie_name;
 	
 	//검색조건
 	
@@ -102,6 +103,14 @@ public class ReviewVO extends Parameter {
 
 	public void setMember_name(String member_name) {
 		this.member_name = member_name;
+	}
+	
+	public String getMovie_name() {
+		return movie_name;
+	}
+	
+	public void setMovie_name(String movie_name) {
+		this.movie_name = movie_name;
 	}
 
 

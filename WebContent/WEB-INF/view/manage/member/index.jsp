@@ -2,7 +2,6 @@
 <%@ page import="java.util.*" %>
 <%@ page import="member.*" %>
 <%@ page import="util.*" %>
-<%@ page import="java.util.*" %>
 <%
 MemberVO param = (MemberVO)request.getAttribute("vo");
 ArrayList<MemberVO> list = (ArrayList)request.getAttribute("list");
@@ -14,6 +13,8 @@ int totPage = (Integer)request.getAttribute("totPage");
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/manage/include/headHtml.jsp" %>
+<script type="text/javascript" src="/js/function_jquery.js"></script>
+
 <script>
 function groupDelete() {	
 	if ( isSeleted(document.frm.no) ){
