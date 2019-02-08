@@ -97,7 +97,7 @@ public class Ticket1Controller {
 			ticket1Service.minusPoint(param.getMember_pk(), request);
 		}
 		if(param.getPay()==2) {
-			ticket1Service.memberPlusPoint(param.getMember_pk(), request);
+			ticket1Service.plusPoint2(param.getMember_pk(), request);
 		}
 	//	model.addAttribute("point", point);
 		model.addAttribute("code", "alertMessageUrl");
@@ -123,7 +123,7 @@ public class Ticket1Controller {
 		if ("edit.do".equals(param.getCmd())) {
 			Ticket1VO r2 = ticket1Service.read(param.getNo());
 			if(r2.getPay_state()==2 && param.getPay_state()==1) {
-				ticket1Service.memberPlusPoint(r2.getMember_pk(), request);
+				ticket1Service.plusPoint2(r2.getMember_pk(), request);
 			}
 
 			int r = ticket1Service.update(param);

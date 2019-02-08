@@ -92,7 +92,7 @@ function goCancel(tno) {
 											</tr>
 											<tr>
 												<th>총 결제금액</th>
-												<td><%=Function.getNumberFormat(Integer.parseInt(data.getPrice())) %>원</td>
+												<td><%=data.getPrice()%>원</td>
 												<th>예매 상태</th>
 												<td>
 												

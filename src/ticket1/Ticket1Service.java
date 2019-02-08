@@ -77,10 +77,17 @@ public class Ticket1Service extends SqlMapClientDAOSupport{
 		return lastNo;
 	}
 	
-//	public int plusPoint(int member_pk, HttpServletRequest request) throws SQLException {
-//		PointVo pv = new PointVo();
-//		pv.setMember_pk(member_pk);
-//	}
+	public int plusPoint2(int member_pk, HttpServletRequest request) throws SQLException {
+		PointVo pv = new PointVo();
+		pv.setMember_pk(member_pk);
+		pv.setMemo("<" + request.getParameter("title") + ">"+ " 예매 포인트 적립");
+		pv.setUsePoint(Function.getIntParameter((request.getParameter("price")))*10/100);
+		
+		int r = ticket1Dao.plusPoint2(pv);
+		int r2 = ticket1Dao.plusMemberPoint(pv);
+		
+		return r;
+	}
 	
 	public int minusPoint(int member_pk, HttpServletRequest request) throws SQLException {
 		PointVo pv = new PointVo();
@@ -94,18 +101,7 @@ public class Ticket1Service extends SqlMapClientDAOSupport{
 		return r;
 	}
 	
-	public int memberPlusPoint(int member_pk, HttpServletRequest request) throws SQLException {
-		PointVo pv = new PointVo();
-		pv.setMember_pk(member_pk);
-		pv.setMemo("<" + request.getParameter("title") + ">"+ " 예매 포인트 적립");
-		pv.setUsePoint(Function.getIntParameter((request.getParameter("price")))*10/100);
-		
-		int r = ticket1Dao.plusPoint(pv);
-		int r2 = ticket1Dao.plusMemberPoint(pv);
-		
-		return r;
-	}
- 	
+	
 //	public int update(Ticket1VO vo) throws SQLException {
 //		int cnt = ticket1Dao.update(vo);
 //		return cnt;
