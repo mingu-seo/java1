@@ -53,7 +53,7 @@ MovieVo movie = (MovieVo) request.getAttribute("vo");
 			</div>
 			<div class="bbs"> 
 				<div class="ticket">
-				<div>
+				<div class="ticket_search">
 				<form name="orderForm" id="orderForm" action="index.do"  method="post">
 					<div class="search">
 						<select name="ordertype" onchange="$('#orderForm').submit();">

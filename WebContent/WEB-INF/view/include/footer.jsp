@@ -95,7 +95,7 @@ function jsf__pay()
     		
     		
     		if ($("input[name='pay']:checked").val()=="1") {	// 사용자가 결제방식을 무통장입금을 선택한 경우
-    			$("#popupFrm").attr("action","book.do");
+    			$("#popupFrm").attr("action","/ticket/book.do");
     			$("#popupFrm").submit();
     		} else if ($("input[name='pay']:checked").val()=="2") { // 그렇지 않고, 결제방식을 신용카드로 선택한 경우
         		init_orderid();
