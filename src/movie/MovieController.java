@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ticket1.Ticket1Service;
 import ticket1.Ticket1VO;
 import util.Function;
+import util.Parameter;
 
 @Controller
 public class MovieController {
@@ -217,6 +218,19 @@ public class MovieController {
 		
 			
 			return "index";
+		}
+	//나영=헤더에서 영화검색
+		@RequestMapping("/include/searchMovie.do")
+		public String searchMovie(Model model, MovieVo vo, Parameter param) throws Exception {
+			
+			vo.setTablename("movie");
+			ArrayList<MovieVo> list = movieService.list(vo);
+			model.addAttribute("list", list);
+			model.addAttribute("vo", vo);
+			model.addAttribute("param", param);
+		
+			
+			return "include/searchMovie";
 		}
 	
 }
