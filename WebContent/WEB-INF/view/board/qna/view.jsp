@@ -17,6 +17,13 @@ ReplyVO3 param = (ReplyVO3)request.getAttribute("data");
 <meta name="description" content="">
 <title>MOVIE</title>
 <%@ include file="/WEB-INF/view/include/headHtml.jsp" %>
+<script>
+function goDelete(v) {	
+	if (confirm ('삭제하시겠습니까?')) {
+		document.location.href = "sprocess.do?no="+v+"&cmd=delete";
+	}
+}
+</script>
 </head>
 <body>
     <%@ include file="/WEB-INF/view/include/header.jsp" %>
@@ -40,6 +47,10 @@ ReplyVO3 param = (ReplyVO3)request.getAttribute("data");
 					<div class="btnSet clear">
 						<div class="fl_l"><a href="index.do?" class="btn">목록으로</a></div>
 						<div class="fl_l"><a href="sreply.do?no=<%=param.getNo() %>" class="btn">답변하기</a></div>
+					<% if (memberInfo != null && memberInfo.getNo() == param.getMember_fk())  {
+					%>
+					<div class="fl_r"><input type="button" class="btn" value="삭제" onclick="goDelete(<%=param.getNo()%>);"/></div>
+					<%} %>	 
 					</div>
 			
 				</div>
