@@ -116,8 +116,10 @@
     <select id="read" parameterClass="reply_vo3" resultClass="reply_vo3">
     	<![CDATA[
         SELECT 
-        	*
-        FROM $tablename$
+        	*,
+        (select name from member where member.no=reply.member_fk) as member_writer,
+        (select name from admin where admin.no=reply.admin_fk) as admin_writer
+        from $tablename$
         where no = #no#
         ]]>
     </select>
