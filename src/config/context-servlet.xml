@@ -29,6 +29,8 @@
 	<mvc:interceptors>
 	
 		<mvc:interceptor>
+			<mvc:mapping path="/member/edit.do" />
+			<mvc:mapping path="/member/point.do" />
 			<mvc:mapping path="/mypage/index.do" />
 			<mvc:mapping path="/board/qna/swrite.do" />
 			<mvc:mapping path="/board/qna/sreply.do" />
