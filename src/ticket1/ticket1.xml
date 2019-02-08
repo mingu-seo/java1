@@ -161,7 +161,7 @@
    	</selectKey>
    </insert>
    
-   <insert id="memberplusPoint" parameterClass="pointVO" >
+   <insert id="plusPoint2" parameterClass="pointVO" >
    INSERT INTO POINT(
    member_pk, usePoint, memo, pointRegistDate
    ) VALUES (
