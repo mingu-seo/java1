@@ -12,7 +12,7 @@ public class Ticket1VO extends Parameter{
 	private int member_pk;			//회원번호 pk
 	private Timestamp cancel_date;	//취소일
 	private Timestamp res_date;		//예매일
-	private String price;			//금액
+	private int price;			//금액
 	private int pay;				//결제
 	private int tk_count;			//티켓수
 	private int format;				//영화포멧
@@ -118,10 +118,10 @@ public class Ticket1VO extends Parameter{
 	public void setRes_date(Timestamp res_date) {
 		this.res_date = res_date;
 	}
-	public String getPrice() {
+	public int getPrice() {
 		return price;
 	}
-	public void setPrice(String price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 	public int getPay() {

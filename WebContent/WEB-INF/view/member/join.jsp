@@ -12,32 +12,38 @@
 <title>MOVIE</title>
 <%@ include file="/WEB-INF/view/include/headHtml.jsp" %>
 <script>
-function checkEmail(){
+function checkEmail() {
 	if($("#email").val()==""){
 		alert("이메일을 입력해주세요.");
 	}else if($("#email").val()!=""){
-		$.ajax ({
-			type:'POST',
-			url:"/manage/member/emailcheck.do",
-			data:$("#email").serialize(),
-			async:false,
-			success:function(data) {
-				var val = data.trim();
-				if (val == "0") {
-					alert("사용 가능한 이메일입니다.")
-					$("#checkEmail").val("1");
-				} else {
-					alert("존재하는 이메일입니다.");
-					$("#checkEmail").val("0");
-					return false;
+		var format = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.[a-zA-Z]{2,4}$/;
+		if(isValidFormat(document.frm.email,format)==true){
+			$.ajax ({
+				type:'POST',
+				url:"/manage/member/emailcheck.do",
+				data:$("#email").serialize(),
+				async:false,
+				success:function(data) {
+					var val = data.trim();
+					if (val == "0") {
+						alert("사용 가능한 이메일입니다.")
+						$("#checkEmail").val("1");
+					} else {
+						alert("존재하는 이메일입니다.");
+						$("#checkEmail").val("0");
+						return false;
+					}
 				}
+			});
+			if ($("#checkEmail").val() == "0"){
+				return false;
 			}
-		});
-		if ($("#checkEmail").val() == "0"){
-			return false;
+		}else {
+			alert("잘못된 형식의 이메일 주소입니다.")
 		}
 	}
 }
+
 function goSave() {
 	
 	
