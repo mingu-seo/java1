@@ -79,7 +79,7 @@ function CookieVal(cookieName) {
 					<div class="btnSet clear">
 						<div>
 							<a href="join.do" class="btn">회원가입</a> 
-							<a href="idsearch.do" class="btn">이메일/비밀번호 찾기</a>
+							<a href="emailsearch.do" class="btn">이메일/비밀번호 찾기</a>
 						</div>
 					</div>
 				</div>

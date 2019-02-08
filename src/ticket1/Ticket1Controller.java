@@ -97,7 +97,7 @@ public class Ticket1Controller {
 			ticket1Service.minusPoint(param.getMember_pk(), request);
 		}
 		if(param.getPay()==2) {
-			ticket1Service.memberPlusPoint(param.getMember_pk(), request);
+			ticket1Service.plusPoint2(param.getMember_pk(), request);
 		}
 	//	model.addAttribute("point", point);
 		model.addAttribute("code", "alertMessageUrl");
@@ -111,11 +111,11 @@ public class Ticket1Controller {
 		return "include/alert";
 	}
 	@RequestMapping("/ticket/cancel.do")
-	public String ticketCancel(Model model, Ticket1VO tvo, PointVo pvo) throws Exception{
+	public String ticketCancel(Model model, Ticket1VO tvo, PointVo pvo, HttpServletRequest request) throws Exception{
 		Ticket1VO vo = ticket1Service.read(tvo.getNo());
 		pvo.setUsePoint(vo.getUsePoint());
 		pvo.setMember_pk(vo.getMember_pk());
-		ticket1Service.cancel(tvo.getNo(), pvo);
+		ticket1Service.cancel(tvo.getNo(), pvo, request);
 		return "redirect:/mypage/index.do";
 	}
 	@RequestMapping("/manage/ticket1/process.do")
@@ -123,7 +123,7 @@ public class Ticket1Controller {
 		if ("edit.do".equals(param.getCmd())) {
 			Ticket1VO r2 = ticket1Service.read(param.getNo());
 			if(r2.getPay_state()==2 && param.getPay_state()==1) {
-				ticket1Service.memberPlusPoint(r2.getMember_pk(), request);
+				ticket1Service.plusPoint2(r2.getMember_pk(), request);
 			}
 
 			int r = ticket1Service.update(param);

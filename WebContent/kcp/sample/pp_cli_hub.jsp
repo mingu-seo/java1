@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html;charset=utf-8"%>
+<%@ page import="ticket1.*" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="db.*" %>
+<%@ page import="java.sql.Timestamp" %>
+<%@ page import="util.*" %>
+
 
 <%
+String movie_title = request.getParameter("title");
     /* ============================================================================== */
     /* =   PAGE : 지불 요청 및 결과 처리 PAGE                                       = */
     /* = -------------------------------------------------------------------------- = */
@@ -313,6 +322,62 @@
             {
                 // 신용카드 결제 후 DB 처리
                 int r = 1;
+                
+                Ticket1DAO ticket1Dao = new Ticket1DAO(); 
+                Ticket1VO ticket1Vo = new Ticket1VO();
+                PointVo pv = new PointVo();
+                
+                
+                
+                int movie_pk = Integer.parseInt(request.getParameter("movie_pk"));
+                ticket1Vo.setMovie_pk(movie_pk);
+                int member_pk = Integer.parseInt(request.getParameter("member_pk"));
+                ticket1Vo.setMember_pk(member_pk);
+                
+                int price = Integer.parseInt(request.getParameter("price"));
+                ticket1Vo.setPrice(price);
+                ticket1Vo.setPay(2);
+                int tk_count = Integer.parseInt(request.getParameter("tk_count"));
+                ticket1Vo.setTk_count(tk_count);
+                int format = Integer.parseInt(request.getParameter("format"));
+                ticket1Vo.setFormat(format);
+                int usePoint = Integer.parseInt(request.getParameter("usePoint"));
+                ticket1Vo.setUsePoint(usePoint);
+                String screen_date = request.getParameter("screen_date");
+                ticket1Vo.setScreen_date(screen_date);
+                int screen_time = Integer.parseInt(request.getParameter("screen_time"));
+                ticket1Vo.setScreen_time(screen_time);
+                ticket1Vo.setPay_state(1);
+                ticket1Vo.setRes_state(1);
+
+                long res_num = System.currentTimeMillis();
+        		ticket1Vo.setRes_num(Long.toString(res_num));
+        		
+        		
+        		pv.setMember_pk(member_pk);
+        		pv.setUsePoint(usePoint);
+        		
+        		//String movie_title = new String(request.getParameter("movie_title").getBytes("euc-kr"),"utf-8");
+        		
+        		
+        		if(usePoint>0) {
+        		pv.setMemo("<" + movie_title + ">" + " 예매 시 포인트 사용");
+            	pv.setUsePoint((-1)*Function.getIntParameter((request.getParameter("usePoint"))));	
+        		ticket1Dao.minusPoint(pv);
+        		ticket1Dao.minusMemberPoint(pv);
+        		}
+        		
+        		pv.setMemo("<" + movie_title + ">"+ " 예매 포인트 적립");
+        		pv.setUsePoint(Function.getIntParameter((request.getParameter("price")))*10/100);
+        		ticket1Dao.plusPoint2(pv);
+        		ticket1Dao.plusMemberPoint(pv);
+        		
+        		r = (Integer)ticket1Dao.book(ticket1Vo);
+                
+                
+                
+                
+                
                 
                 if (r > 0) {
                 	response.sendRedirect("/mypage/index.do?reserve=success");

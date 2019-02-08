@@ -3,6 +3,7 @@ package member;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -166,7 +167,7 @@ public class MemberController {
 		if (success) {
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", "임시비밀번호가 메일로 발송되었습니다.");
-			model.addAttribute("url", "pwsearch.do");
+			model.addAttribute("url", "/member/login.do");
 		} else {
 			model.addAttribute("code", "alertMessageUrl");
 			model.addAttribute("message", "회원정보가 존재하지 않습니다.");
@@ -264,12 +265,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping("member/searchemail.do")
-	public String searcheamil(Model model, MemberVO param) throws Exception {
+	public String searcheamil(Model model, MemberVO param, HttpServletResponse response) throws Exception {
 		MemberVO data = memberService.searchemail(param);
 		String email = "";
 		if (data != null) {email = data.getEmail();}
 		model.addAttribute("value", email);
-		
 		return "include/return";
 	}
 	
