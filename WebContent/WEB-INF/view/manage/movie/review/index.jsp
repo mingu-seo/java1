@@ -61,10 +61,10 @@ function goSearch() {
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리목록입니다.">
 								<colgroup>
 									<col class="w3" />
-									<col class="w4" />
-									<col class="w6" />
-									<col class="" />
+									<col class="w3" />
+									<col class="w7" />
 									<col class="w5" />
+									<col class="" />
 									<col class="w5" />
 									<col class="w5" />
 									<col class="w5" />
@@ -75,8 +75,8 @@ function goSearch() {
 										<th scope="col">번호</th>
 										<th scope="col">영화제목</th> 
 										<th scope="col">작성자</th> 
+										<th scope="col">리뷰내용</th> 
 										<th scope="col">작성일</th> 
-										<th scope="col">관람일</th> 
 										<th scope="col">점수</th>
 										<th scope="col" class="last">삭제</th>
 									</tr>
@@ -93,13 +93,13 @@ function goSearch() {
 										ReviewVO data;
 										for (int i=0; i<list.size(); i++) {
 											data = list.get(i);
-											targetUrl = "style='cursor:pointer;' onclick=\"location.href='"+param.getTargetURLParam("edit.do", param, data.getNo())+"'\"";
 								%>
 									<tr <%=topClass%>>
 										<td class="first"><input type="checkbox" name="no" id="no" value="<%=data.getNo()%>"/></td>
 										<td <%=targetUrl%>><%=totCount - ((param.getReqPageNo()-1)*param.getPageRows()) - i%></td>
-										<td <%=targetUrl%> class="movie_pk"><%=data.getMovie_pk()%></td>
-										<td <%=targetUrl%> class="member_pk"><%=data.getMember_pk()%></td>
+										<td <%=targetUrl%> class="movie_pk"><%=data.getMovie_name()%></td>
+										<td <%=targetUrl%> class="member_pk"><%=data.getMember_name()%></td>
+										<td <%=targetUrl%> class="review_contents"><%=data.getContents()%></td>
 										<td <%=targetUrl%>><%=DateUtil.getDateFormat(data.getCre_date())%></td>
 										<td <%=targetUrl%>><%=data.getScore()%></td>
 										<td class="last"><input type="button" value="삭제" onclick="goDelete(<%=data.getNo()%>);"/></td>
