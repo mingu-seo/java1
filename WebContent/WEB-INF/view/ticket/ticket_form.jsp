@@ -99,23 +99,7 @@ member.MemberVO memberInfo = (member.MemberVO)session.getAttribute("memberInfo")
 					<tr>
 						<th>보유포인트</th>
 						<td>
-<<<<<<< HEAD
-
-							<input type="text" name="point" id="mypoint"  value="<%=memberInfo.getPoint()%>" onkeyup="isOnlyNumber(this);"/> 점
-
-							
-							<input type="button" class="btn" value="확인">
-
-
-=======
-							<input type="text" name="mypoint" id="mypoint"  value="<%=memberInfo.getPoint() %>" readonly/> 점
->>>>>>> branch 'master' of https://github.com/mingu-seo/java1.git
-
-<<<<<<< HEAD
-							
-
-=======
->>>>>>> branch 'master' of https://github.com/mingu-seo/java1.git
+							<input type="text" name="mypoint" id="mypoint"  value="<%=memberInfo.getPoint() %>" onkeyup="isOnlyNumber(this);" readonly/> 점
 						</td>
 					</tr>
 					<tr>
@@ -129,7 +113,7 @@ member.MemberVO memberInfo = (member.MemberVO)session.getAttribute("memberInfo")
 						<th>결제수단</th>
 						<td>
 							<input type="radio" name="pay" value="1" checked><label>무통장입금</label>
-							<input type="radio" name="pay" value="2"><label>신용카드(미완성-pg사용예정)</label>
+							<input type="radio" name="pay" value="2"><label>신용카드</label>
 						</td>
 					</tr>
 					<tr>

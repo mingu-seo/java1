@@ -26,7 +26,7 @@ int point = (Integer)request.getAttribute("point");
     <div class="sub">
 		<div class="size">
 		
-			<h3 class="sub_title">포인트 (사용 가능 : <%=point%>)</h3>
+			<h3 class="sub_title">포인트 (사용 가능 : <%=Function.getNumberFormat(point)%>)</h3>
 			
 			<div class="mypage_tab">
 				<ul>
@@ -66,7 +66,7 @@ int point = (Integer)request.getAttribute("point");
 						<tr>
 						<td><%=pv.get(i).getMemo() %></td>
 						<td> <%=DateUtil.getDateFormat(pv.get(i).getPointRegistDate()) %> </td>
-						<td> <%=pv.get(i).getUsePoint() %> </td>
+						<td> <%=Function.getNumberFormat(pv.get(i).getUsePoint()) %> </td>
 						</tr>
 					<%}%>
 					<%}%>

@@ -113,12 +113,27 @@ public class Ticket1Service extends SqlMapClientDAOSupport{
 	}
 	
 	// 예매 취소 처리
-	public void cancel(int ticket_no, PointVo pvo, HttpServletRequest request) throws SQLException {
-		pvo.setMemo("영화 취소 포인트 환불");
-		ticket1Dao.stateChange(ticket_no);
-		ticket1Dao.plusMemberPoint(pvo);	//포인트 환불
-		ticket1Dao.minusPoint(pvo);			//포인트 기록
+	public void cancel(Ticket1VO vo, PointVo pvo) throws SQLException {
+		Ticket1VO data = ticket1Dao.read(vo.getNo());
 		
+		// 무조건 실행
+		ticket1Dao.stateChange(data);	// 상태변경
+		
+		
+		// 사용포인트가 존재하는 경우에만
+		if (data.getUsePoint() > 0) {
+			pvo.setMemo("영화 취소로 인한 사용포인트 환불");
+			ticket1Dao.minusMemberPoint(pvo);							//예매시 사용한 포인트 환불 (member테이블 + 사용포인트)
+			ticket1Dao.minusPoint(pvo);
+		}
+		
+		if(data.getPay_state()==1) {	// 결제완료상태일때만
+			pvo.setMemo("영화 취소로 인한 적립포인트 회수");
+			pvo.setUsePoint((data.getPrice()*10)/100);
+			ticket1Dao.plusMemberPoint(pvo);		//결제시 결제금액의 10% 차감 (member테이블 - 적립포인트)
+			pvo.setUsePoint(pvo.getUsePoint()*-1);
+			ticket1Dao.minusPoint(pvo);									//포인트 기록
+		}
 	}
 	
 	/*

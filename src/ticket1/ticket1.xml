@@ -95,9 +95,12 @@
     	where no = #no#
     </update>
     
-    <update id="stateChange" parameterClass="Integer">
+    <update id="stateChange" parameterClass="ticket1VO">
     	update ticket1 set
-    	res_state=2, cancel_date=now(), pay_state=3
+    	res_state=2, cancel_date=now()
+    	<isEqual property="pay_state" compareValue="1">
+    	, pay_state=3
+    	</isEqual>
     	where no = #no#
     </update>
     
@@ -182,7 +185,7 @@
     
     <update id="plusMemberPoint" parameterClass="pointVO">
 	update member set
-	point=point+#usePoint#
+	point=point-#usePoint#
 	where no=#member_pk#
     </update>
 </sqlMap>

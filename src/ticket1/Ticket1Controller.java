@@ -111,12 +111,16 @@ public class Ticket1Controller {
 		return "include/alert";
 	}
 	@RequestMapping("/ticket/cancel.do")
-	public String ticketCancel(Model model, Ticket1VO tvo, PointVo pvo, HttpServletRequest request) throws Exception{
+	public String ticketCancel(Model model, Ticket1VO tvo, PointVo pvo) throws Exception{
 		Ticket1VO vo = ticket1Service.read(tvo.getNo());
 		pvo.setUsePoint(vo.getUsePoint());
 		pvo.setMember_pk(vo.getMember_pk());
-		ticket1Service.cancel(tvo.getNo(), pvo, request);
-		return "redirect:/mypage/index.do";
+		ticket1Service.cancel(vo, pvo);
+		
+		model.addAttribute("code", "alertMessageUrl");
+		model.addAttribute("message", Function.message(1, "정상적으로 취소되었습니다.", "등록실패"));
+		model.addAttribute("url", "/mypage/index.do");
+		return "include/alert";
 	}
 	@RequestMapping("/manage/ticket1/process.do")
 	public String ticketProcess(Model model, Ticket1VO param, HttpServletRequest request) throws Exception {
