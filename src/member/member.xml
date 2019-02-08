@@ -79,7 +79,7 @@
         		filename=#filename#,
         	</isNotNull>
         </isNotEqual>
-        	name = #name#, gender=#gender#, hp=#hp#, point=#point#, moddate=now()
+        	name = #name#, gender=#gender#, point=#point#, hp=#hp#, moddate=now()
         where no=#no#
     </update>
     

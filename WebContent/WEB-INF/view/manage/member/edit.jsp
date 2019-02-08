@@ -91,7 +91,7 @@ function goSave() {
 									<tr>
 										<th scope="row"><label for="">포인트</label></th>
 										<td>
-											<input type="text" id="point" name="point" value="<%=data.getPoint()%>" title="포인트를 입력해주세요." />
+											<input type="text" id="point" name="point" value="<%=data.getPoint()%>" title="변경할 휴대폰 번호를 입력해주세요." />
 										</td>
 									</tr>
 									<tr>
