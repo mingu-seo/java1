@@ -153,15 +153,6 @@ function cal() {
 										</td>
 									</tr>
 									<tr>
-										<th>예매상태</th>
-										<td>
-											<select id="res_state" name="res_state">
-												<option value="1" <%if(data.getRes_state()==1){out.print("selected");} %>>예매 완료</option>
-												<option value="2" <%if(data.getRes_state()==2){out.print("selected");} %>>예매 취소</option>
-											</select>
-										</td>
-									</tr>
-									<tr>
 										<th>티켓수</th>
 										<td>
 											<select id="tk_count" name="tk_count">

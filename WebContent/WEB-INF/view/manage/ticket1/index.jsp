@@ -22,7 +22,15 @@ int totPage = (Integer)request.getAttribute("totPage");
 	function goSearch() {
 		$("#searchForm").submit();
 	}
-}
+
+	function goCancel(tno) {
+		var cancel = confirm ('취소하시겠습니까?');
+		if (cancel){
+			document.location.href = "/ticket/cancel.do?no="+tno;
+		} else {
+			return false;
+		}
+	}
 </script>
 </head>
 <body> 
@@ -131,6 +139,7 @@ int totPage = (Integer)request.getAttribute("totPage");
 									<col class="w3" />
 									<col class="w3" />
 									<col class="w3" />
+									<col class="w3" />
 								</colgroup>
 								<thead>
 									<tr>
@@ -145,6 +154,7 @@ int totPage = (Integer)request.getAttribute("totPage");
 										<th scope="col">예매 상태</th>
 										<th scope="col">결제수단</th>
 										<th scope="col">결제상태</th>
+										<th scope="col"></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -216,6 +226,11 @@ int totPage = (Integer)request.getAttribute("totPage");
 											out.print("결제 취소");
 										}
 										%>
+										<td>
+										<%if(data.getRes_state()==1){ %>
+											<input type="button" value="예매취소" onclick="goCancel(<%=data.getNo()%>)"></input>
+										<% }%>
+										</td>
 										</td>
 									</tr>
 								<%
