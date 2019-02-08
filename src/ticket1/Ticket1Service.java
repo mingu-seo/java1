@@ -117,9 +117,12 @@ public class Ticket1Service extends SqlMapClientDAOSupport{
 	}
 	
 	// 예매 취소 처리
-	public void cancel(int ticket_no, PointVo pvo) throws SQLException {
+	public void cancel(int ticket_no, PointVo pvo, HttpServletRequest request) throws SQLException {
+		pvo.setMemo("영화 취소 포인트 환불");
 		ticket1Dao.stateChange(ticket_no);
-		ticket1Dao.plusPoint(pvo);
+		ticket1Dao.plusMemberPoint(pvo);	//포인트 환불
+		ticket1Dao.minusPoint(pvo);			//포인트 기록
+		
 	}
 	
 	/*
