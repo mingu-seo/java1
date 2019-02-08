@@ -135,6 +135,7 @@ function goSave() {
 				</tbody>
 			</table>
 					<input type="hidden" id="no" name="no" value="<%=data.getNo() %>"/>
+					<input type="hidden" id="point" name="point" value="<%=data.getPoint() %>"/>
 					<input type="hidden" name="cmd" value="edit.do"/>
 					<input type="hidden" name="checkEmail" id="checkEmail" value="0"/>
 			</form>
