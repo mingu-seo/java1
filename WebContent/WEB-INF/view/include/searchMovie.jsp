@@ -32,7 +32,7 @@ ArrayList<MovieVo> list = (ArrayList)request.getAttribute("list");
 							data=list.get(i);
 							%>
 						<li>
-							<a href="javascript:showDialogue(24);">
+							<a href="/movie/detail.do?no=<%=data.getNo()%>">
 							<dl>
 								<dt class="img">
 										<img src="<%=SiteProperty.MOVIE_UPLOAD_PATH%><%=data.getPoster()%>" alt=""/>
@@ -47,7 +47,6 @@ ArrayList<MovieVo> list = (ArrayList)request.getAttribute("list");
 									<img src="/img/12.png" width="30">
 									<%}else { %>
 									<img src="/img/all.png" width="30"> <%} %>
-									<img src="/img/12.png" width="30">
 								</dd>
 								<dd class="txt_l">
 								감독 : <%=data.getDirector() %>
