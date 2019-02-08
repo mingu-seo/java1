@@ -187,5 +187,10 @@
 	update member set
 	point=point-#usePoint#
 	where no=#member_pk#
+	</update>
+	    <update id="aranplusMemberPoint" parameterClass="pointVO">
+	update member set
+	point=point+#usePoint#
+	where no=#member_pk#
     </update>
 </sqlMap>

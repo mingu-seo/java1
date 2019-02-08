@@ -2,19 +2,13 @@ package ticket1;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import db.SqlMapClientDAOSupport;
-import member.MemberVO;
-import movie.MovieVo;
-import property.SiteProperty;
-import util.FileUtil;
 import util.Function;
 import util.Page;
 
@@ -146,5 +140,19 @@ public class Ticket1Service extends SqlMapClientDAOSupport{
 	public int delete(int no) throws SQLException {
 		int cnt = ticket1Dao.delete(no);
 		return cnt;
+	}
+
+
+	
+	public int aranplusMemberPoint(int member_pk, HttpServletRequest request) throws SQLException {
+		PointVo pv = new PointVo();
+		pv.setMember_pk(member_pk);
+		pv.setMemo("<" + request.getParameter("title") + ">"+ " 예매 포인트 적립");
+		pv.setUsePoint(Function.getIntParameter((request.getParameter("price")))*10/100);
+		
+		int r = ticket1Dao.plusPoint2(pv);
+		int r2 = ticket1Dao.aranplusMemberPoint(pv);
+		
+		return r;
 	}
 }
