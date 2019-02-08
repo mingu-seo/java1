@@ -29,11 +29,17 @@ ReplyVO3 param = (ReplyVO3)request.getAttribute("data");
 						<dl>
 							<dt><%=param.getTitle()%> </dt>
 							<dd class="date">작성일 : <%=param.getRegistdate()%> </dd>
+							<dd class="date">작성자 : <% if (param.getAdmin_fk() > 0) { %>
+													<%=param.getAdmin_writer() %>
+													<% } else { %>
+													<%=param.getMember_writer() %>
+													<% } %> </dd>
 						</dl>
 					</div>
 					<div class="cont"><%=param.getContents()%> </div>
 					<div class="btnSet clear">
 						<div class="fl_l"><a href="index.do?" class="btn">목록으로</a></div>
+						<div class="fl_l"><a href="sreply.do?no=<%=param.getNo() %>" class="btn">답변하기</a></div>
 					</div>
 			
 				</div>

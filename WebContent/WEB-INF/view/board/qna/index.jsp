@@ -43,6 +43,7 @@ function goSearch() {
 						<col width="100px" />
 						<col width="100px" />
 						<col width="80px" />
+						<col width="80px" />
 					</colgroup>
 					<thead>
 						<tr>
@@ -50,6 +51,7 @@ function goSearch() {
 							<th>제목</th>
 							<th>작성자</th>
 							<th>작성일</th>
+							<th>조회수</th>
 							<th>답변</th>
 						</tr>
 					</thead>
@@ -86,6 +88,7 @@ function goSearch() {
 							<% } %>
 							</td>
 							<td class="date"><%=DateUtil.getDateFormat(data.getRegistdate())%></td>
+							<td class="hit" ><%=data.getReadno()%></td>
 							<td class="last"><input type="button" value="답변" onclick="location.href='sreply.do?no=<%=list.get(i).getNo()%>';"/></td>
 						</tr>
 						
