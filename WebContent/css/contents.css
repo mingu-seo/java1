@@ -302,7 +302,7 @@
 }
 
 /* 예매 */
-.bbs .ticket {width:100%; border-top:2px solid #333; border-bottom:1px solid #999;  padding:20px 0; position:relative;}
+.bbs .ticket {width:100%; border-top:2px solid #333; border-bottom:1px solid #999;  padding:10px 0; position:relative;}
 .bbs .ticket > ul{overflow:hidden; width:102.3333%; margin-left:-2.3333%; margin-top:-20px;}
 .bbs .ticket > ul > li{border:1px solid #e7e7e7; width:31%; margin:20px 0 0 2.3333%; float:left; padding:15px; box-sizing:border-box;}
 .bbs .ticket > ul > li > a{width:100%; height:100%; display:block; text-align:center;}
@@ -315,6 +315,8 @@
 .bbs .ticket > ul > li > a dd.title{font-size:18px; font-weight:700; min-height:40px; text-align:left; padding-left:12px;}
 .bbs .ticket > ul > li > a dd.contents{font-size:15px; font-weight:500; min-height:40px; text-align:left; padding-left:12px;}
 .bbs .ticket > ul > li > a dd.btnArea .btn{width:45%;}
+.bbs .ticket select {height:30px;}
+.bbs .ticket .search {padding-bottom:10px; text-align:right;}
 
 .dateList {width:100%; height:60px; position:relative;}
 .dateList .dateArea {width:7%; height:50px; float:left; vertical-align:middle; text-align:center; line-height:30px; cursor:pointer;}

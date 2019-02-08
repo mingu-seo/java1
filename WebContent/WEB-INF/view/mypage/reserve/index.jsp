@@ -152,7 +152,7 @@ function showReserveDialogue() {
 	t_dialog.show();
 }
 
-function close_dialogue() {
+function hideDialogue() {
 	$("#reserve_dialogue").hide();
 	$("#mask").hide();
 }
