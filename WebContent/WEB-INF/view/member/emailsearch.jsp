@@ -28,7 +28,8 @@ function searchEmail(){
 			success:function(data) {
 				var email = data.trim();
 				if (email != "") {
-					alert("회원님의 아이디는 "+data+"입니다.");
+					alert("회원님의 아이디는 "+email+"입니다.");
+					location.href="/member/login.do";
 				} else {
 					alert("존재하지 않는 이름이거나 존재하지않는 휴대폰번호 입니다.");
 				}
@@ -40,7 +41,7 @@ function searchEmail(){
 </script>
 <body>
     <%@ include file="/WEB-INF/view/include/header.jsp" %>
-	<form id="searchemail" action="searchemail.do" method="post">
+	<form id="searchemail" action="searchemail.do" method="post" onsubmit="searchEmail(); return false;">
     <div class="sub">
 		<div class="size">
 			<h3 class="sub_title">아이디 찾기</h3>
@@ -54,7 +55,7 @@ function searchEmail(){
 							<li><input type="text" name="name" id="name" placeholder="이름"></li>
 							<li><input type="text" name="hp" id="hp" onkeyup="isNumberOrHyphen(this);cvtPhoneNumber(this);" placeholder="휴대폰번호"></li>
 						</ul>
-						<div class="login_btn"><input type="submit" value="아이디찾기" alt="아이디찾기" onclick="searchEmail();"/></div>
+						<div class="login_btn"><input type="submit" value="아이디찾기" alt="아이디찾기"/></div>
 					</fieldset>
 					<div class="btnSet clear">
 						<div>

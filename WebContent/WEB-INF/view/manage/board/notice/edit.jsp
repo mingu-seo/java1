@@ -93,9 +93,9 @@ NoticeVO data = (NoticeVO)request.getAttribute("data");
 										</td>
 										<th scope="row"><label for="">등록일</label></th>
 										<td>
-											<input type="text" id="registdate" name="registdate" class="inputTitle" value="<%=DateUtil.getDateTimeFormat(data.getCre_date())%>" title="등록일을 입력해주세요"/>&nbsp;
-											<span id="CalregistdateIcon">
-												<img src="/manage/img/calendar_icon.png" id="CalregistdateIconImg" style="cursor:pointer;"/>
+											<input type="text" id="cre_date" name="cre_date" class="inputTitle" value="<%=DateUtil.getDateTimeFormat(data.getCre_date())%>" title="등록일을 입력해주세요"/>&nbsp;
+											<span id="Calcre_dateIcon">
+												<img src="/manage/img/calendar_icon.png" id="Calcre_dateIconImg" style="cursor:pointer;"/>
 											</span>
 										</td>
 									</tr>

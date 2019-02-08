@@ -67,6 +67,9 @@ function CookieVal(cookieName) {
 	return "null" ;
 }	
 
+function goMovieSearch() {
+	$("#searchMovieFrm").submit();
+}
 
 
 </script>
@@ -87,6 +90,14 @@ function CookieVal(cookieName) {
                 	<a href="/logout.do">로그아웃</a>
                     <a href="/mypage/index.do">마이페이지</a>
                 <% } %>
+                </div>
+                <div class="search clear">
+                <form action="/searchMovie.do" id="searchMovieFrm" name="searchMovieFrm" method="get">
+                	<span class="searchWord">
+						<input type="text" id="sval" name="sval" value=""  title="검색어 입력" placeholder="영화 검색">
+						<input type="button" id="" value="검색" title="검색" onclick="goMovieSearch();">
+					</span>
+				</form>
                 </div>
                 <form action="/login.do" id="loginFrm" name="loginFrm" method="post" onsubmit="return loginCheck();">
                 <div class="login_info">
