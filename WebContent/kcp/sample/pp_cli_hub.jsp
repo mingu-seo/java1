@@ -315,7 +315,7 @@
                 int r = 1;
                 
                 if (r > 0) {
-                	response.sendRedirect("/ticket/ticketPayProcessing.do");
+                	response.sendRedirect("/mypage/index.do?reserve=success");
                 }
             }
 

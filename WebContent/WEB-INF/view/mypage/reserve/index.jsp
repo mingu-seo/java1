@@ -124,6 +124,51 @@ function goCancel(tno) {
 	</div>
     
     <%@ include file="/WEB-INF/view/include/footer.jsp" %>
-     
+<script>
+<% if ("success".equals(request.getParameter("reserve"))) { %>
+$(function() {
+	showReserveDialogue();
+})
+<% } %>
+
+function showReserveDialogue() {
+	var maskHeight = $(document).height(); 
+	var maskWidth = $(window).width();
+
+	$('#mask').css({'width':maskWidth,'height':maskHeight}); 
+	$('#mask').fadeTo("fast",0.8);
+
+	var t_dialog = $("#reserve_dialogue");
+	t_dialog.css({
+		'position': 'fixed',
+		'left': '50%',
+		'top': '50%'
+		});
+	t_dialog.css({
+		'margin-left': -t_dialog.outerWidth() / 2 + 'px',
+		'margin-top': -t_dialog.outerHeight() / 2 + 'px'
+	});
+	t_dialog.show();
+}
+
+function close_dialogue() {
+	$("#reserve_dialogue").hide();
+	$("#mask").hide();
+}
+</script>
+<div id="reserve_dialogue" class="dialogue_wr popupContent">
+	<div class="dialogue_top" style="text-align:center;">
+		<span class="title">영화 예매 완료</span>
+		<p class="close" id="dialogue_close" onclick="hideDialogue();"></p>
+	</div>
+	<div class="box">
+		<div class="dialogueList">
+			<div class="wr_box">
+				어쩌고 저쩌고
+			</div>
+			<!-- //wr_box -->
+		</div>
+	</div>
+</div>     
 </body>
 </html>
