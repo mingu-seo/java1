@@ -18,7 +18,7 @@
 		<dataSource type="DBCP">
 			<property name="JDBC.Driver" value="com.mysql.jdbc.Driver"/>
 
-			
+			<!--   로컬에 연결시-->
 			<property name="JDBC.ConnectionURL" value="jdbc:mysql://192.168.0.121:3306/movie?useUnicode=true&amp;characterEncoding=utf8"/>			
 			<property name="JDBC.Username" value="root"/>
 			<property name="JDBC.Password" value="12345"/>
