@@ -146,7 +146,10 @@ Ticket1VO data = (Ticket1VO)request.getAttribute("data");
 									</tr>
 									<tr>
 										<th>금액</th>
-										<td><%=data.getPrice()%>원</td>
+
+
+										<td><%=data.getPrice())%>원</td>
+
 									</tr>
 								</tbody>
 							</table>

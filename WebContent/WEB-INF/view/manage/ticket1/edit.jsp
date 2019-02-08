@@ -124,7 +124,7 @@ function cal() {
 											<%
 											for (int i =0; i<list.size(); i++) {
 											%>
-												<option value="<%=list.get(i).getToday()%>"><%=list.get(i).getToday()%></option>
+												<option value="<%=list.get(i).getToday()%>" <%=Function.getSelected(list.get(i).getToday(), data.getScreen_date()) %>><%=list.get(i).getToday()%></option>
 											<%
 											}
 											%>

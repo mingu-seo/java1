@@ -100,7 +100,7 @@ member.MemberVO memberInfo = (member.MemberVO)session.getAttribute("memberInfo")
 						<th>보유포인트</th>
 						<td>
 
-							<input type="text" name="mypoint" id="mypoint"  value="<%=memberInfo.getPoint() %>" readonly/> 점
+							<input type="text" name="mypoint" id="mypoint"  value="<%=memberInfo.getPoint() %>" onkeyup="isOnlyNumber(this);" readonly/> 점
 
 						</td>
 					</tr>
