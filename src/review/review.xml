@@ -14,7 +14,7 @@
 			<isNotEqual property="sval" compareValue="">
 				<!-- 검색 타입이 all일 때 -->
 				<isEqual property="stype" compareValue="all" prepend="and">
-					 ( (member_pk like '%$sval$%' ) or (movie_pk like '%$sval$%' )  ) 					
+					 movie_pk in (select no from movie where title like '%$sval$%') or member_pk in (select no from member where name like '%$sval$%') 				
 				</isEqual>
 				<!-- 검색 타입이 all이 아닐때 해당 stype으로 검색 -->
 				<isNotEqual property="stype" compareValue="all" prepend="and">
