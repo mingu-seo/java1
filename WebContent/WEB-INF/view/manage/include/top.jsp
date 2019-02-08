@@ -81,7 +81,6 @@ $(window).load(function(){
 
 						<li><a href="<%=request.getContextPath()%>/manage/movie/review/index.do"><span>영화후기</span></a></li>
 						<li><a href="<%=request.getContextPath()%>/manage/board/event/index.do"><span>이벤트</span></a></li>
-						<li><a href="<%=request.getContextPath()%>/manage/board/"><span>Q&A게시판</span></a></li>
 						<li><a href="<%=request.getContextPath()%>/manage/board/faq/index.do"><span>FAQ분류관리</span></a></li>
 						
 					</ul>

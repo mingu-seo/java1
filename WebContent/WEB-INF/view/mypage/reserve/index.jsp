@@ -10,7 +10,7 @@
 function goCancel(tno) {
 	var cancel = confirm ('취소하시겠습니까?');
 	if (cancel){
-		document.location.href = "/ticket/cancel.do?no="+tno;
+		document.location.href = "manage/ticket/cancel.do?no="+tno;
 	} else {
 		return false;
 	}
