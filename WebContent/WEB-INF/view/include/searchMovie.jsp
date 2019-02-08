@@ -1,4 +1,12 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page import="property.SiteProperty" %>
+<%@ page import="util.*" %>
+<%@ page import="java.util.*" %>
+<%@ page import="movie.*" %>
+<% 
+MovieVo param = (MovieVo)request.getAttribute("vo");
+ArrayList<MovieVo> list = (ArrayList)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -19,25 +27,36 @@
 			<div class="bbs"> 
 				<div class="ticket">
 					<ul>
-					<%  for (int i=0; i<10; i++) { %>
+					<% MovieVo data; 
+					for (int i=0; i<list.size(); i++) { 
+							data=list.get(i);
+							%>
 						<li>
 							<a href="javascript:showDialogue(24);">
 							<dl>
 								<dt class="img">
-									<img src="/upload/movie/movie_1548052910690.jpg" alt=""/>
+										<img src="<%=SiteProperty.MOVIE_UPLOAD_PATH%><%=data.getPoster()%>" alt=""/>
 								</dt>
 								<dd class="title">
-								아쿠아맨
+								<%=data.getTitle() %>
+								<%if(data.getRating()==19) {%>
+									<img src="/img/19.png" width="30"> 
+									<%}else if(data.getRating()==15) {  %>
+									<img src="/img/15.png" width="30">
+									<%}else if(data.getRating()==12) {  %>
+									<img src="/img/12.png" width="30">
+									<%}else { %>
+									<img src="/img/all.png" width="30"> <%} %>
 									<img src="/img/12.png" width="30">
 								</dd>
 								<dd class="txt_l">
-								감독 : 제임스 완
+								감독 : <%=data.getDirector() %>
 								</dd>
 								<dd class="txt_l">
-								장르 : 액션,판타지
+								장르 :  <%=data.getGenre() %>
 								</dd>
 								<dd class="contents">
-								땅의 아들이자 바다의 왕, 심해의 수호자인슈퍼히어로 아쿠아맨의 탄생을 ...
+								<%=Function.strCut(data.getContents(), "", 70, 0, true, true)%>
 								</dd>
 							</dl>
 							</a>

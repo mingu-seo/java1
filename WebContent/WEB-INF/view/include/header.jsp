@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page import="util.*" %>
+<%Parameter sval = (Parameter)request.getAttribute("param"); %>
 <%member.MemberVO memberInfo = (member.MemberVO)session.getAttribute("memberInfo"); //로그인 세션 가져오기 %>
 <script type="text/javascript" src="/js/swiper.min.js"></script>
 <script>
@@ -91,14 +93,17 @@ function goMovieSearch() {
                     <a href="/mypage/index.do">마이페이지</a>
                 <% } %>
                 </div>
+                
                 <div class="search clear">
-                <form action="/searchMovie.do" id="searchMovieFrm" name="searchMovieFrm" method="get">
+                <form action="/include/searchMovie.do" id="searchMovieFrm" name="searchMovieFrm" method="get">
                 	<span class="searchWord">
-						<input type="text" id="sval" name="sval" value=""  title="검색어 입력" placeholder="영화 검색">
+						<input type="text" id="sval" name="sval" value="<%if(sval!=null && sval.getSval()!=null){%> <%=sval.getSval() %> <%} %>"  title="검색어 입력" placeholder="영화 검색">
+						<input type="hidden" name="stype" id="stype" value="all"/>
 						<input type="button" id="" value="검색" title="검색" onclick="goMovieSearch();">
 					</span>
 				</form>
                 </div>
+                
                 <form action="/login.do" id="loginFrm" name="loginFrm" method="post" onsubmit="return loginCheck();">
                 <div class="login_info">
                 	<div class="top_area"><img src="/img/btn_del.gif"/></div>
