@@ -212,6 +212,8 @@ int totPage = (Integer)request.getAttribute("totPage");
 											out.print("결제완료");
 										}else if(data.getPay_state()==2){
 											out.print("결제 미완료");
+										}else if(data.getPay_state()==3){
+											out.print("결제 취소");
 										}
 										%>
 										</td>
