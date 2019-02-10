@@ -23,7 +23,7 @@ member.MemberVO memberInfo = (member.MemberVO)session.getAttribute("memberInfo")
 	<div class="box">
 		<div class="dialogueList">
 			<div class="wr_box">
-			<form name="popupFrm" id="popupFrm" method="post" action="/ticket/book.do">
+			<form name="popupFrm" id="popupFrm" method="POST" action="/ticket/book.do">
 				<table>
 					<colgroup>
 						<col width="20%">

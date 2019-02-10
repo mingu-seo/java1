@@ -35,19 +35,18 @@
 function showDialogue(movie_no) {
 <% if (memberInfo == null) { %>
 	alert("로그인 후 예매해 주세요");
-
 <% } else { %>
 	$.ajax({
 		url: "/ticket/ticket_form.do",
 		data : {"no": movie_no},
 		success : function(data) {
 			$("#ticket_dialogue").html(data);
-			cal();
+				cal("success");
 			$("#tk_count").change(function() {
-				cal();
+				cal("success");
 			});
 			$("input[name='format']").click(function(){
-				cal();
+				cal("success");
 			})
 		}
 	})
@@ -118,7 +117,7 @@ function save(){
 	} 
 	
 }
-function cal() {
+function cal(param) {
 	var tkcount = $("#tk_count").val();
 	var format = $("input[name='format']:checked").val();
 	var mypoint = $("#mypoint").val();
@@ -126,10 +125,12 @@ function cal() {
 	var usePoint = $("#usePoint").val();
 	usePoint = Number(usePoint);
 	
-	if(usePoint>mypoint) {
+	
+	
+	if(usePoint>mypoint && (param == "" || param == null) ) {
 		alert("사용 가능한 포인트는 최대 " + mypoint + "입니다.");
-		
 		usePoint = 0;
+		$("#usePoint").val(0);
 	}
 	//console.log(tkcount);
 	//console.log(format);
