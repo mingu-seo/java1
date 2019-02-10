@@ -69,19 +69,19 @@ public class CodeUtil {
 		String result = "";
 		switch (type) {
 		case 1:
-			result = "1";
+			result = "1점";
 			break;
 		case 2:
-			result = "2";
+			result = "2점";
 			break;
 		case 3:
-			result = "3";
+			result = "3점";
 			break;
 		case 4:
-			result = "4";
+			result = "4점";
 			break;
 		case 5:
-			result = "5";
+			result = "5점";
 			break;
 		}
 		return result;
