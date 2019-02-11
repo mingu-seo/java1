@@ -98,11 +98,11 @@ public class SiteProperty {
 	 * 로컬 홈디렉토리경로 (실서버 변경 필요)
 	 */
 //	public static final String REAL_PATH				= "E:\\Java\\workspace\\java1\\WebContent"; //아란 path
-//	public static final String REAL_PATH				= "E:\\workspace\\java1\\WebContent";  //상윤 path
+	public static final String REAL_PATH				= "E:\\workspace\\java1\\WebContent";  //상윤 path
 //	public static final String REAL_PATH				= "D:\\workspace\\java1\\WebContent";  //나영 path
 //	public static final String REAL_PATH				= "D:\\jsphome\\java1\\aran\\www";
-	public static final String REAL_PATH				= "/users/aranrhee/git/java1/WebContent/upload/movie";  // 아란 mac path
-	
+//	public static final String REAL_PATH				= "/users/aranrhee/git/java1/WebContent/upload/movie";  // 아란 mac path
+//	public static final String REAL_PATH				= "/home/hosting_users/aranrhee/tomcat/webapps/ROOT"; //cafe24	
 	
 	
 	 /* 공지사항 첨부파일 경로

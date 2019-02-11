@@ -50,9 +50,6 @@ ActorVo av = (ActorVo) request.getAttribute("av");
 									<img src="/img/all.png" width="30"> <%} %>
 								</dt>
 								<dt class="info_detail">
-									<strong>예매율</strong>&nbsp; 50%
-								</dt>
-								<dt class="info_detail">
 									<strong>감독</strong>&nbsp; <%=data.getDirector()%>
 								</dt>
 								<dt class="info_detail">
