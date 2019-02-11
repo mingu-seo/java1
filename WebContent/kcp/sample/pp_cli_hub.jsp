@@ -370,7 +370,7 @@ String movie_title = request.getParameter("title");
         		pv.setMemo("<" + movie_title + ">"+ " 예매 포인트 적립");
         		pv.setUsePoint(Function.getIntParameter((request.getParameter("price")))*10/100);
         		ticket1Dao.plusPoint2(pv);
-        		ticket1Dao.plusMemberPoint(pv);
+        		ticket1Dao.aranplusMemberPoint(pv);
         		
         		r = (Integer)ticket1Dao.book(ticket1Vo);
                 

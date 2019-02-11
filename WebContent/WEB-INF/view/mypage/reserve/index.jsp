@@ -67,7 +67,7 @@ function goCancel(tno) {
 											<tr>
 												<th>관람극장</th>
 												<td>GIGABOX 일산점</td>
-												<th>관람일시</th>
+												<th>관림일시</th>
 												<td><%=data.getScreen_date() %>&emsp;
 												<%if(data.getScreen_time()==1){
 												out.print("09:00");	
@@ -92,7 +92,7 @@ function goCancel(tno) {
 											<tr>
 												<th>총 결제금액</th>
 												<td><%=data.getPrice()%>원</td>
-												<th>예매상태</th>
+												<th>예매 상태</th>
 												<td>
 												
 												<%if(data.getRes_state()==1){ 
@@ -103,7 +103,7 @@ function goCancel(tno) {
 												</td>
 											</tr>
 										</table>
-									</div>
+									</div>   <!-- 예매 상태가, 예매완료 일 때 && getDiff(날짜 차이 구하는 메소드) 리턴값이  -->
 									<%if(data.getRes_state()==1 && DateUtil.getDiff(data.getScreen_date(), DateUtil.getToday())>=1){ %>
 									<div class="btn_area"><a href="#" class="btn" onclick="goCancel(<%=data.getNo()%>)">예매취소</a></div>
 									<% }%>
