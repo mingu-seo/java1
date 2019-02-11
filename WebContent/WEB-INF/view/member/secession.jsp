@@ -26,7 +26,7 @@ function secessionCheck(){
 		return false;
 	}
 	if ( getObject("hp").value.length < 1 ) {
-		alert("비밀번호를 입력해주세요.");
+		alert("휴대폰 번호를 입력해주세요.");
 		getObject("hp").focus();
 		return false;
 	}
