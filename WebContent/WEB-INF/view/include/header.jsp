@@ -86,7 +86,7 @@ function goMovieSearch() {
                 <h1 class="logo"><a href="/index.do"><img src="/img/logo.png"/></a></h1>
                 <div class="util clear">
                 <%if(memberInfo==null){ %>
-                    <a href="#;" id="login_click">로그인</a>
+                    <a href="#;" id="login_click" >로그인</a>
                     <a href="/member/join.do">회원가입</a>
                 <%}else{%>
                 	<a href="/logout.do">로그아웃</a>
@@ -114,7 +114,7 @@ function goMovieSearch() {
                 			<input type="password" id="loginPw" name="pw" value="" placeholder="비밀번호"/>
                 		</div>
                 		<div class="login_btn">
-                			<input type="submit" value="로그인"/>
+                			<input type="submit" value="로그인" style="cursor:pointer"/>
                 		</div>
                 	</div>
                 	<div class="bottom_area">
