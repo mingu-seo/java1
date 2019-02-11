@@ -141,7 +141,11 @@ function goSave() {
 			</form>
 			<!-- //write--->
 			<div class="btnSet clear">
-				<div><a class="btn" onclick="goSave();">수정</a> <a href="javascript:;" class="btn" onclick="history.back();">취소</a></div>
+				<div>
+				<a class="btn" onclick="goSave();">수정</a> 
+				<a href="javascript:;" class="btn" onclick="history.back();">취소</a>
+				<a href="/member/secession.do" class="btn">회원탈퇴</a>
+				</div>
 			</div>
 		</div>
     </div>
