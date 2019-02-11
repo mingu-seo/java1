@@ -106,7 +106,7 @@ function goSave() {
 					<tr>
 						<th>성별</th>
 						<td>
-						<select name="gender" id="gender">
+						<select name="gender" style="height:30px;"id="gender">
 						<option value="1" <%if(data.getGender()==1){out.print("selected");} %>>남성</option>
 						<option value="2" <%if(data.getGender()==2){out.print("selected");} %>>여성</option>
 						</select> 
