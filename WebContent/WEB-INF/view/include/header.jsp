@@ -137,7 +137,7 @@ function goMovieSearch() {
                             </ul>
                         </li>
                         <li>
-                            <a href="" >TICKET</a>
+                            <a href="/ticket/index.do" >TICKET</a>
                             <ul class="depth2">
 							<li><a href="/ticket/index.do" >예매하기</a></li>
                             </ul>

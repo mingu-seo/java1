@@ -184,7 +184,7 @@ ActorVo av = (ActorVo) request.getAttribute("av");
 						<div class="review_write">
 							<div class="input">
 								<div class="rate">
-									<select name="score"> <%=CodeUtil.getScoreTypeOption(1) %>
+									<select name="score" style="height:30px;"> <%=CodeUtil.getScoreTypeOption(1) %>
 									</select>
 								</div>
 								

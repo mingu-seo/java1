@@ -67,7 +67,7 @@ function goCancel(tno) {
 											<tr>
 												<th>관람극장</th>
 												<td>GIGABOX 일산점</td>
-												<th>관림일시</th>
+												<th>관람일시</th>
 												<td><%=data.getScreen_date() %>&emsp;
 												<%if(data.getScreen_time()==1){
 												out.print("09:00");	
@@ -92,7 +92,7 @@ function goCancel(tno) {
 											<tr>
 												<th>총 결제금액</th>
 												<td><%=data.getPrice()%>원</td>
-												<th>예매 상태</th>
+												<th>예매상태</th>
 												<td>
 												
 												<%if(data.getRes_state()==1){ 
