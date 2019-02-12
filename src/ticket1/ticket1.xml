@@ -118,7 +118,7 @@
      
     <select id="aranMovieDate" parameterClass="Integer" resultClass="ticket1VO">
  		select today 
-		from Calendar as c, movie as m
+		from calendar as c, movie as m
 		where m.no = #no#
 		 <![CDATA[
 		and c.today >= m.releaseDate
@@ -154,7 +154,7 @@
    </update>
    
    <insert id="minusPoint" parameterClass="pointVO">
-   	INSERT INTO POINT (
+   	INSERT INTO point (
    	member_pk, usePoint, memo, pointRegistDate
    	) VALUES (
    	#member_pk#, #usePoint#, #memo#, now()
@@ -165,7 +165,7 @@
    </insert>
    
    <insert id="plusPoint2" parameterClass="pointVO" >
-   INSERT INTO POINT(
+   INSERT INTO point(
    member_pk, usePoint, memo, pointRegistDate
    ) VALUES (
    #member_pk#, #usePoint#, #memo#, now()

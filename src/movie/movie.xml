@@ -91,7 +91,7 @@
 	
 	<!-- 해당 테이블에 게시글 작성 -->
     <insert id="insert" parameterClass="movie_vo">
-        INSERT INTO MOVIE(
+        INSERT INTO movie(
         	title, director, genre, rating, format, runtime, releaseDate,
         	endDate, poster, display, contents
         ) VALUES (
@@ -105,7 +105,7 @@
     
     <!-- 해당 테이블에 스틸컷 첨부 -->
     <insert id="insert2" parameterClass="stillCut_vo">
-        INSERT INTO STILLCUT (
+        INSERT INTO stillcut (
         	movie_no, stillCut1, stillCut2, stillCut3, stillCut4, stillCut5, stillCut6 
         ) VALUES (
         	#movie_no#, #stillCut1#, #stillCut2#, #stillCut3#, #stillCut4#, #stillCut5#,
@@ -118,7 +118,7 @@
     
     <!-- 해당 테이블에 트레일러 첨부 -->
     <insert id="insert3" parameterClass="trailer_vo">
-        INSERT INTO TRAILER (
+        INSERT INTO trailer (
         	movie_no, trailer1, trailer2, trailer3, trailer4, trailer5, trailer6 
         ) VALUES (
         	#movie_no#, #trailer1#, #trailer2#, #trailer3#, #trailer4#, #trailer5#,
@@ -131,7 +131,7 @@
     
         <!-- 해당 테이블에 출연배우 등록 -->
     <insert id="insertActor" parameterClass="actor_vo">
-        INSERT INTO ACTOR (
+        INSERT INTO actor (
         	movie_no, actor1, actor2, actor3, actor4, actor5, actor6 
         ) VALUES (
         	#movie_no#, #actor1#, #actor2#, #actor3#, #actor4#, #actor5#,
@@ -164,7 +164,7 @@
     </update>
     
     <update id="stillCutUpdate" parameterClass="stillCut_vo">
-        UPDATE STILLCUT SET
+        UPDATE stillcut SET
         movie_no = #movie_no#
        	<isEqual property="stillCut1_chk" compareValue="1">
         ,stillCut1=''
@@ -206,7 +206,7 @@
     </update>
     
     <update id="trailerUpdate" parameterClass="trailer_vo">
-    	UPDATE TRAILER SET 
+    	UPDATE trailer SET 
     	
     		movie_no = #movie_no#,
     		trailer1 = #trailer1#,
@@ -221,7 +221,7 @@
     </update>
     
      <update id="actorUpdate" parameterClass="actor_vo">
-    	UPDATE ACTOR SET 
+    	UPDATE actor SET 
     	
     		movie_no = #movie_no#,
     		actor1 = #actor1#,
@@ -252,19 +252,19 @@
     
     <select id="readStillCut" parameterClass="Integer" resultClass="stillCut_vo">
     SELECT *
-    FROM STILLCUT
+    FROM stillcut
     where movie_no = #movie_no#
     </select>
     
     <select id="readTrailer" parameterClass="Integer" resultClass="trailer_vo">
     SELECT *
-    FROM TRAILER
+    FROM trailer
     where movie_no = #movie_no#
     </select>
     
     <select id="readActor" parameterClass="Integer" resultClass="actor_vo">
     SELECT *
-    FROM ACTOR
+    FROM actor
     where movie_no = #movie_no#
     </select>
     
@@ -312,19 +312,19 @@
     </select>
     
     <delete id="delete" parameterClass="movie_vo">
-        DELETE FROM MOVIE WHERE no=#no#
+        DELETE FROM movie WHERE no=#no#
     </delete>
     
         <delete id="stillCutDelete" parameterClass="Integer">
-        DELETE FROM STILLCUT WHERE movie_no=#movie_no#
+        DELETE FROM stillcut WHERE movie_no=#movie_no#
     </delete>
     
         <delete id="trailerDelete" parameterClass="Integer">
-        DELETE FROM TRAILER WHERE movie_no=#movie_no#
+        DELETE FROM trailer WHERE movie_no=#movie_no#
     </delete>
     
             <delete id="actorDelete" parameterClass="Integer">
-        DELETE FROM ACTOR WHERE movie_no=#movie_no#
+        DELETE FROM actor WHERE movie_no=#movie_no#
     </delete>
     
        

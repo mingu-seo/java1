@@ -50,9 +50,6 @@ ActorVo av = (ActorVo) request.getAttribute("av");
 									<img src="/img/all.png" width="30"> <%} %>
 								</dt>
 								<dt class="info_detail">
-									<strong>예매율</strong>&nbsp; 50%
-								</dt>
-								<dt class="info_detail">
 									<strong>감독</strong>&nbsp; <%=data.getDirector()%>
 								</dt>
 								<dt class="info_detail">
@@ -184,7 +181,7 @@ ActorVo av = (ActorVo) request.getAttribute("av");
 						<div class="review_write">
 							<div class="input">
 								<div class="rate">
-									<select name="score"> <%=CodeUtil.getScoreTypeOption(1) %>
+									<select name="score" style="height:30px;"> <%=CodeUtil.getScoreTypeOption(1) %>
 									</select>
 								</div>
 								

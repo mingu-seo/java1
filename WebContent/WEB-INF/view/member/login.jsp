@@ -74,7 +74,7 @@ function CookieVal(cookieName) {
 							<li><input type="password" id="pw1" name="pw" placeholder="비밀번호"></li>
 							<li><label><input type="checkbox" name="reg1" id="reg1"/> 아이디저장</label></li>
 						</ul>
-						<div class="login_btn"><input type="submit" value="로그인" alt="로그인" /></div>
+						<div class="login_btn"><input style='cursor:pointer;' type="submit" value="로그인" alt="로그인" /></div>
 					</fieldset>
 					<div class="btnSet clear">
 						<div>

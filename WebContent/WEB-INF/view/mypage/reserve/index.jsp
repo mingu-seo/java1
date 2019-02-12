@@ -103,7 +103,7 @@ function goCancel(tno) {
 												</td>
 											</tr>
 										</table>
-									</div>
+									</div>   <!-- 예매 상태가, 예매완료 일 때 && getDiff(날짜 차이 구하는 메소드) 리턴값이  -->
 									<%if(data.getRes_state()==1 && DateUtil.getDiff(data.getScreen_date(), DateUtil.getToday())>=1){ %>
 									<div class="btn_area"><a href="#" class="btn" onclick="goCancel(<%=data.getNo()%>)">예매취소</a></div>
 									<% }%>

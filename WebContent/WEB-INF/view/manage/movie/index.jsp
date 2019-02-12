@@ -209,7 +209,7 @@ function goDelete(v) {
 							</div>
 							<!--//btn-->
 							<!-- 페이징 처리 -->
-							<%=Page.indexList(param.getReqPageNo(), 11, request)%>
+							<%=Page.indexList(param.getReqPageNo(), totPage, request)%>
 							<!-- //페이징 처리 -->
 							
 							<!-- //search --> 
