@@ -18,10 +18,11 @@
 		<dataSource type="DBCP">
 		
 			<!-- 상윤 DB-->
-			<property name="JDBC.Driver" value="com.mysql.jdbc.Driver"/>
-			<property name="JDBC.ConnectionURL" value="jdbc:mysql://192.168.0.121:3306/movie?useUnicode=true&amp;characterEncoding=utf8"/>			
-			<property name="JDBC.Username" value="root"/>
-			<property name="JDBC.Password" value="12345"/>
+			<property name="JDBC.Driver" value="org.mariadb.jdbc.Driver"/>
+			<!-- <property name="JDBC.ConnectionURL" value="jdbc:mysql://192.168.0.121:3306/movie?useUnicode=true&amp;characterEncoding=utf8"/> -->			
+			<property name="JDBC.ConnectionURL" value="jdbc:mariadb://gigabox.pe.kr:3306/aranrhee?autoReconnect=true"/>			
+			<property name="JDBC.Username" value="aranrhee"/>
+			<property name="JDBC.Password" value="java12!@"/>
 			
 			
 
